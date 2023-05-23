@@ -5,7 +5,7 @@ using UnityEngine;
 public static class AgentManager
 {
     private static Dictionary<int, Agent> agents = new Dictionary<int, Agent>();
-    private static HashSet<int> selected = new HashSet<>();
+    private static HashSet<int> selected = new HashSet<int>();
     private static int focused;
 
     /**
