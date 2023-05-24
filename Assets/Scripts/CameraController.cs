@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("Zooming")]
+    [Header(" --- Zooming ---")]
     [Tooltip("The closest to the game plane the camera is allowed to be.")]
     [SerializeField] private float minDist;
     [Tooltip("The farthest from the game plane the camera is allowed to be.")]
