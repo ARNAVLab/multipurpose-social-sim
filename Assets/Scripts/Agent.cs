@@ -9,7 +9,7 @@ public class Agent : MonoBehaviour
     [SerializeField] private SpriteRenderer selectionOutline;
     private bool focused = false;
     public int AgentID { get; set; }
-    
+    public AgentInfo Info;
 
     private void Start()
     {

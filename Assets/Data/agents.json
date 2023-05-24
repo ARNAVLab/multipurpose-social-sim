@@ -1,0 +1,119 @@
+{
+    "agents": [
+    {
+        "name": "Norma",
+        "motive": {
+            "accomplishment": 2,
+            "social": 1,
+            "physical": 4,
+            "emotional": 3,
+            "financial": 5
+        },
+        "currentLocation": {
+            "xPos": 0,
+            "yPos": 0
+        },
+        "occupiedCounter": 0,
+        "currentAction": "wait_action",
+        "destination": {
+            "xPos": 5,
+            "yPos": 4
+        },
+        "relationships": [
+            { "type": "friend", "with": "Quentin", "valence": 3 },
+            { "type": "student-of", "with": "MathProf", "valence":1}
+        ]
+    },
+    {
+        "name": "Abnorma",
+        "motive": {
+            "accomplishment": 1,
+            "social": 4,
+            "physical": 4,
+            "emotional": 5,
+            "financial": 5
+        },
+        "currentLocation": {
+            "xPos": 0,
+            "yPos": 4
+        },
+        "occupiedCounter": 0,
+        "currentAction": "wait_action",
+        "destination": {
+            "xPos": 5,
+            "yPos": 4
+        },
+        "relationships": [
+            { "type": "enemy", "with": "Quentin", "valence": 3 },
+            { "type": "student-of", "with": "PhysicsProf", "valence":1}
+        ]
+    },
+    {
+        "name": "Quentin",
+        "motive": {
+            "accomplishment": 4,
+            "social": 2,
+            "physical": 1,
+            "emotional": 1,
+            "financial": 5
+        },
+        "currentLocation": {
+            "xPos": 0,
+            "yPos": 0
+        },
+        "occupiedCounter": 0,
+        "currentAction": "wait_action",
+        "destination": {
+            "xPos": 5,
+            "yPos": 5
+        },
+        "relationships": [
+            { "type": "friend", "with": "Norma", "valence": 3 },
+            { "type": "student-of", "with": "PhysicsProf", "valence":1}
+        ]
+    },
+    {
+        "name": "MathProf",
+        "motive": {
+            "accomplishment": 5,
+            "social": 5,
+            "physical": 5,
+            "emotional": 5,
+            "financial": 5
+        },
+        "currentLocation": {
+            "xPos": 1,
+            "yPos": 1
+        },
+        "occupiedCounter": 0,
+        "currentAction": "wait_action",
+        "destination": {
+            "xPos": 5,
+            "yPos": 5
+        },
+        "relationships": [
+        ]
+    },
+    {
+        "name": "PhysicsProf",
+        "motive": {
+            "accomplishment": 5,
+            "social": 5,
+            "physical": 5,
+            "emotional": 5,
+            "financial": 5
+        },
+        "currentLocation": {
+            "xPos": 1,
+            "yPos": 3
+        },
+        "occupiedCounter": 0,
+        "currentAction": "wait_action",
+        "destination": {
+            "xPos": 5,
+            "yPos": 5
+        },
+        "relationships": [
+        ]
+    }]
+}
