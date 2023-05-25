@@ -13,6 +13,17 @@ public class Panel : MonoBehaviour
     public bool IsShown { get { return isShown; } }
 
     /**
+     * On startup, Panels Show or Hide themselves based on the value of IsShown given to them in the editor.
+     */
+    private void Start()
+    {
+        if (IsShown)
+            Show();
+        else
+            Hide();
+    }
+
+    /**
      * Looks at the given index of the Connected Panels list, and calls Toggle for that Panel.
      * Logs an error and does nothing if the index is invalid.
      * @param idx is the target Panel's index in the Connected Panels list.
@@ -24,19 +35,11 @@ public class Panel : MonoBehaviour
             Debug.LogError("Panel tried to toggle Connected Panel #" + idx + ", but no such Panel exists!");
             return;
         }
-        connectedPanels[idx].Toggle();
-    }
 
-    /**
-     * Delegates to either the Show or Hide functions to change the state of IsShown.
-     * For instance, if IsShown is true, Hide will be called, and vice versa.
-     */
-    public void Toggle()
-    {
-        if (!IsShown)
-            Show();
+        if (connectedPanels[idx].IsShown)
+            connectedPanels[idx].Hide();
         else
-            Hide();
+            connectedPanels[idx].Show();
     }
 
     /**

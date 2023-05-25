@@ -25,7 +25,7 @@ public class AgentInfo
     [Serializable]
     public struct Motive
     {
-        public int accommplishment;
+        public int accomplishment;
         public int social;
         public int physical;
         public int emotional;
