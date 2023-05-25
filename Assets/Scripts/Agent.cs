@@ -6,16 +6,14 @@ public class Agent : MonoBehaviour
 {
     private static int nextUnusedID = 0;
 
-    [SerializeField] private SpriteRenderer selectionOutline;
+    [SerializeField] private GameObject selectionOutline;
     private bool focused = false;
     public int AgentID { get; set; }
     public AgentInfo Info;
+    public Color displayColor;
 
     private void Start()
     {
-        // Make selection outline transparent
-        selectionOutline.color *= new Color(1, 1, 1, 0);
-
         // Assign a unique identifier to this Agent
         AgentID = nextUnusedID;
         nextUnusedID++;
@@ -30,12 +28,12 @@ public class Agent : MonoBehaviour
         //{
 
         //}
+        GetComponent<SpriteRenderer>().color = displayColor;
     }
 
-    public void Focus(bool focus)
+    public void ToggleOutline(bool show)
     {
-        selectionOutline.color = focus ? new Color(1, 1, 1, 1) : new Color(1, 1, 1, 0);
-        focused = focus;
+        selectionOutline.SetActive(show);
     }
 
     private void OnCollisionEnter(Collision collision)

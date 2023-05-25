@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4132798929637531371
 Transform:
   m_ObjectHideFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2402280482477214194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8495250230477651471}
@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 1668427431
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 74ef721fef79c44489d4e3edb0ab0c01, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb196a4220058c24cb3ea54fa2f3f021, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.44, y: 0.44}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -131,7 +131,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4be1c69a89a3645ad1373545da430f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionOutline: {fileID: 1500792246175070994}
+  selectionOutline: {fileID: 2402280482477214194}
+  Info:
+    name: 
+    motive:
+      accomplishment: 0
+      social: 0
+      physical: 0
+      emotional: 0
+      financial: 0
+    currentLocation:
+      xPos: 0
+      yPos: 0
+    occupiedCounter: 0
+    currentAction: 
+    destination:
+      xPos: 0
+      yPos: 0
+    relationships: []
+  displayColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &8495250230477651470
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -173,7 +191,7 @@ SpriteRenderer:
   m_SortingLayerID: 1668427431
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: c8a69ecdf54ac8e4b873466605de27ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb196a4220058c24cb3ea54fa2f3f021, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
