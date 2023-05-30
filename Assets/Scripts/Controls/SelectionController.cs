@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class SelectionController : MonoBehaviour
@@ -10,6 +11,7 @@ public class SelectionController : MonoBehaviour
     [SerializeField] private float _cameraZoomMin;
     [SerializeField] private float _cameraZoomMax;
     [SerializeField] private GameObject _selectionBoxPrefab;
+    [SerializeField] private Vector3 _selectionBoxDefSize;
 
     private Controls _controls;
     private Camera _camera;
@@ -31,6 +33,8 @@ public class SelectionController : MonoBehaviour
     private Vector2 _cameraMovement;
     private float _cameraZoom;
 
+    public static UnityEvent _onSelectEvent = new UnityEvent();
+
     private void Awake()
     {
         _controls = new Controls();
@@ -38,6 +42,11 @@ public class SelectionController : MonoBehaviour
         _selectionBox = Instantiate(_selectionBoxPrefab);
         _selectionBoxRenderer = _selectionBox.GetComponent<SpriteRenderer>();
         _selectionBoxRenderer.enabled = false;
+    }
+
+    private void Start()
+    {
+        _selectionBox.transform.localScale = _selectionBoxDefSize;
     }
 
     private void Update()
@@ -80,11 +89,12 @@ public class SelectionController : MonoBehaviour
         _clickLeftOrigin = _mousePosition;
         _selectionBoxRenderer.enabled = true;
         _selectionBox.transform.position = _clickLeftOrigin;
-        _selectionBox.transform.localScale = new Vector3(0.1f, 0.1f, 1f);
+        _selectionBox.transform.localScale = _selectionBoxDefSize;
     }
     private void MouseLeftUp(InputAction.CallbackContext context)
     {
         _clickLeft = false;
+        SelectionManager.Instance.DeselectAll();
         if (_dragLeft)
         {
             _dragLeft = false;
@@ -110,6 +120,8 @@ public class SelectionController : MonoBehaviour
         }
         _selectionBoxRenderer.enabled = false;
         _selectionBox.transform.localScale = new Vector3(0.1f, 0.1f, 1f);
+
+        _onSelectEvent.Invoke();
     }
 
     private void CtrlDown(InputAction.CallbackContext context)

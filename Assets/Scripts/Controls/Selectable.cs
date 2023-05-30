@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Selectable : MonoBehaviour
 {
-    [SerializeField] private Color _colorHover;
-    [SerializeField] private Color _colorSelect;
-
     public bool isHovered {get; private set;} = false;
     public bool isSelected {get; private set;} = false;
 
@@ -34,14 +31,15 @@ public class Selectable : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "SelectionBox")
+        if (other.CompareTag("Cursor"))
         {
+            Debug.Log("OnTriggerEnter");
             SelectionManager.Instance.Hover(this);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "SelectionBox")
+        if (other.CompareTag("Cursor"))
         {
             SelectionManager.Instance.Unhover(this);
         }

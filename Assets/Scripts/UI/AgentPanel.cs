@@ -21,6 +21,11 @@ public class AgentPanel : Panel
     [SerializeField] private GameObject[] opinionNums;
     [SerializeField] private GameObject[] opinionBars;
 
+    private void Start()
+    {
+        SelectionController._onSelectEvent.AddListener(SelectionListener);
+    }
+
     /**
      * Selects the agent at a position relative to the currently focused agent in the selected agents list, then displays their info.
      * Because of the call to GetAgentIndex, positions outside of the list bounds are supported.
@@ -28,9 +33,9 @@ public class AgentPanel : Panel
      */
     public void ChangeFocusedAgent(int indexDelta)
     {
-        selectedAgents[focusedAgentIdx].ToggleOutline(false);
+        selectedAgents[focusedAgentIdx].Unfocus();
         focusedAgentIdx = GetAgentIndex(focusedAgentIdx, indexDelta);
-        selectedAgents[focusedAgentIdx].ToggleOutline(true);
+        selectedAgents[focusedAgentIdx].Focus();
         Camera.main.transform.position = new Vector3(selectedAgents[focusedAgentIdx].transform.position.x, selectedAgents[focusedAgentIdx].transform.position.y, Camera.main.transform.position.z);
         DisplayAgentInfo();
     }
@@ -84,27 +89,36 @@ public class AgentPanel : Panel
         motiveBars[4].GetComponent<UIValueBar>().SetValue(focusedAgent.Info.motive.accomplishment);
     }
 
-    /**
-     * Extends the generic implementation of Panel.Show() to include setting a list of selected Agents.
-     * @param selectedAgents is a list of Agent objects that represents all Agents currently viewable in the Agent Info Panel.
-     */
-    public void Show(List<Agent> selectedAgents)
+    private void SelectionListener()
     {
-        base.Show();
+        HashSet<Selectable> selected = SelectionManager.Instance.Selected;
 
-        this.selectedAgents = selectedAgents;
-        focusedAgentIdx = 0;
-        ChangeFocusedAgent(0);
-    }
+        Debug.Log(selected.Count);
 
-    /**
-     * Overrides the generic implementation of Panel.Show() to disallow its use.
-     * An AgentPanel must be provided with a list of selected Agents when Shown.
-     */
-    public override void Show()
-    {
-        // If no list of Agents is provided, the AgentPanel does not become Shown.
-        Debug.LogWarning("Attempted to Show Agent Panel without providing a list of Agents.");
+        if (selected.Count <= 0)
+        {
+            // Nothing was selected. Attempt to hide panel.
+            Hide();
+        }
+        else
+        {
+            // At least one Agent was selected; attempt to show panel.
+            Show();
+
+            agentSprites[0].SetActive(selected.Count > 1);
+            agentSprites[2].SetActive(selected.Count > 1);
+
+            selectedAgents.Clear();
+
+            foreach (Selectable s in selected)
+            {
+                Agent a = (Agent)s;
+                selectedAgents.Add(a);
+            }
+
+            focusedAgentIdx = 0;
+            ChangeFocusedAgent(0);
+        }
     }
 
     /**
@@ -114,14 +128,14 @@ public class AgentPanel : Panel
     {
         base.Hide();
 
-        // TEMPORARY ! Until selection is implemented, the agent panel will spawn and delete ten randomized agents
-        while (selectedAgents.Count > 0)
-        {
-            GameObject toDestroy = selectedAgents[0].gameObject;
-            selectedAgents.RemoveAt(0);
-            Destroy(toDestroy);
-        }
-        // TEMPORARY ! Until selection is implemented, the agent panel will spawn and delete ten randomized agents
+        //// TEMPORARY ! Until selection is implemented, the agent panel will spawn and delete ten randomized agents
+        //while (selectedAgents.Count > 0)
+        //{
+        //    GameObject toDestroy = selectedAgents[0].gameObject;
+        //    selectedAgents.RemoveAt(0);
+        //    Destroy(toDestroy);
+        //}
+        //// TEMPORARY ! Until selection is implemented, the agent panel will spawn and delete ten randomized agents
 
         selectedAgents.Clear();
         focusedAgentIdx = 0;
