@@ -100,13 +100,11 @@ public class SelectionManager
     public void Hover(Selectable toHover)
     {
         toHover.Hover();
-        Debug.Log("Adding to Hovered list");
         Hovered.Add(toHover);
     }
     public void Unhover(Selectable toUnhover)
     {
         toUnhover.Unhover();
-        Debug.Log("Removing from Hovered list");
         Hovered.Remove(toUnhover);
     }
 

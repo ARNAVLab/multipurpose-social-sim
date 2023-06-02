@@ -10,7 +10,15 @@ public class Panel : MonoBehaviour
         "(These objects do not necessarily show when this object shows, hence the distinction from in-scene parenting!)")]
     [SerializeField] private List<Panel> connectedPanels;
     [SerializeField] private GameObject dragBar;
+    [SerializeField] private GameObject[] sizeBars;
     [SerializeField] private GameObject content;
+    [SerializeField] private Vector2 minSize;
+
+    private Vector3 currPos;
+    private Vector2 currSize;
+
+    private RectTransform baseRect = null;
+
     [Tooltip("Local variable tracking whether this panel is currently Shown or Hidden.")]
     [SerializeField] protected bool isShown = false;
     public bool IsShown { get { return isShown; } }
@@ -20,6 +28,8 @@ public class Panel : MonoBehaviour
      */
     private void Start()
     {
+        baseRect = GetComponent<RectTransform>();
+
         InitPanel();
 
         if (IsShown)
@@ -30,33 +40,53 @@ public class Panel : MonoBehaviour
 
     private void InitPanel()
     {
-        //RectTransform barRect = dragBar.GetComponent<RectTransform>();
-        //barRect.sizeDelta = new Vector2(totalPnlSize.x, headerHeight);
-        //barRect.anchoredPosition = Vector2.zero;
+        InteractableUI draggableBar = dragBar.GetComponent<InteractableUI>();
+        draggableBar.Drag.AddListener(MovePanel);
 
-        DraggableUI draggableBar = dragBar.GetComponent<DraggableUI>();
-        draggableBar.DraggableMoved.AddListener(MovePanel);
+        for (int i = 0; i < sizeBars.Length; i++)
+        {
+            InteractableUI resizableBar = sizeBars[i].GetComponent<InteractableUI>();
+            resizableBar.Drag.AddListener(ResizePanel);
+            resizableBar.ReleaseDrag.AddListener(ResetTransform);
+        }
 
-        //RectTransform contentRect = content.GetComponent<RectTransform>();
-        //contentRect.sizeDelta = new Vector2(totalPnlSize.x, totalPnlSize.y - headerHeight);
-        //contentRect.anchoredPosition = new Vector2(0, 0 - (barRect.sizeDelta.y / 2) - (contentRect.sizeDelta.y / 2));
-
-        //topLeftAnchor = baseRect.position + new Vector3(-totalPnlSize.x / 2, headerHeight / 2, 0);
-        //test.GetComponent<RectTransform>().position = topLeftAnchor;
+        ResetTransform();
     }
 
-    private void MovePanel(Vector2 delta)
+    private void MovePanel(Vector2 delta, Vector2 alignment)
     {
         //topLeftAnchor += delta;
         //test.GetComponent<RectTransform>().position = topLeftAnchor;
 
-        RectTransform baseRect = GetComponent<RectTransform>();
         baseRect.position += new Vector3(delta.x, delta.y, 0);
     }
 
-    private void ResizePanel(Vector2 delta)
+    private void ResizePanel(Vector2 delta, Vector2 alignment)
     {
+        float canvaScale = transform.parent.GetComponent<Canvas>().scaleFactor;
+        Debug.Log(canvaScale);
 
+        currSize += delta / canvaScale;
+        //currSize += scaledDelta;
+
+        Vector2 prospSize = Vector2.zero;
+        prospSize.x = Mathf.Clamp(currSize.x, minSize.x, Screen.width);
+        prospSize.y = Mathf.Clamp(currSize.y, minSize.y, Screen.height);
+
+        Vector2 prospDelta = prospSize - baseRect.sizeDelta;
+
+        //prospectiveDelta.x = Mathf.Clamp(currSize.x + delta.x, minSize.x, Screen.width) - baseRect.sizeDelta.x;
+        //prospectiveDelta.y = Mathf.Clamp(currSize.y + delta.y, minSize.y, Screen.height) - baseRect.sizeDelta.y;
+
+        baseRect.sizeDelta += prospDelta;
+        //baseRect.position += new Vector3(alignment.x * delta.x, alignment.y * delta.y, 0);
+        baseRect.position += new Vector3(alignment.x * canvaScale * prospDelta.x / 2, alignment.y * canvaScale * prospDelta.y / 2, 0);
+    }
+
+    public void ResetTransform()
+    {
+        currPos = baseRect.position;
+        currSize = baseRect.sizeDelta;
     }
 
     //private void GenerateDragBar()

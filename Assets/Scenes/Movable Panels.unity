@@ -5392,6 +5392,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Window Panel Base
       objectReference: {fileID: 0}
+    - target: {fileID: 2567395949006099381, guid: 6ba0c12e3667b504bae1609737164a4f, type: 3}
+      propertyPath: doInstantDrag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ba0c12e3667b504bae1609737164a4f, type: 3}
@@ -6280,6 +6284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 753161465}
   - component: {fileID: 753161466}
+  - component: {fileID: 753161467}
   - component: {fileID: 753161464}
   - component: {fileID: 753161463}
   - component: {fileID: 753161462}
@@ -6387,6 +6392,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agentPanel: {fileID: 0}
   agentPref: {fileID: 8495250230477651469, guid: dd247a1c335446042a0498df4d088ee7, type: 3}
+--- !u!114 &753161467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753161461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52669ef0c0d63e54293fae4001d607ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorData:
+  - cursorTex: {fileID: 2800000, guid: 53081fa18542f8e40ba62b8e90014aad, type: 3}
+    hotspot: {x: 0, y: 0}
+  - cursorTex: {fileID: 2800000, guid: 181c7023e8b15a647b3c47f6e6346e0e, type: 3}
+    hotspot: {x: 16, y: 16}
+  - cursorTex: {fileID: 2800000, guid: b90c0376a80f92e47bfe357ed420f74a, type: 3}
+    hotspot: {x: 16, y: 16}
+  - cursorTex: {fileID: 2800000, guid: def85190022db584bbe8fd58674376e4, type: 3}
+    hotspot: {x: 16, y: 16}
+  - cursorTex: {fileID: 2800000, guid: 8d2994a4ff13f5d4396892acb8f56fe1, type: 3}
+    hotspot: {x: 16, y: 16}
+  - cursorTex: {fileID: 2800000, guid: 46b58c963e9f70842bf09cac5b4507a9, type: 3}
+    hotspot: {x: 16, y: 16}
+  - cursorTex: {fileID: 0}
+    hotspot: {x: 0, y: 0}
+  - cursorTex: {fileID: 2800000, guid: 65a3071cce0167940a220e16c6b4a23b, type: 3}
+    hotspot: {x: 11, y: 0}
+  - cursorTex: {fileID: 2800000, guid: 7b1a89152aa79be42a91d41a9996b802, type: 3}
+    hotspot: {x: 15, y: 12}
 --- !u!1 &762821286
 GameObject:
   m_ObjectHideFlags: 0

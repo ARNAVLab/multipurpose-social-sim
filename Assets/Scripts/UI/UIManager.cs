@@ -8,6 +8,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private AgentPanel agentPanel;
     [SerializeField] private GameObject agentPref;
 
+    private static int nextUIElementID = 0;
+    public static int elementInControl = -1;
+
     // DEBUG MEMBERS; THESE WILL SLOWLY BE REPLACED WITH OTHER FRONTEND ELEMENT INTEGRATION
     private KeyCode openAgentPanelDebug = KeyCode.A;
     private KeyCode selectAgentsDebug = KeyCode.B;
@@ -62,5 +65,11 @@ public class UIManager : MonoBehaviour
         //    agents.Add(newAgent);
         //}
         //agentPanel.Show(agents);
+    }
+
+    public static int GetNextUIElementID()
+    {
+        nextUIElementID++;
+        return nextUIElementID - 1;
     }
 }
