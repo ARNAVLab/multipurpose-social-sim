@@ -12,8 +12,8 @@ public class AgentInfo
     [Serializable]
     public struct Location
     {
-        public int xPos;
-        public int yPos;
+        public float xPos;
+        public float yPos;
     }
     [Serializable]
     public struct Relationship
