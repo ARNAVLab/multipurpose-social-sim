@@ -17,42 +17,48 @@ public class UIValueBar : MonoBehaviour
         ZERO_CENTER
     }
 
+    [Tooltip("The GameObject whose Image component will be changed to reflect the tracked value.")]
+    [SerializeField] private GameObject barImg;
+    [Tooltip("What alignment the bar should be given within the bounds of this GameObject.")]
     [SerializeField] private BarType barType;
 
+    [Tooltip("The internal value used to scale the bar.")]
     [SerializeField] private float value;
 
-    [Header("Value Min/Max")]
+    [Tooltip("The minimum value able to be assigned to the bar.")]
     [SerializeField] private float minVal;
+    [Tooltip("The maximum value able to be assigned to the bar.")]
     [SerializeField] private float maxVal;
-
-    [Header("Bar Width Min/Max")]
+    [Tooltip("The minimum width that the bar can be resized to.")]
     [SerializeField] private float minWidth;
-
-    [SerializeField] private float maxWidth;
-
-    [Header("Bar Color Min/Max")]
+    [Tooltip("The color of the bar when its value is at its lowest.")]
     [SerializeField] private Color minColor;
+    [Tooltip("The color of the bar when its value is at its highest.")]
     [SerializeField] private Color maxColor;
 
+    /**
+     * On startup, modifies the pivot and position of the bar object's RectTransform according to
+     * the selected alignment.
+     */
     private void Start()
     {
-        RectTransform myRect = GetComponent<RectTransform>();
+        RectTransform barRect = barImg.GetComponent<RectTransform>();
         switch (barType)
         {
             case BarType.ALIGN_LEFT:
                 {
-                    myRect.pivot = new Vector2(0, 0.5f);
+                    barRect.pivot = new Vector2(0, 0.5f);
                     break;
                 }
             case BarType.ALIGN_RIGHT:
                 {
-                    myRect.pivot = new Vector2(1, 0.5f);
+                    barRect.pivot = new Vector2(1, 0.5f);
                     GetComponent<RectTransform>().anchoredPosition += Vector2.right * GetComponent<RectTransform>().sizeDelta.x;
                     break;
                 }
             case BarType.ZERO_CENTER:
                 {
-                    myRect.pivot = new Vector2(0.5f, 0.5f);
+                    barRect.pivot = new Vector2(0.5f, 0.5f);
                     GetComponent<RectTransform>().anchoredPosition += Vector2.right * GetComponent<RectTransform>().sizeDelta.x / 2;
                     break;
                 }
@@ -61,10 +67,15 @@ public class UIValueBar : MonoBehaviour
 
     private void Update()
     {
-        // Uncomment this line to manually change the bar's value in the editor
-        SetValue(value);
+        // Uncomment this line to manually change the bar's value in play mode. Otherwise it's just unnecessary overhead
+        //SetValue(value);
     }
 
+    /**
+     * Assigns a new value to 'value', bounded by its min and max, then updates the appearance of the bar.
+     * 
+     * @param newVal is the new value to assign.
+     */
     public void SetValue(float newVal)
     {
         newVal = Mathf.Clamp(newVal, minVal, maxVal);
@@ -72,27 +83,31 @@ public class UIValueBar : MonoBehaviour
         UpdateAppearance();
     }
 
+    /**
+     * Updates the appearance of the bar to reflect the current value and alignment type.
+     */
     private void UpdateAppearance()
     {
+        RectTransform barRect = barImg.GetComponent<RectTransform>();
         RectTransform myRect = GetComponent<RectTransform>();
 
         float valPercent = (value - minVal) / (maxVal - minVal);
         
         if (barType == BarType.ZERO_CENTER)
         {
-            myRect.sizeDelta = new Vector3(Mathf.Abs(valPercent - 0.5f) * (maxWidth - minWidth) + minWidth, myRect.sizeDelta.y);
+            barRect.sizeDelta = new Vector3(Mathf.Abs(valPercent - 0.5f) * (myRect.sizeDelta.x - minWidth) + minWidth, barRect.sizeDelta.y);
             bool hangsLeft = valPercent - 0.5f < 0;
-            myRect.anchoredPosition = new Vector3((hangsLeft ? -0.5f : 0.5f) * myRect.sizeDelta.x, myRect.anchoredPosition.y);
+            barRect.anchoredPosition = new Vector3((hangsLeft ? -0.5f : 0.5f) * barRect.sizeDelta.x, barRect.anchoredPosition.y);
         }
         else
         {
-            myRect.sizeDelta = new Vector2(valPercent * (maxWidth - minWidth) + minWidth, myRect.sizeDelta.y);
+            barRect.sizeDelta = new Vector2(valPercent * (myRect.sizeDelta.x - minWidth) + minWidth, barRect.sizeDelta.y);
         }
 
         // Lerp between minColor and maxColor to get the new bar color
         Vector4 minColLerp = new Vector4(minColor.r, minColor.g, minColor.b, minColor.a);
         Vector4 maxColLerp = new Vector4(maxColor.r, maxColor.g, maxColor.b, maxColor.a);
         Vector4 targetColLerp = Vector4.Lerp(minColLerp, maxColLerp, valPercent);
-        GetComponent<Image>().color = new Color(targetColLerp.x, targetColLerp.y, targetColLerp.z, targetColLerp.w);
+        barImg.GetComponent<Image>().color = new Color(targetColLerp.x, targetColLerp.y, targetColLerp.z, targetColLerp.w);
     }
 }

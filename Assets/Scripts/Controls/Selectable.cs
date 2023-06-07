@@ -33,7 +33,6 @@ public class Selectable : MonoBehaviour
     {
         if (other.CompareTag("Cursor"))
         {
-            Debug.Log("OnTriggerEnter");
             SelectionManager.Instance.Hover(this);
         }
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class SelectionController : MonoBehaviour
@@ -83,8 +84,28 @@ public class SelectionController : MonoBehaviour
             _dragRight = true;
     }
 
+    private bool IsPointerOverUIElement()
+    {
+        int UILayer = LayerMask.NameToLayer("UI");
+
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raycastResults);
+        
+        foreach (RaycastResult r in raycastResults)
+        {
+            if (r.gameObject.layer == UILayer)
+                return true;
+        }
+        return false;
+    }
+
     private void MouseLeftDown(InputAction.CallbackContext context)
     {
+        if (IsPointerOverUIElement())
+            return;
+
         _clickLeft = true;
         _clickLeftOrigin = _mousePosition;
         _selectionBoxRenderer.enabled = true;
@@ -93,6 +114,9 @@ public class SelectionController : MonoBehaviour
     }
     private void MouseLeftUp(InputAction.CallbackContext context)
     {
+        //if (IsPointerOverUIElement())
+        //    return;
+
         _clickLeft = false;
         SelectionManager.Instance.DeselectAll();
         if (_dragLeft)
