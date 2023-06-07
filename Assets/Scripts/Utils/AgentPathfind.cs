@@ -10,6 +10,8 @@ public class AgentPathfind : MonoBehaviour
 
     Agent agent;
     NavMeshAgent agentMesh;
+    [SerializeField] float timeSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,9 @@ public class AgentPathfind : MonoBehaviour
         agentMesh = GetComponent<NavMeshAgent>();
 		agentMesh.updateRotation = false;
 		agentMesh.updateUpAxis = false;
+        agentMesh.acceleration = 200000;
+        agentMesh.angularSpeed = 200000;
+        timeSpeed = 4;
     }
 
     // Update is called once per frame
@@ -24,6 +29,7 @@ public class AgentPathfind : MonoBehaviour
     {
 
         target = new Vector3(agent.Info.currentLocation.xPos, agent.Info.currentLocation.yPos, 0.0f);
+        agentMesh.speed = timeSpeed;
         agentMesh.SetDestination(target);
         
     }
