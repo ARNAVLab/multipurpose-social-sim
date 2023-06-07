@@ -17,6 +17,11 @@ public class UIManager : MonoBehaviour
     private KeyCode nextAgentDebug = KeyCode.RightArrow;
     private KeyCode prevAgentDebug = KeyCode.LeftArrow;
 
+    public static void SetElementInControl(int newUIElementID)
+    {
+        elementInControl = newUIElementID;
+    }
+
     private void Update()
     {
         //if (Input.GetKeyDown(openAgentPanelDebug))
