@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Panel : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Panel : MonoBehaviour
     [Tooltip("A list of Panels that should Hide when this object Hides.\n" +
         "(These objects do not necessarily show when this object shows, hence the distinction from in-scene parenting!)")]
     [SerializeField] private List<Panel> connectedPanels;
+    [Tooltip("The TextMeshProUGUI corresponding to this Panel's window header.")]
+    [SerializeField] private TextMeshProUGUI title;
     [Tooltip("InteractableUI objects that, when dragged, move the panel around the screen.")]
     [SerializeField] private GameObject[] dragZones;
     [Tooltip("InteractableUI objects that, when dragged, resize the panel.")]
@@ -138,12 +141,6 @@ public class Panel : MonoBehaviour
         Vector2 botLeftAnchor = baseRect.position + new Vector3(-scaledSize.x / 2, -scaledSize.y / 2, 0);
 
         // Detect if the panel is off-screen, and if it is, snap it back in bounds
-        Debug.Log("Bottom Left: " + botLeftAnchor);
-        Debug.Log("Top Right: " + topRightAnchor);
-        Debug.Log("Position: " + baseRect.position);
-        Debug.Log("Scaled Size: " + scaledSize);
-        Debug.Log("Screen Dims: " + new Vector2(Screen.width, Screen.height));
-
         if (botLeftAnchor.x < 0)
             // Too far left, snap right
             posDelta.x += -botLeftAnchor.x;
@@ -262,5 +259,13 @@ public class Panel : MonoBehaviour
         {
             Expand();
         }
+    }
+
+    /**
+     * Changes the text contained in this Panel's title.
+     */
+    public void SetTitle(string newTitle)
+    {
+        title.text = newTitle;
     }
 }

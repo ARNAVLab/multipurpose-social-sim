@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 225466047616046351}
   - component: {fileID: 8054695909993863497}
   m_Layer: 5
-  m_Name: Window Panel Base
+  m_Name: Panel Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   content: {fileID: 3254797166665825902}
   minSize: {x: 50, y: 50}
   isShown: 1
-  isExpanded: 0
+  isExpanded: 1
 --- !u!1 &691988272002205573
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,8 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: arrow_hori
-  holdIcon: arrow_hori
   doInstantDrag: 1
+  holdIcon: arrow_hori
   alignment: {x: 1, y: 0}
 --- !u!114 &590265549984370442
 MonoBehaviour:
@@ -308,8 +308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: arrow_vert
-  holdIcon: arrow_vert
   doInstantDrag: 1
+  holdIcon: arrow_vert
   alignment: {x: 0, y: -1}
 --- !u!114 &4696667725036282573
 MonoBehaviour:
@@ -401,8 +401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: arrow_diag_neg
-  holdIcon: arrow_quad
   doInstantDrag: 1
+  holdIcon: arrow_quad
   alignment: {x: -1, y: 1}
 --- !u!114 &1699046491742726970
 MonoBehaviour:
@@ -700,8 +700,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: hand_point
-  holdIcon: hand_grab
   doInstantDrag: 0
+  holdIcon: hand_grab
   alignment: {x: 1, y: 1}
 --- !u!1 &3914581373034669722
 GameObject:
@@ -898,8 +898,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: arrow_diag_pos
-  holdIcon: arrow_quad
   doInstantDrag: 1
+  holdIcon: arrow_quad
   alignment: {x: -1, y: -1}
 --- !u!114 &2136821980464272599
 MonoBehaviour:
@@ -1035,8 +1035,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: arrow_diag_pos
-  holdIcon: arrow_quad
   doInstantDrag: 1
+  holdIcon: arrow_quad
   alignment: {x: 1, y: 1}
 --- !u!114 &8223001447458099696
 MonoBehaviour:
@@ -1128,8 +1128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: arrow_vert
-  holdIcon: arrow_vert
   doInstantDrag: 1
+  holdIcon: arrow_vert
   alignment: {x: 0, y: 1}
 --- !u!114 &7097928075032057231
 MonoBehaviour:
@@ -1253,8 +1253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: hand_point
-  holdIcon: hand_grab
   doInstantDrag: 1
+  holdIcon: hand_grab
   alignment: {x: 1, y: 1}
 --- !u!1 &7989901456101043144
 GameObject:
@@ -1451,8 +1451,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: arrow_diag_neg
-  holdIcon: arrow_quad
   doInstantDrag: 1
+  holdIcon: arrow_quad
   alignment: {x: 1, y: -1}
 --- !u!114 &8792429121865504711
 MonoBehaviour:
@@ -1544,8 +1544,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: arrow_hori
-  holdIcon: arrow_hori
   doInstantDrag: 1
+  holdIcon: arrow_hori
   alignment: {x: -1, y: 0}
 --- !u!114 &828414159461469089
 MonoBehaviour:

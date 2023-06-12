@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using TMPro;
 
 /**
  * Resizes and recolors the Image component of the GameObject based on a float value.
@@ -21,6 +22,9 @@ public class UIValueBar : MonoBehaviour
     [SerializeField] private GameObject barImg;
     [Tooltip("What alignment the bar should be given within the bounds of this GameObject.")]
     [SerializeField] private BarType barType;
+
+    [Tooltip("The TextMeshProUGUI that will update to reflect the current value of the bar. Can be left null.")]
+    [SerializeField] private TextMeshProUGUI valueText;
 
     [Tooltip("The internal value used to scale the bar.")]
     [SerializeField] private float value;
@@ -109,5 +113,10 @@ public class UIValueBar : MonoBehaviour
         Vector4 maxColLerp = new Vector4(maxColor.r, maxColor.g, maxColor.b, maxColor.a);
         Vector4 targetColLerp = Vector4.Lerp(minColLerp, maxColLerp, valPercent);
         barImg.GetComponent<Image>().color = new Color(targetColLerp.x, targetColLerp.y, targetColLerp.z, targetColLerp.w);
+
+        if (valueText != null)
+        {
+            valueText.text = value.ToString("#.##");
+        }
     }
 }
