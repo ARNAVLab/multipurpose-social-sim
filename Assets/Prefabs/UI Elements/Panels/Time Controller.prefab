@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 9087132115514555285}
   - component: {fileID: 1606345123907021003}
   m_Layer: 5
-  m_Name: Time
+  m_Name: Time Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
