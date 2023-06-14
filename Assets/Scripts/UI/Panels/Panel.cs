@@ -17,7 +17,7 @@ public class Panel : MonoBehaviour
     [Tooltip("InteractableUI objects that, when dragged, resize the panel.")]
     [SerializeField] private GameObject[] sizeBars;
     [Tooltip("The container object for all the Panel's primary content.")]
-    [SerializeField] private GameObject content;
+    [SerializeField] public GameObject content;
     [Tooltip("The minimum size allowed for this Panel.")]
     [SerializeField] private Vector2 minSize;
 
