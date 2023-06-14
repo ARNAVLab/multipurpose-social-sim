@@ -8,14 +8,14 @@ public class AgentPathfind : MonoBehaviour
     // [SerializeField] Transform target;
     Vector3 target;
 
-    Agent agent;
+    UAgent agent;
     NavMeshAgent agentMesh;
     [SerializeField] float timeSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<Agent>();
+        agent = GetComponent<UAgent>();
         agentMesh = GetComponent<NavMeshAgent>();
 		agentMesh.updateRotation = false;
 		agentMesh.updateUpAxis = false;

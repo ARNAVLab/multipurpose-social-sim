@@ -1,0 +1,5 @@
+{
+  "Locations": "Data\\Locations.json",
+  "Actions": "Data\\Actions.json",
+  "Agents": "Data\\Agents.json"
+}
