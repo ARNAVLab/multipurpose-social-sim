@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class AgentDisplay : MonoBehaviour
 {
-    
+    public void DisplayAgentInfo(string agentName)
+    {
+
+    }
 }

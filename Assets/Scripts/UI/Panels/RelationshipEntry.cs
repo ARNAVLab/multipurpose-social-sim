@@ -9,6 +9,7 @@ public class RelationshipEntry : MonoBehaviour
     [SerializeField] private TextMeshProUGUI relateTypeText;
     [SerializeField] private TextMeshProUGUI relateeNameText;
     [SerializeField] private Image relateePortrait;
+    [SerializeField] private TextMeshProUGUI relationValenceText;
 
     public void SetRelationshipType(string input)
     {
@@ -18,5 +19,10 @@ public class RelationshipEntry : MonoBehaviour
     public void SetRelateeName(string input)
     {
         relateeNameText.text = input;
+    }
+
+    public void SetRelationshipValence(float value)
+    {
+        relationValenceText.text = value.ToString("#.##");
     }
 }
