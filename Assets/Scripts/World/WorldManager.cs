@@ -1,12 +1,53 @@
+using Anthology.SimulationManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public static class UAgentManager
+public class WorldManager : MonoBehaviour
 {
-    private static Dictionary<int, UAgent> agents = new Dictionary<int, UAgent>();
+    public static WorldManager instance;
+
+    [SerializeField] private GameObject actorPref;
+    [SerializeField] private GameObject locationPref;
+
+    public static UnityEvent actorsUpdated;
+
+    private static Dictionary<int, Actor> actors = new Dictionary<int, Actor>();
     private static HashSet<int> selected = new HashSet<int>();
     private static int focused;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+
+            SimManager.Init("Assets/Scripts/SimManager/Data/Paths.json", typeof(AnthologyRS), typeof(LyraKS));
+            actorsUpdated = new UnityEvent();
+        }
+    }
+
+    private void Start()
+    {
+        foreach (NPC npc in SimManager.NPCs.Values)
+        {
+            Actor spawnedActor = Instantiate(actorPref).GetComponent<Actor>();
+            if (spawnedActor == null)
+            {
+                Debug.LogError("Uh oh! Actor prefab doesn't have attached Actor component!");
+                break;
+            }
+            spawnedActor.Init(npc.Name);
+        }
+
+        foreach (Location loc in SimManager.Locations.Values)
+        {
+            GameObject spawnedLocation = Instantiate(locationPref);
+            spawnedLocation.name = loc.Name;
+            spawnedLocation.transform.position = new Vector3(loc.Coordinates.X, loc.Coordinates.Y, 0);
+        }
+    }
 
     /**
      * Attempts to set which Agent is "focused" (is selected/hovered on the frontend).
@@ -45,11 +86,11 @@ public static class UAgentManager
      * @param registree is the Agent to register.
      * @return whether the addition was successful or not.
      */
-    public static bool RegisterAgent(UAgent registree)
+    public static bool RegisterAgent(Actor registree)
     {
-        if (!agents.ContainsKey(registree.AgentID))
+        if (!actors.ContainsKey(registree.AgentID))
         {
-            agents.Add(registree.AgentID, registree);
+            actors.Add(registree.AgentID, registree);
             return true;
         }
         return false;

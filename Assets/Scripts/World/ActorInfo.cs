@@ -1,13 +1,13 @@
 using System;
 
 [Serializable]
-public struct UAgentsInfo
+public struct ActorsInfo
 {
-    public AgentInfo[] agents;
+    public ActorInfo[] actors;
 }
 
 [Serializable]
-public class AgentInfo
+public class ActorInfo
 
 {
     [Serializable]
@@ -26,11 +26,11 @@ public class AgentInfo
     [Serializable]
     public struct Motive
     {
-        public int accomplishment;
-        public int social;
-        public int physical;
-        public int emotional;
-        public int financial;
+        public float accomplishment;
+        public float social;
+        public float physical;
+        public float emotional;
+        public float financial;
     }
 
     public string name;

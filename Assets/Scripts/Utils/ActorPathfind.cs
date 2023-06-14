@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AgentPathfind : MonoBehaviour
+public class ActorPathfind : MonoBehaviour
 {
     // [SerializeField] Transform target;
     Vector3 target;
 
-    UAgent agent;
+    Actor actor;
     NavMeshAgent agentMesh;
     [SerializeField] float timeSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<UAgent>();
+        actor = GetComponent<Actor>();
         agentMesh = GetComponent<NavMeshAgent>();
 		agentMesh.updateRotation = false;
 		agentMesh.updateUpAxis = false;
@@ -28,7 +28,7 @@ public class AgentPathfind : MonoBehaviour
     void Update()
     {
 
-        target = new Vector3(agent.Info.currentLocation.xPos, agent.Info.currentLocation.yPos, 0.0f);
+        target = new Vector3(actor.Info.currentLocation.xPos, actor.Info.currentLocation.yPos, 0.0f);
         agentMesh.speed = timeSpeed;
         agentMesh.SetDestination(target);
         

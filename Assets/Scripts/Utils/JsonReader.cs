@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class JsonReader
 {
-    public UAgentsInfo GetAgentsInfo(string agentsJson)
+    public ActorsInfo GetAgentsInfo(string agentsJson)
     {
-        return JsonUtility.FromJson<UAgentsInfo>(agentsJson);
+        return JsonUtility.FromJson<ActorsInfo>(agentsJson);
     }
 }

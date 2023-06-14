@@ -1,13 +1,13 @@
+using Anthology.SimulationManager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
-    private int currentTimeStep = 0;
-
     [Header("--- Incremental ---")]
     [SerializeField] private Button jumpBtn;
     private int tickJump = 1;
@@ -29,10 +29,7 @@ public class TimeManager : MonoBehaviour
 
     public void TickJump()
     {
-        for (int i = 0; i < tickJump; i++)
-        {
-            Tick();
-        }
+        Tick(tickJump);
     }
 
     public void SetPaused(bool newVal)
@@ -76,10 +73,11 @@ public class TimeManager : MonoBehaviour
         tickJump = ticksPerJump;
     }
 
-    private void Tick()
+    private void Tick(int tickNum)
     {
-        currentTimeStep++;
-        GetComponent<Panel>().SetTitle("Time: " + currentTimeStep.ToString());
+        SimManager.GetIteration(tickNum);
+        GetComponent<Panel>().SetTitle("Time: " + SimManager.NumIterations);
+        WorldManager.actorsUpdated.Invoke();
     }
 
     IEnumerator TickLoop()
@@ -93,7 +91,7 @@ public class TimeManager : MonoBehaviour
                 continue;
             } 
 
-            Tick();
+            Tick(1);
             yield return new WaitForSeconds(tickRate);
         }
     }

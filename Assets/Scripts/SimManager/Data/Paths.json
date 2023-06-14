@@ -1,5 +1,5 @@
 {
-  "Locations": "Data\\Locations.json",
-  "Actions": "Data\\Actions.json",
-  "Agents": "Data\\Agents.json"
+  "Locations": "Assets\\Scripts\\SimManager\\Data\\Locations.json",
+  "Actions": "Assets\\Scripts\\SimManager\\Data\\Actions.json",
+  "Agents": "Assets\\Scripts\\SimManager\\Data\\Agents.json"
 }

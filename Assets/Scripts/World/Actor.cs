@@ -1,15 +1,17 @@
+using Anthology.SimulationManager;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 
-public class UAgent
-
-
-    : Selectable
+public class Actor : Selectable
 {
     private static int nextUnusedID = 0;
 
-    [SerializeField] private GameObject selectionOutline;
+    [SerializeField] private SpriteRenderer mainSprite;
+    [SerializeField] private SpriteRenderer interiorOutline;
+    [SerializeField] private SpriteRenderer selectionOutline;
+
     [SerializeField] private Color colorHover;
     [SerializeField] private Color colorSelect;
     [SerializeField] private Color colorFocus;
@@ -17,7 +19,7 @@ public class UAgent
     public bool isFocused { get; private set; } = false;
 
     public int AgentID { get; set; }
-    public AgentInfo Info;
+    public ActorInfo Info;
     public Color displayColor;
 
     private void Start()
@@ -27,9 +29,44 @@ public class UAgent
         nextUnusedID++;
 
         // Register this Agent with the AgentManager (this will add it to a static Dictionary, keyed by ID)
-        UAgentManager.RegisterAgent(this);
+        WorldManager.RegisterAgent(this);
+        WorldManager.actorsUpdated.AddListener(tReceiveAgentUpdates);
+    }
 
-        GetComponent<SpriteRenderer>().color = displayColor;
+    public void Init(string actorName)
+    {
+        // Update game object properties -- use Tilemap!!!
+        gameObject.name = actorName;
+        Info.name = actorName;
+        mainSprite.color = Random.ColorHSV();
+
+        tReceiveAgentUpdates();
+    }
+
+    public void tReceiveAgentUpdates()
+    {
+        NPC npcData;
+        SimManager.NPCs.TryGetValue(Info.name, out npcData);
+
+        if (npcData == null)
+        {
+            Debug.LogError("Uh oh! Name '" + Info.name + "' not found in NPC Dictionary.");
+            return;
+        }
+
+        // Update internal state to reflect npc data
+        Info.name = npcData.Name;
+        Info.currentLocation.xPos = npcData.Coordinates.X;
+        Info.currentLocation.yPos = npcData.Coordinates.Y;
+        // TODO: Relationships, also need Destination and occupiedCounter from frontend
+        npcData.Motives.TryGetValue("physical", out Info.motive.physical);
+        npcData.Motives.TryGetValue("emotional", out Info.motive.emotional);
+        npcData.Motives.TryGetValue("social", out Info.motive.social);
+        npcData.Motives.TryGetValue("financial", out Info.motive.financial);
+        npcData.Motives.TryGetValue("accomplishment", out Info.motive.accomplishment);
+        Info.currentAction = npcData.CurrentAction.Name;
+
+        transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
     }
 
     private enum OutlinePreset { NONE, HOVER, SELECT, FOCUS }
@@ -39,24 +76,24 @@ public class UAgent
         {
             case OutlinePreset.NONE:
                 {
-                    selectionOutline.SetActive(false);
+                    selectionOutline.gameObject.SetActive(false);
                     break;
                 }
             case OutlinePreset.HOVER:
                 {
-                    selectionOutline.SetActive(true);
+                    selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorHover;
                     break;
                 }
             case OutlinePreset.SELECT:
                 {
-                    selectionOutline.SetActive(true);
+                    selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorSelect;
                     break;
                 }
             case OutlinePreset.FOCUS:
                 {
-                    selectionOutline.SetActive(true);
+                    selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorFocus;
                     break;
                 }
