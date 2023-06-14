@@ -8,7 +8,7 @@ public class AgentPanel : Panel
 {
     [Header(" --- Agent Info Panel ---")]
     // A list of Agents currently selected by the user in the scene.
-    private List<Agent> selectedAgents = new List<Agent>();
+    private List<Actor> selectedAgents = new List<Actor>();
     // The index of the Agent in the selected agents list whose information is currently being displayed.
     private int focusedAgentIdx = 0;
 
@@ -68,7 +68,7 @@ public class AgentPanel : Panel
      */
     public void DisplayAgentInfo()
     {
-        Agent focusedAgent = selectedAgents[focusedAgentIdx];
+        Actor focusedAgent = selectedAgents[focusedAgentIdx];
 
         agentSprites[0].GetComponent<Image>().color = selectedAgents[GetAgentIndex(focusedAgentIdx, -1)].displayColor;
         agentSprites[1].GetComponent<Image>().color = focusedAgent.displayColor;
@@ -112,7 +112,7 @@ public class AgentPanel : Panel
 
             foreach (Selectable s in selected)
             {
-                Agent a = (Agent)s;
+                Actor a = (Actor)s;
                 selectedAgents.Add(a);
             }
 

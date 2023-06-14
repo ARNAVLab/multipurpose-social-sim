@@ -1,0 +1,263 @@
+{
+  "ScheduleActions": [],
+  "PrimaryActions": [
+    {
+      "Name": "wait_action",
+      "MinTime": 0,
+      "Hidden": false,
+      "Requirements": {},
+      "Effects": []
+    },
+    {
+      "Name": "travel_action",
+      "MinTime": 0,
+      "Hidden": false,
+      "Requirements": {},
+      "Effects": []
+    },
+    {
+      "Name": "eat_alone",
+      "MinTime": 60,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "restaurant"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ]
+      },
+      "Effects": [
+        {
+          "Type": "physical",
+          "Delta": 2
+        }
+      ]
+    },
+    {
+      "Name": "eat_sad",
+      "MinTime": 40,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "restaurant"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ]
+      },
+      "Effects": [
+        {
+          "Type": "physical",
+          "Delta": 4
+        },
+        {
+          "Type": "emotional",
+          "Delta": -1
+        }
+      ]
+    },
+    {
+      "Name": "eat_with_friend",
+      "MinTime": 60,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "restaurant"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ],
+        "People Requirements": [
+          {
+            "RelationshipsPresent": [
+              "friend"
+            ],
+            "MinNumPeople": 2,
+            "MaxNumPeople": 5,
+            "SpecificPeoplePresent": [],
+            "SpecificPeopleAbsent": [],
+            "RelationshipsAbsent": []
+          }
+        ]
+      },
+      "Effects": [
+        {
+          "Type": "physical",
+          "Delta": 2
+        },
+        {
+          "Type": "social",
+          "Delta": 2
+        }
+      ]
+    },
+    {
+      "Name": "do_homework",
+      "MinTime": 60,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "has:computer"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ],
+        "People Requirements": [
+          {
+            "RelationshipsPresent": [
+              "student-of"
+            ],
+            "MinNumPeople": 1,
+            "MaxNumPeople": 1,
+            "SpecificPeoplePresent": [],
+            "SpecificPeopleAbsent": [],
+            "RelationshipsAbsent": []
+          }
+        ]
+      },
+      "Effects": [
+        {
+          "Type": "accomplishment",
+          "Delta": 2
+        },
+        {
+          "Type": "emotional",
+          "Delta": 1
+        }
+      ]
+    },
+    {
+      "Name": "attend_class",
+      "MinTime": 75,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "classroom"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ],
+        "People Requirements": [
+          {
+            "RelationshipsPresent": [
+              "student-of"
+            ],
+            "MinNumPeople": 2,
+            "MaxNumPeople": 100,
+            "SpecificPeoplePresent": [],
+            "SpecificPeopleAbsent": [],
+            "RelationshipsAbsent": []
+          }
+        ]
+      },
+      "Effects": [
+        {
+          "Type": "accomplishment",
+          "Delta": 1
+        }
+      ]
+    },
+    {
+      "Name": "go_for_walk",
+      "MinTime": 30,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "outdoor"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ]
+      },
+      "Effects": [
+        {
+          "Type": "physical",
+          "Delta": 1
+        },
+        {
+          "Type": "emotional",
+          "Delta": 1
+        }
+      ]
+    },
+    {
+      "Name": "play_game_alone",
+      "MinTime": 120,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "dorm"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ]
+      },
+      "Effects": [
+        {
+          "Type": "emotional",
+          "Delta": 2
+        }
+      ]
+    },
+    {
+      "Name": "play_game_with_friend",
+      "MinTime": 120,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "dorm"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ],
+        "People Requirements": [
+          {
+            "RelationshipsPresent": [
+              "friend"
+            ],
+            "MinNumPeople": 2,
+            "MaxNumPeople": 4,
+            "SpecificPeoplePresent": [],
+            "SpecificPeopleAbsent": [],
+            "RelationshipsAbsent": []
+          }
+        ]
+      },
+      "Effects": [
+        {
+          "Type": "emotional",
+          "Delta": 2
+        },
+        {
+          "Type": "social",
+          "Delta": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+[
+  {
+    "Name": "Norma",
+    "Motives": {
+      "accomplishment": 2,
+      "emotional": 3,
+      "financial": 5,
+      "social": 1,
+      "physical": 4
+    },
+    "XLocation": 0,
+    "YLocation": 0,
+    "OccupiedCounter": 0,
+    "CurrentAction": "wait_action",
+    "XDestination": 5,
+    "YDestination": 4,
+    "CurrentTargets": [],
+    "Relationships": [
+      {
+        "Type": "friend",
+        "With": "Quentin",
+        "Valence": 3 
+      },
+      {
+        "Type": "student-of",
+        "With": "MathProf",
+        "Valence": 1
+      }
+    ]
+  },
+  {
+    "Name": "Abnorma",
+    "Motives": {
+      "accomplishment": 1,
+      "emotional": 5,
+      "financial": 5,
+      "social": 4,
+      "physical": 4
+    },
+    "XLocation": 0,
+    "YLocation": 4,
+    "OccupiedCounter": 0,
+    "CurrentAction": "wait_action",
+    "XDestination": 5,
+    "YDestination": 4,
+    "CurrentTargets": [],
+    "Relationships": [
+      {
+        "Type": "enemy",
+        "With": "Quentin",
+        "Valence": 3 
+      },
+      {
+        "Type": "student-of",
+        "With": "PhysicsProf",
+        "Valence": 1
+      }
+    ]
+  },
+  {
+    "Name": "Quentin",
+    "Motives": {
+      "accomplishment": 4,
+      "emotional": 1,
+      "financial": 5,
+      "social": 2,
+      "physical": 1
+    },
+    "XLocation": 0,
+    "YLocation": 0,
+    "OccupiedCounter": 0,
+    "CurrentAction": "wait_action",
+    "XDestination": 5,
+    "YDestination": 5,
+    "CurrentTargets": [],
+    "Relationships": [
+      {
+        "Type": "friend",
+        "With": "Norma",
+        "Valence": 3 
+      },
+      {
+        "Type": "student-of",
+        "With": "PhysicsProf",
+        "Valence": 1
+      }
+    ]
+  },
+  {
+    "Name": "MathProf",
+    "Motives": {
+      "accomplishment": 5,
+      "emotional": 5,
+      "financial": 5,
+      "social": 5,
+      "physical": 5
+    },
+    "XLocation": 1,
+    "YLocation": 1,
+    "OccupiedCounter": 0,
+    "CurrentAction": "wait_action",
+    "XDestination": -1,
+    "YDestination": -1,
+    "CurrentTargets": [],
+    "Relationships": []
+  },
+  {
+    "Name": "PhysicsProf",
+    "Motives": {
+      "accomplishment": 5,
+      "emotional": 5,
+      "financial": 5,
+      "social": 5,
+      "physical": 5
+    },
+    "XLocation": 1,
+    "YLocation": 3,
+    "OccupiedCounter": 0,
+    "CurrentAction": "wait_action",
+    "XDestination": -1,
+    "YDestination": -1,
+    "CurrentTargets": [],
+    "Relationships": []
+  }
+]
