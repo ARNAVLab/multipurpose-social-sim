@@ -12,7 +12,7 @@ public class RelationshipDisplay : MonoBehaviour
         GameObject newEntryObj = Instantiate(relationshipEntryPref);
         RelationshipEntry newEntry = newEntryObj.GetComponent<RelationshipEntry>();
         newEntry.SetRelationshipType(relateType);
-        newEntry.SetRelateeName(AgentManager.GetAgent(relateeID).name);
+        newEntry.SetRelateeName(WorldManager.GetAgent(relateeID).name);
         newEntry.transform.SetParent(GetComponent<Panel>().content.transform);
         newEntry.transform.SetAsLastSibling();
     }

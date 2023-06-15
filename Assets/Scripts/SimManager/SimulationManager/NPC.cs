@@ -4,13 +4,13 @@ using System.Text;
 
 namespace Anthology.SimulationManager
 {
-  /**
-   * An Agent/Actor/Individual/Unit/NPC to be maintained by the simulation manager
-   * Contains data necessary for coordinating behavior across simulations and for
-   * displaying information on the frontend
-   */
-  public class NPC
-  {
+    /**
+     * An Agent/Actor/Individual/Unit/NPC to be maintained by the simulation manager
+     * Contains data necessary for coordinating behavior across simulations and for
+     * displaying information on the frontend
+     */
+    public class NPC
+    {
         /** The name of the NPC */
         private string name = string.Empty;
         public string Name
@@ -42,12 +42,28 @@ namespace Anthology.SimulationManager
             set { Dirty = true; motives = value; }
         }
 
-        /** The action current being performed by the NPC */
+        /** The action currently being performed by the NPC */
         private Action currentAction = new();
         public Action CurrentAction
         {
             get { return currentAction; }
             set { Dirty = true; currentAction = value; }
+        }
+
+        /** The remaining ticks until the completion of the current action */
+        private int actionCounter = 0;
+        public int ActionCounter
+        {
+            get { return actionCounter; }
+            set { Dirty = true; actionCounter = value; }
+        }
+
+        /** The destination of the NPC if the NPC is travelling */
+        private string destination = string.Empty;
+        public string Destination
+        {
+            get { return destination; }
+            set { Dirty = true; destination = value; }
         }
 
         /** Whether or not this NPC has been modified and needs to have its update pushed */
@@ -65,7 +81,9 @@ namespace Anthology.SimulationManager
             StringBuilder sb = new();
             sb.AppendFormat("Name: {0}, ", Name);
             sb.AppendFormat("X: {0}, Y: {1}, ", Coordinates.X, Coordinates.Y);
+            sb.AppendFormat("Motives: ", Motives.ToString());
             sb.AppendFormat("Current Action: {0}", CurrentAction.Name);
+            sb.AppendFormat("Current Destination: {0}", Destination);
             return sb.ToString();
         }
     }
