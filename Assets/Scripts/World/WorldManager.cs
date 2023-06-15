@@ -96,8 +96,8 @@ public class WorldManager : MonoBehaviour
         return false;
     }
 
-    public static Agent GetAgent(int agentID)
+    public static Actor GetAgent(int agentID)
     {
-        return agents[agentID];
+        return actors[agentID];
     }
 }

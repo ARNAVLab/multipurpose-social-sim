@@ -7,7 +7,7 @@ namespace Anthology.SimulationManager
 {
     public class AnthologyRS : RealitySim
     {
-        
+
         public override void Init(string pathFile = "")
         {
             ExecutionManager.Init(pathFile);
@@ -15,7 +15,6 @@ namespace Anthology.SimulationManager
 
         public override void LoadNpcs(Dictionary<string, NPC> npcs)
         {
-            
             HashSet<Agent> agents = AgentManager.Agents;
             foreach (Agent a in agents)
             {
@@ -27,6 +26,11 @@ namespace Anthology.SimulationManager
                 if (a.CurrentAction != null && a.CurrentAction.Count > 0)
                 {
                     npc.CurrentAction.Name = a.CurrentAction.First().Name;
+                }
+                npc.ActionCounter = a.OccupiedCounter;
+                if (a.XDestination != -1)
+                {
+                    npc.Destination = LocationManager.LocationGrid[a.XDestination][a.YDestination].Name;
                 }
                 Dictionary<string, Motive> motives = a.Motives;
                 foreach (string mote in motives.Keys)
@@ -41,7 +45,7 @@ namespace Anthology.SimulationManager
         {
             locations.Clear();
             HashSet<SimLocation> simLocations = LocationManager.LocationSet;
-            foreach(SimLocation s in simLocations)
+            foreach (SimLocation s in simLocations)
             {
                 Location loc = new()
                 {
@@ -59,6 +63,14 @@ namespace Anthology.SimulationManager
             Agent agent = AgentManager.GetAgentByName(npc.Name);
             npc.Coordinates.X = agent.XLocation;
             npc.Coordinates.Y = agent.YLocation;
+            if (agent.XDestination != -1)
+            {
+                npc.Destination = LocationManager.LocationGrid[agent.XDestination][agent.YDestination].Name;
+            }
+            else
+            {
+                npc.Destination = string.Empty;
+            }
             Dictionary<string, Motive> motives = agent.Motives;
             foreach (string mote in motives.Keys)
             {
@@ -66,6 +78,7 @@ namespace Anthology.SimulationManager
             }
             if (agent.CurrentAction.Count > 0)
                 npc.CurrentAction.Name = agent.CurrentAction.First().Name;
+            npc.ActionCounter = agent.OccupiedCounter;
         }
 
         public override void PushUpdatedNpc(NPC npc)
