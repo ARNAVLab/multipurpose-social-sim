@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 34994285350692487}
   - component: {fileID: 1691553020537260352}
   - component: {fileID: 8223330887479674969}
+  - component: {fileID: 4733647527665605379}
   m_Layer: 5
   m_Name: Directional Value Display
   m_TagString: Untagged
@@ -173,6 +174,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &4733647527665605379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887205090796244773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdf0edf3e6996e942b1f9eb1e476083f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  motiveName: {fileID: 5982224917743240343}
+  motiveValue: {fileID: 5868327080499288459}
+  motiveBar: {fileID: 1380363726821989858}
 --- !u!1 &1999648694996786132
 GameObject:
   m_ObjectHideFlags: 0

@@ -80,11 +80,12 @@ public class UIValueBar : MonoBehaviour
      * 
      * @param newVal is the new value to assign.
      */
-    public void SetValue(float newVal)
+    public float SetValue(float newVal)
     {
         newVal = Mathf.Clamp(newVal, minVal, maxVal);
         value = newVal;
         UpdateAppearance();
+        return value;
     }
 
     /**
