@@ -66,7 +66,7 @@ public class Actor : Selectable
         npcData.Motives.TryGetValue("accomplishment", out Info.motive.accomplishment);
         Info.currentAction = npcData.CurrentAction.Name;
 
-        transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
+        // transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
     }
 
     private enum OutlinePreset { NONE, HOVER, SELECT, FOCUS }

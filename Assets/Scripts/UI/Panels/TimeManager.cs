@@ -17,7 +17,7 @@ public class TimeManager : MonoBehaviour
     [Header("--- Continuous ---")]
     [SerializeField] private Button pauseBtn;
     [SerializeField] private Button playBtn;
-    private float tickRate = 1;
+    public float tickRate = 1;
     private float ticksPerSec = 1 / 60;
     [SerializeField] private InputField tickRateFld;
 
