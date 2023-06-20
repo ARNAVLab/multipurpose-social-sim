@@ -31,6 +31,6 @@ public class MotiveDisplay : MonoBehaviour
 
     public void SetMotiveValue(float inputVal)
     {
-        motiveValue.text = motiveBar.SetValue(inputVal).ToString("#.##");
+        motiveValue.text = motiveBar.SetValue(inputVal).ToString("F2");
     }
 }
