@@ -107,6 +107,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""scroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""173f0cd9-dac9-4e95-adc1-179ca3b4183b"",
+                    ""expectedControlType"": ""Delta"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""2276ae2c-6f5e-4375-9426-6543f54f1e89"",
+                    ""expectedControlType"": ""Integer"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -252,6 +270,50 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""wasd"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aec494ad-d912-425b-9fb0-71fcf71bb860"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""scroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""137d768c-0c8a-4c49-b646-5b0507a5aba2"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""zoom"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""092ae5e0-315c-403d-8f1e-9124555c9e46"",
+                    ""path"": ""<Keyboard>/minus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""11c70310-6dc9-4561-a1e7-5d83d4506c80"",
+                    ""path"": ""<Keyboard>/equals"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -269,6 +331,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_player_control = m_player.FindAction("control", throwIfNotFound: true);
         m_player_shift = m_player.FindAction("shift", throwIfNotFound: true);
         m_player_alt = m_player.FindAction("alt", throwIfNotFound: true);
+        m_player_scroll = m_player.FindAction("scroll", throwIfNotFound: true);
+        m_player_zoom = m_player.FindAction("zoom", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,6 +401,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_player_control;
     private readonly InputAction m_player_shift;
     private readonly InputAction m_player_alt;
+    private readonly InputAction m_player_scroll;
+    private readonly InputAction m_player_zoom;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -350,6 +416,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @control => m_Wrapper.m_player_control;
         public InputAction @shift => m_Wrapper.m_player_shift;
         public InputAction @alt => m_Wrapper.m_player_alt;
+        public InputAction @scroll => m_Wrapper.m_player_scroll;
+        public InputAction @zoom => m_Wrapper.m_player_zoom;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -386,6 +454,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @alt.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAlt;
                 @alt.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAlt;
                 @alt.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAlt;
+                @scroll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
+                @scroll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
+                @scroll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnScroll;
+                @zoom.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
+                @zoom.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
+                @zoom.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -417,6 +491,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @alt.started += instance.OnAlt;
                 @alt.performed += instance.OnAlt;
                 @alt.canceled += instance.OnAlt;
+                @scroll.started += instance.OnScroll;
+                @scroll.performed += instance.OnScroll;
+                @scroll.canceled += instance.OnScroll;
+                @zoom.started += instance.OnZoom;
+                @zoom.performed += instance.OnZoom;
+                @zoom.canceled += instance.OnZoom;
             }
         }
     }
@@ -432,5 +512,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnControl(InputAction.CallbackContext context);
         void OnShift(InputAction.CallbackContext context);
         void OnAlt(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
 }

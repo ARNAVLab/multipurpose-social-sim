@@ -42,8 +42,6 @@ public class TimeManager : MonoBehaviour
 
     public void SetTickRate(string input)
     {
-        Debug.Log("set TickRate to " + input);
-
         float ticksPerSec;
 
         if (!float.TryParse(input, out ticksPerSec))

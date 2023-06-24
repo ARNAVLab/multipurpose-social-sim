@@ -30,7 +30,7 @@ public class Actor : Selectable
 
         // Register this Agent with the AgentManager (this will add it to a static Dictionary, keyed by ID)
         WorldManager.RegisterAgent(this);
-        WorldManager.actorsUpdated.AddListener(tReceiveAgentUpdates);
+        WorldManager.actorsUpdated.AddListener(ReceiveAgentUpdates);
     }
 
     public void Init(string actorName)
@@ -40,10 +40,10 @@ public class Actor : Selectable
         Info.name = actorName;
         mainSprite.color = Random.ColorHSV();
 
-        tReceiveAgentUpdates();
+        ReceiveAgentUpdates();
     }
 
-    public void tReceiveAgentUpdates()
+    public void ReceiveAgentUpdates()
     {
         NPC npcData;
         SimManager.NPCs.TryGetValue(Info.name, out npcData);
@@ -127,12 +127,14 @@ public class Actor : Selectable
     public void Focus()
     {
         isFocused = true;
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1);
         SetOutline(OutlinePreset.FOCUS);
     }
 
     public void Unfocus()
     {
         isFocused = false;
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         SetOutline(OutlinePreset.SELECT);
     }
 }
