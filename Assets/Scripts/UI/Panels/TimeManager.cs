@@ -13,7 +13,7 @@ public class TimeManager : MonoBehaviour
     private int tickJump = 1;
     [SerializeField] private InputField tickJumpFld;
     
-    private bool isPaused = true;
+    public bool isPaused = true;
     [Header("--- Continuous ---")]
     [SerializeField] private Button pauseBtn;
     [SerializeField] private Button playBtn;
