@@ -6,19 +6,23 @@ using System.Text;
 
 public class MotiveDisplay : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI motiveName;
+    [SerializeField] private ActorInfoDisplay parentPanel;
+    private string motiveName;
+    [SerializeField] private TextMeshProUGUI motiveNameBox;
     [SerializeField] private TextMeshProUGUI motiveValue;
     [SerializeField] private UIValueBar motiveBar;
 
     public void SetMotiveName(string inputName, int padLen)
     {
+        motiveName = inputName;
+
         StringBuilder sb = new StringBuilder();
         sb.Append(inputName);
         int padCount = padLen - inputName.Length;
 
         if (padCount <= 0)
         {
-            motiveName.text = inputName;
+            motiveNameBox.text = inputName;
             return;
         }
 
@@ -26,11 +30,16 @@ public class MotiveDisplay : MonoBehaviour
         {
             sb.Append(".");
         }
-        motiveName.text = sb.ToString();
+        motiveNameBox.text = sb.ToString();
     }
 
     public void SetMotiveValue(float inputVal)
     {
         motiveValue.text = motiveBar.SetValue(inputVal).ToString("F2");
+    }
+
+    public void OverwriteMotiveValue(float inputVal)
+    {
+        parentPanel.OverewriteMotiveValue(motiveName, inputVal);
     }
 }

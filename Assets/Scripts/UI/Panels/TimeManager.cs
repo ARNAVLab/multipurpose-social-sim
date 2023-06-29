@@ -11,6 +11,8 @@ public class TimeManager : MonoBehaviour
     [Header("--- Incremental ---")]
     [SerializeField] private Button jumpBtn;
     private int tickJump = 1;
+    private int tickJumpMin = 1;
+    private int tickJumpMax = 100;
     [SerializeField] private InputField tickJumpFld;
     
     private bool isPaused = true;
@@ -18,6 +20,8 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private Button pauseBtn;
     [SerializeField] private Button playBtn;
     private float tickRate = 1;
+    private float ticksPerSecMin = 1;
+    private float ticksPerSecMax = 60;
     private float ticksPerSec = 1 / 60;
     [SerializeField] private InputField tickRateFld;
 
@@ -42,32 +46,38 @@ public class TimeManager : MonoBehaviour
 
     public void SetTickRate(string input)
     {
-        float ticksPerSec;
+        float newTicksPerSec;
 
-        if (!float.TryParse(input, out ticksPerSec))
+        if (!float.TryParse(input, out newTicksPerSec))
         {
-            tickRateFld.text = this.ticksPerSec.ToString();
+            // Input field is not a valid float; roll back text
+            tickRateFld.text = ticksPerSec.ToString();
             return;
         }
 
         // Provided string is a valid float
-        this.ticksPerSec = ticksPerSec;
+
+        newTicksPerSec = Mathf.Clamp(newTicksPerSec, ticksPerSecMin, ticksPerSecMax);
+        tickRateFld.text = newTicksPerSec.ToString();
+        ticksPerSec = newTicksPerSec;
         tickRate = 1 / ticksPerSec;
     }
 
     public void SetTickJump(string input)
     {
-        Debug.Log("set TickJump to " + input);
-
         int ticksPerJump;
 
         if (!int.TryParse(input, out ticksPerJump))
         {
+            // Input field is not a valid int; roll back text
             tickJumpFld.text = tickJump.ToString();
             return;
         }
 
         // Provided string is a valid int
+
+        ticksPerJump = Mathf.Clamp(ticksPerJump, tickJumpMin, tickJumpMax);
+        tickJumpFld.text = ticksPerJump.ToString();
         tickJump = ticksPerJump;
     }
 
@@ -89,7 +99,7 @@ public class TimeManager : MonoBehaviour
                 continue;
             } 
 
-            Tick(1);
+            Tick(tickJump);
             yield return new WaitForSeconds(tickRate);
         }
     }
