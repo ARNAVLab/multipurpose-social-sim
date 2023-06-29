@@ -6,6 +6,7 @@ using Anthology.SimulationManager;
 
 public class ActorInfoDisplay : MonoBehaviour
 {
+    private NPC displayedNPC;
     [SerializeField] private TextMeshProUGUI actorName;
     [SerializeField] private TextMeshProUGUI currentAction;
     [SerializeField] private TextMeshProUGUI actionRemaining;
@@ -30,17 +31,16 @@ public class ActorInfoDisplay : MonoBehaviour
 
     public void DisplayAgentInfo(string agentName)
     {
-        NPC npc;
-        SimManager.NPCs.TryGetValue(agentName, out npc);
+        SimManager.NPCs.TryGetValue(agentName, out displayedNPC);
 
-        if (npc == null)
+        if (displayedNPC == null)
         {
             return;
         }
 
-        actorName.text = npc.Name;
-        currentAction.text = npc.CurrentAction.Name;
-        foreach (KeyValuePair<string, float> entry in npc.Motives)
+        actorName.text = displayedNPC.Name;
+        currentAction.text = displayedNPC.CurrentAction.Name;
+        foreach (KeyValuePair<string, float> entry in displayedNPC.Motives)
         {
             MotiveDisplay md;
             motiveDisplayLookup.TryGetValue(entry.Key, out md);
@@ -54,5 +54,15 @@ public class ActorInfoDisplay : MonoBehaviour
                 Debug.LogError("Motive name mismatch!!");
             }
         }
+    }
+
+    public void OverewriteMotiveValue(string motiveName, float newValue)
+    {
+        if (displayedNPC == null)
+            return;
+
+        displayedNPC.Motives[motiveName] = newValue;
+        // Manually setting Dirty to true temporarily, until a setter exists for individual elements in Motives
+        displayedNPC.Dirty = true;
     }
 }
