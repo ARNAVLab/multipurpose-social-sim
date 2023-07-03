@@ -280,10 +280,12 @@ namespace Anthology.Models
         /** Decrements all the motives of this agent */
         public void DecrementMotives()
         {
+            Dictionary<string, float> newMotives = new();
             foreach(string m in Motives.Keys)
             {
-                Motives[m] = Math.Clamp(Motives[m] - 1, Motive.MIN, Motive.MAX);
+                newMotives[m] = Math.Clamp(Motives[m] - 1, Motive.MIN, Motive.MAX);
             }
+            Motives = newMotives;
         }
     }
 
