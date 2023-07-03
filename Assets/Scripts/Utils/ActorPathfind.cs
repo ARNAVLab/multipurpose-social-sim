@@ -38,7 +38,7 @@ public class ActorPathfind : MonoBehaviour
         if(timeManager.isPaused) {
             agentBody.position = target;
         } else {
-            timeSpeed = (float)(1.0 / timeManager.tickRate);
+            timeSpeed = (float)(1.0 / timeManager.GetTickRate());
             agentMesh.speed = timeSpeed;
             agentMesh.SetDestination(target);
         }

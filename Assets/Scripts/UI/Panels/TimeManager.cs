@@ -1,86 +1,88 @@
 using Anthology.SimulationManager;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
-    [Header("--- Incremental ---")]
+    [Header("--- General ---")]
+    [SerializeField] private int tickIncrMin = 1;
+    [SerializeField] private int tickIncrMax = 100;
+
+    [Header("--- Manual ---")]
+    [SerializeField] private InputField jumpIncrFld;
     [SerializeField] private Button jumpBtn;
-    private int tickJump = 1;
-    private int tickJumpMin = 1;
-    private int tickJumpMax = 100;
-    [SerializeField] private InputField tickJumpFld;
+    private int jumpIncrement = 1;
     
+    [Header("--- Automatic ---")]
     public bool isPaused = true;
-    [Header("--- Continuous ---")]
+    [SerializeField] private InputField playIncrFld;
     [SerializeField] private Button pauseBtn;
-    [SerializeField] private Button playBtn;
-
-    public float tickRate = 1;
-    public float ticksPerSecMin = 1;
-    public float ticksPerSecMax = 60;
-
-    private float ticksPerSec = 1 / 60;
-    [SerializeField] private InputField tickRateFld;
+    [SerializeField] private Button[] playBtns;
+    [SerializeField] private float[] presetTickRates;
+    private int playIncrement = 1;
+    private float tickRate = -1;
 
     private void Start()
     {
         StartCoroutine(TickLoop());
-        SetPaused(true);
+        SetPlayMode(0);
     }
 
     public void TickJump()
     {
-        Tick(tickJump);
+        Tick(jumpIncrement);
     }
 
-    public void SetPaused(bool newVal)
+    public float GetTickRate()
     {
-        isPaused = newVal;
+        return tickRate;
+    }
+
+    public void SetPlayMode(int playSpeedPreset)
+    {
+        isPaused = playSpeedPreset == 0;
         jumpBtn.interactable = isPaused;
-        pauseBtn.gameObject.SetActive(!isPaused);
-        playBtn.gameObject.SetActive(isPaused);
+        pauseBtn.interactable = !isPaused;
+
+        int presetChosen = playSpeedPreset - 1;
+        for (int btnIdx = 0; btnIdx < playBtns.Length; btnIdx++)
+            playBtns[btnIdx].interactable = btnIdx != presetChosen;
+
+        if (!isPaused)
+            tickRate = presetTickRates[presetChosen];
     }
 
-    public void SetTickRate(string input)
+    public void SetPlayIncrement(string input)
     {
-        float newTicksPerSec;
+        int newPlayIncrement;
 
-        if (!float.TryParse(input, out newTicksPerSec))
-        {
-            // Input field is not a valid float; roll back text
-            tickRateFld.text = ticksPerSec.ToString();
-            return;
-        }
-
-        // Provided string is a valid float
-
-        newTicksPerSec = Mathf.Clamp(newTicksPerSec, ticksPerSecMin, ticksPerSecMax);
-        tickRateFld.text = newTicksPerSec.ToString();
-        ticksPerSec = newTicksPerSec;
-        tickRate = 1 / ticksPerSec;
-    }
-
-    public void SetTickJump(string input)
-    {
-        int ticksPerJump;
-
-        if (!int.TryParse(input, out ticksPerJump))
+        if (!int.TryParse(input, out newPlayIncrement))
         {
             // Input field is not a valid int; roll back text
-            tickJumpFld.text = tickJump.ToString();
+            playIncrFld.text = playIncrement.ToString();
             return;
         }
 
         // Provided string is a valid int
+        playIncrement = Mathf.Clamp(newPlayIncrement, tickIncrMin, tickIncrMax);
+        playIncrFld.text = playIncrement.ToString();
+    }
 
-        ticksPerJump = Mathf.Clamp(ticksPerJump, tickJumpMin, tickJumpMax);
-        tickJumpFld.text = ticksPerJump.ToString();
-        tickJump = ticksPerJump;
+    public void SetJumpIncrement(string input)
+    {
+        int newJumpIncrement;
+
+        if (!int.TryParse(input, out newJumpIncrement))
+        {
+            // Input field is not a valid int; roll back text
+            jumpIncrFld.text = jumpIncrement.ToString();
+            return;
+        }
+
+        // Provided string is a valid int
+        jumpIncrement = Mathf.Clamp(newJumpIncrement, tickIncrMin, tickIncrMax);
+        jumpIncrFld.text = jumpIncrement.ToString();
     }
 
     private void Tick(int tickNum)
@@ -101,7 +103,7 @@ public class TimeManager : MonoBehaviour
                 continue;
             } 
 
-            Tick(tickJump);
+            Tick(playIncrement);
             yield return new WaitForSeconds(tickRate);
         }
     }

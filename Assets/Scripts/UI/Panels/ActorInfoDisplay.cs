@@ -56,6 +56,7 @@ public class ActorInfoDisplay : MonoBehaviour
 
         actorName.text = displayedNPC.Name;
         currentAction.text = displayedNPC.CurrentAction.Name;
+        actionRemaining.text = "for " + displayedNPC.ActionCounter.ToString() + " steps";
 
         foreach (KeyValuePair<string, float> entry in displayedNPC.Motives)
         {
