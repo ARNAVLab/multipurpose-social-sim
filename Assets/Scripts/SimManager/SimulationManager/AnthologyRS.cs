@@ -7,7 +7,7 @@ namespace Anthology.SimulationManager
 {
     public class AnthologyRS : RealitySim
     {
-
+        
         public override void Init(string pathFile = "")
         {
             ExecutionManager.Init(pathFile);
@@ -21,8 +21,7 @@ namespace Anthology.SimulationManager
                 if (!npcs.TryGetValue(a.Name, out NPC? npc))
                     npc = new NPC();
                 npc.Name = a.Name;
-                npc.Coordinates.X = a.XLocation;
-                npc.Coordinates.Y = a.YLocation;
+                npc.SetCoordinates(a.XLocation, a.YLocation);
                 if (a.CurrentAction != null && a.CurrentAction.Count > 0)
                 {
                     npc.CurrentAction.Name = a.CurrentAction.First().Name;
@@ -32,20 +31,20 @@ namespace Anthology.SimulationManager
                 {
                     npc.Destination = LocationManager.LocationGrid[a.XDestination][a.YDestination].Name;
                 }
-                Dictionary<string, Motive> motives = a.Motives;
+                Dictionary<string, float> motives = a.Motives;
                 foreach (string mote in motives.Keys)
                 {
-                    npc.Motives[mote] = motives[mote].Amount;
+                    npc.Motives[mote] = motives[mote];
                 }
                 npcs[a.Name] = npc;
             }
         }
 
-        public override void LoadLocations(Dictionary<Vector2, Location> locations)
+        public override void LoadLocations(Dictionary<Location.Coords, Location> locations)
         {
             locations.Clear();
             HashSet<SimLocation> simLocations = LocationManager.LocationSet;
-            foreach (SimLocation s in simLocations)
+            foreach(SimLocation s in simLocations)
             {
                 Location loc = new()
                 {
@@ -60,9 +59,10 @@ namespace Anthology.SimulationManager
 
         public override void UpdateNpc(NPC npc)
         {
+            bool shouldLog = false;
             Agent agent = AgentManager.GetAgentByName(npc.Name);
-            npc.Coordinates.X = agent.XLocation;
-            npc.Coordinates.Y = agent.YLocation;
+            npc.SetCoordinates(agent.XLocation, agent.YLocation);
+
             if (agent.XDestination != -1)
             {
                 npc.Destination = LocationManager.LocationGrid[agent.XDestination][agent.YDestination].Name;
@@ -71,14 +71,28 @@ namespace Anthology.SimulationManager
             {
                 npc.Destination = string.Empty;
             }
-            Dictionary<string, Motive> motives = agent.Motives;
+            Dictionary<string, float> motives = agent.Motives;
             foreach (string mote in motives.Keys)
             {
-                npc.Motives[mote] = motives[mote].Amount;
+                if (!npc.Motives.ContainsKey(mote))
+                {
+                    npc.Motives[mote] = motives[mote];
+                }
+                else if (npc.Motives[mote] != motives[mote]) {
+                    shouldLog |= true;
+                    npc.Motives[mote] = motives[mote];
+                }
             }
-            if (agent.CurrentAction.Count > 0)
+            if (agent.CurrentAction.Count > 0 && npc.CurrentAction.Name != agent.CurrentAction.First().Name)
+            {
+                shouldLog = true;
                 npc.CurrentAction.Name = agent.CurrentAction.First().Name;
+            }
             npc.ActionCounter = agent.OccupiedCounter;
+            if (shouldLog)
+            {
+                SimManager.History?.AddNpcToLog(npc);
+            }
         }
 
         public override void PushUpdatedNpc(NPC npc)
@@ -89,7 +103,7 @@ namespace Anthology.SimulationManager
             Dictionary<string, float> motives = npc.Motives;
             foreach (string mote in motives.Keys)
             {
-                agent.Motives[mote].Amount = motives[mote];
+                agent.Motives[mote] = motives[mote];
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Anthology.Models
@@ -53,10 +54,10 @@ namespace Anthology.Models
 
             if (action is PrimaryAction pAction)
             {
-                foreach (Effect e in pAction.Effects)
+                foreach (KeyValuePair<string, float> e in pAction.Effects)
                 {
-                    float delta = e.Delta;
-                    float current = agent.Motives[e.Type].Amount;
+                    float delta = e.Value;
+                    float current = agent.Motives[e.Key];
                     deltaUtility += Math.Clamp(delta + current, Motive.MIN, Motive.MAX) - current;
                 }
                 return deltaUtility;

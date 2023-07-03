@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace Anthology.Models
@@ -19,7 +20,7 @@ namespace Anthology.Models
 
         /** set of agents at the location */
         [JsonIgnore]
-        public HashSet<string> AgentsPresent { get; set; } = new HashSet<string>();
+        public HashSet<string> AgentsPresent { get; set; } = new ();
 
         /** returns true if the specified agent is at this location */
         public bool IsAgentHere(Agent npc)
