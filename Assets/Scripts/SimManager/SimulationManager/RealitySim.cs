@@ -17,7 +17,7 @@ namespace Anthology.SimulationManager
         public abstract void LoadNpcs(Dictionary<string, NPC> npcs);
 
         /** Used to populate the SimManager's collection of Locations from the relaity sim */
-        public abstract void LoadLocations(Dictionary<Vector2, Location> locations);
+        public abstract void LoadLocations(Dictionary<Location.Coords, Location> locations);
 
         /** Updates the given NPC to match the reality sim's version */
         public abstract void UpdateNpc(NPC npc);

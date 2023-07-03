@@ -61,7 +61,7 @@ namespace Anthology.Models
         public static bool Turn(Agent agent)
         {
             bool movement = false;
-            Console.WriteLine(agent.Name);
+/*            Console.WriteLine(agent.Name);*/
             if (agent.OccupiedCounter > 0)
             {
                 agent.OccupiedCounter--;

@@ -6,14 +6,14 @@
       "MinTime": 0,
       "Hidden": false,
       "Requirements": {},
-      "Effects": []
+      "Effects": {}
     },
     {
       "Name": "travel_action",
       "MinTime": 0,
       "Hidden": false,
       "Requirements": {},
-      "Effects": []
+      "Effects": {}
     },
     {
       "Name": "eat_alone",
@@ -30,12 +30,9 @@
           }
         ]
       },
-      "Effects": [
-        {
-          "Type": "physical",
-          "Delta": 2
-        }
-      ]
+      "Effects": {
+        "physical": 2
+      }
     },
     {
       "Name": "eat_sad",
@@ -52,16 +49,10 @@
           }
         ]
       },
-      "Effects": [
-        {
-          "Type": "physical",
-          "Delta": 4
-        },
-        {
-          "Type": "emotional",
-          "Delta": -1
-        }
-      ]
+      "Effects": {
+        "physical": 4,
+        "emotional": -1
+      }
     },
     {
       "Name": "eat_with_friend",
@@ -90,16 +81,10 @@
           }
         ]
       },
-      "Effects": [
-        {
-          "Type": "physical",
-          "Delta": 2
-        },
-        {
-          "Type": "social",
-          "Delta": 2
-        }
-      ]
+      "Effects": {
+        "physical": 2,
+        "social": 2
+      }
     },
     {
       "Name": "do_homework",
@@ -128,16 +113,10 @@
           }
         ]
       },
-      "Effects": [
-        {
-          "Type": "accomplishment",
-          "Delta": 2
-        },
-        {
-          "Type": "emotional",
-          "Delta": 1
-        }
-      ]
+      "Effects": {
+        "accomplishment": 2,
+        "emotional": 1
+      }
     },
     {
       "Name": "attend_class",
@@ -166,12 +145,9 @@
           }
         ]
       },
-      "Effects": [
-        {
-          "Type": "accomplishment",
-          "Delta": 1
-        }
-      ]
+      "Effects": {
+        "accomplishment": 1
+      }
     },
     {
       "Name": "go_for_walk",
@@ -188,16 +164,10 @@
           }
         ]
       },
-      "Effects": [
-        {
-          "Type": "physical",
-          "Delta": 1
-        },
-        {
-          "Type": "emotional",
-          "Delta": 1
-        }
-      ]
+      "Effects": {
+        "physical": 1,
+        "emotional": 1
+      }
     },
     {
       "Name": "play_game_alone",
@@ -214,12 +184,9 @@
           }
         ]
       },
-      "Effects": [
-        {
-          "Type": "emotional",
-          "Delta": 2
-        }
-      ]
+      "Effects": {
+        "emotional": 2
+      }
     },
     {
       "Name": "play_game_with_friend",
@@ -248,16 +215,10 @@
           }
         ]
       },
-      "Effects": [
-        {
-          "Type": "emotional",
-          "Delta": 2
-        },
-        {
-          "Type": "social",
-          "Delta": 1
-        }
-      ]
+      "Effects": {
+        "emotional": 2,
+        "social": 1
+      }
     }
   ]
 }

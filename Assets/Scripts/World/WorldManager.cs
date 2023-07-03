@@ -1,4 +1,5 @@
 using Anthology.SimulationManager;
+using Anthology.SimulationManager.HistoryManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class WorldManager : MonoBehaviour
             instance = this;
 
             // Jump-starts the Simulation Manager, allowing for communication between the User Interface, Knowledge, and Reality sims.
-            SimManager.Init("Assets/Scripts/SimManager/Data/Paths.json", typeof(AnthologyRS), typeof(LyraKS));
+            SimManager.Init("Assets/Scripts/SimManager/Data/Paths.json", typeof(AnthologyRS), typeof(LyraKS), typeof(MongoHM));
             actorsUpdated = new UnityEvent();
         }
     }
