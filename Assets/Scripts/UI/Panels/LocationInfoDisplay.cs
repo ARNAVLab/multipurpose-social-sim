@@ -15,7 +15,7 @@ public class LocationInfoDisplay : MonoBehaviour
 
     public void DisplayLocationInfo(float xCoord, float yCoord)
     {
-        System.Numerics.Vector2 locPos = new System.Numerics.Vector2(xCoord, yCoord);
+        Location.Coords locPos = new Location.Coords((int)xCoord, (int)yCoord);
         Location prospLoc;
         if (!SimManager.Locations.TryGetValue(locPos, out prospLoc))
             return;

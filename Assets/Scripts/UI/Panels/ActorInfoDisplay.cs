@@ -50,7 +50,7 @@ public class ActorInfoDisplay : MonoBehaviour
 
         string currentLocationName = "ERR: Coord Mismatch";
         Location currentLocation;
-        if (SimManager.Locations.TryGetValue(new System.Numerics.Vector2(displayedNPC.Coordinates.X, displayedNPC.Coordinates.Y), out currentLocation))
+        if (SimManager.Locations.TryGetValue(new Location.Coords((int)displayedNPC.Coordinates.X, (int)displayedNPC.Coordinates.Y), out currentLocation))
             currentLocationName = currentLocation.Name;
         locationPlace.text = travelling ? displayedNPC.Destination : currentLocationName;
 
