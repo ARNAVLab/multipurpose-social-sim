@@ -51,9 +51,10 @@ MonoBehaviour:
   _cameraZoomSpeed: 0
   _cameraScrollZoomSpeed: 0.1
   _cameraZoomMin: 0
-  _cameraZoomMax: 0
+  _cameraZoomMax: 10
   _selectionBoxPrefab: {fileID: 1365699482913234944, guid: d6d242c0bbc1a1d4f8beb188073f9a51, type: 3}
   _selectionBoxDefSize: {x: 0, y: 0, z: 0}
+  trackingRate: 10
 --- !u!20 &1128995812082767675
 Camera:
   m_ObjectHideFlags: 0
