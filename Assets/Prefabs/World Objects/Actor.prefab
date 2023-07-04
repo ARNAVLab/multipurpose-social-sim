@@ -309,6 +309,9 @@ MonoBehaviour:
   colorHover: {r: 1, g: 1, b: 1, a: 0.5019608}
   colorSelect: {r: 1, g: 1, b: 1, a: 1}
   colorFocus: {r: 0, g: 1, b: 1, a: 1}
+  colorHigh: {r: 0.040236473, g: 1, b: 0, a: 0}
+  colorMid: {r: 1, g: 0.4854527, b: 0, a: 0}
+  colorLow: {r: 1, g: 0, b: 0, a: 0}
   Info:
     name: 
     motive:
