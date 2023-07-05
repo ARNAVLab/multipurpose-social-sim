@@ -15,6 +15,10 @@ public class SelectionController : MonoBehaviour
     [SerializeField] private float _cameraZoomMax = 100.0f;
     [SerializeField] private GameObject _selectionBoxPrefab;
     [SerializeField] private Vector3 _selectionBoxDefSize;
+    
+    [SerializeField] private float trackingRate = 10f;
+    private static Transform trackedObject;
+    private static bool doTracking = false;
 
     private Controls _controls;
     private Camera _camera;
@@ -113,10 +117,37 @@ public class SelectionController : MonoBehaviour
         {
             Vector3 positionDifference = Time.deltaTime * _cameraDragMoveSpeed * _camera.orthographicSize * -_mouseDelta;
             this.transform.Translate(positionDifference, Space.World);
+
+            // The camera was moved manually; disable automatic Actor tracking, if enabled.
+            DisableTracking();
         }
 
         _mouseDelta = Vector2.zero;
         _scrollDelta = 0;
+    }
+
+    private void LateUpdate()
+    {
+        if (doTracking)
+        {
+            Vector3 targetPos = trackedObject.position;
+            targetPos.z = transform.position.z;
+
+            Vector3 smoothedPos = Vector3.Lerp(transform.position, targetPos, trackingRate * Time.deltaTime);
+            transform.position = smoothedPos;
+        }
+    }
+
+    public static void EnableTracking(Transform toTrack)
+    {
+        trackedObject = toTrack;
+        doTracking = true;
+    }
+
+    public static void DisableTracking()
+    {
+        trackedObject = null;
+        doTracking = false;
     }
 
     /**

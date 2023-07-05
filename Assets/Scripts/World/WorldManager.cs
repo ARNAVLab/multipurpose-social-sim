@@ -1,4 +1,5 @@
 using Anthology.SimulationManager;
+using Anthology.SimulationManager.HistoryManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +15,7 @@ public class WorldManager : MonoBehaviour
     public static UnityEvent actorsUpdated;
 
     private static Dictionary<int, Actor> actors = new Dictionary<int, Actor>();
-    private static HashSet<int> selected = new HashSet<int>();
-    private static int focused;
+    // A list of indices, representing the actors currently selected by the user in the scene.
 
     private void Awake()
     {
@@ -23,12 +23,21 @@ public class WorldManager : MonoBehaviour
         {
             instance = this;
 
-            SimManager.Init("Assets/Scripts/SimManager/Data/Paths.json", typeof(AnthologyRS), typeof(LyraKS));
+            // Jump-starts the Simulation Manager, allowing for communication between the User Interface, Knowledge, and Reality sims.
+            SimManager.Init("Assets/Scripts/SimManager/Data/Paths.json", typeof(AnthologyRS), typeof(LyraKS), typeof(MongoHM));
             actorsUpdated = new UnityEvent();
         }
     }
 
     private void Start()
+    {
+        InitWorld();
+    }
+
+    /**
+     * Instantiates objects representing the agents and locations from the backend simulation.
+     */
+    private void InitWorld()
     {
         foreach (NPC npc in SimManager.NPCs.Values)
         {
@@ -55,15 +64,15 @@ public class WorldManager : MonoBehaviour
      * @param targetID is the ID of the Agent to focus.
      * @return whether the currently focused Agent successfully changed.
      */
-    public static bool FocusAgent(int targetID)
-    {
-        // TODO: Should a check occur for attempting to focus the currently focused Agent (i.e. unfocus it)?
-        if (focused > -1)
-            return false; // Focus already occupied by another Agent
+    //public static bool FocusAgent(int targetID)
+    //{
+    //    // TODO: Should a check occur for attempting to focus the currently focused Agent (i.e. unfocus it)?
+    //    if (focused > -1)
+    //        return false; // Focus already occupied by another Agent
 
-        focused = targetID;
-        return true;
-    }
+    //    focused = targetID;
+    //    return true;
+    //}
 
     /**
      * Attempts to unfocus the currently "focused" (is selected/hovered on the frontend) Agent.
@@ -71,14 +80,14 @@ public class WorldManager : MonoBehaviour
      * @param targetID is the ID of the Agent to unfocus.
      * @return whether the currently focused Agent was successfully unfocused.
      */
-    public static bool UnfocusAgent(int targetID)
-    {
-        if (focused != targetID)
-            return false; // Focus not occupied by Agent with target ID
+    //public static bool UnfocusAgent(int targetID)
+    //{
+    //    if (focused != targetID)
+    //        return false; // Focus not occupied by Agent with target ID
 
-        focused = -1;
-        return true;
-    }
+    //    focused = -1;
+    //    return true;
+    //}
 
     /**
      * Attempts to add a new Agent to the static Dictionary, using its AgentID as the key.
@@ -100,4 +109,6 @@ public class WorldManager : MonoBehaviour
     {
         return actors[agentID];
     }
+
+    
 }

@@ -30,7 +30,7 @@ public class Actor : Selectable
 
         // Register this Agent with the AgentManager (this will add it to a static Dictionary, keyed by ID)
         WorldManager.RegisterAgent(this);
-        WorldManager.actorsUpdated.AddListener(tReceiveAgentUpdates);
+        WorldManager.actorsUpdated.AddListener(ReceiveAgentUpdates);
     }
 
     public void Init(string actorName)
@@ -40,10 +40,10 @@ public class Actor : Selectable
         Info.name = actorName;
         mainSprite.color = Random.ColorHSV();
 
-        tReceiveAgentUpdates();
+        ReceiveAgentUpdates();
     }
 
-    public void tReceiveAgentUpdates()
+    public void ReceiveAgentUpdates()
     {
         NPC npcData;
         SimManager.NPCs.TryGetValue(Info.name, out npcData);
@@ -66,7 +66,7 @@ public class Actor : Selectable
         npcData.Motives.TryGetValue("accomplishment", out Info.motive.accomplishment);
         Info.currentAction = npcData.CurrentAction.Name;
 
-        transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
+        // transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
     }
 
     private enum OutlinePreset { NONE, HOVER, SELECT, FOCUS }
@@ -76,23 +76,27 @@ public class Actor : Selectable
         {
             case OutlinePreset.NONE:
                 {
+                    Debug.Log("SetOutline to NONE");
                     selectionOutline.gameObject.SetActive(false);
                     break;
                 }
             case OutlinePreset.HOVER:
                 {
+                    Debug.Log("SetOutline to HOVER");
                     selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorHover;
                     break;
                 }
             case OutlinePreset.SELECT:
                 {
+                    Debug.Log("SetOutline to SELECT");
                     selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorSelect;
                     break;
                 }
             case OutlinePreset.FOCUS:
                 {
+                    Debug.Log("SetOutline to FOCUS");
                     selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorFocus;
                     break;
@@ -127,12 +131,22 @@ public class Actor : Selectable
     public void Focus()
     {
         isFocused = true;
+
+        mainSprite.sortingOrder = short.MaxValue;
+        interiorOutline.sortingOrder = short.MaxValue - 1;
+        selectionOutline.sortingOrder = short.MaxValue - 2;
+
         SetOutline(OutlinePreset.FOCUS);
     }
 
     public void Unfocus()
     {
         isFocused = false;
-        SetOutline(OutlinePreset.SELECT);
+
+        mainSprite.sortingOrder = 2;
+        interiorOutline.sortingOrder = 1;
+        selectionOutline.sortingOrder = 0;
+
+        SetOutline(isSelected ? OutlinePreset.SELECT : OutlinePreset.NONE);
     }
 }

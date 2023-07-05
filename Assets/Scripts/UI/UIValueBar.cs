@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
 using TMPro;
+using System.Globalization;
 
 /**
  * Resizes and recolors the Image component of the GameObject based on a float value.
@@ -23,11 +24,9 @@ public class UIValueBar : MonoBehaviour
     [Tooltip("What alignment the bar should be given within the bounds of this GameObject.")]
     [SerializeField] private BarType barType;
 
-    [Tooltip("The TextMeshProUGUI that will update to reflect the current value of the bar. Can be left null.")]
-    [SerializeField] private TextMeshProUGUI valueText;
+    // The internal value used to scale the bar.
+    private float value = -1;
 
-    [Tooltip("The internal value used to scale the bar.")]
-    [SerializeField] private float value;
 
     [Tooltip("The minimum value able to be assigned to the bar.")]
     [SerializeField] private float minVal;
@@ -52,12 +51,18 @@ public class UIValueBar : MonoBehaviour
             case BarType.ALIGN_LEFT:
                 {
                     barRect.pivot = new Vector2(0, 0.5f);
+                    //barRect.anchorMin = new Vector2(0, 0.5f);
+                    //barRect.anchorMax = new Vector2(0, 0.5f);
+                    barRect.anchoredPosition = Vector2.zero;
                     break;
                 }
             case BarType.ALIGN_RIGHT:
                 {
                     barRect.pivot = new Vector2(1, 0.5f);
-                    GetComponent<RectTransform>().anchoredPosition += Vector2.right * GetComponent<RectTransform>().sizeDelta.x;
+                    //barRect.anchorMin = new Vector2(1, 0.5f);
+                    //barRect.anchorMax = new Vector2(1, 0.5f);
+                    barRect.anchoredPosition = Vector2.zero;
+                    //GetComponent<RectTransform>().anchoredPosition += Vector2.right * GetComponent<RectTransform>().sizeDelta.x;
                     break;
                 }
             case BarType.ZERO_CENTER:
@@ -80,11 +85,16 @@ public class UIValueBar : MonoBehaviour
      * 
      * @param newVal is the new value to assign.
      */
-    public void SetValue(float newVal)
+    public float SetValue(float newVal)
     {
         newVal = Mathf.Clamp(newVal, minVal, maxVal);
-        value = newVal;
-        UpdateAppearance();
+        if (value != newVal)
+        {
+            //Debug.Log("About to Overwrite value from " + value + " to " + newVal);
+            value = newVal;
+            UpdateAppearance();
+        }
+        return value;
     }
 
     /**
@@ -99,13 +109,14 @@ public class UIValueBar : MonoBehaviour
         
         if (barType == BarType.ZERO_CENTER)
         {
-            barRect.sizeDelta = new Vector3(Mathf.Abs(valPercent - 0.5f) * (myRect.sizeDelta.x - minWidth) + minWidth, barRect.sizeDelta.y);
+            barRect.sizeDelta = new Vector3(Mathf.Abs(valPercent - 0.5f) * (myRect.sizeDelta.x - minWidth) + minWidth, myRect.sizeDelta.y);
             bool hangsLeft = valPercent - 0.5f < 0;
             barRect.anchoredPosition = new Vector3((hangsLeft ? -0.5f : 0.5f) * barRect.sizeDelta.x, barRect.anchoredPosition.y);
         }
         else
         {
-            barRect.sizeDelta = new Vector2(valPercent * (myRect.sizeDelta.x - minWidth) + minWidth, barRect.sizeDelta.y);
+            barRect.localScale = new Vector3(valPercent, 1, 1);
+            //barRect.sizeDelta = new Vector2(valPercent * (myRect.sizeDelta.x - minWidth) + minWidth, myRect.sizeDelta.y);
         }
 
         // Lerp between minColor and maxColor to get the new bar color
@@ -113,10 +124,5 @@ public class UIValueBar : MonoBehaviour
         Vector4 maxColLerp = new Vector4(maxColor.r, maxColor.g, maxColor.b, maxColor.a);
         Vector4 targetColLerp = Vector4.Lerp(minColLerp, maxColLerp, valPercent);
         barImg.GetComponent<Image>().color = new Color(targetColLerp.x, targetColLerp.y, targetColLerp.z, targetColLerp.w);
-
-        if (valueText != null)
-        {
-            valueText.text = value.ToString("#.##");
-        }
     }
 }

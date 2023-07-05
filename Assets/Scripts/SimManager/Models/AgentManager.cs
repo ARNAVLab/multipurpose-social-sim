@@ -40,31 +40,31 @@ namespace Anthology.Models
                     switch (rMotive.Operation)
                     {
                         case BinOps.EQUALS:
-                            if (!(agent.Motives[t].Amount == c))
+                            if (!(agent.Motives[t] == c))
                             {
                                 return false;
                             }
                             break;
                         case BinOps.LESS:
-                            if (!(agent.Motives[t].Amount < c))
+                            if (!(agent.Motives[t] < c))
                             {
                                 return false;
                             }
                             break;
                         case BinOps.GREATER:
-                            if (!(agent.Motives[t].Amount > c))
+                            if (!(agent.Motives[t] > c))
                             {
                                 return false;
                             }
                             break;
                         case BinOps.LESS_EQUALS:
-                            if (!(agent.Motives[t].Amount <= c))
+                            if (!(agent.Motives[t] <= c))
                             {
                                 return false;
                             }
                             break;
                         case BinOps.GREATER_EQUALS:
-                            if (!(agent.Motives[t].Amount >= c))
+                            if (!(agent.Motives[t] >= c))
                             {
                                 return false;
                             }
