@@ -8,19 +8,17 @@ public class TimeManager : MonoBehaviour
     [Header("--- General ---")]
     [SerializeField] private int tickIncrMin = 1;
     [SerializeField] private int tickIncrMax = 100;
+    [SerializeField] private InputField tickIncrFld;
+    private int tickIncrement = 1;
 
     [Header("--- Manual ---")]
-    [SerializeField] private InputField jumpIncrFld;
     [SerializeField] private Button jumpBtn;
-    private int jumpIncrement = 1;
     
     [Header("--- Automatic ---")]
     public bool isPaused = true;
-    [SerializeField] private InputField playIncrFld;
     [SerializeField] private Button pauseBtn;
     [SerializeField] private Button[] playBtns;
     [SerializeField] private float[] presetTickRates;
-    private int playIncrement = 1;
     private float tickRate = -1;
 
     private void Start()
@@ -31,7 +29,7 @@ public class TimeManager : MonoBehaviour
 
     public void TickJump()
     {
-        Tick(jumpIncrement);
+        Tick(tickIncrement);
     }
 
     public float GetTickRate()
@@ -53,36 +51,20 @@ public class TimeManager : MonoBehaviour
             tickRate = presetTickRates[presetChosen];
     }
 
-    public void SetPlayIncrement(string input)
+    public void SetTickIncrement(string input)
     {
         int newPlayIncrement;
 
         if (!int.TryParse(input, out newPlayIncrement))
         {
             // Input field is not a valid int; roll back text
-            playIncrFld.text = playIncrement.ToString();
+            tickIncrFld.text = tickIncrement.ToString();
             return;
         }
 
         // Provided string is a valid int
-        playIncrement = Mathf.Clamp(newPlayIncrement, tickIncrMin, tickIncrMax);
-        playIncrFld.text = playIncrement.ToString();
-    }
-
-    public void SetJumpIncrement(string input)
-    {
-        int newJumpIncrement;
-
-        if (!int.TryParse(input, out newJumpIncrement))
-        {
-            // Input field is not a valid int; roll back text
-            jumpIncrFld.text = jumpIncrement.ToString();
-            return;
-        }
-
-        // Provided string is a valid int
-        jumpIncrement = Mathf.Clamp(newJumpIncrement, tickIncrMin, tickIncrMax);
-        jumpIncrFld.text = jumpIncrement.ToString();
+        tickIncrement = Mathf.Clamp(newPlayIncrement, tickIncrMin, tickIncrMax);
+        tickIncrFld.text = tickIncrement.ToString();
     }
 
     private void Tick(int tickNum)
@@ -103,7 +85,7 @@ public class TimeManager : MonoBehaviour
                 continue;
             } 
 
-            Tick(playIncrement);
+            Tick(tickIncrement);
             yield return new WaitForSeconds(tickRate);
         }
     }
