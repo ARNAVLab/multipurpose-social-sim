@@ -41,7 +41,7 @@ public class DevConsoleController : MonoBehaviour
             methodInfo.Invoke(method, args);
             return true;
         }
-        catch(Exception ex)
+        catch
         {
             return false;
         }
@@ -99,25 +99,20 @@ public class DevConsoleCommand
         DevConsoleController.Instance.ClearLog();
     }
 
-    public static void settickjump(string tickJump)
-    {
-        DevConsoleController.Instance.TimeManagerInstance.SetTickJump(tickJump);
-    }
-    public static void settickrate(string tickRate)
-    {
-        DevConsoleController.Instance.TimeManagerInstance.SetTickRate(tickRate);
-    }
-
     public static void tick()
     {
         DevConsoleController.Instance.TimeManagerInstance.TickJump();
     }
+    public static void tickrate(string tick)
+    {
+        DevConsoleController.Instance.TimeManagerInstance.SetTickIncrement(tick);
+    }
     public static void pause()
     {
-        DevConsoleController.Instance.TimeManagerInstance.SetPaused(true);
+        DevConsoleController.Instance.TimeManagerInstance.SetPlayMode(0);
     }
     public static void play()
     {
-        DevConsoleController.Instance.TimeManagerInstance.SetPaused(false);
+        DevConsoleController.Instance.TimeManagerInstance.SetPlayMode(1);
     }
 }
