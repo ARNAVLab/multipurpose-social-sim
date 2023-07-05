@@ -62,6 +62,9 @@ public class SelectionController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (IsCursorOverUIElement())
+            return;
+        
         Vector3 cameraPositionDifference = (Vector3)(Time.deltaTime * _cameraMoveSpeed * _camera.orthographicSize * _cameraMovement);
 
         this.transform.position = this.transform.position + cameraPositionDifference;
@@ -84,7 +87,13 @@ public class SelectionController : MonoBehaviour
             _camera.transform.position = new Vector3(cameraPosition.x, cameraPosition.y, _camera.transform.position.z);
         }
 
-
+        _camera.orthographicSize = Mathf.Clamp
+        (
+            _camera.orthographicSize + _camera.orthographicSize * Time.deltaTime * 
+                -(_cameraZoomSpeed * _cameraZoom), 
+            _cameraZoomMin,
+            _cameraZoomMax
+        );
 
         if (!_dragLeft && _clickLeft && _clickLeftOrigin != _mousePosition)
             _dragLeft = true;

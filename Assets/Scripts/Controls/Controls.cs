@@ -125,6 +125,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""enter"",
+                    ""type"": ""Button"",
+                    ""id"": ""54eb348d-ebd3-4ff6-b378-d2332dbe1e68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -314,6 +323,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc571c38-d9a7-4e50-9420-9f542f155da2"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""enter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -333,6 +353,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_player_alt = m_player.FindAction("alt", throwIfNotFound: true);
         m_player_scroll = m_player.FindAction("scroll", throwIfNotFound: true);
         m_player_zoom = m_player.FindAction("zoom", throwIfNotFound: true);
+        m_player_enter = m_player.FindAction("enter", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -403,6 +424,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_player_alt;
     private readonly InputAction m_player_scroll;
     private readonly InputAction m_player_zoom;
+    private readonly InputAction m_player_enter;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -418,6 +440,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @alt => m_Wrapper.m_player_alt;
         public InputAction @scroll => m_Wrapper.m_player_scroll;
         public InputAction @zoom => m_Wrapper.m_player_zoom;
+        public InputAction @enter => m_Wrapper.m_player_enter;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -460,6 +483,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @zoom.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
                 @zoom.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
                 @zoom.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
+                @enter.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnter;
+                @enter.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnter;
+                @enter.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEnter;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -497,6 +523,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @zoom.started += instance.OnZoom;
                 @zoom.performed += instance.OnZoom;
                 @zoom.canceled += instance.OnZoom;
+                @enter.started += instance.OnEnter;
+                @enter.performed += instance.OnEnter;
+                @enter.canceled += instance.OnEnter;
             }
         }
     }
@@ -514,5 +543,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAlt(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
+        void OnEnter(InputAction.CallbackContext context);
     }
 }
