@@ -37,9 +37,10 @@ public class ActorInfoDisplay : MonoBehaviour
         }
     }
 
-    public void DisplayAgentInfo(string agentName)
+    public void DisplayAgentInfo(Selectable selected)
     {
-        SimManager.NPCs.TryGetValue(agentName, out displayedNPC);
+        Actor selectedActor = (Actor) selected;
+        SimManager.NPCs.TryGetValue(selectedActor.name, out displayedNPC);
 
         if (displayedNPC == null)
             return;

@@ -5,17 +5,26 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [Tooltip("The Panel which displays Agent information when one or more is selected.")]
-    [SerializeField] private Panel actorInfoPanel;
+    [SerializeField] private ActorInfoDisplay actorInfo;
+    [SerializeField] private PlaceInfoDisplay placeInfo;
+
+    private enum SelectType
+    {
+        ACTORS,
+        PLACES
+    }
+    private SelectType selectMode = SelectType.ACTORS;
 
     private static int nextUIElementID = 0;
     public static int elementInControl = -1;
 
-    private List<Actor> selectedActors = new List<Actor>();
-    // The index of the actor in the selectedAgents list who is currently in focus.
-    private int focusedAgentIdx = -1;
+    private List<Selectable> selected = new List<Selectable>();
 
-    private KeyCode nextActor = KeyCode.RightArrow;
-    private KeyCode prevActor = KeyCode.LeftArrow;
+    // The index of the selectable in the 'selected' list which is currently in focus.
+    private int focusedIdx = -1;
+
+    private KeyCode nextSelection = KeyCode.RightArrow;
+    private KeyCode prevSelection = KeyCode.LeftArrow;
 
     private void Start()
     {
@@ -25,9 +34,9 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(nextActor))
+        if (Input.GetKeyDown(nextSelection))
             ChangeFocusedAgent(1);
-        if (Input.GetKeyDown(prevActor))
+        if (Input.GetKeyDown(prevSelection))
             ChangeFocusedAgent(-1);
     }
 
@@ -44,8 +53,19 @@ public class UIManager : MonoBehaviour
 
     public void DisplayFocusedActorInfo()
     {
-        Actor target = selectedActors[focusedAgentIdx];
-        actorInfoPanel.GetComponent<ActorInfoDisplay>().DisplayAgentInfo(target.name);
+        switch (selectMode)
+        {
+            case SelectType.ACTORS:
+                {
+                    actorInfo.DisplayAgentInfo(selected[focusedIdx]);
+                    break;
+                }
+            case SelectType.PLACES:
+                {
+                    placeInfo.DisplayLocationInfo(selected[focusedIdx]);
+                    break;
+                }
+        }
     }
 
     /**
@@ -55,10 +75,10 @@ public class UIManager : MonoBehaviour
      */
     public void ChangeFocusedAgent(int indexDelta)
     {
-        selectedActors[focusedAgentIdx].Unfocus();
-        focusedAgentIdx = GetAgentIndex(focusedAgentIdx, indexDelta);
-        selectedActors[focusedAgentIdx].Focus();
-        SelectionController.EnableTracking(selectedActors[focusedAgentIdx].transform);
+        selected[focusedIdx].Unfocus();
+        focusedIdx = GetAgentIndex(focusedIdx, indexDelta);
+        selected[focusedIdx].Focus();
+        SelectionController.EnableTracking(selected[focusedIdx].transform);
         DisplayFocusedActorInfo();
     }
 
@@ -73,64 +93,63 @@ public class UIManager : MonoBehaviour
     {
         // Obtain the actual number of indices moved, after full loop-arounds are taken into account.
         // I'm avoiding using a negative number in the modulo operation because implementations of that math depend on the programming language.
-        int clampedDelta = Mathf.Abs(indexDelta) % selectedActors.Count;
+        int clampedDelta = Mathf.Abs(indexDelta) % selected.Count;
         if (indexDelta < 0)
             clampedDelta = -clampedDelta;
         int result = indexStart + clampedDelta;
         // Because we clamped indexDelta, resolving cases where the index is out of bounds is just addition/subtraction.
         if (result < 0)
-            result += selectedActors.Count;
-        if (result >= selectedActors.Count)
-            result -= selectedActors.Count;
+            result += selected.Count;
+        if (result >= selected.Count)
+            result -= selected.Count;
         return result;
     }
 
     private void ClearSelected()
     {
-        foreach (Actor a in selectedActors)
+        foreach (Selectable s in selected)
         {
-            a.Unfocus();
+            s.Unfocus();
         }
-        selectedActors.Clear();
+        selected.Clear();
     }
 
     private void SelectionListener()
     {
-        HashSet<Selectable> selected = SelectionManager.Instance.Selected;
+        HashSet<Selectable> selectedSet = SelectionManager.Instance.Selected;
 
-        if (selected.Count <= 0)
+        if (selectedSet.Count <= 0)
         {
             // Nothing was selected. Attempt to hide panel.
-            actorInfoPanel.Hide();
+            actorInfo.GetComponent<Panel>().Hide();
 
             ClearSelected();
 
-            focusedAgentIdx = -1;
+            focusedIdx = -1;
             SelectionController.DisableTracking();
         }
         else
         {
             // At least one Agent was selected; attempt to show panel.
-            actorInfoPanel.Show();
+            actorInfo.GetComponent<Panel>().Show();
 
             ClearSelected();
 
-            foreach (Selectable s in selected)
+            foreach (Selectable s in selectedSet)
             {
-                Actor a = (Actor)s;
-                selectedActors.Add(a);
+                selected.Add(s);
             }
 
-            focusedAgentIdx = 0;
-            selectedActors[focusedAgentIdx].Focus();
-            SelectionController.EnableTracking(selectedActors[focusedAgentIdx].transform);
+            focusedIdx = 0;
+            selected[focusedIdx].Focus();
+            SelectionController.EnableTracking(selected[focusedIdx].transform);
             DisplayFocusedActorInfo();
         }
     }
 
     private void ActorUpdateListener()
     {
-        if (focusedAgentIdx > -1)
+        if (focusedIdx > -1)
         {
             DisplayFocusedActorInfo();
         }

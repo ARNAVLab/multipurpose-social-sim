@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Selectable : MonoBehaviour
 {
-    public bool isHovered {get; private set;} = false;
-    public bool isSelected {get; private set;} = false;
+    public bool isHovered {get; protected set;} = false;
+    public bool isSelected {get; protected set;} = false;
+    public bool isFocused { get; protected set; } = false;
+
+    [SerializeField] protected SpriteRenderer selectionOutline;
+
+    [SerializeField] protected Color colorHover;
+    [SerializeField] protected Color colorSelect;
+    [SerializeField] protected Color colorFocus;
 
     public void Select()
     {
@@ -50,8 +57,73 @@ public class Selectable : MonoBehaviour
         if (isHovered) SelectionManager.Instance.Hovered.Remove(this);
     }
 
-    public virtual void OnHover(){}
-    public virtual void OnUnhover(){}
-    public virtual void OnSelect(){}
-    public virtual void OnDeselect(){}
+    protected enum OutlinePreset { NONE, HOVER, SELECT, FOCUS }
+    protected void SetOutline(OutlinePreset preset)
+    {
+        switch (preset)
+        {
+            case OutlinePreset.NONE:
+                {
+                    Debug.Log("SetOutline to NONE");
+                    selectionOutline.gameObject.SetActive(false);
+                    break;
+                }
+            case OutlinePreset.HOVER:
+                {
+                    Debug.Log("SetOutline to HOVER");
+                    selectionOutline.gameObject.SetActive(true);
+                    selectionOutline.GetComponent<SpriteRenderer>().color = colorHover;
+                    break;
+                }
+            case OutlinePreset.SELECT:
+                {
+                    Debug.Log("SetOutline to SELECT");
+                    selectionOutline.gameObject.SetActive(true);
+                    selectionOutline.GetComponent<SpriteRenderer>().color = colorSelect;
+                    break;
+                }
+            case OutlinePreset.FOCUS:
+                {
+                    Debug.Log("SetOutline to FOCUS");
+                    selectionOutline.gameObject.SetActive(true);
+                    selectionOutline.GetComponent<SpriteRenderer>().color = colorFocus;
+                    break;
+                }
+        }
+    }
+
+    public virtual void OnHover()
+    {
+        // There is never a situation where isFocused is true AND isSelected isn't.
+        if (!isSelected)
+            SetOutline(OutlinePreset.HOVER);
+    }
+
+    public virtual void OnUnhover()
+    {
+        if (!isSelected)
+            SetOutline(OutlinePreset.NONE);
+    }
+
+    public virtual void OnSelect()
+    {
+        SetOutline(OutlinePreset.SELECT);
+    }
+
+    public virtual void OnDeselect()
+    {
+        SetOutline(OutlinePreset.NONE);
+    }
+
+    public virtual void Focus()
+    {
+        isFocused = true;
+        SetOutline(OutlinePreset.FOCUS);
+    }
+
+    public virtual void Unfocus()
+    {
+        isFocused = false;
+        SetOutline(isSelected ? OutlinePreset.SELECT : OutlinePreset.NONE);
+    }
 }

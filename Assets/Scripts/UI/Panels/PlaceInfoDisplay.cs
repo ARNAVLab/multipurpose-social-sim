@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LocationInfoDisplay : MonoBehaviour
+public class PlaceInfoDisplay : MonoBehaviour
 {
     private Location displayedLocation;
 
@@ -13,9 +13,10 @@ public class LocationInfoDisplay : MonoBehaviour
     [SerializeField] private Transform tagCollection;
     [SerializeField] private GameObject tagPref;
 
-    public void DisplayLocationInfo(float xCoord, float yCoord)
+    public void DisplayLocationInfo(Selectable selected)
     {
-        Location.Coords locPos = new Location.Coords((int)xCoord, (int)yCoord);
+        Place selectedPlace = (Place) selected;
+        Location.Coords locPos = new Location.Coords((int)selectedPlace.transform.position.x, (int)selectedPlace.transform.position.y);
         Location prospLoc;
         if (!SimManager.Locations.TryGetValue(locPos, out prospLoc))
             return;
