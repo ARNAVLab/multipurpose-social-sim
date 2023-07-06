@@ -1,4 +1,7 @@
-﻿namespace Anthology.SimulationManager
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace Anthology.SimulationManager
 {
     /** 
      * Actions are performed by NPCs and are informative for the frontend only.

@@ -90,7 +90,7 @@ public class UIValueBar : MonoBehaviour
         newVal = Mathf.Clamp(newVal, minVal, maxVal);
         if (value != newVal)
         {
-            Debug.Log("About to Overwrite value from " + value + " to " + newVal);
+            //Debug.Log("About to Overwrite value from " + value + " to " + newVal);
             value = newVal;
             UpdateAppearance();
         }

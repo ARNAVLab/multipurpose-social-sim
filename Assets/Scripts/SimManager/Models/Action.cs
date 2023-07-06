@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Anthology.Models
 {
@@ -100,8 +101,8 @@ namespace Anthology.Models
     public class PrimaryAction : Action
     {
         /** List of resulting changes to the motives of the agent that occur after this action is executed */
-        //[JsonPropertyOrder(1)]
-        public HashSet<Effect> Effects { get; set; } = new HashSet<Effect>();
+        [JsonPropertyOrder(1)]
+        public Dictionary<string, float> Effects { get; set; } = new Dictionary<string, float>();
     }
 
     /**
@@ -114,18 +115,18 @@ namespace Anthology.Models
         public bool Interrupt = false;
 
         /** Primary action that will be performed by the instigator of this action */
-        //[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string InstigatorAction { get; set; } = string.Empty;
 
         /** Primary action that will be performed by the target of this action */
-        //[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string TargetAction { get; set; } = string.Empty;
 
         /** 
          * The method of choosing which agent(s) will be the target of this action
          * NOTE: some target methods require the action to have a people requirement to function properly
          */
-        //[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public string Target { get; set; } = string.Empty;
     }
 
@@ -137,11 +138,11 @@ namespace Anthology.Models
     public class ActionContainer
     {
         /** Set of the schedule actions in the container */
-        //[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public HashSet<ScheduleAction> ScheduleActions { get; set; } = new();
 
         /** Set of the primary actions in the container */
-        //[JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public HashSet<PrimaryAction> PrimaryActions { get; set; } = new();
 
         /** used to add actions to their appropriate sets */

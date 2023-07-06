@@ -81,23 +81,27 @@ public class Actor : Selectable
         {
             case OutlinePreset.NONE:
                 {
+                    Debug.Log("SetOutline to NONE");
                     selectionOutline.gameObject.SetActive(false);
                     break;
                 }
             case OutlinePreset.HOVER:
                 {
+                    Debug.Log("SetOutline to HOVER");
                     selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorHover;
                     break;
                 }
             case OutlinePreset.SELECT:
                 {
+                    Debug.Log("SetOutline to SELECT");
                     selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorSelect;
                     break;
                 }
             case OutlinePreset.FOCUS:
                 {
+                    Debug.Log("SetOutline to FOCUS");
                     selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorFocus;
                     break;
@@ -225,14 +229,22 @@ public class Actor : Selectable
     public void Focus()
     {
         isFocused = true;
-        transform.position = new Vector3(transform.position.x, transform.position.y, -1);
+
+        mainSprite.sortingOrder = short.MaxValue;
+        interiorOutline.sortingOrder = short.MaxValue - 1;
+        selectionOutline.sortingOrder = short.MaxValue - 2;
+
         SetOutline(OutlinePreset.FOCUS);
     }
 
     public void Unfocus()
     {
         isFocused = false;
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        SetOutline(OutlinePreset.SELECT);
+
+        mainSprite.sortingOrder = 2;
+        interiorOutline.sortingOrder = 1;
+        selectionOutline.sortingOrder = 0;
+
+        SetOutline(isSelected ? OutlinePreset.SELECT : OutlinePreset.NONE);
     }
 }
