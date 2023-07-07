@@ -57,6 +57,17 @@ namespace Anthology.SimulationManager
             }
         }
 
+        public override void PushLocations()
+        {
+            LocationManager.LocationSet.Clear();
+            LocationManager.LocationGrid.Clear();
+            UI.GridSize = 0;
+            foreach (Location loc in SimManager.Locations.Values)
+            {
+                LocationManager.AddLocation(loc.Name, loc.Coordinates.X, loc.Coordinates.Y, loc.Tags);
+            }
+        }
+
         public override void UpdateNpc(NPC npc)
         {
             bool shouldLog = false;

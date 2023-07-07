@@ -169,6 +169,81 @@ namespace Anthology.Models
             }
         }
 
+        public void SelectNextActionV2()
+        {
+            float maxDeltaUtility = 0f;
+            List<Action> currentChoice = new();
+            List<SimLocation> currentDest = new();
+            SimLocation currentLoc = LocationManager.LocationGrid[XLocation][YLocation];
+            HashSet<Action> actionOptions = new();
+            actionOptions.UnionWith(ActionManager.Actions.ScheduleActions);
+            actionOptions.UnionWith(ActionManager.Actions.PrimaryActions);
+            Random r = new();
+
+            foreach (Action action in actionOptions)
+            {
+                if (action.Hidden) continue;
+
+                HashSet<Requirement> rMotives = action.GetRequirementsByType(Requirement.MOTIVE);
+                if (rMotives.Count > 0 && !AgentManager.AgentSatisfiesMotiveRequirement(this, rMotives)) continue;
+
+                HashSet<Requirement> rLocations = action.GetRequirementsByType(Requirement.LOCATION);
+                HashSet<Requirement> rPeople = action.GetRequirementsByType(Requirement.PEOPLE);
+
+                for (int d = 0; d < UI.GridSize; d++)
+                {
+                    HashSet<SimLocation> possibleLocations = LocationManager.GetSimLocationsByRange(XLocation, YLocation, d);
+                    if (!possibleLocations.Any()) continue;
+
+                    if (rLocations.Count > 0 && rLocations.First() is RLocation rLoc)
+                    {
+                        possibleLocations = LocationManager.LocationsSatisfyingLocationRequirement(possibleLocations, rLoc);
+                    }
+
+                    if (!possibleLocations.Any()) continue;
+
+                    if (rPeople.Count > 0 && rPeople.First() is RPeople rPpl)
+                    {
+                        possibleLocations = LocationManager.LocationsSatisfyingPeopleRequirement(possibleLocations, rPpl);
+                    }
+
+                    if (possibleLocations.Any())
+                    {
+                        SimLocation chosenLoc = possibleLocations.ElementAt(r.Next(possibleLocations.Count));
+                        float deltaUtility = ActionManager.GetEffectDeltaForAgentAction(this, action) / (action.MinTime + d);
+                        if (deltaUtility == maxDeltaUtility)
+                        {
+                            currentChoice.Add(action);
+                            currentDest.Add(chosenLoc);
+                        }
+                        else if (deltaUtility > maxDeltaUtility)
+                        {
+                            maxDeltaUtility = deltaUtility;
+                            currentChoice.Clear();
+                            currentDest.Clear();
+                            currentChoice.Add(action);
+                            currentDest.Add(chosenLoc);
+                        }
+                        break;
+                    }
+                }
+            }
+            int idx = r.Next(0, currentChoice.Count);
+            Action choice = currentChoice[idx];
+            SimLocation dest = currentDest[idx];
+            CurrentAction.AddLast(choice);
+
+            if (dest != null && dest != currentLoc)
+            {
+                CurrentAction.AddFirst(ActionManager.GetActionByName("travel_action"));
+                StartTravelToLocation(dest, World.Time);
+            }
+            else if (dest == null || dest == currentLoc)
+            {
+                StartAction();
+            }
+        }
+
         /**
          * Selects an action from a set of valid actions to be performed by this agent.
          * Selects the action with the maximal utility of the agent (motive increase / time).

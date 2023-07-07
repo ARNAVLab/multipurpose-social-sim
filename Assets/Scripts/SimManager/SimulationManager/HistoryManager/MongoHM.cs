@@ -37,7 +37,8 @@ namespace Anthology.SimulationManager.HistoryManager
 
         public override void AddNpcToLog(NPC npc)
         {
-            ELog.NpcChanges.Add(npc.Name, npc);
+            if (!ELog.NpcChanges.ContainsKey(npc.Name))
+                ELog.NpcChanges.Add(npc.Name, npc);
         }
 
         public override void LogNpcStates(string? destination)

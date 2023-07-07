@@ -40,7 +40,35 @@ namespace Anthology.Models
                 }
             }
             LocationSet.Add(location);
+            int max = Math.Max(location.X, location.Y);
+            if (max >= UI.GridSize)
+            {
+                for (int i = UI.GridSize; i <= max; i++)
+                {
+                    LocationGrid.Add(i, new());
+                    for (int k = 0; k <= max; k++)
+                    {
+                        LocationGrid[i].Add(k, new());
+                    }
+                }
+                for (int i = 0; i < UI.GridSize; i++)
+                {
+                    for (int k = UI.GridSize; k <= max; k++)
+                    {
+                        LocationGrid[i].Add(k, new());
+                    }
+                }
+                UI.GridSize = max + 1;
+            }
             LocationGrid[location.X][location.Y] = location;
+        }
+
+        /** Create and add a location to both the location set and the location grid */
+        public static void AddLocation(string name, int x, int y, IEnumerable<string> tags)
+        {
+            HashSet<string> newTags = new();
+            newTags.UnionWith(tags);
+            AddLocation(new() { Name = name, X = x, Y = y, Tags = newTags });
         }
 
         /** Finds the location with the matching name */
@@ -53,6 +81,118 @@ namespace Anthology.Models
 
             SimLocation location = LocationSet.First(IsNameMatch);
             return location;
+        }
+
+        /** Gets the set of all named locations in the square area defined by the given center coordinates and radius */
+        public static HashSet<SimLocation> GetSimLocationsByArea(int centerX, int centerY, int radius)
+        {
+            HashSet<SimLocation> areaSet = new();
+            int left = centerX - radius;
+            int right = centerX + radius;
+
+            int ya = centerY;
+            int yb = centerY;
+            SimLocation loc;
+
+            // Right half and center vertical
+            for (int x = right; x >= centerX; x--)
+            {
+                if (x < UI.GridSize)
+                {
+                    for (int y = yb; y <= ya; y++)
+                    {
+                        if (y >= 0 && y < UI.GridSize)
+                        {
+                            loc = LocationGrid[x][y];
+                            if (loc.Name != string.Empty)
+                                areaSet.Add(loc);
+                        }
+                    }
+                }
+                ya++;
+                yb--;
+            }
+            // Left half, skip center vertical
+            for (int x = left; x < centerX; x++)
+            {
+                if (x >= 0)
+                {
+                    for (int y = yb; y <= ya; y++)
+                    {
+                        if (y >= 0 && y < UI.GridSize)
+                        {
+                            loc = LocationGrid[x][y];
+                            if (loc.Name != string.Empty)
+                                areaSet.Add(loc);
+                        }
+                    }
+                }
+                ya--;
+                yb++;
+            }
+            return areaSet;
+        }
+
+        /** Gets the set of all named locations in the square (not the area) defined by the given center coordinates and radius */
+        public static HashSet<SimLocation> GetSimLocationsByRange(int centerX, int centerY, int dist)
+        {
+            HashSet<SimLocation> rangeSet = new();
+
+            int top = centerY + dist;
+            int bot = centerY - dist;
+            int left = centerX - dist;
+            int right = centerX + dist;
+
+            int ya = top;
+            int yb = bot;
+            SimLocation loc;
+
+            // Right half, top and bottom vertices
+            for (int x = centerX; x <= right; x++)
+            {
+                if (x < UI.GridSize)
+                {
+                    if (ya < UI.GridSize)
+                    {
+                        loc = LocationManager.LocationGrid[x][ya];
+                        if (loc.Name != string.Empty)
+                            rangeSet.Add(loc);
+                    }
+                    if (yb >= 0 && yb != ya)
+                    {
+                        loc = LocationManager.LocationGrid[x][yb];
+                        if (loc.Name != string.Empty)
+                            rangeSet.Add(loc);
+                    }
+                }
+                ya--;
+                yb++;
+            }
+            ya = top - 1;
+            yb = bot + 1;
+
+            // Left half, skip top and bottom vertices
+            for (int x = centerX - 1; x >= left; x--)
+            {
+                if (x >= 0)
+                {
+                    if (ya < UI.GridSize)
+                    {
+                        loc = LocationManager.LocationGrid[x][ya];
+                        if (loc.Name != string.Empty)
+                            rangeSet.Add(loc);
+                    }
+                    if (yb >= 0 && yb != ya)
+                    {
+                        loc = LocationManager.LocationGrid[x][yb];
+                        if (loc.Name != string.Empty)
+                            rangeSet.Add(loc);
+                    }
+                }
+                ya--;
+                yb++;
+            }
+            return rangeSet;
         }
 
         /** 
