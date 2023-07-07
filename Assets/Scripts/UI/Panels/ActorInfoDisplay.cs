@@ -5,7 +5,7 @@ using TMPro;
 using Anthology.SimulationManager;
 using System;
 
-public class ActorInfoDisplay : MonoBehaviour
+public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 {
     private NPC displayedNPC;
     [SerializeField] private TextMeshProUGUI actorName;
@@ -18,15 +18,11 @@ public class ActorInfoDisplay : MonoBehaviour
 
     [SerializeField] private List<string> motiveKeys;
     [SerializeField] private List<MotiveDisplay> motiveValues;
+    private bool motivesInit = false;
     private Dictionary<string, MotiveDisplay> motiveDisplayLookup;
 
     private const string AT_LOCATION = "Currently at";
     private const string TO_LOCATION = "Traveling to";
-
-    private void Start()
-    {
-        InitMotiveDisplays();
-    }
 
     public void InitMotiveDisplays()
     {
@@ -37,8 +33,14 @@ public class ActorInfoDisplay : MonoBehaviour
         }
     }
 
-    public void DisplayAgentInfo(Selectable selected)
+    public void DisplayInfo(Selectable selected)
     {
+        if (!motivesInit)
+        {
+            motivesInit = true;
+            InitMotiveDisplays();
+        }
+
         Actor selectedActor = (Actor) selected;
         SimManager.NPCs.TryGetValue(selectedActor.name, out displayedNPC);
 
@@ -75,7 +77,7 @@ public class ActorInfoDisplay : MonoBehaviour
         }
     }
 
-    public void OverewriteMotiveValue(string motiveName, float newValue)
+    public void OverwriteMotiveValue(string motiveName, float newValue)
     {
         if (displayedNPC == null)
             return;
@@ -83,5 +85,10 @@ public class ActorInfoDisplay : MonoBehaviour
         displayedNPC.Motives[motiveName] = newValue;
         // Manually setting Dirty to true temporarily, until a setter exists for individual elements in Motives
         displayedNPC.Dirty = true;
+    }
+
+    public void SwitchToPlaceMode()
+    {
+        UIManager.GetInstance().SetSelectMode(UIManager.SelectType.PLACES);
     }
 }

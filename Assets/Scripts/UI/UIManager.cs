@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    private static UIManager instance;
+
     [Tooltip("The Panel which displays Agent information when one or more is selected.")]
     [SerializeField] private ActorInfoDisplay actorInfo;
     [SerializeField] private PlaceInfoDisplay placeInfo;
 
-    private enum SelectType
+    public enum SelectType
     {
         ACTORS,
         PLACES
     }
-    private SelectType selectMode = SelectType.ACTORS;
+    private static SelectType selectMode = SelectType.ACTORS;
 
     private static int nextUIElementID = 0;
     public static int elementInControl = -1;
@@ -26,8 +28,14 @@ public class UIManager : MonoBehaviour
     private KeyCode nextSelection = KeyCode.RightArrow;
     private KeyCode prevSelection = KeyCode.LeftArrow;
 
+    public static UIManager GetInstance()
+    {
+        return instance;
+    }
+
     private void Start()
     {
+        instance = this;
         SelectionController._onSelectEvent.AddListener(SelectionListener);
         WorldManager.actorsUpdated.AddListener(ActorUpdateListener);
     }
@@ -51,21 +59,12 @@ public class UIManager : MonoBehaviour
         return nextUIElementID - 1;
     }
 
-    public void DisplayFocusedActorInfo()
+    public void DisplayFocusedInfo()
     {
-        switch (selectMode)
-        {
-            case SelectType.ACTORS:
-                {
-                    actorInfo.DisplayAgentInfo(selected[focusedIdx]);
-                    break;
-                }
-            case SelectType.PLACES:
-                {
-                    placeInfo.DisplayLocationInfo(selected[focusedIdx]);
-                    break;
-                }
-        }
+        if (selectMode == SelectType.ACTORS)
+            actorInfo.DisplayInfo(selected[focusedIdx]);
+        else
+            placeInfo.DisplayInfo(selected[focusedIdx]);
     }
 
     /**
@@ -79,7 +78,7 @@ public class UIManager : MonoBehaviour
         focusedIdx = GetAgentIndex(focusedIdx, indexDelta);
         selected[focusedIdx].Focus();
         SelectionController.EnableTracking(selected[focusedIdx].transform);
-        DisplayFocusedActorInfo();
+        DisplayFocusedInfo();
     }
 
     /**
@@ -109,6 +108,7 @@ public class UIManager : MonoBehaviour
     {
         foreach (Selectable s in selected)
         {
+            s.Deselect();
             s.Unfocus();
         }
         selected.Clear();
@@ -120,8 +120,9 @@ public class UIManager : MonoBehaviour
 
         if (selectedSet.Count <= 0)
         {
-            // Nothing was selected. Attempt to hide panel.
+            // Nothing was selected. Attempt to hide panels.
             actorInfo.GetComponent<Panel>().Hide();
+            placeInfo.GetComponent<Panel>().Hide();
 
             ClearSelected();
 
@@ -130,8 +131,11 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            // At least one Agent was selected; attempt to show panel.
-            actorInfo.GetComponent<Panel>().Show();
+            // At least one Agent was selected; attempt to show respective panel.
+            if (selectMode == SelectType.ACTORS)
+                actorInfo.GetComponent<Panel>().Show();
+            else
+                placeInfo.GetComponent<Panel>().Show();
 
             ClearSelected();
 
@@ -143,7 +147,7 @@ public class UIManager : MonoBehaviour
             focusedIdx = 0;
             selected[focusedIdx].Focus();
             SelectionController.EnableTracking(selected[focusedIdx].transform);
-            DisplayFocusedActorInfo();
+            DisplayFocusedInfo();
         }
     }
 
@@ -151,7 +155,23 @@ public class UIManager : MonoBehaviour
     {
         if (focusedIdx > -1)
         {
-            DisplayFocusedActorInfo();
+            DisplayFocusedInfo();
         }
+    }
+
+    public void SetSelectMode(SelectType type)
+    {
+        selectMode = type;
+        ClearSelected();
+        
+        actorInfo.gameObject.SetActive(selectMode == SelectType.ACTORS);
+        placeInfo.gameObject.SetActive(selectMode == SelectType.PLACES);
+
+        if (selectMode == SelectType.ACTORS) 
+            actorInfo.GetComponent<RectTransform>().anchoredPosition = placeInfo.GetComponent<RectTransform>().anchoredPosition;
+        else
+            placeInfo.GetComponent<RectTransform>().anchoredPosition = actorInfo.GetComponent<RectTransform>().anchoredPosition;
+
+        SelectionController.GetInstance().SetSelectBoxLayer(selectMode == SelectType.ACTORS ? "Agent" : "Location");
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Cursor
   - Agent
+  - Location
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - Cursor
   - Agent
-  - 
+  - Location
   - 
   - 
   - 

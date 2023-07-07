@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlaceInfoDisplay : MonoBehaviour
+public class PlaceInfoDisplay : MonoBehaviour, IInfoDisplay
 {
     private Location displayedLocation;
 
@@ -13,7 +13,7 @@ public class PlaceInfoDisplay : MonoBehaviour
     [SerializeField] private Transform tagCollection;
     [SerializeField] private GameObject tagPref;
 
-    public void DisplayLocationInfo(Selectable selected)
+    public void DisplayInfo(Selectable selected)
     {
         Place selectedPlace = (Place) selected;
         Location.Coords locPos = new Location.Coords((int)selectedPlace.transform.position.x, (int)selectedPlace.transform.position.y);
@@ -23,11 +23,21 @@ public class PlaceInfoDisplay : MonoBehaviour
 
         locationName.text = prospLoc.Name.FirstCharacterToUpper();
 
+        foreach (Transform child in tagCollection)
+        {
+            Destroy(child.gameObject);
+        }
+
         foreach (string tag in prospLoc.Tags)
         {
             GameObject tagDisp = Instantiate(tagPref);
             tagDisp.GetComponent<TextMeshProUGUI>().text = tag;
             tagDisp.transform.SetParent(tagCollection);
         }
+    }
+
+    public void SwitchToActorMode()
+    {
+        UIManager.GetInstance().SetSelectMode(UIManager.SelectType.ACTORS);
     }
 }
