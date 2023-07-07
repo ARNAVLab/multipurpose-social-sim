@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Class used to help place structures along roads
+//Still a WIP
 public class StructureHelper : MonoBehaviour
 {
     public GameObject prefab;
-    public Dictionary<Vector3Int, GameObject> structuresDictionary = new Dictionary<Vector3Int, GameObject>();
+    public Dictionary<Vector3Int, GameObject> structuresDictionary = new Dictionary<Vector3Int, GameObject>(); //like roads, structures are stored in a Dictionary
 
     public void PlaceStructures(List<Vector3Int> roadPositions)
     {

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Rule class used in LSys road generation
+
 [CreateAssetMenu(menuName = "ProceduralTown/Rule")]
 
 public class Rule : ScriptableObject
