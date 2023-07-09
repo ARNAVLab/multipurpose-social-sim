@@ -16,11 +16,17 @@ public class Actor : Selectable
     [SerializeField] private Color colorSelect;
     [SerializeField] private Color colorFocus;
 
+    [SerializeField] private Color colorHigh;
+    [SerializeField] private Color colorMid;
+    [SerializeField] private Color colorLow;
+
     public bool isFocused { get; private set; } = false;
 
     public int AgentID { get; set; }
     public ActorInfo Info;
     public Color displayColor;
+
+    public MotivePreset currentMotiveDisplay;
 
     private void Start()
     {
@@ -38,7 +44,9 @@ public class Actor : Selectable
         // Update game object properties -- use Tilemap!!!
         gameObject.name = actorName;
         Info.name = actorName;
-        mainSprite.color = Random.ColorHSV();
+        displayColor = Random.ColorHSV();
+        mainSprite.color = displayColor;
+        currentMotiveDisplay = MotivePreset.NONE;
 
         ReceiveAgentUpdates();
     }
@@ -65,6 +73,7 @@ public class Actor : Selectable
         npcData.Motives.TryGetValue("financial", out Info.motive.financial);
         npcData.Motives.TryGetValue("accomplishment", out Info.motive.accomplishment);
         Info.currentAction = npcData.CurrentAction.Name;
+        SetMotiveColor(currentMotiveDisplay);
 
         // transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
     }
@@ -104,6 +113,105 @@ public class Actor : Selectable
         }
     }
 
+    public enum MotivePreset { PHYSICAL, EMOTIONAL, SOCIAL, FINANCIAL, ACCOMPLISHMENT, NONE}
+    public void SetMotiveColor(MotivePreset preset) 
+    {
+        switch (preset)
+        {
+            case MotivePreset.NONE:
+                {
+                    mainSprite.GetComponent<SpriteRenderer>().color = displayColor;
+                    break;
+                }
+            case MotivePreset.PHYSICAL:
+                {
+                    if(Info.motive.physical <= 2.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
+                    } else if(Info.motive.physical >= 3.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
+                    } else {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
+                    }
+                    break;
+                }
+            case MotivePreset.EMOTIONAL:
+                {
+                    if(Info.motive.emotional <= 2.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
+                    } else if(Info.motive.emotional >= 3.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
+                    } else {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
+                    }
+                    break;
+                }
+            case MotivePreset.SOCIAL:
+                {
+                    if(Info.motive.social <= 2.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
+                    } else if(Info.motive.social >= 3.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
+                    } else {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
+                    }
+                    break;
+                }
+            case MotivePreset.FINANCIAL:
+                {
+                    if(Info.motive.financial <= 2.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
+                    } else if(Info.motive.financial >= 3.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
+                    } else {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
+                    }
+                    break;
+                }
+            case MotivePreset.ACCOMPLISHMENT:
+                {
+                    if(Info.motive.accomplishment <= 2.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
+                    } else if(Info.motive.accomplishment >= 3.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
+                    } else {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
+                    }
+                    break;
+                }
+        }
+    }
+
+    public void OnNone() 
+    {
+        SetMotiveColor(MotivePreset.NONE);
+        currentMotiveDisplay = MotivePreset.NONE;
+    }
+    public void OnPhysical() 
+    {
+        SetMotiveColor(MotivePreset.PHYSICAL);
+        currentMotiveDisplay = MotivePreset.PHYSICAL;
+    }
+    public void OnEmotional() 
+    {
+        SetMotiveColor(MotivePreset.EMOTIONAL);
+        currentMotiveDisplay = MotivePreset.EMOTIONAL;
+    }
+    public void OnSocial() 
+    {
+        SetMotiveColor(MotivePreset.SOCIAL);
+        currentMotiveDisplay = MotivePreset.SOCIAL;
+    }
+    public void OnFinancial() 
+    {
+        SetMotiveColor(MotivePreset.FINANCIAL);
+        currentMotiveDisplay = MotivePreset.FINANCIAL;
+    }
+    public void OnAccomplishment() 
+    {
+        SetMotiveColor(MotivePreset.ACCOMPLISHMENT);
+        currentMotiveDisplay = MotivePreset.ACCOMPLISHMENT;
+    }
+    
     public override void OnHover()
     {
         // There is never a situation where isFocused is true AND isSelected isn't.
