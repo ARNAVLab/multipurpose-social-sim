@@ -330,6 +330,7 @@ MonoBehaviour:
       yPos: 0
     relationships: []
   displayColor: {r: 1, g: 0, b: 1, a: 1}
+  currentMotiveDisplay: 0
 --- !u!58 &1690117092452041238
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -381,14 +382,14 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.4
+  m_StoppingDistance: 0.45
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.22
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 3
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &1093815390668916392
 MonoBehaviour:
   m_ObjectHideFlags: 0
