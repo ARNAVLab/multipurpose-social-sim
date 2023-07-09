@@ -121,7 +121,7 @@ public class WorldManager : MonoBehaviour
     {
         foreach(KeyValuePair<int,Actor> a in actors) {
             Actor act = a.Value;
-            act.SetMotiveColor(Actor.MotivePreset.PHYSICAL);
+            act.OnPhysical();
         }
     }
 
@@ -129,7 +129,7 @@ public class WorldManager : MonoBehaviour
     {
         foreach(KeyValuePair<int,Actor> a in actors) {
             Actor act = a.Value;
-            act.SetMotiveColor(Actor.MotivePreset.EMOTIONAL);
+            act.OnEmotional();
         }
     }
 
@@ -137,7 +137,7 @@ public class WorldManager : MonoBehaviour
     {
         foreach(KeyValuePair<int,Actor> a in actors) {
             Actor act = a.Value;
-            act.SetMotiveColor(Actor.MotivePreset.SOCIAL);
+            act.OnSocial();
         }
     }
 
@@ -145,7 +145,7 @@ public class WorldManager : MonoBehaviour
     {
         foreach(KeyValuePair<int,Actor> a in actors) {
             Actor act = a.Value;
-            act.SetMotiveColor(Actor.MotivePreset.FINANCIAL);
+            act.OnFinancial();
         }
     }
 
@@ -153,7 +153,7 @@ public class WorldManager : MonoBehaviour
     {
         foreach(KeyValuePair<int,Actor> a in actors) {
             Actor act = a.Value;
-            act.SetMotiveColor(Actor.MotivePreset.ACCOMPLISHMENT);
+            act.OnAccomplishment();
         }
     }
 

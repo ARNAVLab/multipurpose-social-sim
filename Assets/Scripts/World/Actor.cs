@@ -26,6 +26,8 @@ public class Actor : Selectable
     public ActorInfo Info;
     public Color displayColor;
 
+    public MotivePreset currentMotiveDisplay;
+
     private void Start()
     {
         // Assign a unique identifier to this Agent
@@ -44,6 +46,7 @@ public class Actor : Selectable
         Info.name = actorName;
         displayColor = Random.ColorHSV();
         mainSprite.color = displayColor;
+        currentMotiveDisplay = MotivePreset.NONE;
 
         ReceiveAgentUpdates();
     }
@@ -70,6 +73,7 @@ public class Actor : Selectable
         npcData.Motives.TryGetValue("financial", out Info.motive.financial);
         npcData.Motives.TryGetValue("accomplishment", out Info.motive.accomplishment);
         Info.currentAction = npcData.CurrentAction.Name;
+        SetMotiveColor(currentMotiveDisplay);
 
         // transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
     }
@@ -180,26 +184,32 @@ public class Actor : Selectable
     public void OnNone() 
     {
         SetMotiveColor(MotivePreset.NONE);
+        currentMotiveDisplay = MotivePreset.NONE;
     }
     public void OnPhysical() 
     {
         SetMotiveColor(MotivePreset.PHYSICAL);
+        currentMotiveDisplay = MotivePreset.PHYSICAL;
     }
     public void OnEmotional() 
     {
         SetMotiveColor(MotivePreset.EMOTIONAL);
+        currentMotiveDisplay = MotivePreset.EMOTIONAL;
     }
     public void OnSocial() 
     {
         SetMotiveColor(MotivePreset.SOCIAL);
+        currentMotiveDisplay = MotivePreset.SOCIAL;
     }
     public void OnFinancial() 
     {
         SetMotiveColor(MotivePreset.FINANCIAL);
+        currentMotiveDisplay = MotivePreset.FINANCIAL;
     }
     public void OnAccomplishment() 
     {
         SetMotiveColor(MotivePreset.ACCOMPLISHMENT);
+        currentMotiveDisplay = MotivePreset.ACCOMPLISHMENT;
     }
     
     public override void OnHover()
