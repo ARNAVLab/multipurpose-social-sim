@@ -1,11 +1,13 @@
 using Anthology.SimulationManager;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
     [Header("--- General ---")]
+    [SerializeField] private TextMeshProUGUI tickCountDisplay;
     [SerializeField] private int tickIncrMin = 1;
     [SerializeField] private int tickIncrMax = 100;
     [SerializeField] private InputField tickIncrFld;
@@ -70,7 +72,7 @@ public class TimeManager : MonoBehaviour
     private void Tick(int tickNum)
     {
         SimManager.GetIteration(tickNum);
-        GetComponent<Panel>().SetTitle("Time: " + SimManager.NumIterations);
+        tickCountDisplay.text = SimManager.NumIterations.ToString();
         WorldManager.actorsUpdated.Invoke();
     }
 

@@ -303,8 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b3383b8e56b3f49903175a75d3dcf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainSprite: {fileID: 5158159140309255688}
-  interiorOutline: {fileID: 5878896858875335685}
   selectionOutline: {fileID: 1500792246175070994}
   colorHover: {r: 1, g: 1, b: 1, a: 0.5019608}
   colorSelect: {r: 1, g: 1, b: 1, a: 1}
@@ -312,6 +310,8 @@ MonoBehaviour:
   colorHigh: {r: 0.040236473, g: 1, b: 0, a: 1}
   colorMid: {r: 1, g: 0.4854527, b: 0, a: 1}
   colorLow: {r: 1, g: 0, b: 0, a: 1}
+  mainSprite: {fileID: 5158159140309255688}
+  interiorOutline: {fileID: 5878896858875335685}
   Info:
     name: 
     motive:
@@ -346,7 +346,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.22
+  m_Radius: 0.2
 --- !u!50 &4465791741223124470
 Rigidbody2D:
   serializedVersion: 4

@@ -10,17 +10,9 @@ public class Actor : Selectable
 
     [SerializeField] private SpriteRenderer mainSprite;
     [SerializeField] private SpriteRenderer interiorOutline;
-    [SerializeField] private SpriteRenderer selectionOutline;
-
-    [SerializeField] private Color colorHover;
-    [SerializeField] private Color colorSelect;
-    [SerializeField] private Color colorFocus;
-
     [SerializeField] private Color colorHigh;
     [SerializeField] private Color colorMid;
     [SerializeField] private Color colorLow;
-
-    public bool isFocused { get; private set; } = false;
 
     public int AgentID { get; set; }
     public ActorInfo Info;
@@ -41,7 +33,6 @@ public class Actor : Selectable
 
     public void Init(string actorName)
     {
-        // Update game object properties -- use Tilemap!!!
         gameObject.name = actorName;
         Info.name = actorName;
         displayColor = Random.ColorHSV();
@@ -76,41 +67,6 @@ public class Actor : Selectable
         SetMotiveColor(currentMotiveDisplay);
 
         // transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
-    }
-
-    private enum OutlinePreset { NONE, HOVER, SELECT, FOCUS }
-    private void SetOutline(OutlinePreset preset)
-    {
-        switch (preset)
-        {
-            case OutlinePreset.NONE:
-                {
-                    Debug.Log("SetOutline to NONE");
-                    selectionOutline.gameObject.SetActive(false);
-                    break;
-                }
-            case OutlinePreset.HOVER:
-                {
-                    Debug.Log("SetOutline to HOVER");
-                    selectionOutline.gameObject.SetActive(true);
-                    selectionOutline.GetComponent<SpriteRenderer>().color = colorHover;
-                    break;
-                }
-            case OutlinePreset.SELECT:
-                {
-                    Debug.Log("SetOutline to SELECT");
-                    selectionOutline.gameObject.SetActive(true);
-                    selectionOutline.GetComponent<SpriteRenderer>().color = colorSelect;
-                    break;
-                }
-            case OutlinePreset.FOCUS:
-                {
-                    Debug.Log("SetOutline to FOCUS");
-                    selectionOutline.gameObject.SetActive(true);
-                    selectionOutline.GetComponent<SpriteRenderer>().color = colorFocus;
-                    break;
-                }
-        }
     }
 
     public enum MotivePreset { PHYSICAL, EMOTIONAL, SOCIAL, FINANCIAL, ACCOMPLISHMENT, NONE}
@@ -212,49 +168,21 @@ public class Actor : Selectable
         currentMotiveDisplay = MotivePreset.ACCOMPLISHMENT;
     }
     
-    public override void OnHover()
+    public override void Focus()
     {
-        // There is never a situation where isFocused is true AND isSelected isn't.
-        if (!isSelected)
-        {
-            SetOutline(OutlinePreset.HOVER);
-        }
-    }
-    public override void OnUnhover()
-    {
-        if (!isSelected)
-        {
-            SetOutline(OutlinePreset.NONE);
-        }
-    }
-    public override void OnSelect() 
-    {
-        SetOutline(OutlinePreset.SELECT);
-    }
-    public override void OnDeselect()
-    {
-        SetOutline(OutlinePreset.NONE);
-    }
-
-    public void Focus()
-    {
-        isFocused = true;
-
         mainSprite.sortingOrder = short.MaxValue;
         interiorOutline.sortingOrder = short.MaxValue - 1;
         selectionOutline.sortingOrder = short.MaxValue - 2;
 
-        SetOutline(OutlinePreset.FOCUS);
+        base.Focus();
     }
 
-    public void Unfocus()
+    public override void Unfocus()
     {
-        isFocused = false;
-
         mainSprite.sortingOrder = 2;
         interiorOutline.sortingOrder = 1;
         selectionOutline.sortingOrder = 0;
 
-        SetOutline(isSelected ? OutlinePreset.SELECT : OutlinePreset.NONE);
+        base.Unfocus();
     }
 }

@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class SelectionController : MonoBehaviour
 {
+    private static SelectionController _instance;
+
     [SerializeField] private float _cameraMoveSpeed = 2.0f;
     [SerializeField] private float _cameraDragMoveSpeed = 0.2f;
     [SerializeField] private float _cameraZoomSpeed = 0.5f;
@@ -41,8 +43,14 @@ public class SelectionController : MonoBehaviour
 
     public static UnityEvent _onSelectEvent = new UnityEvent();
 
+    public static SelectionController GetInstance()
+    {
+        return _instance;
+    }
+
     private void Awake()
     {
+        _instance = this;
         _controls = new Controls();
         _camera = GetComponent<Camera>();
         _selectionBox = Instantiate(_selectionBoxPrefab);
@@ -288,5 +296,10 @@ public class SelectionController : MonoBehaviour
         _controls.player.control.canceled -= CtrlUp;
         _controls.player.shift.started -= ShiftDown;
         _controls.player.shift.canceled -= ShiftUp;
+    }
+
+    public void SetSelectBoxLayer(string layer)
+    {
+        _selectionBox.layer = LayerMask.NameToLayer(layer);
     }
 }
