@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Selectable : MonoBehaviour
 {
-    public bool isHovered {get; protected set;} = false;
-    public bool isSelected {get; protected set;} = false;
+    public bool isHovered { get; protected set; } = false;
+    public bool isSelected { get; protected set; } = false;
     public bool isFocused { get; protected set; } = false;
 
     [SerializeField] protected SpriteRenderer selectionOutline;
@@ -64,27 +64,27 @@ public class Selectable : MonoBehaviour
         {
             case OutlinePreset.NONE:
                 {
-                    Debug.Log("SetOutline to NONE");
+                    //Debug.Log("SetOutline to NONE");
                     selectionOutline.gameObject.SetActive(false);
                     break;
                 }
             case OutlinePreset.HOVER:
                 {
-                    Debug.Log("SetOutline to HOVER");
+                    //Debug.Log("SetOutline to HOVER");
                     selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorHover;
                     break;
                 }
             case OutlinePreset.SELECT:
                 {
-                    Debug.Log("SetOutline to SELECT");
+                    //Debug.Log("SetOutline to SELECT");
                     selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorSelect;
                     break;
                 }
             case OutlinePreset.FOCUS:
                 {
-                    Debug.Log("SetOutline to FOCUS");
+                    //Debug.Log("SetOutline to FOCUS");
                     selectionOutline.gameObject.SetActive(true);
                     selectionOutline.GetComponent<SpriteRenderer>().color = colorFocus;
                     break;
@@ -124,7 +124,7 @@ public class Selectable : MonoBehaviour
     public virtual void Unfocus()
     {
         isFocused = false;
-        Debug.Log("I'm " + isSelected + " isSelected");
-        SetOutline(isSelected ? OutlinePreset.NONE : OutlinePreset.SELECT);
+        //Debug.Log("I'm " + isSelected + " isSelected");
+        SetOutline(isSelected ? OutlinePreset.SELECT : OutlinePreset.NONE);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class UIManager : MonoBehaviour
     [Tooltip("The Panel which displays Agent information when one or more is selected.")]
     [SerializeField] private ActorInfoDisplay actorInfo;
     [SerializeField] private PlaceInfoDisplay placeInfo;
+
+    [SerializeField] private Button actorModeBtn;
+    [SerializeField] private Button placeModeBtn;
+
+    [SerializeField] private Sprite actorModeOn;
+    [SerializeField] private Sprite actorModeOff;
+    [SerializeField] private Sprite placeModeOn;
+    [SerializeField] private Sprite placeModeOff;
 
     public enum SelectType
     {
@@ -61,6 +70,8 @@ public class UIManager : MonoBehaviour
 
     public void DisplayFocusedInfo()
     {
+        Debug.Log("Count is " + selected.Count);
+        Debug.Log("Focus is " + focusedIdx);
         if (selectMode == SelectType.ACTORS)
             actorInfo.DisplayInfo(selected[focusedIdx]);
         else
@@ -112,6 +123,8 @@ public class UIManager : MonoBehaviour
             s.Unfocus();
         }
         selected.Clear();
+        focusedIdx = -1;
+        Debug.Log("cleared");
     }
 
     private void SelectionListener()
@@ -159,13 +172,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetSelectMode(SelectType type)
+    public void SetSelectMode(int type)
     {
-        selectMode = type;
+        selectMode = (SelectType) type;
+
         ClearSelected();
-        
-        actorInfo.gameObject.SetActive(selectMode == SelectType.ACTORS);
-        placeInfo.gameObject.SetActive(selectMode == SelectType.PLACES);
+
+        actorInfo.gameObject.SetActive(false);
+        placeInfo.gameObject.SetActive(false);
+
+        actorModeBtn.image.sprite = selectMode == SelectType.ACTORS ? actorModeOn : actorModeOff;
+        placeModeBtn.image.sprite = selectMode == SelectType.PLACES ? placeModeOn : placeModeOff;
 
         if (selectMode == SelectType.ACTORS) 
             actorInfo.GetComponent<RectTransform>().anchoredPosition = placeInfo.GetComponent<RectTransform>().anchoredPosition;

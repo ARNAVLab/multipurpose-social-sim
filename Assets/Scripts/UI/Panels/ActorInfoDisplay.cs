@@ -86,9 +86,4 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
         // Manually setting Dirty to true temporarily, until a setter exists for individual elements in Motives
         displayedNPC.Dirty = true;
     }
-
-    public void SwitchToPlaceMode()
-    {
-        UIManager.GetInstance().SetSelectMode(UIManager.SelectType.PLACES);
-    }
 }

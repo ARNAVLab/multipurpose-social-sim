@@ -63,23 +63,19 @@ public class Actor : Selectable
 
     public override void Focus()
     {
-        isFocused = true;
-
         mainSprite.sortingOrder = short.MaxValue;
         interiorOutline.sortingOrder = short.MaxValue - 1;
         selectionOutline.sortingOrder = short.MaxValue - 2;
 
-        SetOutline(OutlinePreset.FOCUS);
+        base.Focus();
     }
 
     public override void Unfocus()
     {
-        isFocused = false;
-
         mainSprite.sortingOrder = 2;
         interiorOutline.sortingOrder = 1;
         selectionOutline.sortingOrder = 0;
 
-        SetOutline(isSelected ? OutlinePreset.SELECT : OutlinePreset.NONE);
+        base.Unfocus();
     }
 }

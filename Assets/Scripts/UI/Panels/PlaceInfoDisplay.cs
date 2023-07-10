@@ -35,9 +35,4 @@ public class PlaceInfoDisplay : MonoBehaviour, IInfoDisplay
             tagDisp.transform.SetParent(tagCollection);
         }
     }
-
-    public void SwitchToActorMode()
-    {
-        UIManager.GetInstance().SetSelectMode(UIManager.SelectType.ACTORS);
-    }
 }
