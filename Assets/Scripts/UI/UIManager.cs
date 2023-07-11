@@ -85,6 +85,9 @@ public class UIManager : MonoBehaviour
      */
     public void ChangeFocusedAgent(int indexDelta)
     {
+        if (focusedIdx < 0)
+            return;
+
         selected[focusedIdx].Unfocus();
         focusedIdx = GetAgentIndex(focusedIdx, indexDelta);
         selected[focusedIdx].Focus();
