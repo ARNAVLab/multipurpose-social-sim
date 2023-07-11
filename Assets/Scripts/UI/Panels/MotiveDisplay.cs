@@ -40,6 +40,6 @@ public class MotiveDisplay : MonoBehaviour
 
     public void OverwriteMotiveValue(float inputVal)
     {
-        parentPanel.OverewriteMotiveValue(motiveName, inputVal);
+        parentPanel.OverwriteMotiveValue(motiveName, inputVal);
     }
 }

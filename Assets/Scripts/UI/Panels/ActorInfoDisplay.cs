@@ -5,7 +5,7 @@ using TMPro;
 using Anthology.SimulationManager;
 using System;
 
-public class ActorInfoDisplay : MonoBehaviour
+public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 {
     private NPC displayedNPC;
     [SerializeField] private TextMeshProUGUI actorName;
@@ -18,15 +18,11 @@ public class ActorInfoDisplay : MonoBehaviour
 
     [SerializeField] private List<string> motiveKeys;
     [SerializeField] private List<MotiveDisplay> motiveValues;
+    private bool motivesInit = false;
     private Dictionary<string, MotiveDisplay> motiveDisplayLookup;
 
     private const string AT_LOCATION = "Currently at";
     private const string TO_LOCATION = "Traveling to";
-
-    private void Start()
-    {
-        InitMotiveDisplays();
-    }
 
     public void InitMotiveDisplays()
     {
@@ -37,9 +33,16 @@ public class ActorInfoDisplay : MonoBehaviour
         }
     }
 
-    public void DisplayAgentInfo(string agentName)
+    public void DisplayInfo(Selectable selected)
     {
-        SimManager.NPCs.TryGetValue(agentName, out displayedNPC);
+        if (!motivesInit)
+        {
+            motivesInit = true;
+            InitMotiveDisplays();
+        }
+
+        Actor selectedActor = (Actor) selected;
+        SimManager.NPCs.TryGetValue(selectedActor.name, out displayedNPC);
 
         if (displayedNPC == null)
             return;
@@ -74,7 +77,7 @@ public class ActorInfoDisplay : MonoBehaviour
         }
     }
 
-    public void OverewriteMotiveValue(string motiveName, float newValue)
+    public void OverwriteMotiveValue(string motiveName, float newValue)
     {
         if (displayedNPC == null)
             return;

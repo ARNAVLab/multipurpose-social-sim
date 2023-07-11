@@ -10,17 +10,15 @@ public class Actor : Selectable
 
     [SerializeField] private SpriteRenderer mainSprite;
     [SerializeField] private SpriteRenderer interiorOutline;
-    [SerializeField] private SpriteRenderer selectionOutline;
-
-    [SerializeField] private Color colorHover;
-    [SerializeField] private Color colorSelect;
-    [SerializeField] private Color colorFocus;
-
-    public bool isFocused { get; private set; } = false;
+    [SerializeField] private Color colorHigh;
+    [SerializeField] private Color colorMid;
+    [SerializeField] private Color colorLow;
 
     public int AgentID { get; set; }
     public ActorInfo Info;
     public Color displayColor;
+
+    public MotivePreset currentMotiveDisplay;
 
     private void Start()
     {
@@ -35,10 +33,11 @@ public class Actor : Selectable
 
     public void Init(string actorName)
     {
-        // Update game object properties -- use Tilemap!!!
         gameObject.name = actorName;
         Info.name = actorName;
-        mainSprite.color = Random.ColorHSV();
+        displayColor = Random.ColorHSV();
+        mainSprite.color = displayColor;
+        currentMotiveDisplay = MotivePreset.NONE;
 
         ReceiveAgentUpdates();
     }
@@ -65,88 +64,125 @@ public class Actor : Selectable
         npcData.Motives.TryGetValue("financial", out Info.motive.financial);
         npcData.Motives.TryGetValue("accomplishment", out Info.motive.accomplishment);
         Info.currentAction = npcData.CurrentAction.Name;
+        SetMotiveColor(currentMotiveDisplay);
 
         // transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
     }
 
-    private enum OutlinePreset { NONE, HOVER, SELECT, FOCUS }
-    private void SetOutline(OutlinePreset preset)
+    public enum MotivePreset { PHYSICAL, EMOTIONAL, SOCIAL, FINANCIAL, ACCOMPLISHMENT, NONE}
+    public void SetMotiveColor(MotivePreset preset) 
     {
         switch (preset)
         {
-            case OutlinePreset.NONE:
+            case MotivePreset.NONE:
                 {
-                    Debug.Log("SetOutline to NONE");
-                    selectionOutline.gameObject.SetActive(false);
+                    mainSprite.GetComponent<SpriteRenderer>().color = displayColor;
                     break;
                 }
-            case OutlinePreset.HOVER:
+            case MotivePreset.PHYSICAL:
                 {
-                    Debug.Log("SetOutline to HOVER");
-                    selectionOutline.gameObject.SetActive(true);
-                    selectionOutline.GetComponent<SpriteRenderer>().color = colorHover;
+                    if(Info.motive.physical <= 2.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
+                    } else if(Info.motive.physical >= 3.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
+                    } else {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
+                    }
                     break;
                 }
-            case OutlinePreset.SELECT:
+            case MotivePreset.EMOTIONAL:
                 {
-                    Debug.Log("SetOutline to SELECT");
-                    selectionOutline.gameObject.SetActive(true);
-                    selectionOutline.GetComponent<SpriteRenderer>().color = colorSelect;
+                    if(Info.motive.emotional <= 2.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
+                    } else if(Info.motive.emotional >= 3.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
+                    } else {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
+                    }
                     break;
                 }
-            case OutlinePreset.FOCUS:
+            case MotivePreset.SOCIAL:
                 {
-                    Debug.Log("SetOutline to FOCUS");
-                    selectionOutline.gameObject.SetActive(true);
-                    selectionOutline.GetComponent<SpriteRenderer>().color = colorFocus;
+                    if(Info.motive.social <= 2.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
+                    } else if(Info.motive.social >= 3.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
+                    } else {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
+                    }
+                    break;
+                }
+            case MotivePreset.FINANCIAL:
+                {
+                    if(Info.motive.financial <= 2.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
+                    } else if(Info.motive.financial >= 3.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
+                    } else {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
+                    }
+                    break;
+                }
+            case MotivePreset.ACCOMPLISHMENT:
+                {
+                    if(Info.motive.accomplishment <= 2.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
+                    } else if(Info.motive.accomplishment >= 3.5) {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
+                    } else {
+                        mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
+                    }
                     break;
                 }
         }
     }
 
-    public override void OnHover()
+    public void OnNone() 
     {
-        // There is never a situation where isFocused is true AND isSelected isn't.
-        if (!isSelected)
-        {
-            SetOutline(OutlinePreset.HOVER);
-        }
+        SetMotiveColor(MotivePreset.NONE);
+        currentMotiveDisplay = MotivePreset.NONE;
     }
-    public override void OnUnhover()
+    public void OnPhysical() 
     {
-        if (!isSelected)
-        {
-            SetOutline(OutlinePreset.NONE);
-        }
+        SetMotiveColor(MotivePreset.PHYSICAL);
+        currentMotiveDisplay = MotivePreset.PHYSICAL;
     }
-    public override void OnSelect() 
+    public void OnEmotional() 
     {
-        SetOutline(OutlinePreset.SELECT);
+        SetMotiveColor(MotivePreset.EMOTIONAL);
+        currentMotiveDisplay = MotivePreset.EMOTIONAL;
     }
-    public override void OnDeselect()
+    public void OnSocial() 
     {
-        SetOutline(OutlinePreset.NONE);
+        SetMotiveColor(MotivePreset.SOCIAL);
+        currentMotiveDisplay = MotivePreset.SOCIAL;
     }
-
-    public void Focus()
+    public void OnFinancial() 
     {
-        isFocused = true;
-
+        SetMotiveColor(MotivePreset.FINANCIAL);
+        currentMotiveDisplay = MotivePreset.FINANCIAL;
+    }
+    public void OnAccomplishment() 
+    {
+        SetMotiveColor(MotivePreset.ACCOMPLISHMENT);
+        currentMotiveDisplay = MotivePreset.ACCOMPLISHMENT;
+    }
+    
+    public override void Focus()
+    {
         mainSprite.sortingOrder = short.MaxValue;
         interiorOutline.sortingOrder = short.MaxValue - 1;
         selectionOutline.sortingOrder = short.MaxValue - 2;
 
-        SetOutline(OutlinePreset.FOCUS);
+        base.Focus();
     }
 
-    public void Unfocus()
+    public override void Unfocus()
     {
-        isFocused = false;
-
         mainSprite.sortingOrder = 2;
         interiorOutline.sortingOrder = 1;
         selectionOutline.sortingOrder = 0;
 
-        SetOutline(isSelected ? OutlinePreset.SELECT : OutlinePreset.NONE);
+        base.Unfocus();
     }
 }

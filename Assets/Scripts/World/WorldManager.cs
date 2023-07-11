@@ -14,8 +14,7 @@ public class WorldManager : MonoBehaviour
 
     public static UnityEvent actorsUpdated;
 
-    private static Dictionary<int, Actor> actors = new Dictionary<int, Actor>();
-    // A list of indices, representing the actors currently selected by the user in the scene.
+    public static Dictionary<int, Actor> actors = new Dictionary<int, Actor>();
 
     private void Awake()
     {
@@ -108,6 +107,54 @@ public class WorldManager : MonoBehaviour
     public static Actor GetAgent(int agentID)
     {
         return actors[agentID];
+    }
+
+    public void SetAgentMotiveNone()
+    {
+        foreach(KeyValuePair<int,Actor> a in actors) {
+            Actor act = a.Value;
+            act.SetMotiveColor(Actor.MotivePreset.NONE);
+        }
+    }
+
+    public void SetAgentMotivePhysical()
+    {
+        foreach(KeyValuePair<int,Actor> a in actors) {
+            Actor act = a.Value;
+            act.OnPhysical();
+        }
+    }
+
+    public void SetAgentMotiveEmotional()
+    {
+        foreach(KeyValuePair<int,Actor> a in actors) {
+            Actor act = a.Value;
+            act.OnEmotional();
+        }
+    }
+
+    public void SetAgentMotiveSocial()
+    {
+        foreach(KeyValuePair<int,Actor> a in actors) {
+            Actor act = a.Value;
+            act.OnSocial();
+        }
+    }
+
+    public void SetAgentMotiveFinancial()
+    {
+        foreach(KeyValuePair<int,Actor> a in actors) {
+            Actor act = a.Value;
+            act.OnFinancial();
+        }
+    }
+
+    public void SetAgentMotiveAccomplishment()
+    {
+        foreach(KeyValuePair<int,Actor> a in actors) {
+            Actor act = a.Value;
+            act.OnAccomplishment();
+        }
     }
 
     
