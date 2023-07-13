@@ -7,7 +7,9 @@ using UnityEngine;
 //Still a WIP
 public class StructureHelper : MonoBehaviour
 {
-    public GameObject prefab;
+    //public GameObject prefab;
+    [Tooltip("Structures with quantity -1 should be on the bottom of the list.")]
+    public StructureType[] structureTypes;
     public Dictionary<Vector3Int, GameObject> structuresDictionary = new Dictionary<Vector3Int, GameObject>(); //like roads, structures are stored in a Dictionary
 
     public void PlaceStructures(List<Vector3Int> roadPositions)
@@ -30,8 +32,36 @@ public class StructureHelper : MonoBehaviour
                 default:
                     break;
             }
-            Instantiate(prefab, freeSpot.Key, rotation, transform);
+            for (int i = 0; i < structureTypes.Length; i++)
+            {
+                if (structureTypes[i].quantity == -1)
+                {
+                    var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
+                    structuresDictionary.Add(freeSpot.Key, building);
+                    break;
+                }
+                if (structureTypes[i].IsBuildingAvailable())
+                {
+                    if (structureTypes[i].sizeRequired > 1)
+                    {
+
+                    } else
+                    {
+                        var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
+                        structuresDictionary.Add(freeSpot.Key, building);
+                       
+                    }
+                    break;
+                }
+            }
+            //Instantiate(prefab, freeSpot.Key, rotation, transform);
         }
+    }
+
+    private GameObject SpawnPrefab(GameObject prefab, Vector3Int position, Quaternion rotation)
+    {
+        var newStructure = Instantiate(prefab, position, rotation, transform);
+        return newStructure;
     }
 
     private Dictionary<Vector3Int, Direction> FindFreeSpaces(List<Vector3Int> roadPositions)

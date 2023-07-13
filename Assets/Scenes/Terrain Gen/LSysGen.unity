@@ -152,7 +152,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe65b5f0abf0ac4d98b9d12b12e6b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3187524288204659451, guid: 25601b040e7931d4a909ab9714476863, type: 3}
+  structureTypes:
+  - prefabs:
+    - {fileID: 2131344360606397472, guid: de40b2975a559d94d94517755920226a, type: 3}
+    sizeRequired: 1
+    quantity: 5
+    quantityAlreadyPlaced: 0
+  - prefabs:
+    - {fileID: 3187524288204659451, guid: 25601b040e7931d4a909ab9714476863, type: 3}
+    sizeRequired: 1
+    quantity: -1
+    quantityAlreadyPlaced: 0
 --- !u!4 &626888232
 Transform:
   m_ObjectHideFlags: 0
