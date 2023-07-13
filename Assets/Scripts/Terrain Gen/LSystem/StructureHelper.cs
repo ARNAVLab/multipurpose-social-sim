@@ -15,8 +15,13 @@ public class StructureHelper : MonoBehaviour
     public void PlaceStructures(List<Vector3Int> roadPositions)
     {
         Dictionary<Vector3Int, Direction> freeEstateSpots = FindFreeSpaces(roadPositions);
+        List<Vector3Int> blockedPositions = new List<Vector3Int>();
         foreach (var freeSpot in freeEstateSpots)
         {
+            if (blockedPositions.Contains(freeSpot.Key))
+            {
+                continue;
+            }
             var rotation = Quaternion.identity; //default door position is UP
             switch (freeSpot.Value)
             {
@@ -44,18 +49,53 @@ public class StructureHelper : MonoBehaviour
                 {
                     if (structureTypes[i].sizeRequired > 1)
                     {
-
+                        var halfSize = Mathf.FloorToInt(structureTypes[i].sizeRequired / 2.0f);
+                        List<Vector3Int> tempPositionsBlocked = new List<Vector3Int>();
+                        if (VerifyBuildingLocation(halfSize, freeEstateSpots, freeSpot, ref tempPositionsBlocked))
+                        {
+                            blockedPositions.AddRange(tempPositionsBlocked);
+                            var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
+                            structuresDictionary.Add(freeSpot.Key, building);
+                            foreach(var pos in tempPositionsBlocked)
+                            {
+                                structuresDictionary.Add(pos, building);
+                            }
+                        }
                     } else
                     {
                         var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
                         structuresDictionary.Add(freeSpot.Key, building);
-                       
                     }
                     break;
                 }
             }
             //Instantiate(prefab, freeSpot.Key, rotation, transform);
         }
+    }
+
+    private bool VerifyBuildingLocation(int halfSize, Dictionary<Vector3Int, Direction> freeEstateSpots,
+        KeyValuePair<Vector3Int, Direction> freeSpot, ref List<Vector3Int> tempPositionsBlocked)
+    {
+        Vector3Int direction = Vector3Int.zero;
+        if (freeSpot.Value == Direction.Down || freeSpot.Value == Direction.Up)
+        {
+            direction = Vector3Int.right;
+        } else
+        {
+            direction = Vector3Int.up;
+        }
+        for (int i = 1; i < halfSize; i++)
+        {
+            var pos1 = freeSpot.Key + direction * i;
+            var pos2 = freeSpot.Key - direction * i;
+            if(!freeEstateSpots.ContainsKey(pos1) || !freeEstateSpots.ContainsKey(pos2))
+            {
+                return false;
+            }
+            tempPositionsBlocked.Add(pos1);
+            tempPositionsBlocked.Add(pos2);
+        }
+        return true;
     }
 
     private GameObject SpawnPrefab(GameObject prefab, Vector3Int position, Quaternion rotation)
