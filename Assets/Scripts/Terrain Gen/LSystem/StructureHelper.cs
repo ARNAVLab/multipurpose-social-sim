@@ -10,7 +10,12 @@ public class StructureHelper : MonoBehaviour
     //public GameObject prefab;
     [Tooltip("Structures with quantity -1 should be on the bottom of the list.")]
     public StructureType[] structureTypes;
+    public GameObject[] naturePrefabs;
+    public bool randomNaturePlacement = false;
+    [Range(0,1)]
+    public float randomNaturePlacementThreshold = 0.3f;
     public Dictionary<Vector3Int, GameObject> structuresDictionary = new Dictionary<Vector3Int, GameObject>(); //like roads, structures are stored in a Dictionary
+    public Dictionary<Vector3Int, GameObject> natureDictionary = new Dictionary<Vector3Int, GameObject>(); //trees and nature tiles
 
     public void PlaceStructures(List<Vector3Int> roadPositions)
     {
@@ -41,6 +46,16 @@ public class StructureHelper : MonoBehaviour
             {
                 if (structureTypes[i].quantity == -1)
                 {
+                    if (randomNaturePlacement)
+                    {
+                        var random = UnityEngine.Random.value;
+                        if (random < randomNaturePlacementThreshold)
+                        {
+                            var naturePrefab = SpawnPrefab(naturePrefabs[UnityEngine.Random.Range(0,naturePrefabs.Length)], freeSpot.Key, rotation);
+                            natureDictionary.Add(freeSpot.Key, naturePrefab);
+                            break;
+                        }
+                    }
                     var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
                     structuresDictionary.Add(freeSpot.Key, building);
                     break;
@@ -51,7 +66,7 @@ public class StructureHelper : MonoBehaviour
                     {
                         var halfSize = Mathf.FloorToInt(structureTypes[i].sizeRequired / 2.0f);
                         List<Vector3Int> tempPositionsBlocked = new List<Vector3Int>();
-                        if (VerifyBuildingLocation(halfSize, freeEstateSpots, freeSpot, ref tempPositionsBlocked))
+                        if (VerifyBuildingLocation(halfSize, freeEstateSpots, freeSpot, blockedPositions, ref tempPositionsBlocked))
                         {
                             blockedPositions.AddRange(tempPositionsBlocked);
                             var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
@@ -69,12 +84,11 @@ public class StructureHelper : MonoBehaviour
                     break;
                 }
             }
-            //Instantiate(prefab, freeSpot.Key, rotation, transform);
         }
     }
 
     private bool VerifyBuildingLocation(int halfSize, Dictionary<Vector3Int, Direction> freeEstateSpots,
-        KeyValuePair<Vector3Int, Direction> freeSpot, ref List<Vector3Int> tempPositionsBlocked)
+        KeyValuePair<Vector3Int, Direction> freeSpot, List<Vector3Int> blockedPositions, ref List<Vector3Int> tempPositionsBlocked)
     {
         Vector3Int direction = Vector3Int.zero;
         if (freeSpot.Value == Direction.Down || freeSpot.Value == Direction.Up)
@@ -84,11 +98,12 @@ public class StructureHelper : MonoBehaviour
         {
             direction = Vector3Int.up;
         }
-        for (int i = 1; i < halfSize; i++)
+        for (int i = 1; i <= halfSize; i++)
         {
             var pos1 = freeSpot.Key + direction * i;
             var pos2 = freeSpot.Key - direction * i;
-            if(!freeEstateSpots.ContainsKey(pos1) || !freeEstateSpots.ContainsKey(pos2))
+            if(!freeEstateSpots.ContainsKey(pos1) || !freeEstateSpots.ContainsKey(pos2)
+                || blockedPositions.Contains(pos1) || blockedPositions.Contains(pos2))
             {
                 return false;
             }

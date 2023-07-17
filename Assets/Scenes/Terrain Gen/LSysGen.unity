@@ -154,20 +154,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   structureTypes:
   - prefabs:
+    - {fileID: 3508348104373371353, guid: adc98d6704f4b4d4090c18b44f332366, type: 3}
+    sizeRequired: 2
+    quantity: 8
+    quantityAlreadyPlaced: 1
+  - prefabs:
     - {fileID: 2131344360606397472, guid: de40b2975a559d94d94517755920226a, type: 3}
     sizeRequired: 1
-    quantity: 5
-    quantityAlreadyPlaced: 0
-  - prefabs:
-    - {fileID: 3508348104373371353, guid: adc98d6704f4b4d4090c18b44f332366, type: 3}
-    sizeRequired: 3
-    quantity: 1
+    quantity: 6
     quantityAlreadyPlaced: 0
   - prefabs:
     - {fileID: 3187524288204659451, guid: 25601b040e7931d4a909ab9714476863, type: 3}
     sizeRequired: 1
     quantity: -1
     quantityAlreadyPlaced: 0
+  naturePrefabs:
+  - {fileID: 6657962457881326783, guid: d964037a08182f94c901a74d57747055, type: 3}
+  randomNaturePlacement: 1
+  randomNaturePlacementThreshold: 0.3
 --- !u!4 &626888232
 Transform:
   m_ObjectHideFlags: 0
