@@ -7,6 +7,19 @@ public class RelationshipDisplay : MonoBehaviour
     [SerializeField] private GameObject relationshipEntryPref;
     private List<GameObject> relationshipList = new List<GameObject>();
 
+    private void Start()
+    {
+        WorldManager.simUpdated.AddListener(SimUpdateListener);
+    }
+
+    private void SimUpdateListener()
+    {
+        if (UIManager.GetInstance().GetSelectMode() == UIManager.SelectType.ACTORS)
+        {
+
+        }
+    }
+
     public void AddRelationship(string relateType, int relateeID)
     {
         GameObject newEntryObj = Instantiate(relationshipEntryPref);
