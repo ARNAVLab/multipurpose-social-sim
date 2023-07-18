@@ -16,6 +16,16 @@ public class WorldManager : MonoBehaviour
 
     public static Dictionary<int, Actor> actors = new Dictionary<int, Actor>();
 
+    private bool physical;
+
+    private bool emotional;
+
+    private bool social;
+
+    private bool financial;
+    
+    private bool accomplishment;
+
     private void Awake()
     {
         if (instance == null)
@@ -113,47 +123,99 @@ public class WorldManager : MonoBehaviour
     {
         foreach(KeyValuePair<int,Actor> a in actors) {
             Actor act = a.Value;
-            act.SetMotiveColor(Actor.MotivePreset.NONE);
+            act.OnNone();
         }
     }
 
     public void SetAgentMotivePhysical()
     {
-        foreach(KeyValuePair<int,Actor> a in actors) {
-            Actor act = a.Value;
-            act.OnPhysical();
+        if(physical){
+            SetAgentMotiveNone();
+            physical = false;
+        } else {
+            physical = true;
+            emotional = false;
+            social = false;
+            financial = false;
+            accomplishment = false;
+            foreach(KeyValuePair<int,Actor> a in actors) {
+                Actor act = a.Value;
+                act.OnPhysical();
+            }
         }
     }
 
     public void SetAgentMotiveEmotional()
     {
-        foreach(KeyValuePair<int,Actor> a in actors) {
-            Actor act = a.Value;
-            act.OnEmotional();
+        if(emotional){
+            SetAgentMotiveNone();
+            emotional = false;
+            //Change button back to pin
+        } else {
+            physical = false;
+            emotional = true;
+            social = false;
+            financial = false;
+            accomplishment = false;
+            foreach(KeyValuePair<int,Actor> a in actors) {
+                Actor act = a.Value;
+                act.OnEmotional();
+            }
+            //Find canvas button to change to cancel
         }
     }
 
     public void SetAgentMotiveSocial()
     {
-        foreach(KeyValuePair<int,Actor> a in actors) {
-            Actor act = a.Value;
-            act.OnSocial();
+        if(social){
+            SetAgentMotiveNone();
+            social = false;
+        } else {
+            physical = false;
+            emotional = false;
+            social = true;
+            financial = false;
+            accomplishment = false;
+            foreach(KeyValuePair<int,Actor> a in actors) {
+                Actor act = a.Value;
+                act.OnSocial();
+            }
         }
     }
 
     public void SetAgentMotiveFinancial()
     {
-        foreach(KeyValuePair<int,Actor> a in actors) {
-            Actor act = a.Value;
-            act.OnFinancial();
+        if(financial){
+            SetAgentMotiveNone();
+            financial = false;
+        } else {
+            physical = false;
+            emotional = false;
+            social = false;
+            financial = true;
+            accomplishment = false;
+            foreach(KeyValuePair<int,Actor> a in actors) {
+                Actor act = a.Value;
+                act.OnFinancial();
+            }
         }
     }
 
     public void SetAgentMotiveAccomplishment()
     {
-        foreach(KeyValuePair<int,Actor> a in actors) {
-            Actor act = a.Value;
-            act.OnAccomplishment();
+        if(accomplishment){
+            SetAgentMotiveNone();
+            accomplishment = false;
+        } else {
+            physical = false;
+            emotional = false;
+            social = false;
+            financial = false;
+            accomplishment = true;
+            foreach(KeyValuePair<int,Actor> a in actors) {
+                Actor act = a.Value;
+                act.OnAccomplishment();
+            }
         }
     }
 
