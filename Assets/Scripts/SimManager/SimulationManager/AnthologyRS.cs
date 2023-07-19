@@ -36,6 +36,7 @@ namespace Anthology.SimulationManager
                 {
                     npc.Motives[mote] = motives[mote];
                 }
+                npc.Relationships = a.Relationships;
                 npcs[a.Name] = npc;
             }
         }
