@@ -18,8 +18,11 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 
     [SerializeField] private List<string> motiveKeys;
     [SerializeField] private List<MotiveDisplay> motiveValues;
+
     private bool motivesInit = false;
     private Dictionary<string, MotiveDisplay> motiveDisplayLookup;
+
+    [SerializeField] RelationshipDisplay relationsDisp;
 
     private const string AT_LOCATION = "Currently at";
     private const string TO_LOCATION = "Traveling to";
@@ -75,6 +78,8 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
                 Debug.LogError("Motive name mismatch!!");
             }
         }
+
+        relationsDisp.DisplayActorRelations(displayedNPC);
     }
 
     public void OverwriteMotiveValue(string motiveName, float newValue)

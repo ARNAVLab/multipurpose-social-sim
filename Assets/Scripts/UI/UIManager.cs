@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,7 +47,7 @@ public class UIManager : MonoBehaviour
     {
         instance = this;
         SelectionController._onSelectEvent.AddListener(SelectionListener);
-        WorldManager.actorsUpdated.AddListener(ActorUpdateListener);
+        WorldManager.simUpdated.AddListener(SimUpdateListener);
     }
 
     private void Update()
@@ -167,12 +168,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private void ActorUpdateListener()
+    private void SimUpdateListener()
     {
         if (focusedIdx > -1)
         {
             DisplayFocusedInfo();
         }
+    }
+
+    public SelectType GetSelectMode()
+    {
+        return selectMode;
     }
 
     public void SetSelectMode(int type)
