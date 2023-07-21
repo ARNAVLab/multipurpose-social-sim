@@ -8,7 +8,6 @@ public class RelationshipEntry : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI relateTypeText;
     [SerializeField] private TextMeshProUGUI relateeNameText;
-    [SerializeField] private Image relateePortrait;
     [SerializeField] private TextMeshProUGUI relationValenceText;
 
     public void SetRelationshipType(string input)

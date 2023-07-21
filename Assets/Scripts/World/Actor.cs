@@ -28,7 +28,7 @@ public class Actor : Selectable
 
         // Register this Agent with the AgentManager (this will add it to a static Dictionary, keyed by ID)
         WorldManager.RegisterAgent(this);
-        WorldManager.actorsUpdated.AddListener(ReceiveAgentUpdates);
+        WorldManager.simUpdated.AddListener(ReceiveAgentUpdates);
     }
 
     public void Init(string actorName)

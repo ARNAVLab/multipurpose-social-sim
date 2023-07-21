@@ -14,7 +14,7 @@ public class WorldManager : MonoBehaviour
     [SerializeField] private GameObject actorPref;
     [SerializeField] private GameObject locationPref;
 
-    public static UnityEvent actorsUpdated;
+    public static UnityEvent simUpdated;
 
     public static Dictionary<int, Actor> actors = new Dictionary<int, Actor>();
 
@@ -36,7 +36,7 @@ public class WorldManager : MonoBehaviour
 
             // Jump-starts the Simulation Manager, allowing for communication between the User Interface, Knowledge, and Reality sims.
             SimManager.Init("Assets/Scripts/SimManager/Data/Paths.json", typeof(AnthologyRS), typeof(LyraKS), typeof(MongoHM));
-            actorsUpdated = new UnityEvent();
+            simUpdated = new UnityEvent();
         }
     }
 
