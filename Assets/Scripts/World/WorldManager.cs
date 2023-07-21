@@ -9,6 +9,8 @@ public class WorldManager : MonoBehaviour
 {
     public static WorldManager instance;
 
+    public ButtonManager buttonManager;
+
     [SerializeField] private GameObject actorPref;
     [SerializeField] private GameObject locationPref;
 
@@ -65,6 +67,7 @@ public class WorldManager : MonoBehaviour
             spawnedLocation.name = loc.Name;
             spawnedLocation.transform.position = new Vector3(loc.Coordinates.X, loc.Coordinates.Y, 0);
         }
+        buttonManager = GetComponent<ButtonManager>();
     }
 
     /**
@@ -121,6 +124,11 @@ public class WorldManager : MonoBehaviour
 
     public void SetAgentMotiveNone()
     {
+        buttonManager.TogglePhysicalOff();
+        buttonManager.ToggleEmotionalOff();
+        buttonManager.ToggleSocialOff();
+        buttonManager.ToggleFinancialOff();
+        buttonManager.ToggleAccomplishmentOff();
         foreach(KeyValuePair<int,Actor> a in actors) {
             Actor act = a.Value;
             act.OnNone();
@@ -133,6 +141,11 @@ public class WorldManager : MonoBehaviour
             SetAgentMotiveNone();
             physical = false;
         } else {
+            buttonManager.TogglePhysicalOn();
+            buttonManager.ToggleEmotionalOff();
+            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleFinancialOff();
+            buttonManager.ToggleAccomplishmentOff();
             physical = true;
             emotional = false;
             social = false;
@@ -152,6 +165,11 @@ public class WorldManager : MonoBehaviour
             emotional = false;
             //Change button back to pin
         } else {
+            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleEmotionalOn();
+            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleFinancialOff();
+            buttonManager.ToggleAccomplishmentOff();
             physical = false;
             emotional = true;
             social = false;
@@ -171,6 +189,11 @@ public class WorldManager : MonoBehaviour
             SetAgentMotiveNone();
             social = false;
         } else {
+            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleEmotionalOff();
+            buttonManager.ToggleSocialOn();
+            buttonManager.ToggleFinancialOff();
+            buttonManager.ToggleAccomplishmentOff();
             physical = false;
             emotional = false;
             social = true;
@@ -189,6 +212,11 @@ public class WorldManager : MonoBehaviour
             SetAgentMotiveNone();
             financial = false;
         } else {
+            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleEmotionalOff();
+            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleFinancialOn();
+            buttonManager.ToggleAccomplishmentOff();
             physical = false;
             emotional = false;
             social = false;
@@ -207,6 +235,11 @@ public class WorldManager : MonoBehaviour
             SetAgentMotiveNone();
             accomplishment = false;
         } else {
+            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleEmotionalOff();
+            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleFinancialOff();
+            buttonManager.ToggleAccomplishmentOn();
             physical = false;
             emotional = false;
             social = false;

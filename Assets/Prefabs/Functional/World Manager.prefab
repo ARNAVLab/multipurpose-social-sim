@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4547189812204149362}
   - component: {fileID: 4547189812204149365}
+  - component: {fileID: 1932930098}
   m_Layer: 0
   m_Name: World Manager
   m_TagString: Untagged
@@ -44,5 +45,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50de3c006aea9c346b3838f6defe556f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonManager: {fileID: 0}
   actorPref: {fileID: 8495250230477651469, guid: c7d0f7e69d6f60544bc152ba97d72e40, type: 3}
   locationPref: {fileID: 8495250230477651469, guid: 8cad0769eb801614fb72867d6433c36c, type: 3}
+--- !u!114 &1932930098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547189812204149363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f91ce474c40c446a640c7856f1fd0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  physical: {fileID: 0}
+  emotional: {fileID: 0}
+  social: {fileID: 0}
+  financial: {fileID: 0}
+  accomplishment: {fileID: 0}
+  cancelSprite: {fileID: 21300000, guid: eb1306ad37221d343ac904dab38f0ec7, type: 3}
+  pinSprite: {fileID: 21300000, guid: c46e32d8d1d18144393b67bb1a80417a, type: 3}
