@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Class used to help place structures along roads
-//Still a WIP
 public class StructureHelper : MonoBehaviour
 {
     //public GameObject prefab;

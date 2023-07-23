@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using static SimpleVisualizer;
 
-//Visualizer places road and structure tiles in the scene, starting from 0,0
-public class Visualizer : MonoBehaviour
+//Visualizer places road and structure tiles in the area selected by the user
+//WIP
+public class SelectionGeneration : MonoBehaviour
 {
     public LSystemGenerator lsystem;
     List<Vector3> positions = new List<Vector3>();
+    public int customOriginX = 0;
+    public int customOriginY = 0;
 
     public RoadHelper roadHelper;
     public StructureHelper structureHelper;
@@ -34,7 +37,7 @@ public class Visualizer : MonoBehaviour
     //Generation Method, accepts LSys sequence generated in Start method
     private void VisualizeSequence(string sequence) {
         Stack<GenSysParameters> savePoints = new Stack<GenSysParameters>();
-        var currentPosition = Vector3.zero; //can edit this to generate multiple towns in different locations, by default cities start generation at pos (0,0,0)
+        var currentPosition = new Vector3(customOriginX, customOriginY, 0); //can edit this to generate towns in different locations
 
         Vector3 direction = Vector3.up;
         Vector3 tempPosition = Vector3.zero; //used for drawing roads
