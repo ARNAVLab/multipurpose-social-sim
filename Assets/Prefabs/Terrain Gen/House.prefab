@@ -262,9 +262,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8495250230477651471}
   - component: {fileID: 4431517616632026699}
+  - component: {fileID: 3524141074082877224}
   - component: {fileID: 4322382675239761307}
   - component: {fileID: 2850533286326945808}
-  - component: {fileID: 3524141074082877224}
   m_Layer: 8
   m_Name: House
   m_TagString: Location
@@ -306,6 +306,21 @@ MonoBehaviour:
   colorHover: {r: 1, g: 1, b: 1, a: 0.5019608}
   colorSelect: {r: 1, g: 1, b: 1, a: 1}
   colorFocus: {r: 0, g: 1, b: 1, a: 1}
+--- !u!114 &3524141074082877224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495250230477651469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e035cd4364d2ca49ba94ed54e1865a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  X: 0
+  Y: 0
 --- !u!61 &4322382675239761307
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -353,18 +368,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &3524141074082877224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8495250230477651469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e035cd4364d2ca49ba94ed54e1865a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: 
-  X: 0
-  Y: 0

@@ -16,6 +16,8 @@ public class StructureHelper : MonoBehaviour
     public Dictionary<Vector3Int, GameObject> structuresDictionary = new Dictionary<Vector3Int, GameObject>(); //like roads, structures are stored in a Dictionary
     public Dictionary<Vector3Int, GameObject> natureDictionary = new Dictionary<Vector3Int, GameObject>(); //trees and nature tiles
 
+    private int structureName = 1;
+
     public void PlaceStructures(List<Vector3Int> roadPositions)
     {
         Dictionary<Vector3Int, Direction> freeEstateSpots = FindFreeSpaces(roadPositions);
@@ -50,13 +52,12 @@ public class StructureHelper : MonoBehaviour
                         var random = UnityEngine.Random.value;
                         if (random < randomNaturePlacementThreshold)
                         {
-                            var naturePrefab = SpawnPrefab(naturePrefabs[UnityEngine.Random.Range(0,naturePrefabs.Length)], freeSpot.Key, rotation);
+                            var naturePrefab = SpawnNaturePrefab(naturePrefabs[UnityEngine.Random.Range(0,naturePrefabs.Length)], freeSpot.Key, rotation);
                             natureDictionary.Add(freeSpot.Key, naturePrefab);
                             break;
                         }
                     }
                     var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
-                    //FILL IN LOCATION DATA
                     structuresDictionary.Add(freeSpot.Key, building);
                     break;
                 }
@@ -70,7 +71,6 @@ public class StructureHelper : MonoBehaviour
                         {
                             blockedPositions.AddRange(tempPositionsBlocked);
                             var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
-                            //FILL IN LOCATION DATA
                             structuresDictionary.Add(freeSpot.Key, building);
                             foreach(var pos in tempPositionsBlocked)
                             {
@@ -80,7 +80,6 @@ public class StructureHelper : MonoBehaviour
                     } else
                     {
                         var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
-                        //FILL IN LOCATION DATA
                         structuresDictionary.Add(freeSpot.Key, building);
                     }
                     break;
@@ -118,6 +117,24 @@ public class StructureHelper : MonoBehaviour
     private GameObject SpawnPrefab(GameObject prefab, Vector3Int position, Quaternion rotation)
     {
         var newStructure = Instantiate(prefab, position, rotation, transform);
+        var locationData = newStructure.GetComponent<LocationData>();
+        //For future: define name by prefab, then add the number
+        //Ex: House prefabs will be named 'House 1', 'House 2', etc.
+        //Restaurants will be named 'Restaurant 1', 'Restaurant 2', etc.
+        locationData.name = structureName.ToString(); 
+        locationData.Name = structureName.ToString();
+        locationData.X = (float)position.x;
+        locationData.Y = (float)position.y;
+        //Tags will be defined by the prefab
+        //neighbors w/ distance
+        structureName++; //increase value of name for next spawn
+        return newStructure;
+    }
+
+    private GameObject SpawnNaturePrefab(GameObject prefab, Vector3Int position, Quaternion rotation)
+    {
+        var newStructure = Instantiate(prefab, position, rotation, transform);
+        var locationData = newStructure.GetComponent<LocationData>();
         return newStructure;
     }
 
