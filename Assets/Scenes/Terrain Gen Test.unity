@@ -5189,6 +5189,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.data[0].quantity
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.data[1].quantity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.data[2].quantity
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.data[0].sizeRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.data[1].sizeRequired
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.data[0].prefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 8495250230477651469, guid: 5eb4033be025322478d62e912bfa5f75, type: 3}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.data[0].quantityAlreadyPlaced
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.data[1].prefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 3508348104373371353, guid: adc98d6704f4b4d4090c18b44f332366, type: 3}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.data[1].quantityAlreadyPlaced
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586008584958869021, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: structureTypes.Array.data[2].prefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 2131344360606397472, guid: de40b2975a559d94d94517755920226a, type: 3}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}

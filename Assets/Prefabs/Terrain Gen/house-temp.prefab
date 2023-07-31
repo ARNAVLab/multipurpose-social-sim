@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2927594913031059042}
   m_Layer: 0
   m_Name: house-temp
-  m_TagString: Untagged
+  m_TagString: Location
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

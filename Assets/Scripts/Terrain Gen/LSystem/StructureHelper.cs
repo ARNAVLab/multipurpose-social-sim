@@ -56,6 +56,7 @@ public class StructureHelper : MonoBehaviour
                         }
                     }
                     var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
+                    //FILL IN LOCATION DATA
                     structuresDictionary.Add(freeSpot.Key, building);
                     break;
                 }
@@ -69,6 +70,7 @@ public class StructureHelper : MonoBehaviour
                         {
                             blockedPositions.AddRange(tempPositionsBlocked);
                             var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
+                            //FILL IN LOCATION DATA
                             structuresDictionary.Add(freeSpot.Key, building);
                             foreach(var pos in tempPositionsBlocked)
                             {
@@ -78,6 +80,7 @@ public class StructureHelper : MonoBehaviour
                     } else
                     {
                         var building = SpawnPrefab(structureTypes[i].GetPrefab(), freeSpot.Key, rotation);
+                        //FILL IN LOCATION DATA
                         structuresDictionary.Add(freeSpot.Key, building);
                     }
                     break;
