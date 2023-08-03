@@ -5,9 +5,9 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class SelectionController : MonoBehaviour
+public class MapCreatorController : MonoBehaviour
 {
-    private static SelectionController _instance;
+    private static MapCreatorController _instance;
 
     [SerializeField] private float _cameraMoveSpeed = 2.0f;
     [SerializeField] private float _cameraDragMoveSpeed = 0.2f;
@@ -15,8 +15,6 @@ public class SelectionController : MonoBehaviour
     [SerializeField] private float _cameraScrollZoomSpeed = 0.1f;
     [SerializeField] private float _cameraZoomMin = 1.0f;
     [SerializeField] private float _cameraZoomMax = 100.0f;
-    [SerializeField] private GameObject _selectionBoxPrefab;
-    [SerializeField] private Vector3 _selectionBoxDefSize;
     
     [SerializeField] private float trackingRate = 10f;
     private static Transform trackedObject;
@@ -24,8 +22,6 @@ public class SelectionController : MonoBehaviour
 
     private Controls _controls;
     private Camera _camera;
-    private GameObject _selectionBox;
-    private SpriteRenderer _selectionBoxRenderer;
     private bool _clickLeft = false;
     private bool _dragLeft = false;
     private bool _clickRight = false;
@@ -41,9 +37,12 @@ public class SelectionController : MonoBehaviour
     private Vector2 _mouseDelta;
     private float _scrollDelta;
 
+    private MapCreator _mapCreator;
+    private GridTile _hoveredTile;
+
     public static UnityEvent _onSelectEvent = new UnityEvent();
 
-    public static SelectionController GetInstance()
+    public static MapCreatorController GetInstance()
     {
         return _instance;
     }
@@ -53,14 +52,7 @@ public class SelectionController : MonoBehaviour
         _instance = this;
         _controls = new Controls();
         _camera = GetComponent<Camera>();
-        _selectionBox = Instantiate(_selectionBoxPrefab);
-        _selectionBoxRenderer = _selectionBox.GetComponent<SpriteRenderer>();
-        _selectionBoxRenderer.enabled = false;
-    }
-
-    private void Start()
-    {
-        _selectionBox.transform.localScale = _selectionBoxDefSize;
+        _mapCreator = FindObjectOfType<MapCreator>();
     }
 
     private void Update()
@@ -82,20 +74,36 @@ public class SelectionController : MonoBehaviour
 
         float oldOrthographicSize = _camera.orthographicSize;
 
-        _camera.orthographicSize = Mathf.Clamp
-        (
-            _camera.orthographicSize + _camera.orthographicSize * Time.deltaTime * 
-                -(_cameraZoomSpeed * _cameraZoom + _cameraScrollZoomSpeed * _scrollDelta), 
-            _cameraZoomMin,
-            _cameraZoomMax
-        );
-
-        if (Mathf.Abs(_scrollDelta) > 0.01f)
+        if (_controlHold)
         {
-            float orthographicProportion = _camera.orthographicSize / oldOrthographicSize;
-            float orthographicDifference = orthographicProportion - 1.0f;
-            Vector2 cameraPosition = Vector2.LerpUnclamped(_camera.transform.position, _mousePosition, -orthographicDifference);
-            _camera.transform.position = new Vector3(cameraPosition.x, cameraPosition.y, _camera.transform.position.z);
+            if (_clickLeft)
+            {
+                Vector3 positionDifference = Time.deltaTime * _cameraDragMoveSpeed * _camera.orthographicSize * -_mouseDelta;
+                _mapCreator.MoveBackground(-positionDifference);
+            }
+
+            if (Mathf.Abs(_scrollDelta) > 0.01f)
+            {
+                _mapCreator.ResizeBackground(Time.deltaTime * _cameraScrollZoomSpeed * _scrollDelta);
+            }
+        }
+        else
+        {
+            _camera.orthographicSize = Mathf.Clamp
+            (
+                _camera.orthographicSize + _camera.orthographicSize * Time.deltaTime * 
+                    -(_cameraZoomSpeed * _cameraZoom + _cameraScrollZoomSpeed * _scrollDelta), 
+                _cameraZoomMin,
+                _cameraZoomMax
+            );
+
+            if (Mathf.Abs(_scrollDelta) > 0.01f)
+            {
+                float orthographicProportion = _camera.orthographicSize / oldOrthographicSize;
+                float orthographicDifference = orthographicProportion - 1.0f;
+                Vector2 cameraPosition = Vector2.LerpUnclamped(_camera.transform.position, _mousePosition, -orthographicDifference);
+                _camera.transform.position = new Vector3(cameraPosition.x, cameraPosition.y, _camera.transform.position.z);
+            }
         }
 
         if (!_dragLeft && _clickLeft && _clickLeftOrigin != _mousePosition)
@@ -103,22 +111,12 @@ public class SelectionController : MonoBehaviour
         if (_dragLeft)
         {
             Vector2 cursorDifference = _mousePosition - _clickLeftOrigin;
-            _selectionBox.transform.localScale = (Vector3)cursorDifference + Vector3.forward;
-            _selectionBox.transform.position = (Vector3)(_clickLeftOrigin + 0.5f * cursorDifference)
-                + _selectionBox.transform.position.z * Vector3.forward;
-        }
-        else
-        {
-            _selectionBox.transform.position = _mousePosition;
         }
 
         if (_clickMiddle)
         {
             Vector3 positionDifference = Time.deltaTime * _cameraDragMoveSpeed * _camera.orthographicSize * -_mouseDelta;
             this.transform.Translate(positionDifference, Space.World);
-
-            // The camera was moved manually; disable automatic Actor tracking, if enabled.
-            DisableTracking();
         }
 
         _mouseDelta = Vector2.zero;
@@ -135,18 +133,6 @@ public class SelectionController : MonoBehaviour
             Vector3 smoothedPos = Vector3.Lerp(transform.position, targetPos, trackingRate * Time.deltaTime);
             transform.position = smoothedPos;
         }
-    }
-
-    public static void EnableTracking(Transform toTrack)
-    {
-        trackedObject = toTrack;
-        doTracking = true;
-    }
-
-    public static void DisableTracking()
-    {
-        trackedObject = null;
-        doTracking = false;
     }
 
     /**
@@ -169,6 +155,18 @@ public class SelectionController : MonoBehaviour
         return false;
     }
 
+    public void HoverTile(GridTile tile)
+    {
+        _hoveredTile = tile;
+        if (_hoveredTile != null && !_controlHold)
+        {
+            if (_clickLeft)
+                _mapCreator.PaintTile(tile);
+            else if (_clickRight)
+                _mapCreator.EraseTile(tile);
+        }
+    }
+
     /**
      * Triggers when left mouse button is initially pressed.
      */
@@ -179,9 +177,11 @@ public class SelectionController : MonoBehaviour
 
         _clickLeft = true;
         _clickLeftOrigin = _mousePosition;
-        _selectionBoxRenderer.enabled = true;
-        _selectionBox.transform.position = _clickLeftOrigin;
-        _selectionBox.transform.localScale = _selectionBoxDefSize;
+
+        if (_hoveredTile != null && !_controlHold)
+        {
+            HoverTile(_hoveredTile);
+        }
     }
     /**
      * Triggers when left mouse button is released.
@@ -216,10 +216,33 @@ public class SelectionController : MonoBehaviour
                 SelectionManager.Instance.SelectOne();
             }
         }
-        _selectionBoxRenderer.enabled = false;
-        _selectionBox.transform.localScale = new Vector3(0.1f, 0.1f, 1f);
 
         _onSelectEvent.Invoke();
+    }
+
+    /**
+     * Triggers when left mouse button is initially pressed.
+     */
+    private void MouseRightDown(InputAction.CallbackContext context)
+    {
+        if (IsCursorOverUIElement())
+            return;
+
+        _clickRight = true;
+        _clickRightOrigin = _mousePosition;
+
+        if (_hoveredTile != null && !_controlHold)
+        {
+            HoverTile(_hoveredTile);
+        }
+    }
+
+    /**
+     * Triggers when left mouse button is released.
+     */
+    private void MouseRightUp(InputAction.CallbackContext context)
+    {
+        _clickRight = false;
     }
 
     /**
@@ -230,9 +253,6 @@ public class SelectionController : MonoBehaviour
         _clickMiddle = true;
         Cursor.lockState = CursorLockMode.Locked;
         _clickMiddleOrigin = _mousePosition;Vector2 cursorDifference = _mousePosition - _clickLeftOrigin;
-        _selectionBox.transform.localScale = Vector3.zero;
-        _selectionBox.transform.position = (Vector3)(_clickLeftOrigin + 0.5f * cursorDifference)
-            + _selectionBox.transform.position.z * Vector3.forward;
     }
     /**
      * Triggers when middle mouse button is released.
@@ -278,6 +298,8 @@ public class SelectionController : MonoBehaviour
         _controls.Enable();
         _controls.player.leftMouse.started += MouseLeftDown;
         _controls.player.leftMouse.canceled += MouseLeftUp;
+        _controls.player.rightMouse.started += MouseRightDown;
+        _controls.player.rightMouse.canceled += MouseRightUp;
         _controls.player.middleMouse.started += MouseMiddleDown;
         _controls.player.middleMouse.canceled += MouseMiddleUp;
         _controls.player.control.started += CtrlDown;
@@ -290,16 +312,13 @@ public class SelectionController : MonoBehaviour
         _controls.Disable();
         _controls.player.leftMouse.started -= MouseLeftDown;
         _controls.player.leftMouse.canceled -= MouseLeftUp;
+        _controls.player.rightMouse.started -= MouseRightDown;
+        _controls.player.rightMouse.canceled -= MouseRightUp;
         _controls.player.middleMouse.started -= MouseMiddleDown;
         _controls.player.middleMouse.canceled -= MouseMiddleUp;
         _controls.player.control.started -= CtrlDown;
         _controls.player.control.canceled -= CtrlUp;
         _controls.player.shift.started -= ShiftDown;
         _controls.player.shift.canceled -= ShiftUp;
-    }
-
-    public void SetSelectBoxLayer(string layer)
-    {
-        _selectionBox.layer = LayerMask.NameToLayer(layer);
     }
 }
