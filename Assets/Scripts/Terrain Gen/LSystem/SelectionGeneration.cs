@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static SimpleVisualizer;
 
-//Basic visualizer used in LSys generation, not being used anymore
-public class SimpleVisualizer : MonoBehaviour
+//Visualizer places road and structure tiles in the area selected by the user
+//WIP
+public class SelectionGeneration : MonoBehaviour
 {
     public LSystemGenerator lsystem;
     List<Vector3> positions = new List<Vector3>();
-    public GameObject prefab;
-    public Material lineMaterial;
+    public int customOriginX = 0;
+    public int customOriginY = 0;
 
-    private int length = 10; //edit road length, will decrease over time
-    private float angle = 90; //edit road angle, stays constant for now
+    public RoadHelper roadHelper;
+    public StructureHelper structureHelper;
+
+    private int length = 10; //can edit road length
+    private float angle = 90; //can edit road angle, will stay constant for now
 
     public int Length {
         get {
@@ -24,31 +29,23 @@ public class SimpleVisualizer : MonoBehaviour
         set => length = value;
     }
 
-    //Encoding letters enum, specifies what letters in the LSys sequence correspond to what action
-    public enum EncodingLetters {
-        unknown = '1',
-        save = '[',
-        load = ']',
-        draw = 'F',
-        turnRight = '+',
-        turnLeft = '-'
-    }
-
     private void Start() {
-        var sequence = lsystem.GenerateSentence();
+        var sequence = lsystem.GenerateSentence(); //generate LSys sentence for road generation
         VisualizeSequence(sequence);
     }
 
     //Generation Method, accepts LSys sequence generated in Start method
     private void VisualizeSequence(string sequence) {
         Stack<GenSysParameters> savePoints = new Stack<GenSysParameters>();
-        var currentPosition = Vector3.zero; //can edit this to generate multiple towns in different locations
+        var currentPosition = new Vector3(customOriginX, customOriginY, 0); //can edit this to generate towns in different locations
 
         Vector3 direction = Vector3.up;
-        Vector3 tempPosition = Vector3.zero; //used when drawing roads
+        Vector3 tempPosition = Vector3.zero; //used for drawing roads
 
         positions.Add(currentPosition);
 
+        //process the LSys sequence step-by-step
+        //sequence instructions explained in SimpleVisualizer EncodingLetters enum
         foreach(var letter in sequence) {
             EncodingLetters encoding = (EncodingLetters)letter;
             switch (encoding) {
@@ -73,7 +70,7 @@ public class SimpleVisualizer : MonoBehaviour
                 case EncodingLetters.draw:
                     tempPosition = currentPosition;
                     currentPosition += direction * length;
-                    DrawLine(tempPosition, currentPosition, Color.red);
+                    roadHelper.PlaceRoadPositions(tempPosition, Vector3Int.RoundToInt(direction), length); //determine road positions
                     Length -= 2; //shorten roads as generation iterates, can be edited
                     positions.Add(currentPosition);
                     break;
@@ -87,23 +84,7 @@ public class SimpleVisualizer : MonoBehaviour
                     break;
             }
         }
-
-        foreach (var position in positions) {
-            Instantiate(prefab, position, Quaternion.identity);
-        }
+        roadHelper.FixRoad(); //place road gameObjects
+        structureHelper.PlaceStructures(roadHelper.GetRoadPositions()); //place structure gameObjects based on road positions
     }
-
-    private void DrawLine(Vector3 start, Vector3 end, Color color) {
-        GameObject line = new GameObject("line");
-        line.transform.position = start;
-        var lineRenderer = line.AddComponent<LineRenderer>();
-        lineRenderer.material = lineMaterial;
-        lineRenderer.startColor = color;
-        lineRenderer.endColor = color;
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
-        lineRenderer.SetPosition(0, end);
-        lineRenderer.SetPosition(1, start);
-    }
-
 }

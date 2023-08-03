@@ -3,6 +3,8 @@ using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
 
+//LSys Generation class; used for generating roads
+
 public class LSystemGenerator : MonoBehaviour
 {
     public Rule[] rules;
