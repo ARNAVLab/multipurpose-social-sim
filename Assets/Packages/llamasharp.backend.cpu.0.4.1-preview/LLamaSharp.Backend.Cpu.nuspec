@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>LLamaSharp.Backend.Cpu</id>
+    <version>0.4.1-preview</version>
+    <title>LLamaSharp.Backend.Cpu, the backend for LLamaSharp</title>
+    <authors>The lamma.cpp Authors</authors>
+    <owners>The lamma.cpp Authors</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://github.com/SciSharp/LLamaSharp</projectUrl>
+    <iconUrl>https://avatars3.githubusercontent.com/u/44989469?s=200&amp;v=4</iconUrl>
+    <description>LLamaSharp.Backend.Cpu is a backend for LLamaSharp to use with Cpu only and MAC.</description>
+    <summary>This version is corresponding to llama.cpp (commit id: aacdbd4).</summary>
+    <copyright>Copyright 2023 The llama.cpp Authors. All rights reserved.</copyright>
+    <tags>LLama, LLM, GPT, ChatGPT, NLP, AI, Chat Bot, SciSharp</tags>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+</package>

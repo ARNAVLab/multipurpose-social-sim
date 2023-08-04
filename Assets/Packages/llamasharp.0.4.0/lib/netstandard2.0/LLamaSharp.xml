@@ -1,0 +1,1652 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LLamaSharp</name>
+    </assembly>
+    <members>
+        <member name="T:System.Runtime.CompilerServices.IsExternalInit">
+            <summary>
+                Reserved to be used by the compiler for tracking metadata.
+                This class should not be used by developers in source code.
+            </summary>
+            <remarks>
+                This definition is provided by the <i>IsExternalInit</i> NuGet package (https://www.nuget.org/packages/IsExternalInit).
+                Please see https://github.com/manuelroemer/IsExternalInit for more information.
+            </remarks>
+        </member>
+        <member name="T:LLama.Abstractions.IHistoryTransform">
+            <summary>
+            Transform history to plain text and vice versa.
+            </summary>
+        </member>
+        <member name="M:LLama.Abstractions.IHistoryTransform.HistoryToText(LLama.Common.ChatHistory)">
+            <summary>
+            Convert a ChatHistory instance to plain text.
+            </summary>
+            <param name="history">The ChatHistory instance</param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Abstractions.IHistoryTransform.TextToHistory(LLama.Common.AuthorRole,System.String)">
+            <summary>
+            Converts plain text to a ChatHistory instance.
+            </summary>
+            <param name="role">The role for the author.</param>
+            <param name="text">The chat history as plain text.</param>
+            <returns>The updated history.</returns>
+        </member>
+        <member name="T:LLama.Abstractions.ILLamaExecutor">
+            <summary>
+            A high level interface for LLama models.
+            </summary>
+        </member>
+        <member name="P:LLama.Abstractions.ILLamaExecutor.Model">
+            <summary>
+            The loaded model for this executor.
+            </summary>
+        </member>
+        <member name="M:LLama.Abstractions.ILLamaExecutor.Infer(System.String,LLama.Common.InferenceParams,System.Threading.CancellationToken)">
+            <summary>
+            Infers a response from the model.
+            </summary>
+            <param name="text">Your prompt</param>
+            <param name="inferenceParams">Any additional parameters</param>
+            <param name="token">A cancellation token.</param>
+            <returns></returns>
+        </member>
+        <member name="T:LLama.Abstractions.ITextStreamTransform">
+            <summary>
+            Takes a stream of tokens and transforms them.
+            </summary>
+        </member>
+        <member name="M:LLama.Abstractions.ITextStreamTransform.Transform(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Takes a stream of tokens and transforms them, returning a new stream of tokens.
+            </summary>
+            <param name="tokens"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Abstractions.ITextStreamTransform.TransformAsync(System.Collections.Generic.IAsyncEnumerable{System.String})">
+            <summary>
+            Takes a stream of tokens and transforms them, returning a new stream of tokens asynchronously.
+            </summary>
+            <param name="tokens"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LLama.Abstractions.ITextTransform">
+            <summary>
+            An interface for text transformations.
+            These can be used to compose a pipeline of text transformations, such as:
+            - Tokenization
+            - Lowercasing
+            - Punctuation removal
+            - Trimming
+            - etc.
+            </summary>
+        </member>
+        <member name="M:LLama.Abstractions.ITextTransform.Transform(System.String)">
+            <summary>
+            Takes a string and transforms it.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LLama.ChatSession">
+            <summary>
+            The main chat session class.
+            </summary>
+        </member>
+        <member name="P:LLama.ChatSession.Executor">
+            <summary>
+            The executor for this session.
+            </summary>
+        </member>
+        <member name="P:LLama.ChatSession.History">
+            <summary>
+            The chat history for this session.
+            </summary>
+        </member>
+        <member name="P:LLama.ChatSession.HistoryTransform">
+            <summary>
+            The history transform used in this session.
+            </summary>
+        </member>
+        <member name="P:LLama.ChatSession.InputTransformPipeline">
+            <summary>
+            The input transform pipeline used in this session.
+            </summary>
+        </member>
+        <member name="F:LLama.ChatSession.OutputTransform">
+            <summary>
+            The output transform used in this session.
+            </summary>
+        </member>
+        <member name="M:LLama.ChatSession.#ctor(LLama.Abstractions.ILLamaExecutor)">
+            <summary>
+            
+            </summary>
+            <param name="executor">The executor for this session</param>
+        </member>
+        <member name="M:LLama.ChatSession.WithHistoryTransform(LLama.Abstractions.IHistoryTransform)">
+            <summary>
+            Use a custom history transform.
+            </summary>
+            <param name="transform"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.ChatSession.AddInputTransform(LLama.Abstractions.ITextTransform)">
+            <summary>
+            Add a text transform to the input transform pipeline.
+            </summary>
+            <param name="transform"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.ChatSession.WithOutputTransform(LLama.Abstractions.ITextStreamTransform)">
+            <summary>
+            Use a custom output transform.
+            </summary>
+            <param name="transform"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.ChatSession.SaveSession(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path">The directory name to save the session. If the directory does not exist, a new directory will be created.</param>
+        </member>
+        <member name="M:LLama.ChatSession.LoadSession(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path">The directory name to load the session.</param>
+        </member>
+        <member name="M:LLama.ChatSession.Chat(LLama.Common.ChatHistory,LLama.Common.InferenceParams,System.Threading.CancellationToken)">
+            <summary>
+            Get the response from the LLama model with chat histories.
+            </summary>
+            <param name="prompt"></param>
+            <param name="inferenceParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.ChatSession.Chat(System.String,LLama.Common.InferenceParams,System.Threading.CancellationToken)">
+            <summary>
+            Get the response from the LLama model. Note that prompt could not only be the preset words, 
+            but also the question you want to ask.
+            </summary>
+            <param name="prompt"></param>
+            <param name="inferenceParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.ChatSession.ChatAsync(LLama.Common.ChatHistory,LLama.Common.InferenceParams,System.Threading.CancellationToken)">
+            <summary>
+            Get the response from the LLama model with chat histories.
+            </summary>
+            <param name="prompt"></param>
+            <param name="inferenceParams"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.ChatSession.ChatAsync(System.String,LLama.Common.InferenceParams,System.Threading.CancellationToken)">
+            <summary>
+            Get the response from the LLama model with chat histories asynchronously.
+            </summary>
+            <param name="prompt"></param>
+            <param name="inferenceParams"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LLama.Common.ChatHistory">
+            <summary>
+            The chat history class
+            </summary>
+        </member>
+        <member name="T:LLama.Common.ChatHistory.Message">
+            <summary>
+            Chat message representation
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ChatHistory.Message.AuthorRole">
+            <summary>
+            Role of the message author, e.g. user/assistant/system
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ChatHistory.Message.Content">
+            <summary>
+            Message content
+            </summary>
+        </member>
+        <member name="M:LLama.Common.ChatHistory.Message.#ctor(LLama.Common.AuthorRole,System.String)">
+            <summary>
+            Create a new instance
+            </summary>
+            <param name="authorRole">Role of message author</param>
+            <param name="content">Message content</param>
+        </member>
+        <member name="P:LLama.Common.ChatHistory.Messages">
+            <summary>
+            List of messages in the chat
+            </summary>
+        </member>
+        <member name="M:LLama.Common.ChatHistory.#ctor">
+            <summary>
+            Create a new instance of the chat content class
+            </summary>
+        </member>
+        <member name="M:LLama.Common.ChatHistory.AddMessage(LLama.Common.AuthorRole,System.String)">
+            <summary>
+            Add a message to the chat history
+            </summary>
+            <param name="authorRole">Role of the message author</param>
+            <param name="content">Message content</param>
+        </member>
+        <member name="T:LLama.Common.FixedSizeQueue`1">
+            <summary>
+            A queue with fixed storage size.
+            Currently it's only a naive implementation and needs to be further optimized in the future.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LLama.Common.FixedSizeQueue`1.#ctor(System.Int32,System.Collections.Generic.IEnumerable{`0})" -->
+        <member name="M:LLama.Common.FixedSizeQueue`1.Enqueue(`0)">
+            <summary>
+            Enquene an element.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.TokensKeep">
+            <summary>
+            number of tokens to keep from initial prompt
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.MaxTokens">
+            <summary>
+            how many new tokens to predict (n_predict), set to -1 to inifinitely generate response
+            until it complete.
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.LogitBias">
+            <summary>
+            logit bias for specific tokens
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.AntiPrompts">
+            <summary>
+            Sequences where the model will stop generating further tokens.
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.PathSession">
+            <summary>
+            path to file for saving/loading model eval state
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.InputSuffix">
+            <summary>
+            string to suffix user inputs with
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.InputPrefix">
+            <summary>
+            string to prefix user inputs with
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.TopK">
+            <summary>
+             0 or lower to use vocab size
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.TopP">
+            <summary>
+            1.0 = disabled
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.TfsZ">
+            <summary>
+            1.0 = disabled
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.TypicalP">
+            <summary>
+            1.0 = disabled
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.Temperature">
+            <summary>
+            1.0 = disabled
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.RepeatPenalty">
+            <summary>
+            1.0 = disabled
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.RepeatLastTokensCount">
+            <summary>
+            last n tokens to penalize (0 = disable penalty, -1 = context size) (repeat_last_n)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.FrequencyPenalty">
+            <summary>
+            frequency penalty coefficient
+            0.0 = disabled
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.PresencePenalty">
+            <summary>
+            presence penalty coefficient
+            0.0 = disabled
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.Mirostat">
+            <summary>
+            Mirostat uses tokens instead of words.
+            algorithm described in the paper https://arxiv.org/abs/2007.14966.
+            0 = disabled, 1 = mirostat, 2 = mirostat 2.0
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.MirostatTau">
+            <summary>
+            target entropy
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.MirostatEta">
+            <summary>
+            learning rate
+            </summary>
+        </member>
+        <member name="P:LLama.Common.InferenceParams.PenalizeNL">
+            <summary>
+            consider newlines as a repeatable token (penalize_nl)
+            </summary>
+        </member>
+        <member name="M:LLama.Common.ILLamaLogger.Log(System.String,System.String,LLama.Common.ILLamaLogger.LogLevel)">
+            <summary>
+            Write the log in cosutomized way
+            </summary>
+            <param name="source">The source of the log. It may be a method name or class name.</param>
+            <param name="message">The message.</param>
+            <param name="level">The log level.</param>
+        </member>
+        <member name="T:LLama.Common.LLamaDefaultLogger">
+            <summary>
+            The default logger of LLamaSharp. On default it write to console. User methods of `LLamaLogger.Default` to change the behavior.
+            It's more recommended to inherit `ILLamaLogger` to cosutomize the behavior.
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.ContextSize">
+            <summary>
+            Model context size (n_ctx)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.GpuLayerCount">
+            <summary>
+            Number of layers to run in VRAM / GPU memory (n_gpu_layers)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.Seed">
+            <summary>
+            Seed for the random number generator (seed)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.UseFp16Memory">
+            <summary>
+            Use f16 instead of f32 for memory kv (memory_f16)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.UseMemorymap">
+            <summary>
+            Use mmap for faster loads (use_mmap)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.UseMemoryLock">
+            <summary>
+            Use mlock to keep model in memory (use_mlock)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.Perplexity">
+            <summary>
+            Compute perplexity over the prompt (perplexity)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.ModelPath">
+            <summary>
+            Model path (model)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.LoraAdapter">
+            <summary>
+            lora adapter path (lora_adapter)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.LoraBase">
+            <summary>
+            base model path for the lora adapter (lora_base)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.Threads">
+            <summary>
+            Number of threads (-1 = autodetect) (n_threads)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.BatchSize">
+            <summary>
+            batch size for prompt processing (must be >=32 to use BLAS) (n_batch)
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.ConvertEosToNewLine">
+            <summary>
+            Whether to convert eos to newline during the inference.
+            </summary>
+        </member>
+        <member name="P:LLama.Common.ModelParams.EmbeddingMode">
+            <summary>
+            Whether to use embedding mode. (embedding) Note that if this is set to true, 
+            The LLamaModel won't produce text response anymore.
+            </summary>
+        </member>
+        <member name="M:LLama.Common.ModelParams.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="modelPath">The model path.</param>
+            <param name="contextSize">Model context size (n_ctx)</param>
+            <param name="gpuLayerCount">Number of layers to run in VRAM / GPU memory (n_gpu_layers)</param>
+            <param name="seed">Seed for the random number generator (seed)</param>
+            <param name="useFp16Memory">Whether to use f16 instead of f32 for memory kv (memory_f16)</param>
+            <param name="useMemorymap">Whether to use mmap for faster loads (use_mmap)</param>
+            <param name="useMemoryLock">Whether to use mlock to keep model in memory (use_mlock)</param>
+            <param name="perplexity">Thether to compute perplexity over the prompt (perplexity)</param>
+            <param name="loraAdapter">Lora adapter path (lora_adapter)</param>
+            <param name="loraBase">Base model path for the lora adapter (lora_base)</param>
+            <param name="threads">Number of threads (-1 = autodetect) (n_threads)</param>
+            <param name="batchSize">Batch size for prompt processing (must be >=32 to use BLAS) (n_batch)</param>
+            <param name="convertEosToNewLine">Whether to convert eos to newline during the inference.</param>
+            <param name="embeddingMode">Whether to use embedding mode. (embedding) Note that if this is set to true, The LLamaModel won't produce text response anymore.</param>
+        </member>
+        <member name="T:LLama.LLamaEmbedder">
+            <summary>
+            The embedder for LLama, which supports getting embeddings from text.
+            </summary>
+        </member>
+        <member name="M:LLama.LLamaEmbedder.#ctor(LLama.Native.SafeLLamaContextHandle)">
+            <summary>
+            Warning: must ensure the original model has params.embedding = true;
+            </summary>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:LLama.LLamaEmbedder.#ctor(LLama.Common.ModelParams)">
+            <summary>
+            
+            </summary>
+            <param name="params"></param>
+        </member>
+        <member name="M:LLama.LLamaEmbedder.GetEmbeddings(System.String,System.Int32,System.Boolean,System.String)">
+            <summary>
+            Get the embeddings of the text.
+            </summary>
+            <param name="text"></param>
+            <param name="threads">Threads used for inference.</param>
+            <param name="addBos">Add bos to the text.</param>
+            <param name="encoding"></param>
+            <returns></returns>
+            <exception cref="T:LLama.Exceptions.RuntimeError"></exception>
+        </member>
+        <member name="M:LLama.LLamaEmbedder.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:LLama.StatefulExecutorBase">
+            <summary>
+            The base class for stateful LLama executors.
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._model">
+            <summary>
+            The loaded model for this executor.
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._logger">
+            <summary>
+            The logger used by this executor.
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._pastTokensCount">
+            <summary>
+            The tokens that were already processed by the model.
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._consumedTokensCount">
+            <summary>
+            The tokens that were consumed by the model during the current inference.
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._n_session_consumed">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._n_matching_session_tokens">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._pathSession">
+            <summary>
+            The path of the session file.
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._embeds">
+            <summary>
+            A container of the tokens to be processed and after processed.
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._embed_inps">
+            <summary>
+            A container for the tokens of input.
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._session_tokens">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:LLama.StatefulExecutorBase._last_n_tokens">
+            <summary>
+            The last tokens generated by the model.
+            </summary>
+        </member>
+        <member name="P:LLama.StatefulExecutorBase.Model">
+            <summary>
+            The mode used by the executor.
+            </summary>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.#ctor(LLama.LLamaModel,LLama.Common.ILLamaLogger)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.WithSessionFile(System.String)">
+            <summary>
+            This API is currently not verified.
+            </summary>
+            <param name="filename"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:LLama.Exceptions.RuntimeError"></exception>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.SaveSessionFile(System.String)">
+            <summary>
+            This API has not been verified currently.
+            </summary>
+            <param name="filename"></param>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.HandleRunOutOfContext(System.Int32)">
+            <summary>
+            After running out of the context, take some tokens from the original prompt and recompute the logits in batches.
+            </summary>
+            <param name="tokensToKeep"></param>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.TryReuseMathingPrefix">
+            <summary>
+            Try to reuse the matching prefix from the session file.
+            </summary>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.GetLoopCondition(LLama.StatefulExecutorBase.InferStateArgs)">
+            <summary>
+            Decide whether to continue the loop.
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.PreprocessInputs(System.String,LLama.StatefulExecutorBase.InferStateArgs)">
+            <summary>
+            Preprocess the inputs before the inference.
+            </summary>
+            <param name="text"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.PostProcess(LLama.Common.InferenceParams,LLama.StatefulExecutorBase.InferStateArgs,System.Collections.Generic.IEnumerable{System.String}@)">
+            <summary>
+            Do some post processing after the inference.
+            </summary>
+            <param name="inferenceParams"></param>
+            <param name="args"></param>
+            <param name="extraOutputs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.InferInternal(LLama.Common.InferenceParams,LLama.StatefulExecutorBase.InferStateArgs)">
+            <summary>
+            The core inference logic.
+            </summary>
+            <param name="inferenceParams"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.SaveState(System.String)">
+            <summary>
+            Save the current state to a file.
+            </summary>
+            <param name="filename"></param>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.GetStateData">
+            <summary>
+            Get the current state data.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.LoadState(LLama.StatefulExecutorBase.ExecutorBaseState)">
+            <summary>
+            Load the state from data.
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.LoadState(System.String)">
+            <summary>
+            Load the state from a file.
+            </summary>
+            <param name="filename"></param>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.Infer(System.String,LLama.Common.InferenceParams,System.Threading.CancellationToken)">
+            <summary>
+            Execute the inference.
+            </summary>
+            <param name="text"></param>
+            <param name="inferenceParams"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.StatefulExecutorBase.InferAsync(System.String,LLama.Common.InferenceParams,System.Threading.CancellationToken)">
+            <summary>
+            Execute the inference asynchronously.
+            </summary>
+            <param name="text"></param>
+            <param name="inferenceParams"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LLama.StatefulExecutorBase.InferStateArgs">
+            <summary>
+            State arguments that are used in single inference
+            </summary>
+        </member>
+        <member name="P:LLama.StatefulExecutorBase.InferStateArgs.Antiprompts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:LLama.StatefulExecutorBase.InferStateArgs.RemainedTokens">
+            <summary>
+            Tokens count remained to be used. (n_remain)
+            </summary>
+        </member>
+        <member name="P:LLama.StatefulExecutorBase.InferStateArgs.ReturnValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:LLama.StatefulExecutorBase.InferStateArgs.WaitForInput">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:LLama.StatefulExecutorBase.InferStateArgs.NeedToSaveSession">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:LLama.InstructExecutor">
+            <summary>
+            The LLama executor for instruct mode.
+            </summary>
+        </member>
+        <member name="M:LLama.InstructExecutor.#ctor(LLama.LLamaModel,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+            <param name="instructionPrefix"></param>
+            <param name="instructionSuffix"></param>
+        </member>
+        <member name="M:LLama.InstructExecutor.GetStateData">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InstructExecutor.LoadState(LLama.StatefulExecutorBase.ExecutorBaseState)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InstructExecutor.SaveState(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InstructExecutor.LoadState(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InstructExecutor.GetLoopCondition(LLama.StatefulExecutorBase.InferStateArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InstructExecutor.PreprocessInputs(System.String,LLama.StatefulExecutorBase.InferStateArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InstructExecutor.PostProcess(LLama.Common.InferenceParams,LLama.StatefulExecutorBase.InferStateArgs,System.Collections.Generic.IEnumerable{System.String}@)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InstructExecutor.InferInternal(LLama.Common.InferenceParams,LLama.StatefulExecutorBase.InferStateArgs)">
+            <inheritdoc />
+        </member>
+        <member name="T:LLama.InstructExecutor.InstructExecutorState">
+            <summary>
+            The desciptor of the state of the instruct executor.
+            </summary>
+        </member>
+        <member name="P:LLama.InstructExecutor.InstructExecutorState.IsPromptRun">
+            <summary>
+            Whether the executor is running for the first time (running the prompt).
+            </summary>
+        </member>
+        <member name="P:LLama.InstructExecutor.InstructExecutorState.InputPrefixTokens">
+            <summary>
+            Instruction prefix tokens.
+            </summary>
+        </member>
+        <member name="P:LLama.InstructExecutor.InstructExecutorState.InputSuffixTokens">
+            <summary>
+            Instruction suffix tokens.
+            </summary>
+        </member>
+        <member name="T:LLama.InteractiveExecutor">
+            <summary>
+            The LLama executor for interactive mode.
+            </summary>
+        </member>
+        <member name="M:LLama.InteractiveExecutor.#ctor(LLama.LLamaModel)">
+            <summary>
+            
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:LLama.InteractiveExecutor.GetStateData">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InteractiveExecutor.LoadState(LLama.StatefulExecutorBase.ExecutorBaseState)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InteractiveExecutor.SaveState(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InteractiveExecutor.LoadState(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InteractiveExecutor.GetLoopCondition(LLama.StatefulExecutorBase.InferStateArgs)">
+            <summary>
+            Define whether to continue the loop to generate responses.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.InteractiveExecutor.PreprocessInputs(System.String,LLama.StatefulExecutorBase.InferStateArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.InteractiveExecutor.PostProcess(LLama.Common.InferenceParams,LLama.StatefulExecutorBase.InferStateArgs,System.Collections.Generic.IEnumerable{System.String}@)">
+            <summary>
+            Return whether to break the generation.
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.InteractiveExecutor.InferInternal(LLama.Common.InferenceParams,LLama.StatefulExecutorBase.InferStateArgs)">
+            <inheritdoc />
+        </member>
+        <member name="T:LLama.InteractiveExecutor.InteractiveExecutorState">
+            <summary>
+            The descriptor of the state of the interactive executor.
+            </summary>
+        </member>
+        <member name="P:LLama.InteractiveExecutor.InteractiveExecutorState.IsPromptRun">
+            <summary>
+            Whether the executor is running for the first time (running the prompt).
+            </summary>
+        </member>
+        <member name="P:LLama.InteractiveExecutor.InteractiveExecutorState.LLamaNewlineTokens">
+            <summary>
+            Tokens that represent a new line in with the current model.
+            </summary>
+        </member>
+        <member name="T:LLama.LLamaModel">
+            <summary>
+            The abstraction of a LLama model, which holds the context in the native library.
+            </summary>
+        </member>
+        <member name="P:LLama.LLamaModel.ContextSize">
+            <summary>
+            The context size.
+            </summary>
+        </member>
+        <member name="P:LLama.LLamaModel.Params">
+            <summary>
+            The model params set for this model.
+            </summary>
+        </member>
+        <member name="P:LLama.LLamaModel.NativeHandle">
+            <summary>
+            The native handle, which is used to be passed to the native APIs. Please avoid using it 
+            unless you know what is the usage of the Native API.
+            </summary>
+        </member>
+        <member name="P:LLama.LLamaModel.Encoding">
+            <summary>
+            The encoding set for this model to deal with text input.
+            </summary>
+        </member>
+        <member name="M:LLama.LLamaModel.#ctor(LLama.Common.ModelParams,System.String,LLama.Common.ILLamaLogger)">
+            <summary>
+            
+            </summary>
+            <param name="Params">Model params.</param>
+            <param name="encoding">Encoding to deal with text input.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:LLama.LLamaModel.Tokenize(System.String,System.Boolean)">
+            <summary>
+            Tokenize a string.
+            </summary>
+            <param name="text"></param>
+            <param name="addBos">Whether to add a bos to the text.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.LLamaModel.DeTokenize(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Detokenize the tokens to text.
+            </summary>
+            <param name="tokens"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.LLamaModel.SaveState(System.String)">
+            <summary>
+            Save the state to specified path.
+            </summary>
+            <param name="filename"></param>
+        </member>
+        <member name="M:LLama.LLamaModel.GetStateData">
+            <summary>
+            Get the state data as a byte array.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.LLamaModel.LoadState(System.String)">
+            <summary>
+            Load the state from specified path.
+            </summary>
+            <param name="filename"></param>
+            <exception cref="T:LLama.Exceptions.RuntimeError"></exception>
+        </member>
+        <member name="M:LLama.LLamaModel.LoadState(System.Byte[])">
+            <summary>
+            Load the state from memory.
+            </summary>
+            <param name="stateData"></param>
+            <exception cref="T:LLama.Exceptions.RuntimeError"></exception>
+        </member>
+        <member name="M:LLama.LLamaModel.Sample(LLama.Native.LLamaTokenDataArray,System.Single,LLama.Common.MiroStateType,System.Single,System.Single,System.Int32,System.Single,System.Single,System.Single)">
+            <summary>
+            Perform the sampling. Please don't use it unless you fully know what it does.
+            </summary>
+            <param name="candidates"></param>
+            <param name="temperature"></param>
+            <param name="mirostat"></param>
+            <param name="mirostatTau"></param>
+            <param name="mirostatEta"></param>
+            <param name="topK"></param>
+            <param name="topP"></param>
+            <param name="tfsZ"></param>
+            <param name="typicalP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.LLamaModel.ApplyPenalty(System.Collections.Generic.IEnumerable{System.Int32},System.Collections.Generic.Dictionary{System.Int32,System.Single},System.Int32,System.Single,System.Single,System.Single,System.Boolean)">
+            <summary>
+            Apply the penalty for the tokens. Please don't use it unless you fully know what it does.
+            </summary>
+            <param name="lastTokens"></param>
+            <param name="logitBias"></param>
+            <param name="repeatLastTokensCount"></param>
+            <param name="repeatPenalty"></param>
+            <param name="alphaFrequency"></param>
+            <param name="alphaPresence"></param>
+            <param name="penalizeNL"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.LLamaModel.Eval(System.Int32[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="tokens"></param>
+            <param name="pastTokensCount"></param>
+            <returns>The updated `pastTokensCount`.</returns>
+            <exception cref="T:LLama.Exceptions.RuntimeError"></exception>
+        </member>
+        <member name="M:LLama.LLamaModel.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:LLama.LLamaQuantizer">
+            <summary>
+            The quantizer to quantize the model.
+            </summary>
+        </member>
+        <member name="M:LLama.LLamaQuantizer.Quantize(System.String,System.String,LLama.Native.LLamaFtype,System.Int32)">
+            <summary>
+            Quantize the model.
+            </summary>
+            <param name="srcFileName">The model file to be quantized.</param>
+            <param name="dstFilename">The path to save the quantized model.</param>
+            <param name="ftype">The type of quantization.</param>
+            <param name="nthread">Thread to be used during the quantization. By default it's the physical core number.</param>
+            <returns>Whether the quantization is successful.</returns>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:LLama.LLamaQuantizer.Quantize(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Quantize the model.
+            </summary>
+            <param name="srcFileName">The model file to be quantized.</param>
+            <param name="dstFilename">The path to save the quantized model.</param>
+            <param name="ftype">The type of quantization.</param>
+            <param name="nthread">Thread to be used during the quantization. By default it's the physical core number.</param>
+            <returns>Whether the quantization is successful.</returns>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="T:LLama.StatelessExecutor">
+            <summary>
+            This executor infer the input as one-time job. Previous inputs won't impact on the 
+            response to current input.
+            </summary>
+        </member>
+        <member name="P:LLama.StatelessExecutor.Model">
+            <summary>
+            The mode used by the executor when running the inference.
+            </summary>
+        </member>
+        <member name="M:LLama.StatelessExecutor.#ctor(LLama.LLamaModel)">
+            <summary>
+            
+            </summary>
+            <param name="model">The LLama model.</param>
+        </member>
+        <member name="M:LLama.StatelessExecutor.Infer(System.String,LLama.Common.InferenceParams,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.StatelessExecutor.InferAsync(System.String,LLama.Common.InferenceParams,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LLama.LLamaTransforms">
+            <summary>
+            A class that contains all the transforms provided internally by LLama.
+            </summary>
+        </member>
+        <member name="T:LLama.LLamaTransforms.DefaultHistoryTransform">
+            <summary>
+            The default history transform.
+            Uses plain text with the following format:
+            [Author]: [Message]
+            </summary>
+        </member>
+        <member name="M:LLama.LLamaTransforms.DefaultHistoryTransform.#ctor(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="userName"></param>
+            <param name="assistantName"></param>
+            <param name="systemName"></param>
+            <param name="unknownName"></param>
+            <param name="isInstructMode"></param>
+        </member>
+        <member name="M:LLama.LLamaTransforms.DefaultHistoryTransform.HistoryToText(LLama.Common.ChatHistory)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.LLamaTransforms.DefaultHistoryTransform.TextToHistory(LLama.Common.AuthorRole,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.LLamaTransforms.DefaultHistoryTransform.TrimNamesFromText(System.String,LLama.Common.AuthorRole)">
+            <summary>
+            Drop the name at the beginning and the end of the text.
+            </summary>
+            <param name="text"></param>
+            <param name="role"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LLama.LLamaTransforms.NaiveTextInputTransform">
+            <summary>
+            A text input transform that only trims the text.
+            </summary>
+        </member>
+        <member name="M:LLama.LLamaTransforms.NaiveTextInputTransform.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:LLama.LLamaTransforms.NaiveTextInputTransform.Transform(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="T:LLama.LLamaTransforms.EmptyTextOutputStreamTransform">
+            <summary>
+            A no-op text input transform.
+            </summary>
+        </member>
+        <member name="M:LLama.LLamaTransforms.EmptyTextOutputStreamTransform.Transform(System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.LLamaTransforms.EmptyTextOutputStreamTransform.TransformAsync(System.Collections.Generic.IAsyncEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="T:LLama.LLamaTransforms.KeywordTextOutputStreamTransform">
+            <summary>
+            A text output transform that removes the keywords from the response.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LLama.LLamaTransforms.KeywordTextOutputStreamTransform.#ctor(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Boolean)" -->
+        <member name="M:LLama.LLamaTransforms.KeywordTextOutputStreamTransform.Transform(System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:LLama.LLamaTransforms.KeywordTextOutputStreamTransform.TransformAsync(System.Collections.Generic.IAsyncEnumerable{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.n_ctx">
+            <summary>
+            text context
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.n_gpu_layers">
+            <summary>
+            number of layers to store in VRAM
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.seed">
+            <summary>
+            RNG seed, -1 for random
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.f16_kv">
+            <summary>
+            use fp16 for KV cache
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.logits_all">
+            <summary>
+            the llama_eval() call computes all logits, not just the last one
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.vocab_only">
+            <summary>
+            only load the vocabulary, no weights
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.use_mmap">
+            <summary>
+            use mmap if possible
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.use_mlock">
+            <summary>
+            force system to keep model in RAM
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.embedding">
+            <summary>
+            embedding mode only
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.progress_callback">
+            <summary>
+            called with a progress value between 0 and 1, pass NULL to disable
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaContextParams.progress_callback_user_data">
+            <summary>
+            context pointer passed to the progress callback
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaTokenData.id">
+            <summary>
+            token id
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaTokenData.logit">
+            <summary>
+            log-odds of the token
+            </summary>
+        </member>
+        <member name="F:LLama.Native.LLamaTokenData.p">
+            <summary>
+            probability of the token
+            </summary>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_init_from_file(System.String,LLama.Native.LLamaContextParams)">
+            <summary>
+            Various functions for loading a ggml llama model.
+            Allocate (almost) all memory needed for the model.
+            Return NULL on failure
+            </summary>
+            <param name="path_model"></param>
+            <param name="params_"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_init_backend">
+            <summary>
+            not great API - very likely to change. 
+            Initialize the llama + ggml backend
+            Call once at the start of the program
+            </summary>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_free(System.IntPtr)">
+            <summary>
+            Frees all allocated memory
+            </summary>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_apply_lora_from_file(LLama.Native.SafeLLamaContextHandle,System.String,System.String,System.Int32)">
+            <summary>
+            Apply a LoRA adapter to a loaded model
+            path_base_model is the path to a higher quality model to use as a base for
+            the layers modified by the adapter. Can be NULL to use the current loaded model.
+            The model needs to be reloaded before applying a new adapter, otherwise the adapter
+            will be applied on top of the previous one
+            </summary>
+            <param name="ctx"></param>
+            <param name="path_lora"></param>
+            <param name="path_base_model"></param>
+            <param name="n_threads"></param>
+            <returns>Returns 0 on success</returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_get_kv_cache_token_count(LLama.Native.SafeLLamaContextHandle)">
+            <summary>
+            Returns the number of tokens in the KV cache
+            </summary>
+            <param name="ctx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_set_rng_seed(LLama.Native.SafeLLamaContextHandle,System.Int32)">
+            <summary>
+            Sets the current rng seed.
+            </summary>
+            <param name="ctx"></param>
+            <param name="seed"></param>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_get_state_size(LLama.Native.SafeLLamaContextHandle)">
+            <summary>
+            Returns the maximum size in bytes of the state (rng, logits, embedding
+            and kv_cache) - will often be smaller after compacting tokens
+            </summary>
+            <param name="ctx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_copy_state_data(LLama.Native.SafeLLamaContextHandle,System.Byte[])">
+            <summary>
+            Copies the state to the specified destination address.
+            Destination needs to have allocated enough memory.
+            Returns the number of bytes copied
+            </summary>
+            <param name="ctx"></param>
+            <param name="dest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_set_state_data(LLama.Native.SafeLLamaContextHandle,System.Byte[])">
+            <summary>
+            Set the state reading from the specified address
+            Returns the number of bytes read
+            </summary>
+            <param name="ctx"></param>
+            <param name="src"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_load_session_file(LLama.Native.SafeLLamaContextHandle,System.String,System.Int32[],System.UInt64,System.UInt64*)">
+            <summary>
+            Load session file
+            </summary>
+            <param name="ctx"></param>
+            <param name="path_session"></param>
+            <param name="tokens_out"></param>
+            <param name="n_token_capacity"></param>
+            <param name="n_token_count_out"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_save_session_file(LLama.Native.SafeLLamaContextHandle,System.String,System.Int32[],System.UInt64)">
+            <summary>
+            Save session file
+            </summary>
+            <param name="ctx"></param>
+            <param name="path_session"></param>
+            <param name="tokens"></param>
+            <param name="n_token_count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_eval(LLama.Native.SafeLLamaContextHandle,System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Run the llama inference to obtain the logits and probabilities for the next token.
+            tokens + n_tokens is the provided batch of new tokens to process
+            n_past is the number of tokens to use from previous eval calls
+            </summary>
+            <param name="ctx"></param>
+            <param name="tokens"></param>
+            <param name="n_tokens"></param>
+            <param name="n_past"></param>
+            <param name="n_threads"></param>
+            <returns>Returns 0 on success</returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_tokenize(LLama.Native.SafeLLamaContextHandle,System.String,System.Text.Encoding,System.Int32[],System.Int32,System.Boolean)">
+            <summary>
+            Convert the provided text into tokens.
+            The tokens pointer must be large enough to hold the resulting tokens.
+            Returns the number of tokens on success, no more than n_max_tokens
+            Returns a negative number on failure - the number of tokens that would have been returned
+            </summary>
+            <param name="ctx"></param>
+            <param name="text"></param>
+            <param name="tokens"></param>
+            <param name="n_max_tokens"></param>
+            <param name="add_bos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_get_logits(LLama.Native.SafeLLamaContextHandle)">
+            <summary>
+            Token logits obtained from the last call to llama_eval()
+            The logits for the last token are stored in the last row
+            Can be mutated in order to change the probabilities of the next token
+            Rows: n_tokens
+            Cols: n_vocab
+            </summary>
+            <param name="ctx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_get_embeddings(LLama.Native.SafeLLamaContextHandle)">
+            <summary>
+            Get the embeddings for the input
+            shape: [n_embd] (1-dimensional)
+            </summary>
+            <param name="ctx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_token_to_str(LLama.Native.SafeLLamaContextHandle,System.Int32)">
+            <summary>
+            Token Id -> String. Uses the vocabulary in the provided context
+            </summary>
+            <param name="ctx"></param>
+            <param name="token"></param>
+            <returns>Pointer to a string.</returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_print_system_info">
+            <summary>
+            Print system information
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:LLama.Native.NativeApi.llama_model_quantize(System.String,System.String,LLama.Native.LLamaFtype,System.Int32)" -->
+        <member name="M:LLama.Native.NativeApi.llama_sample_repetition_penalty(LLama.Native.SafeLLamaContextHandle,System.IntPtr,System.Int32[],System.UInt64,System.Single)">
+            <summary>
+            Repetition penalty described in CTRL academic paper https://arxiv.org/abs/1909.05858, with negative logit fix.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="last_tokens"></param>
+            <param name="last_tokens_size"></param>
+            <param name="penalty"></param>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_sample_frequency_and_presence_penalties(LLama.Native.SafeLLamaContextHandle,System.IntPtr,System.Int32[],System.UInt64,System.Single,System.Single)">
+            <summary>
+            Frequency and presence penalties described in OpenAI API https://platform.openai.com/docs/api-reference/parameter-details.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="last_tokens"></param>
+            <param name="last_tokens_size"></param>
+            <param name="alpha_frequency"></param>
+            <param name="alpha_presence"></param>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_sample_softmax(LLama.Native.SafeLLamaContextHandle,System.IntPtr)">
+            <summary>
+            Sorts candidate tokens by their logits in descending order and calculate probabilities based on logits.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_sample_top_k(LLama.Native.SafeLLamaContextHandle,System.IntPtr,System.Int32,System.UInt64)">
+            <summary>
+            Top-K sampling described in academic paper "The Curious Case of Neural Text Degeneration" https://arxiv.org/abs/1904.09751
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="k"></param>
+            <param name="min_keep"></param>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_sample_top_p(LLama.Native.SafeLLamaContextHandle,System.IntPtr,System.Single,System.UInt64)">
+            <summary>
+            Nucleus sampling described in academic paper "The Curious Case of Neural Text Degeneration" https://arxiv.org/abs/1904.09751
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="p"></param>
+            <param name="min_keep"></param>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_sample_tail_free(LLama.Native.SafeLLamaContextHandle,System.IntPtr,System.Single,System.UInt64)">
+            <summary>
+            Tail Free Sampling described in https://www.trentonbricken.com/Tail-Free-Sampling/.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="z"></param>
+            <param name="min_keep"></param>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_sample_typical(LLama.Native.SafeLLamaContextHandle,System.IntPtr,System.Single,System.UInt64)">
+            <summary>
+            Locally Typical Sampling implementation described in the paper https://arxiv.org/abs/2202.00666.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="p"></param>
+            <param name="min_keep"></param>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_sample_token_mirostat(LLama.Native.SafeLLamaContextHandle,System.IntPtr,System.Single,System.Single,System.Int32,System.Single*)">
+            <summary>
+            Mirostat 1.0 algorithm described in the paper https://arxiv.org/abs/2007.14966. Uses tokens instead of words.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">A vector of `llama_token_data` containing the candidate tokens, their probabilities (p), and log-odds (logit) for the current position in the generated text.</param>
+            <param name="tau">The target cross-entropy (or surprise) value you want to achieve for the generated text. A higher value corresponds to more surprising or less predictable text, while a lower value corresponds to less surprising or more predictable text.</param>
+            <param name="eta">The learning rate used to update `mu` based on the error between the target and observed surprisal of the sampled word. A larger learning rate will cause `mu` to be updated more quickly, while a smaller learning rate will result in slower updates.</param>
+            <param name="m">The number of tokens considered in the estimation of `s_hat`. This is an arbitrary value that is used to calculate `s_hat`, which in turn helps to calculate the value of `k`. In the paper, they use `m = 100`, but you can experiment with different values to see how it affects the performance of the algorithm.</param>
+            <param name="mu">Maximum cross-entropy. This value is initialized to be twice the target cross-entropy (`2 * tau`) and is updated in the algorithm based on the error between the target and observed surprisal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_sample_token_mirostat_v2(LLama.Native.SafeLLamaContextHandle,System.IntPtr,System.Single,System.Single,System.Single*)">
+            <summary>
+            Mirostat 2.0 algorithm described in the paper https://arxiv.org/abs/2007.14966. Uses tokens instead of words.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">A vector of `llama_token_data` containing the candidate tokens, their probabilities (p), and log-odds (logit) for the current position in the generated text.</param>
+            <param name="tau">The target cross-entropy (or surprise) value you want to achieve for the generated text. A higher value corresponds to more surprising or less predictable text, while a lower value corresponds to less surprising or more predictable text.</param>
+            <param name="eta">The learning rate used to update `mu` based on the error between the target and observed surprisal of the sampled word. A larger learning rate will cause `mu` to be updated more quickly, while a smaller learning rate will result in slower updates.</param>
+            <param name="mu">Maximum cross-entropy. This value is initialized to be twice the target cross-entropy (`2 * tau`) and is updated in the algorithm based on the error between the target and observed surprisal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_sample_token_greedy(LLama.Native.SafeLLamaContextHandle,System.IntPtr)">
+            <summary>
+            Selects the token with the highest probability.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.NativeApi.llama_sample_token(LLama.Native.SafeLLamaContextHandle,System.IntPtr)">
+            <summary>
+            Randomly selects a token from the candidates based on their probabilities.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_repetition_penalty(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray,System.Int32[],System.UInt64,System.Single)">
+            <summary>
+            Repetition penalty described in CTRL academic paper https://arxiv.org/abs/1909.05858, with negative logit fix.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="last_tokens"></param>
+            <param name="last_tokens_size"></param>
+            <param name="penalty"></param>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_frequency_and_presence_penalties(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray,System.Int32[],System.UInt64,System.Single,System.Single)">
+            <summary>
+            Frequency and presence penalties described in OpenAI API https://platform.openai.com/docs/api-reference/parameter-details.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="last_tokens"></param>
+            <param name="last_tokens_size"></param>
+            <param name="alpha_frequency"></param>
+            <param name="alpha_presence"></param>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_softmax(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray)">
+            <summary>
+            Sorts candidate tokens by their logits in descending order and calculate probabilities based on logits.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_top_k(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray,System.Int32,System.UInt64)">
+            <summary>
+            Top-K sampling described in academic paper "The Curious Case of Neural Text Degeneration" https://arxiv.org/abs/1904.09751
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="k"></param>
+            <param name="min_keep"></param>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_top_p(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray,System.Single,System.UInt64)">
+            <summary>
+            Nucleus sampling described in academic paper "The Curious Case of Neural Text Degeneration" https://arxiv.org/abs/1904.09751
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="p"></param>
+            <param name="min_keep"></param>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_tail_free(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray,System.Single,System.UInt64)">
+            <summary>
+            Tail Free Sampling described in https://www.trentonbricken.com/Tail-Free-Sampling/.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="z"></param>
+            <param name="min_keep"></param>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_typical(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray,System.Single,System.UInt64)">
+            <summary>
+            Locally Typical Sampling implementation described in the paper https://arxiv.org/abs/2202.00666.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <param name="p"></param>
+            <param name="min_keep"></param>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_token_mirostat(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray,System.Single,System.Single,System.Int32,System.Single@)">
+            <summary>
+            Mirostat 1.0 algorithm described in the paper https://arxiv.org/abs/2007.14966. Uses tokens instead of words.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">A vector of `LLamaTokenData` containing the candidate tokens, their probabilities (p), and log-odds (logit) for the current position in the generated text.</param>
+            <param name="tau">The target cross-entropy (or surprise) value you want to achieve for the generated text. A higher value corresponds to more surprising or less predictable text, while a lower value corresponds to less surprising or more predictable text.</param>
+            <param name="eta">The learning rate used to update `mu` based on the error between the target and observed surprisal of the sampled word. A larger learning rate will cause `mu` to be updated more quickly, while a smaller learning rate will result in slower updates.</param>
+            <param name="m">The number of tokens considered in the estimation of `s_hat`. This is an arbitrary value that is used to calculate `s_hat`, which in turn helps to calculate the value of `k`. In the paper, they use `m = 100`, but you can experiment with different values to see how it affects the performance of the algorithm.</param>
+            <param name="mu">Maximum cross-entropy. This value is initialized to be twice the target cross-entropy (`2 * tau`) and is updated in the algorithm based on the error between the target and observed surprisal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_token_mirostat_v2(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray,System.Single,System.Single,System.Single@)">
+            <summary>
+            Mirostat 2.0 algorithm described in the paper https://arxiv.org/abs/2007.14966. Uses tokens instead of words.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">A vector of `LLamaTokenData` containing the candidate tokens, their probabilities (p), and log-odds (logit) for the current position in the generated text.</param>
+            <param name="tau">The target cross-entropy (or surprise) value you want to achieve for the generated text. A higher value corresponds to more surprising or less predictable text, while a lower value corresponds to less surprising or more predictable text.</param>
+            <param name="eta">The learning rate used to update `mu` based on the error between the target and observed surprisal of the sampled word. A larger learning rate will cause `mu` to be updated more quickly, while a smaller learning rate will result in slower updates.</param>
+            <param name="mu">Maximum cross-entropy. This value is initialized to be twice the target cross-entropy (`2 * tau`) and is updated in the algorithm based on the error between the target and observed surprisal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_token_greedy(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray)">
+            <summary>
+            Selects the token with the highest probability.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.Native.SamplingApi.llama_sample_token(LLama.Native.SafeLLamaContextHandle,LLama.Native.LLamaTokenDataArray)">
+            <summary>
+            Randomly selects a token from the candidates based on their probabilities.
+            </summary>
+            <param name="ctx"></param>
+            <param name="candidates">Pointer to LLamaTokenDataArray</param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.OldVersion.ChatSession`1.WithAntiprompt(System.String[])">
+            <summary>
+            Set the keyword to split the return value of chat AI.
+            </summary>
+            <param name="humanName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.OldVersion.IChatModel.InitChatPrompt(System.String,System.String)">
+            <summary>
+            Init a prompt for chat and automatically produce the next prompt during the chat.
+            </summary>
+            <param name="prompt"></param>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaEmbedder.#ctor(LLama.Native.SafeLLamaContextHandle)">
+            <summary>
+            Warning: must ensure the original model has params.embedding = true;
+            </summary>
+            <param name="ctx"></param>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaModel.#ctor(System.String,System.String,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.Dictionary{System.Int32,System.Single},System.Int32,System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Single,System.Single,System.Int32,System.Single,System.Single,System.String,System.String,System.String,System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Please refer `LLamaParams` to find the meanings of each arg. Be sure to have set the `n_gpu_layers`, otherwise it will 
+            load 20 layers to gpu by default.
+            </summary>
+            <param name="model_path">The model file path.</param>
+            <param name="model_name">The model name.</param>
+            <param name="verbose">Whether to print details when running the model.</param>
+            <param name="seed"></param>
+            <param name="n_threads"></param>
+            <param name="n_predict"></param>
+            <param name="n_ctx"></param>
+            <param name="n_batch"></param>
+            <param name="n_keep"></param>
+            <param name="n_gpu_layers"></param>
+            <param name="logit_bias"></param>
+            <param name="top_k"></param>
+            <param name="top_p"></param>
+            <param name="tfs_z"></param>
+            <param name="typical_p"></param>
+            <param name="temp"></param>
+            <param name="repeat_penalty"></param>
+            <param name="repeat_last_n"></param>
+            <param name="frequency_penalty"></param>
+            <param name="presence_penalty"></param>
+            <param name="mirostat"></param>
+            <param name="mirostat_tau"></param>
+            <param name="mirostat_eta"></param>
+            <param name="prompt"></param>
+            <param name="path_session"></param>
+            <param name="input_prefix"></param>
+            <param name="input_suffix"></param>
+            <param name="antiprompt"></param>
+            <param name="lora_adapter"></param>
+            <param name="lora_base"></param>
+            <param name="memory_f16"></param>
+            <param name="random_prompt"></param>
+            <param name="use_color"></param>
+            <param name="interactive"></param>
+            <param name="embedding"></param>
+            <param name="interactive_first"></param>
+            <param name="prompt_cache_all"></param>
+            <param name="instruct"></param>
+            <param name="penalize_nl"></param>
+            <param name="perplexity"></param>
+            <param name="use_mmap"></param>
+            <param name="use_mlock"></param>
+            <param name="mem_test"></param>
+            <param name="verbose_prompt"></param>
+            <param name="encoding"></param>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaModel.#ctor(LLama.OldVersion.LLamaParams,System.String,System.Boolean,System.String)">
+            <summary>
+            Please refer `LLamaParams` to find the meanings of each arg. Be sure to have set the `n_gpu_layers`, otherwise it will 
+            load 20 layers to gpu by default.
+            </summary>
+            <param name="params">The LLamaModel params</param>
+            <param name="name">Model name</param>
+            <param name="verbose">Whether to output the detailed info.</param>
+            <param name="encoding"></param>
+            <exception cref="T:LLama.Exceptions.RuntimeError"></exception>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaModel.WithPrompt(System.String,System.String)">
+            <summary>
+            Apply a prompt to the model.
+            </summary>
+            <param name="prompt"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaModel.WithPromptFile(System.String)">
+            <summary>
+            Apply the prompt file to the model.
+            </summary>
+            <param name="promptFileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaModel.Chat(System.String,System.String,System.String)">
+            <summary>
+            Chat with the LLaMa model under interactive mode.
+            </summary>
+            <param name="text"></param>
+            <param name="prompt"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaModel.SaveState(System.String)">
+            <summary>
+            Save the state to specified path.
+            </summary>
+            <param name="filename"></param>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaModel.LoadState(System.String,System.Boolean)">
+            <summary>
+            Load the state from specified path.
+            </summary>
+            <param name="filename"></param>
+            <param name="clearPreviousEmbed">Whether to clear previous footprints of this model.</param>
+            <exception cref="T:LLama.Exceptions.RuntimeError"></exception>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaModel.Tokenize(System.String,System.String)">
+            <summary>
+            Tokenize a string.
+            </summary>
+            <param name="text">The utf-8 encoded string to tokenize.</param>
+            <returns>A list of tokens.</returns>
+            <exception cref="T:LLama.Exceptions.RuntimeError">If the tokenization failed.</exception>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaModel.DeTokenize(System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Detokenize a list of tokens.
+            </summary>
+            <param name="tokens">The list of tokens to detokenize.</param>
+            <returns>The detokenized string.</returns>
+        </member>
+        <member name="M:LLama.OldVersion.LLamaModel.Call(System.String,System.String)">
+            <summary>
+            Call the model to run inference.
+            </summary>
+            <param name="text"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+            <exception cref="T:LLama.Exceptions.RuntimeError"></exception>
+        </member>
+        <member name="T:LLama.ResettableLLamaModel">
+            <summary>
+            A LLamaModel what could be reset. Note that using this class will consume about 10% more memories.
+            </summary>
+        </member>
+        <member name="P:LLama.ResettableLLamaModel.OriginalState">
+            <summary>
+            The initial state of the model
+            </summary>
+        </member>
+        <member name="M:LLama.ResettableLLamaModel.#ctor(LLama.Common.ModelParams,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Params"></param>
+            <param name="encoding"></param>
+        </member>
+        <member name="M:LLama.ResettableLLamaModel.Reset">
+            <summary>
+            Reset the state to the initial state.
+            </summary>
+        </member>
+    </members>
+</doc>
