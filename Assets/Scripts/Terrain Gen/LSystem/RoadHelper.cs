@@ -128,4 +128,14 @@ public class RoadHelper : MonoBehaviour
             }
         }
     }
+
+    public void Reset()
+    {
+        foreach (var item in roadDictionary.Values)
+        {
+            Destroy(item);
+        }
+        roadDictionary.Clear();
+        fixRoadCandidates = new HashSet<Vector3Int>();
+    }
 }

@@ -159,4 +159,22 @@ public class StructureHelper : MonoBehaviour
         }
         return freeSpaces;
     }
+
+    public void Reset()
+    {
+        foreach (var item in structuresDictionary.Values)
+        {
+            Destroy(item);
+        }
+        structuresDictionary.Clear();
+        foreach (var item in natureDictionary.Values)
+        {
+            Destroy(item);
+        }
+        natureDictionary.Clear();
+        foreach(var buildingType in structureTypes)
+        {
+            buildingType.Reset();
+        }
+    }
 }

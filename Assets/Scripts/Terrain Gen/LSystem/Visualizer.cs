@@ -12,7 +12,10 @@ public class Visualizer : MonoBehaviour
     public RoadHelper roadHelper;
     public StructureHelper structureHelper;
 
-    private int length = 10; //can edit road length
+    [Tooltip("Size parameter for generation")]
+    public int length = 10; //can edit road length
+    [Tooltip("Starting position for town generation")]
+    public Vector3 startingPos = Vector3.zero;
     private float angle = 90; //can edit road angle, will stay constant for now
 
     public int Length {

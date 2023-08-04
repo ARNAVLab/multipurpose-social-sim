@@ -5134,12 +5134,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 279705760, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
-      propertyPath: customOriginX
+      propertyPath: length
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 279705760, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
+      propertyPath: customOriginX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 279705760, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
       propertyPath: customOriginY
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1586008584879934009, guid: 1547824b3561c58459a5bfb0aef64cfe, type: 3}
       propertyPath: m_Name
@@ -7516,6 +7520,7 @@ MonoBehaviour:
   - {fileID: 624908724591017049}
   - {fileID: 2411781398417681607}
   - {fileID: 3130500230127001589}
+  relationsDisp: {fileID: 0}
 --- !u!222 &2604251395656202148
 CanvasRenderer:
   m_ObjectHideFlags: 0
