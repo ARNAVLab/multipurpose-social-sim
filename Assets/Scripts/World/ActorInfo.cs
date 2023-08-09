@@ -1,21 +1,9 @@
 using System;
 
 [Serializable]
-public struct ActorsInfo
-{
-    public ActorInfo[] actors;
-}
-
-[Serializable]
 public class ActorInfo
 
 {
-    [Serializable]
-    public struct Location
-    {
-        public float xPos;
-        public float yPos;
-    }
     [Serializable]
     public struct Relationship
     {
@@ -35,9 +23,9 @@ public class ActorInfo
 
     public string name;
     public Motive motive;
-    public Location currentLocation;
+    public string currentLocation;
+    public string destination;
     public int occupiedCounter;
     public string currentAction;
-    public Location destination;
     public Relationship[] relationships;
 }

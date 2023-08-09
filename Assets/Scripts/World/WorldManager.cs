@@ -66,6 +66,8 @@ public class WorldManager : MonoBehaviour
             GameObject spawnedLocation = Instantiate(locationPref);
             spawnedLocation.name = loc.Name;
             spawnedLocation.transform.position = new Vector3(loc.Coordinates.X, loc.Coordinates.Y, 0);
+            Place placeComp = spawnedLocation.GetComponent<Place>();
+            placeComp.placeName = loc.Name;
         }
         buttonManager = GetComponent<ButtonManager>();
     }

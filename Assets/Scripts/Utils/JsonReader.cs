@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class JsonReader
 {
-    public ActorsInfo GetAgentsInfo(string agentsJson)
-    {
-        return JsonUtility.FromJson<ActorsInfo>(agentsJson);
-    }
+    //public struct ActorsInfo
+    //{
+    //    ActorInfo[] actors;
+    //}
+
+    //public ActorsInfo GetAgentsInfo(string agentsJson)
+    //{
+    //    return JsonUtility.FromJson<ActorsInfo>(agentsJson);
+    //}
 }

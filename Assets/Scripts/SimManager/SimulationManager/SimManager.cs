@@ -27,7 +27,7 @@ namespace Anthology.SimulationManager
         /// <summary>
         /// Collection of Locations as they exist for use by the frontend and for synchronization with the simulations.
         /// </summary>
-        public static Dictionary<Location.Coords, Location> Locations { get; set; } = new();
+        public static Dictionary<string, Location> Locations { get; set; } = new();
 
         /// <summary>
         /// The simulation used for updating NPC actions, locations, and other physical traits.
@@ -153,7 +153,7 @@ namespace Anthology.SimulationManager
             if (locations != null)
             {
                 foreach (Location newLoc in locations)
-                    Locations[newLoc.Coordinates] = newLoc;
+                    Locations[newLoc.Name] = newLoc;
                 Reality?.LoadLocations(Locations);
             }
             

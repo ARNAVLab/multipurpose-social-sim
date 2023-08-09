@@ -25,7 +25,7 @@ namespace Anthology.SimulationManager
         /// Used to populate the SimManager's collection of Locations from the relaity sim.
         /// </summary>
         /// <param name="locations">The SimManager's dictionary to populate.</param>
-        public abstract void LoadLocations(Dictionary<Location.Coords, Location> locations);
+        public abstract void LoadLocations(Dictionary<string, Location> locations);
 
         /// <summary>
         /// Used to update the reality sim's location models to match the SimManager's collection of Locations.

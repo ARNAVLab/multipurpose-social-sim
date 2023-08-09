@@ -53,7 +53,7 @@ namespace Anthology.SimulationManager
         /// Loads all locations from Anthology to given dictionary.
         /// </summary>
         /// <param name="locations">The dictionary to populate.</param>
-        public override void LoadLocations(Dictionary<Location.Coords, Location> locations)
+        public override void LoadLocations(Dictionary<string, Location> locations)
         {
             locations.Clear();
             IEnumerable<LocationNode> locNodes = LocationManager.LocationsByName.Values;
@@ -69,7 +69,7 @@ namespace Anthology.SimulationManager
                 {
                     loc.Connections.Add(con.Key, con.Value);
                 }
-                locations.Add(loc.Coordinates, loc);
+                locations.Add(loc.Name, loc);
             }
         }
 

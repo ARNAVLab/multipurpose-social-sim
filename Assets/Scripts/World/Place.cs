@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Place : Selectable
 {
-
+    public string placeName;
 }

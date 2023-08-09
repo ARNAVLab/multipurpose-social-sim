@@ -16,9 +16,9 @@ public class PlaceInfoDisplay : MonoBehaviour, IInfoDisplay
     public void DisplayInfo(Selectable selected)
     {
         Place selectedPlace = (Place) selected;
-        Location.Coords locPos = new Location.Coords((int)selectedPlace.transform.position.x, (int)selectedPlace.transform.position.y);
+        string selectedName = selectedPlace.placeName;
         Location prospLoc;
-        if (!SimManager.Locations.TryGetValue(locPos, out prospLoc))
+        if (!SimManager.Locations.TryGetValue(selectedName, out prospLoc))
             return;
 
         locationName.text = prospLoc.Name.FirstCharacterToUpper();
