@@ -2,27 +2,44 @@
 
 namespace Anthology.Models
 {
+    /// <summary>
+    /// Manages UI for web interface.
+    /// </summary>
     public static class UI
     {
-        /** the size of the UI grid (n x n) */
+        /// <summary>
+        /// The size of the UI grid (n x n).
+        /// </summary>
         public static int GridSize { get; set; } = 6;
 
-        /** ms between movement actions */
+        /// <summary>
+        /// Time between movement actions in milliseconds.
+        /// </summary>
         public static int SleepMove { get; set; } = 1000;
 
-        /** ms between action ticks when still */
+        /// <summary>
+        /// Milliseconds between action ticks when still.
+        /// </summary>
         public static int SleepStill { get; set; } = 10;
 
-        /** whether or not the UI is paused */
-        public static bool Paused { get; set; } = true;
+        /// <summary>
+        /// Whether or not the UI is paused.
+        /// </summary>
+        public static bool Paused { get; set; } = false;
 
-        /** each slot in the array is the characters contained on one board space */
+        /// <summary>
+        /// Each slot in the array is the characters contained on one board space.
+        /// </summary>
         public static List<List<string>> Board { get; set; } = new();
 
-        /** name of the agent selected in the agent dropdown */
+        /// <summary>
+        /// Name of the agent selected in the agent dropdown.
+        /// </summary>
         public static string ActiveAgent { get; set; } = "-None-";
 
-        /** Clears the board GUI and fills all the cells with empty strings */
+        /// <summary>
+        /// Clears the board GUI and fills all the cells with empty strings.
+        /// </summary>
         public static void Init()
         {
             Board.Clear();
@@ -36,6 +53,9 @@ namespace Anthology.Models
             }
         }
 
+        /// <summary>
+        /// UI state to be updated per tick.
+        /// </summary>
         public static void Update() { }
     }
 }

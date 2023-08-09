@@ -7,42 +7,61 @@ using System.Numerics;
 
 namespace Anthology.SimulationManager
 {
-    /** 
-     * The SimManager (or simulation manager) is used to coordinate the activities and data of two 
-     * different simulations in order to connect their functionality and offer support for 
-     * front-end applications
-     */
+    /// <summary>
+    /// The SimManager (or simulation manager) is used to coordinate the activities and data of two 
+    /// different simulations in order to connect their functionality and offer support for 
+    /// front-end applications.
+    /// </summary>
     public static class SimManager
     {
+        /// <summary>
+        /// Name of log to store history
+        /// </summary>
         private const string LOG_PATH = "NPC History";
 
-        /** Collection of NPCs coupled with data only pertinent to connecting simulations and the frontend */
+        /// <summary>
+        /// Collection of NPCs coupled with data only pertinent to connecting simulations and the frontend.
+        /// </summary>
         public static Dictionary<string, NPC> NPCs { get; set; } = new();
 
-        /** Collection of Locations as they exist for use by the frontend and for synchronization with the simulations */
+        /// <summary>
+        /// Collection of Locations as they exist for use by the frontend and for synchronization with the simulations.
+        /// </summary>
         public static Dictionary<Location.Coords, Location> Locations { get; set; } = new();
 
-        /** The simulation used for updating NPC actions, locations, and other physical traits */
+        /// <summary>
+        /// The simulation used for updating NPC actions, locations, and other physical traits.
+        /// </summary>
         public static RealitySim? Reality { get; set; }
 
-        /** The simulation used for updating NPC knowledge, opinions, and beliefs */
+        /// <summary>
+        /// The simulation used for updating NPC knowledge, opinions, and beliefs.
+        /// </summary>
         public static KnowledgeSim? Knowledge { get; set; }
 
-        /** The logger used for keeping track of the simulation's history and saving & loading states */
+        /// <summary>
+        /// The logger used for keeping track of the simulation's history and saving and loading states.
+        /// </summary>
         public static HistoryLogger? History { get; set; }
 
-        /** The number of iterations run since the initializaztion of the simulation manager */
+        /// <summary>
+        /// The number of iterations run since the initializaztion of the simulation manager.
+        /// </summary>
         public static uint NumIterations { get; set; }
 
-        /** 
-         * Initializes the simulation manager using the given file pathname and types of 
-         * Reality and Knowledge sims
-         * 
-         * To use custom Reality or Knowledge Sim implementations, this method should be called and 
-         * modified in any user-facing or client programs
-         * 
-         * Example usage: SimManager.Init("myPath.json", typeof(MyRealitySim), typeof(MyKnowledgeSim)
-         */
+        /// <summary>
+        /// Initializes the simulation manager using the given file pathname and types of 
+        /// Reality and Knowledge sims
+        /// 
+        /// To use custom Reality or Knowledge Sim implementations, this method should be called and 
+        /// modified in any user-facing or client programs
+        /// 
+        /// Example usage: SimManager.Init("myPath.json", typeof(MyRealitySim), typeof(MyKnowledgeSim)
+        /// </summary>
+        /// <param name="JSONfile">Path of JSON file containing sim data.</param>
+        /// <param name="reality">The reailty sim type to use.</param>
+        /// <param name="knowledge">The knowledge sim type to use.</param>
+        /// <param name="history">The history manager type to use.</param>
         public static void Init(string JSONfile, Type reality, Type knowledge, Type history)
         {
             if (reality.IsSubclassOf(typeof(RealitySim)))
@@ -64,9 +83,8 @@ namespace Anthology.SimulationManager
                 Knowledge?.Init(JSONfile);
                 Knowledge?.LoadNpcs(NPCs);
             }
-            else
+            //else
                 // throw new InvalidCastException("Failed to recognize knowledge sim type"); ignored until LyraKS is implemented
-                ;
             if (history.IsSubclassOf(typeof(HistoryLogger)))
             {
                 History = Activator.CreateInstance(history) as HistoryLogger;
@@ -78,10 +96,11 @@ namespace Anthology.SimulationManager
                 throw new InvalidCastException("Failed to recognize history logger");
         }
 
-        /**
-         * Runs the specified number of steps of both the reality and knowledge simulations,
-         * if they exist, and obtains any modifications to NPCs from both sims
-         */
+        /// <summary>
+        /// Runs the specified number of steps of both the reality and knowledge simulations,
+        /// if they exist, and obtains any modifications to NPCs from both sims.
+        /// </summary>
+        /// <param name="steps">Number of steps to advance the simulation.</param>
         public static void GetIteration(int steps = 1)
         {
             for (int i = 0; i < steps; i++)
@@ -95,20 +114,14 @@ namespace Anthology.SimulationManager
                 }
                 History?.LogNpcStates(LOG_PATH);
             }
-            Reality?.Run();
-            Knowledge?.Run();
-            foreach (NPC npc in NPCs.Values)
-            {
-                Reality?.UpdateNpc(npc);
-                Knowledge?.UpdateNpc(npc);
-            }
         }
 
-        /**
-         * Sends the specified NPC to both the reality and knowledge simulations in order to update 
-         * any information on their end.
-         * Should be used whenever manual changes are made from a user interface
-         */
+        /// <summary>
+        /// Sends the specified NPC to both the reality and knowledge simulations in order to update 
+        /// any information on their end.
+        /// Should be used whenever manual changes are made from a user interface.
+        /// </summary>
+        /// <param name="npc">The NPC to be updated on the reality and knowledge sims.</param>
         public static void PushUpdatedNpc(NPC npc)
         {
             if (npc.Dirty)
@@ -119,22 +132,39 @@ namespace Anthology.SimulationManager
             }
         }
 
+        /// <summary>
+        /// Saves the current state in the history manager.
+        /// </summary>
+        /// <param name="stateName">The name of the current state to save.</param>
         public static void SaveState(string stateName = "")
         {
-            History.SaveState(stateName);
+            History?.SaveState(stateName);
         }
 
+        /// <summary>
+        /// Loads a state via the history manager and loads all NPCs and locations from
+        /// that state.
+        /// </summary>
+        /// <param name="stateName">Name of the state to load.</param>
         public static void LoadState(string stateName)
         {
-            SimState state = History?.LoadState(stateName);
-            foreach (Location newLoc in state.Locations)
-                Locations[newLoc.Coordinates] = newLoc;
-            Reality.LoadLocations(Locations);
-
-            foreach (NPC newNPC in state.NPCs)
+            SimState? state = History?.LoadState(stateName);
+            HashSet<Location>? locations = state?.Locations;
+            if (locations != null)
             {
-                NPCs[newNPC.Name] = newNPC;
-                Reality.PushUpdatedNpc(newNPC);              
+                foreach (Location newLoc in locations)
+                    Locations[newLoc.Coordinates] = newLoc;
+                Reality?.LoadLocations(Locations);
+            }
+            
+            HashSet<NPC>? npcs = state?.NPCs;
+            if (npcs != null)
+            {
+                foreach (NPC newNPC in npcs)
+                {
+                    NPCs[newNPC.Name] = newNPC;
+                    Reality?.PushUpdatedNpc(newNPC);
+                }
             }
         }
     }

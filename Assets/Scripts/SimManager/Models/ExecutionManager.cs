@@ -1,29 +1,39 @@
 ﻿using System;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Anthology.Models
 {
+    /// <summary>
+    /// Manages execution and lifetime of the simulation.
+    /// </summary>
     public static class ExecutionManager
     {
-        /** Initializes the simulation, delegates to World.Init() */
+        /// <summary>
+        /// Initializes the simulation by initializing the world.
+        /// </summary>
+        /// <param name="pathToFiles">Path of JSON file containing relevant paths to other JSON files.</param>
         public static void Init(string pathToFiles)
         {
             World.ReadWrite.InitWorldFromPaths(pathToFiles);
         }
 
-        /**
-         * Executes a turn for each agent every tick.
-         * Executes a single turn and then must be called again
-         */
+        /// <summary>
+        /// Executes a turn for each agent every tick.
+        /// Executes a single turn and then must be called again.
+        /// </summary>
+        /// <param name="steps">Number of steps to advance the simulation by.</param>
         public static void RunSim(int steps = 1)
         {
             for (int i = 0; i < steps; i++)
             {
                 if (ToContinue())
                 {
-                    foreach (Agent agent in AgentManager.Agents)
+                    Parallel.ForEach(AgentManager.Agents, agent =>
+                    {
                         Turn(agent);
+                    });
 
                     World.IncrementTime();
                 }
@@ -36,28 +46,23 @@ namespace Anthology.Models
             UI.Update();
         }
 
-        /**
-         * Tests whether the simulation should continue.
-         * First checks whether the stopping function for the simulation has been met.
-         * Next checks if the user has paused the simulation
-         */
+        /// <summary>
+        /// Tests whether the simulation should continue.
+        /// First checks whether the stopping function for the simulation has been met.
+        /// Next checks if the user has paused the simulation.
+        /// </summary>
+        /// <returns>True if the simulation should continue.</returns>
         public static bool ToContinue()
         {
-            if (AgentManager.AllAgentsContent())
-            {
-                return false;
-            }
-            else if (!UI.Paused)
-            {
-                return false;
-            }
-            return true;
+            return !(UI.Paused || AgentManager.AllAgentsContent());
         }
 
-        /**
-         * Updates movement and occupation counters for an agent
-         * May decrement the motives of an agent once every 10 hours. Chooses or executes an action when necessary.
-         */
+        /// <summary>
+        /// Updates movement and occupation counters for an agent.
+        /// May decrement the motives of an agent once every 10 hours. Chooses or executes an action when necessary.
+        /// </summary>
+        /// <param name="agent">The agent whose turn will happen.</param>
+        /// <returns>True if agent moved from original position.</returns>
         public static bool Turn(Agent agent)
         {
             bool movement = false;
@@ -66,7 +71,7 @@ namespace Anthology.Models
             {
                 agent.OccupiedCounter--;
 
-                if (agent.CurrentAction.First().Name == "travel_action" && agent.XDestination != -1)
+                if (agent.CurrentAction.First().Name == "travel_action" && agent.Destination != string.Empty)
                 {
                     movement = true;
                     agent.MoveCloserToDestination();
@@ -91,20 +96,24 @@ namespace Anthology.Models
             return movement;
         }
 
-        /**
-         * Interrupts the agent from the current action they are performing.
-         * Potential future implementation: Optionally add the interrupted action (with the remaining occupied counter) to the end of the action queue.
-         */
+        /// <summary>
+        /// Interrupts the agent from the current action they are performing.
+        /// Potential future implementation: Optionally add the interrupted action (with the remaining occupied counter) to the end of the action queue.
+        /// </summary>
+        /// <param name="agent">The agent to interrupt.</param>
         public static void Interrupt(Agent agent)
         {
             agent.OccupiedCounter = 0;
-            agent.XDestination = -1;
-            agent.YDestination = -1;
+            agent.Destination = string.Empty;
             Action interrupted = agent.CurrentAction.First();
             agent.CurrentAction.RemoveFirst();
             Console.WriteLine("Agent: " + agent.Name + " was interrupted from action: " + interrupted.Name);
         }
 
+        /// <summary>
+        /// Interrupt the agent whose name matches given name.
+        /// </summary>
+        /// <param name="agentName">The name of the agent to interrupt.</param>
         public static void Interrupt(string agentName)
         {
             Agent? agent = AgentManager.GetAgentByName(agentName);

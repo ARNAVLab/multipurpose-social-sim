@@ -33,9 +33,9 @@ public class RelationshipDisplay : MonoBehaviour
             Destroy(relationshipObj);
         }
         relationshipList.Clear();
-        foreach (Relationship r in npc.Relationships)
+        foreach (KeyValuePair<string, string> r in npc.Relationships)
         {
-            AddRelationship(r.Type, r.With);
+            AddRelationship(r.Key, r.Value);
         }
     }
 
