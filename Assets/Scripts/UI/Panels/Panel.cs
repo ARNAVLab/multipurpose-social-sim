@@ -31,10 +31,6 @@ public class Panel : MonoBehaviour
     [SerializeField] protected bool isShown = false;
     public bool IsShown { get { return isShown; } }
 
-    [Tooltip("Whether this panel is currently minimized to just its header or expanded to show its full contents.")]
-    [SerializeField] protected bool isExpanded = false;
-    public bool IsExpanded { get { return isExpanded; } }
-
     /**
      * On startup, Panels Show/Hide and Expand/Collapse themselves based on the values given to them in the editor.
      */
@@ -48,11 +44,6 @@ public class Panel : MonoBehaviour
             Show();
         else
             Hide();
-
-        if (IsExpanded)
-            Expand();
-        else
-            Collapse();
     }
 
     /**
@@ -212,52 +203,6 @@ public class Panel : MonoBehaviour
         foreach (Panel p in connectedPanels)
         {
             p.Hide();
-        }
-    }
-
-    /**
-     * Resizes this Panel to the value of currSize, and enables manual resizing.
-     */
-    public void Expand()
-    {
-        isExpanded = true;
-
-        ResizePanel(currSize, Vector2.left + Vector2.down, false);
-
-        foreach (GameObject bar in sizeBars)
-        {
-            bar.GetComponent<InteractableUI>().enabled = true;
-        }
-    }
-
-    /**
-     * Resizes this Panel to a fixed, "collapsed" value, and disables manual resizing.
-     */
-    public void Collapse()
-    {
-        isExpanded = false;
-
-        Vector2 targetSize = new Vector2(90, 30);
-        ResizePanel(targetSize, Vector2.left + Vector2.down, false);
-
-        foreach (GameObject bar in sizeBars)
-        {
-            bar.GetComponent<InteractableUI>().enabled = false;
-        }
-    }
-
-    /**
-     * Delegates to Collapse or Expand, based on the value of isExpanded.
-     */
-    public void ToggleMinimized()
-    {
-        if (isExpanded)
-        {
-            Collapse();
-        }
-        else
-        {
-            Expand();
         }
     }
 

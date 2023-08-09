@@ -6,15 +6,20 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    // The UIManager Singleton instance.
     private static UIManager instance;
 
-    [Tooltip("The Panel which displays Agent information when one or more is selected.")]
+    [Tooltip("The Panel which displays Actor information when one or more is selected.")]
     [SerializeField] private ActorInfoDisplay actorInfo;
+    [Tooltip("The Panel which displays Location information when one or more is selected.")]
     [SerializeField] private PlaceInfoDisplay placeInfo;
 
+    [Tooltip("The button which changes the selection mode to 'Actors Only'.")]
     [SerializeField] private Button actorModeBtn;
+    [Tooltip("The button which changes the selection mode to 'Locations Only'.")]
     [SerializeField] private Button placeModeBtn;
 
+    // Sprites to telegraph which selection mode is currently selected.
     [SerializeField] private Sprite actorModeOn;
     [SerializeField] private Sprite actorModeOff;
     [SerializeField] private Sprite placeModeOn;
@@ -27,6 +32,8 @@ public class UIManager : MonoBehaviour
     }
     private static SelectType selectMode = SelectType.ACTORS;
 
+    // These track which UI element is currently being interacted with using a unique identifier.
+    // This is such that several UI elements are not interacted with at once when they are stacked on one another.
     private static int nextUIElementID = 0;
     public static int elementInControl = -1;
 
@@ -119,6 +126,9 @@ public class UIManager : MonoBehaviour
         return result;
     }
 
+    /**
+     * Deselects and unfocuses all Selectables in the list, then clears the list.
+     */
     private void ClearSelected()
     {
         foreach (Selectable s in selected)
@@ -131,6 +141,11 @@ public class UIManager : MonoBehaviour
         Debug.Log("cleared");
     }
 
+    /**
+     * Invoked whenever the mouse button is released while dragging the selection box.
+     * If nothing was selected, clear all selecteds and hide info panels.
+     * If something was selected, show the appropriate info panel.
+     */
     private void SelectionListener()
     {
         HashSet<Selectable> selectedSet = SelectionManager.Instance.Selected;
@@ -159,6 +174,7 @@ public class UIManager : MonoBehaviour
             foreach (Selectable s in selectedSet)
             {
                 selected.Add(s);
+                s.Select();
             }
 
             focusedIdx = 0;
