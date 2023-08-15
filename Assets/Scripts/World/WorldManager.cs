@@ -18,6 +18,9 @@ public class WorldManager : MonoBehaviour
 
     public static Dictionary<int, Actor> actors = new Dictionary<int, Actor>();
 
+    //private string pathsPath = "Assets/Scripts/SimManager/Data/Paths.json";
+    private string pathsPath = "Assets/Scripts/SimManager/Data/AugustDemo/Paths.json";
+
     private bool physical;
 
     private bool emotional;
@@ -35,7 +38,7 @@ public class WorldManager : MonoBehaviour
             instance = this;
 
             // Jump-starts the Simulation Manager, allowing for communication between the User Interface, Knowledge, and Reality sims.
-            SimManager.Init("Assets/Scripts/SimManager/Data/Paths.json", typeof(AnthologyRS), typeof(LyraKS), typeof(MongoHM));
+            SimManager.Init(pathsPath, typeof(AnthologyRS), typeof(LyraKS), typeof(MongoHM));
             simUpdated = new UnityEvent();
         }
     }
@@ -58,6 +61,8 @@ public class WorldManager : MonoBehaviour
                 Debug.LogError("Uh oh! Actor prefab doesn't have attached Actor component!");
                 break;
             }
+            Location.Coords loc = SimManager.Locations[npc.Location].Coordinates;
+            spawnedActor.transform.position = new Vector3(loc.X, loc.Y, 0);
             spawnedActor.Init(npc.Name);
         }
 
@@ -68,6 +73,15 @@ public class WorldManager : MonoBehaviour
             spawnedLocation.transform.position = new Vector3(loc.Coordinates.X, loc.Coordinates.Y, 0);
             Place placeComp = spawnedLocation.GetComponent<Place>();
             placeComp.placeName = loc.Name;
+            // TODO: Band-aid Code: Place in more appropriate spot later
+            if (loc.Tags.Contains("Building"))
+                placeComp.ChangeColorToPreset(Place.Preset.BUILDING);
+            else if (loc.Tags.Contains("Road"))
+                placeComp.ChangeColorToPreset(Place.Preset.ROAD);
+            else if (loc.Tags.Contains("Forest"))
+                placeComp.ChangeColorToPreset(Place.Preset.FOREST);
+            else if (loc.Tags.Contains("Park"))
+                placeComp.ChangeColorToPreset(Place.Preset.PARK);
         }
         buttonManager = GetComponent<ButtonManager>();
     }
