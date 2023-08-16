@@ -1,27 +1,43 @@
 ﻿namespace Anthology.Models
 {
-    /** Motive class all motive types should inherit from */
+    /// <summary>
+    /// Motive class all motive types should inherit from.
+    /// </summary>
     public static class Motive
     {
-        /** the maximum value of a motive */
+        /// <summary>
+        /// The maximum value of a motive.
+        /// </summary>
         public const float MAX = 5f;
 
-        /** the minimum value of a motive */
+        /// <summary>
+        /// The minimum value of a motive.
+        /// </summary>
         public const float MIN = 1f;
 
-        /** the string name of physical type motives */
+        /// <summary>
+        /// The string name of physical type motives.
+        /// </summary>
         public const string PHYSICAL = "physical";
 
-        /** the string name of emotional type motives */
+        /// <summary>
+        /// The string name of emotional type motives.
+        /// </summary>
         public const string EMOTIONAL = "emotional";
 
-        /** the string name of social type motives */
+        /// <summary>
+        /// The string name of social type motives.
+        /// </summary>
         public const string SOCIAL = "social";
 
-        /** the string name of financial type motives */
+        /// <summary>
+        /// The string name of financial type motives.
+        /// </summary>
         public const string FINANCIAL = "financial";
 
-        /** the string name of accomplishment type motives */
+        /// <summary>
+        /// The string name of accomplishment type motives.
+        /// </summary>
         public const string ACCOMPLISHMENT = "accomplishment";
     }
 }
