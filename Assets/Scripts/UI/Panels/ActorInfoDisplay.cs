@@ -8,18 +8,28 @@ using System;
 public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 {
     private NPC displayedNPC;
+    [Tooltip("Text box which displays the Actor's name.")]
     [SerializeField] private TextMeshProUGUI actorName;
 
+    [Tooltip("Text box which displays either 'heading towards' or 'currently at' with respect to the Actor's location.")]
     [SerializeField] private TextMeshProUGUI locationPrefix;
+    [Tooltip("Text box which displays the Actor's target location.")]
     [SerializeField] private TextMeshProUGUI locationPlace;
-
+    [Tooltip("Text box which displays the Actor's current action.")]
     [SerializeField] private TextMeshProUGUI currentAction;
+    [Tooltip("Text box which displays the remaining time steps on the Actor's current action.")]
     [SerializeField] private TextMeshProUGUI actionRemaining;
 
+    [Tooltip("The names of each motive driving this Actor.")]
     [SerializeField] private List<string> motiveKeys;
+    [Tooltip("The UI groups that display the current value of each motive, respectively.")]
     [SerializeField] private List<MotiveDisplay> motiveValues;
+
     private bool motivesInit = false;
     private Dictionary<string, MotiveDisplay> motiveDisplayLookup;
+
+    [Tooltip("The panel which displays Actor relationships.")]
+    [SerializeField] RelationshipDisplay relationsDisp;
 
     private const string AT_LOCATION = "Currently at";
     private const string TO_LOCATION = "Traveling to";
@@ -75,6 +85,8 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
                 Debug.LogError("Motive name mismatch!!");
             }
         }
+
+        relationsDisp.DisplayActorRelations(displayedNPC);
     }
 
     public void OverwriteMotiveValue(string motiveName, float newValue)

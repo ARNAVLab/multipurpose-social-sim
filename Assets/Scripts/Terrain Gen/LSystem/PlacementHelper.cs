@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Placement Helper class, used to help determine placement and direction of roads and structures
 public static class PlacementHelper
 {
+    //Find Neighbor method returns a List of Direction objects, specifies where neighboring objects are located
+    //Ex: Road tile has two Roads next to it, findNeighbor will return Direction.Left and Direciton.Right
     public static List<Direction> findNeighbor(Vector3Int position, ICollection<Vector3Int> collection) {
 
         List<Direction> neighborDirections = new List<Direction>();
@@ -23,6 +26,8 @@ public static class PlacementHelper
         return neighborDirections;
     }
 
+    //Helper method used in structure placement
+    //Returns a Vector3Int offset
     internal static Vector3Int GetOffsetFromDirection(Direction direction)
     {
         switch (direction)
@@ -41,6 +46,8 @@ public static class PlacementHelper
         throw new System.Exception("No direction such as" + direction);
     }
 
+    //Helper method used in structure placement, used to determine which way a structure faces
+    //Returns a Direction object
     public static Direction GetReverseDirection(Direction direction)
     {
         switch (direction)

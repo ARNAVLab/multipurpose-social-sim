@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Basic visualizer used in LSys generation, not being used anymore
 public class SimpleVisualizer : MonoBehaviour
 {
     public LSystemGenerator lsystem;
@@ -23,6 +24,7 @@ public class SimpleVisualizer : MonoBehaviour
         set => length = value;
     }
 
+    //Encoding letters enum, specifies what letters in the LSys sequence correspond to what action
     public enum EncodingLetters {
         unknown = '1',
         save = '[',
@@ -37,6 +39,7 @@ public class SimpleVisualizer : MonoBehaviour
         VisualizeSequence(sequence);
     }
 
+    //Generation Method, accepts LSys sequence generated in Start method
     private void VisualizeSequence(string sequence) {
         Stack<GenSysParameters> savePoints = new Stack<GenSysParameters>();
         var currentPosition = Vector3.zero; //can edit this to generate multiple towns in different locations

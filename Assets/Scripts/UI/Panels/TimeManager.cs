@@ -73,7 +73,7 @@ public class TimeManager : MonoBehaviour
     {
         SimManager.GetIteration(tickNum);
         tickCountDisplay.text = SimManager.NumIterations.ToString();
-        WorldManager.actorsUpdated.Invoke();
+        WorldManager.simUpdated.Invoke();
     }
 
     IEnumerator TickLoop()

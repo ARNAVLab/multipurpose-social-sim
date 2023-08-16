@@ -9,12 +9,24 @@ public class WorldManager : MonoBehaviour
 {
     public static WorldManager instance;
 
+    public ButtonManager buttonManager;
+
     [SerializeField] private GameObject actorPref;
     [SerializeField] private GameObject locationPref;
 
-    public static UnityEvent actorsUpdated;
+    public static UnityEvent simUpdated;
 
     public static Dictionary<int, Actor> actors = new Dictionary<int, Actor>();
+
+    private bool physical;
+
+    private bool emotional;
+
+    private bool social;
+
+    private bool financial;
+    
+    private bool accomplishment;
 
     private void Awake()
     {
@@ -24,7 +36,7 @@ public class WorldManager : MonoBehaviour
 
             // Jump-starts the Simulation Manager, allowing for communication between the User Interface, Knowledge, and Reality sims.
             SimManager.Init("Assets/Scripts/SimManager/Data/Paths.json", typeof(AnthologyRS), typeof(LyraKS), typeof(MongoHM));
-            actorsUpdated = new UnityEvent();
+            simUpdated = new UnityEvent();
         }
     }
 
@@ -55,6 +67,7 @@ public class WorldManager : MonoBehaviour
             spawnedLocation.name = loc.Name;
             spawnedLocation.transform.position = new Vector3(loc.Coordinates.X, loc.Coordinates.Y, 0);
         }
+        buttonManager = GetComponent<ButtonManager>();
     }
 
     /**
@@ -111,49 +124,131 @@ public class WorldManager : MonoBehaviour
 
     public void SetAgentMotiveNone()
     {
+        buttonManager.TogglePhysicalOff();
+        buttonManager.ToggleEmotionalOff();
+        buttonManager.ToggleSocialOff();
+        buttonManager.ToggleFinancialOff();
+        buttonManager.ToggleAccomplishmentOff();
         foreach(KeyValuePair<int,Actor> a in actors) {
             Actor act = a.Value;
-            act.SetMotiveColor(Actor.MotivePreset.NONE);
+            act.OnNone();
         }
     }
 
     public void SetAgentMotivePhysical()
     {
-        foreach(KeyValuePair<int,Actor> a in actors) {
-            Actor act = a.Value;
-            act.OnPhysical();
+        if(physical){
+            SetAgentMotiveNone();
+            physical = false;
+        } else {
+            buttonManager.TogglePhysicalOn();
+            buttonManager.ToggleEmotionalOff();
+            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleFinancialOff();
+            buttonManager.ToggleAccomplishmentOff();
+            physical = true;
+            emotional = false;
+            social = false;
+            financial = false;
+            accomplishment = false;
+            foreach(KeyValuePair<int,Actor> a in actors) {
+                Actor act = a.Value;
+                act.OnPhysical();
+            }
         }
     }
 
     public void SetAgentMotiveEmotional()
     {
-        foreach(KeyValuePair<int,Actor> a in actors) {
-            Actor act = a.Value;
-            act.OnEmotional();
+        if(emotional){
+            SetAgentMotiveNone();
+            emotional = false;
+            //Change button back to pin
+        } else {
+            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleEmotionalOn();
+            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleFinancialOff();
+            buttonManager.ToggleAccomplishmentOff();
+            physical = false;
+            emotional = true;
+            social = false;
+            financial = false;
+            accomplishment = false;
+            foreach(KeyValuePair<int,Actor> a in actors) {
+                Actor act = a.Value;
+                act.OnEmotional();
+            }
+            //Find canvas button to change to cancel
         }
     }
 
     public void SetAgentMotiveSocial()
     {
-        foreach(KeyValuePair<int,Actor> a in actors) {
-            Actor act = a.Value;
-            act.OnSocial();
+        if(social){
+            SetAgentMotiveNone();
+            social = false;
+        } else {
+            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleEmotionalOff();
+            buttonManager.ToggleSocialOn();
+            buttonManager.ToggleFinancialOff();
+            buttonManager.ToggleAccomplishmentOff();
+            physical = false;
+            emotional = false;
+            social = true;
+            financial = false;
+            accomplishment = false;
+            foreach(KeyValuePair<int,Actor> a in actors) {
+                Actor act = a.Value;
+                act.OnSocial();
+            }
         }
     }
 
     public void SetAgentMotiveFinancial()
     {
-        foreach(KeyValuePair<int,Actor> a in actors) {
-            Actor act = a.Value;
-            act.OnFinancial();
+        if(financial){
+            SetAgentMotiveNone();
+            financial = false;
+        } else {
+            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleEmotionalOff();
+            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleFinancialOn();
+            buttonManager.ToggleAccomplishmentOff();
+            physical = false;
+            emotional = false;
+            social = false;
+            financial = true;
+            accomplishment = false;
+            foreach(KeyValuePair<int,Actor> a in actors) {
+                Actor act = a.Value;
+                act.OnFinancial();
+            }
         }
     }
 
     public void SetAgentMotiveAccomplishment()
     {
-        foreach(KeyValuePair<int,Actor> a in actors) {
-            Actor act = a.Value;
-            act.OnAccomplishment();
+        if(accomplishment){
+            SetAgentMotiveNone();
+            accomplishment = false;
+        } else {
+            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleEmotionalOff();
+            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleFinancialOff();
+            buttonManager.ToggleAccomplishmentOn();
+            physical = false;
+            emotional = false;
+            social = false;
+            financial = false;
+            accomplishment = true;
+            foreach(KeyValuePair<int,Actor> a in actors) {
+                Actor act = a.Value;
+                act.OnAccomplishment();
+            }
         }
     }
 

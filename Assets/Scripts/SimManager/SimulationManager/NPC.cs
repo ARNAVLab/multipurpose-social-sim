@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Anthology.Models;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 
@@ -84,6 +85,13 @@ namespace Anthology.SimulationManager
         {
             motives[motivation] += delta;
             Dirty = true;
+        }
+
+        public HashSet<Relationship> relationships { get; set; } = new HashSet<Relationship>();
+        public HashSet<Relationship> Relationships
+        {
+            get { return relationships; }
+            set { Dirty = true; relationships = value; }
         }
 
         /** The action currently being performed by the NPC */

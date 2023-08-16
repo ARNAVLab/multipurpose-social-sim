@@ -8,7 +8,9 @@ public class Actor : Selectable
 {
     private static int nextUnusedID = 0;
 
+    [Tooltip("The primary SpriteRenderer representing this Actor.")]
     [SerializeField] private SpriteRenderer mainSprite;
+    [Tooltip("The background SpriteRenderer that forms an outline around this Actor when visible.")]
     [SerializeField] private SpriteRenderer interiorOutline;
     [SerializeField] private Color colorHigh;
     [SerializeField] private Color colorMid;
@@ -28,7 +30,7 @@ public class Actor : Selectable
 
         // Register this Agent with the AgentManager (this will add it to a static Dictionary, keyed by ID)
         WorldManager.RegisterAgent(this);
-        WorldManager.actorsUpdated.AddListener(ReceiveAgentUpdates);
+        WorldManager.simUpdated.AddListener(ReceiveAgentUpdates);
     }
 
     public void Init(string actorName)
