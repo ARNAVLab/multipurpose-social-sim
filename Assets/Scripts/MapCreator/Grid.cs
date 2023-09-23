@@ -26,6 +26,7 @@ public class Grid : MonoBehaviour
                 for (int y = 0; y < _height; y++)
                 {
                     Destroy(_tiles[new Vector2Int(x, y)].gameObject);
+                    _tiles.Remove(new Vector2Int(x, y));
                 }
             }
         }
@@ -52,6 +53,7 @@ public class Grid : MonoBehaviour
                 for (int y = height; y < _height; y++)
                 {
                     Destroy(_tiles[new Vector2Int(x, y)].gameObject);
+                    _tiles.Remove(new Vector2Int(x, y));
                 }
             }
         }

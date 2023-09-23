@@ -11,7 +11,6 @@ public class MapCreator : MonoBehaviour
     [SerializeField] private Grid _worldGrid;
     [SerializeField] private int _defaultGridWidth;
     [SerializeField] private int _defaultGridHeight;
-    [SerializeField] private SpriteRenderer _gridSprite;
     [SerializeField] private SpriteRenderer _backgroundSprite;
     [SerializeField] private TMP_InputField _gridWidthField;
     [SerializeField] private TMP_InputField _gridHeightField;

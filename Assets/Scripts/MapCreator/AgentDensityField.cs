@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/** 
+ * AgentDensityField displays and allows the user to set an agent 
+ * preset's density with respect to a distribution.
+ */
 public class AgentDensityField : MonoBehaviour
 {
+    
+    [Tooltip("")]
     [SerializeField] private TMP_Text _nameLabel;
     [SerializeField] private TMP_InputField _valueField;
     [SerializeField] private TMP_Text _consequentLabel;
@@ -22,6 +28,7 @@ public class AgentDensityField : MonoBehaviour
         }
     }
 
+    
     public void Initialize(string name, float value, float consequent, AgentPresetButton presetButton)
     {
         _value = value;

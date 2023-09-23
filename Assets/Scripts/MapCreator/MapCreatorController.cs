@@ -74,7 +74,7 @@ public class MapCreatorController : MonoBehaviour
 
         float oldOrthographicSize = _camera.orthographicSize;
 
-        if (_controlHold)
+        if (_shiftHold)
         {
             if (_clickLeft)
             {
@@ -158,7 +158,7 @@ public class MapCreatorController : MonoBehaviour
     public void HoverTile(GridTile tile)
     {
         _hoveredTile = tile;
-        if (_hoveredTile != null && !_controlHold)
+        if (_hoveredTile != null && !_shiftHold)
         {
             if (_clickLeft)
                 _mapCreator.PaintTile(tile);
@@ -178,7 +178,7 @@ public class MapCreatorController : MonoBehaviour
         _clickLeft = true;
         _clickLeftOrigin = _mousePosition;
 
-        if (_hoveredTile != null && !_controlHold)
+        if (_hoveredTile != null && !_shiftHold)
         {
             HoverTile(_hoveredTile);
         }
@@ -196,7 +196,7 @@ public class MapCreatorController : MonoBehaviour
         if (_dragLeft)
         {
             _dragLeft = false;
-            if (_controlHold)
+            if (_shiftHold)
             {
                 SelectionManager.Instance.SelectHovered();
             }
@@ -207,7 +207,7 @@ public class MapCreatorController : MonoBehaviour
         }
         else
         {
-            if (_controlHold)
+            if (_shiftHold)
             {
                 SelectionManager.Instance.SelectAnother();
             }
@@ -231,7 +231,7 @@ public class MapCreatorController : MonoBehaviour
         _clickRight = true;
         _clickRightOrigin = _mousePosition;
 
-        if (_hoveredTile != null && !_controlHold)
+        if (_hoveredTile != null && !_shiftHold)
         {
             HoverTile(_hoveredTile);
         }
