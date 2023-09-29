@@ -45,6 +45,10 @@ namespace Anthology.SimulationManager
                 {
                     npc.Motives[mote] = motives[mote];
                 }
+                foreach (Relationship r in a.Relationships)
+                {
+                    npc.Relationships.Add(r.With, r.Type);
+                }
                 npcs[a.Name] = npc;
             }
         }
