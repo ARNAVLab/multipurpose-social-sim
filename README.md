@@ -2,6 +2,8 @@
 ## Requirements
 - [Unity 2022.1.23](https://unity.com/releases/editor/whats-new/2022.1.23#release-notes)
 - [MongoDB Community Server](https://www.mongodb.com/try/download/community)
+  - By default, the SimManager tool expects to find a MongoDB server running on local port 27017, which is also the default port that new MongoDB servers start on. If you want to change this, you can adjust the port the SimManager is listening for in Assets/Scripts/SimManager/SimulationManager/HistoryManager/MongoHM.cs by changing the string used to assign DbClient near the top of the file.
+  - Additionally, the SimManager tool expects a database named "SimManager" to exist on the server. All collections without the database will be generated at runtime if they don't yet exist. Setting this up is very easy in Mongo Compass, so it is highly recommended to use that if possible.
 ## Recommendations
 - [Unity Hub](https://unity.com/unity-hub)
 - [Mongo Compass](https://www.mongodb.com/try/download/compass)
