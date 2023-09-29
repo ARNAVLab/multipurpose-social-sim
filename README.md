@@ -1,10 +1,10 @@
 # Project Installation / Setup Guide
 ## Requirements
-- Unity 2022.1.23f1
-- MongoDB
+- [Unity 2022.1.23](https://unity.com/releases/editor/whats-new/2022.1.23#release-notes)
+- [MongoDB Community Server](https://www.mongodb.com/try/download/community)
 ## Recommendations
-- Unity Hub
-- Mongo Compass
+- [Unity Hub](https://unity.com/unity-hub)
+- [Mongo Compass](https://www.mongodb.com/try/download/compass)
 
 ## Installation
 1. Download the latest stable version of the Social Sim (stored on the 'main' branch).
