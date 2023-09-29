@@ -282,9 +282,12 @@ namespace Anthology.Models
         /// </summary>
         public void DecrementMotives()
         {
-            foreach(string m in Motives.Keys)
+            List<string> keys = new();
+            keys.AddRange(Motives.Keys);
+            foreach (string key in keys)
             {
-                Motives[m] = Math.Clamp(Motives[m] - 1, Motive.MIN, Motive.MAX);
+                if (Motives[key] > Motive.MIN)
+                    Motives[key]--;
             }
         }
     }
