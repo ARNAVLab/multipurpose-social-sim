@@ -4,11 +4,11 @@
     "Motives": {
       "accomplishment": 2,
       "emotional": 3,
-      "financial": 5,
-      "social": 1,
-      "physical": 4
+      "financial": 1,
+      "social": 2,
+      "physical": 1
     },
-    "CurrentLocation": "Dining Hall",
+    "CurrentLocation": "A3",
     "OccupiedCounter": 0,
     "CurrentAction": "wait_action",
     "Destination": "",
@@ -17,11 +17,11 @@
       {
         "Type": "friend",
         "With": "Quentin",
-        "Valence": 3 
+        "Valence": 2
       },
       {
-        "Type": "student-of",
-        "With": "MathProf",
+        "Type": "Remote Worker",
+        "With": "Norma",
         "Valence": 1
       }
     ]
@@ -29,26 +29,26 @@
   {
     "Name": "Abnorma",
     "Motives": {
-      "accomplishment": 1,
-      "emotional": 5,
-      "financial": 5,
-      "social": 4,
-      "physical": 4
+      "accomplishment": 3,
+      "emotional": 1,
+      "financial": 2,
+      "social": 1,
+      "physical": 2
     },
-    "CurrentLocation": "Math Hall",
+    "CurrentLocation": "G5",
     "OccupiedCounter": 0,
     "CurrentAction": "wait_action",
     "Destination": "",
     "CurrentTargets": [],
     "Relationships": [
       {
-        "Type": "enemy",
+        "Type": "friend",
         "With": "Quentin",
-        "Valence": 3 
+        "Valence": 2
       },
       {
-        "Type": "student-of",
-        "With": "PhysicsProf",
+        "Type": "Employee",
+        "With": "Abnorma",
         "Valence": 1
       }
     ]
@@ -56,13 +56,13 @@
   {
     "Name": "Quentin",
     "Motives": {
-      "accomplishment": 4,
-      "emotional": 1,
-      "financial": 5,
+      "accomplishment": 1,
+      "emotional": 2,
+      "financial": 1,
       "social": 2,
-      "physical": 1
+      "physical": 3
     },
-    "CurrentLocation": "Physics Hall",
+    "CurrentLocation": "E5",
     "OccupiedCounter": 0,
     "CurrentAction": "wait_action",
     "Destination": "",
@@ -71,45 +71,89 @@
       {
         "Type": "friend",
         "With": "Norma",
-        "Valence": 3 
+        "Valence": 1
       },
       {
-        "Type": "student-of",
-        "With": "PhysicsProf",
+        "Type": "friend",
+        "With": "Abnorma",
         "Valence": 1
       }
     ]
   },
   {
-    "Name": "MathProf",
+    "Name": "Alex",
     "Motives": {
-      "accomplishment": 5,
-      "emotional": 5,
-      "financial": 5,
-      "social": 5,
-      "physical": 5
+      "accomplishment": 3,
+      "emotional": 1,
+      "financial": 1,
+      "social": 3,
+      "physical": 1
     },
-    "CurrentLocation": "Math Hall",
+    "CurrentLocation": "G19",
     "OccupiedCounter": 0,
     "CurrentAction": "wait_action",
     "Destination": "",
     "CurrentTargets": [],
-    "Relationships": []
+    "Relationships": [
+      {
+        "Type": "Remote worker",
+        "With": "Alex",
+        "Valence": 1
+      },
+      {
+        "Type": "friend",
+        "With": "Adam",
+        "Valence": 1
+      }
+    ]
   },
   {
-    "Name": "PhysicsProf",
+    "Name": "Adam",
     "Motives": {
-      "accomplishment": 5,
-      "emotional": 5,
-      "financial": 5,
-      "social": 5,
-      "physical": 5
+      "accomplishment": 1,
+      "emotional": 3,
+      "financial": 1,
+      "social": 1,
+      "physical": 3
     },
-    "CurrentLocation": "Physics Hall",
+    "CurrentLocation": "E19",
     "OccupiedCounter": 0,
     "CurrentAction": "wait_action",
     "Destination": "",
     "CurrentTargets": [],
-    "Relationships": []
+    "Relationships": [
+      {
+        "Type": "friend",
+        "With": "Alex",
+        "Valence": 1
+      }
+    ]
+  },
+  {
+    "Name": "Johnny",
+    "Motives": {
+      "accomplishment": 4,
+      "emotional": 4,
+      "financial": 1,
+      "social": 1,
+      "physical": 3
+    },
+    "CurrentLocation": "B4",
+    "OccupiedCounter": 0,
+    "CurrentAction": "wait_action",
+    "Destination": "",
+    "CurrentTargets": [],
+    "Relationships": [
+      {
+        "Type": "friend",
+        "With": "Quentin",
+        "Valence": 2
+      },
+      {
+        "Type": "Employee",
+        "With": "Abnorma",
+        "Valence": 1
+      }
+    ]
   }
 ]

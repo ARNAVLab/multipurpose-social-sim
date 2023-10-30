@@ -19,7 +19,7 @@ public class WorldManager : MonoBehaviour
     public static Dictionary<int, Actor> actors = new Dictionary<int, Actor>();
 
     //private string pathsPath = "Assets/Scripts/SimManager/Data/Paths.json";
-    private string pathsPath = "Assets/Scripts/SimManager/Data/AugustDemo/Paths.json";
+    private string pathsPath = "Assets/Scripts/SimManager/Data/Paths.json";
 
     private bool physical;
 

@@ -16,33 +16,14 @@
       "Effects": {}
     },
     {
-      "Name": "Escape the heat",
-      "MinTime": 20,
+      "Name": "eat_alone",
+      "MinTime": 60,
       "Hidden": false,
       "Requirements": {
         "Location Requirements": [
           {
             "HasAllOf": [
-              "Building"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ]
-      },
-      "Effects": {
-        "physical": 1
-      }
-    },
-    {
-      "Name": "Eat",
-      "MinTime": 40,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "Restaurant"
+              "restaurant"
             ],
             "HasOneOrMoreOf": [],
             "HasNoneOf": []
@@ -54,14 +35,34 @@
       }
     },
     {
-      "Name": "Eat with friend",
+      "Name": "eat_sad",
+      "MinTime": 40,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "restaurant"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ]
+      },
+      "Effects": {
+        "physical": 4,
+        "emotional": -1
+      }
+    },
+    {
+      "Name": "eat_with_friend",
       "MinTime": 60,
       "Hidden": false,
       "Requirements": {
         "Location Requirements": [
           {
             "HasAllOf": [
-              "Restaurant"
+              "restaurant"
             ],
             "HasOneOrMoreOf": [],
             "HasNoneOf": []
@@ -70,10 +71,10 @@
         "People Requirements": [
           {
             "RelationshipsPresent": [
-              "Friend"
+              "friend"
             ],
             "MinNumPeople": 2,
-            "MaxNumPeople": 60,
+            "MaxNumPeople": 5,
             "SpecificPeoplePresent": [],
             "SpecificPeopleAbsent": [],
             "RelationshipsAbsent": []
@@ -82,18 +83,18 @@
       },
       "Effects": {
         "physical": 2,
-        "social": 1
+        "social": 2
       }
     },
     {
-      "Name": "Work remote",
+      "Name": "do_homework",
       "MinTime": 60,
       "Hidden": false,
       "Requirements": {
         "Location Requirements": [
           {
             "HasAllOf": [
-              "has:Computer"
+              "has:computer"
             ],
             "HasOneOrMoreOf": [],
             "HasNoneOf": []
@@ -102,7 +103,7 @@
         "People Requirements": [
           {
             "RelationshipsPresent": [
-              "Remote Worker"
+              "student-of"
             ],
             "MinNumPeople": 1,
             "MaxNumPeople": 1,
@@ -114,105 +115,51 @@
       },
       "Effects": {
         "accomplishment": 2,
-        "financial": 1
-      }
-    },
-    {
-      "Name": "Work remote",
-      "MinTime": 60,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "has:Computer"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ],
-        "People Requirements": [
-          {
-            "RelationshipsPresent": [
-              "Remote Worker"
-            ],
-            "MinNumPeople": 1,
-            "MaxNumPeople": 20,
-            "SpecificPeoplePresent": [],
-            "SpecificPeopleAbsent": [],
-            "RelationshipsAbsent": []
-          }
-        ]
-      },
-      "Effects": {
-        "accomplishment": 2,
-        "financial": 1,
-        "physical": -1
-      }
-    },
-    {
-      "Name": "Work",
-      "MinTime": 120,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "has:Employees"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ],
-        "People Requirements": [
-          {
-            "RelationshipsPresent": [
-              "Employee"
-            ],
-            "MinNumPeople": 1,
-            "MaxNumPeople": 60,
-            "SpecificPeoplePresent": [],
-            "SpecificPeopleAbsent": [],
-            "RelationshipsAbsent": []
-          }
-        ]
-      },
-      "Effects": {
-        "accomplishment": 2,
-        "financial": 2,
-        "physical": -2
-      }
-    },
-    {
-      "Name": "Workout",
-      "MinTime": 90,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "Gym"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ]
-      },
-      "Effects": {
-        "accomplishment": 1,
-        "physical": 2,
         "emotional": 1
       }
     },
     {
-      "Name": "Walk",
+      "Name": "attend_class",
+      "MinTime": 75,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "classroom"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ],
+        "People Requirements": [
+          {
+            "RelationshipsPresent": [
+              "student-of"
+            ],
+            "MinNumPeople": 2,
+            "MaxNumPeople": 100,
+            "SpecificPeoplePresent": [],
+            "SpecificPeopleAbsent": [],
+            "RelationshipsAbsent": []
+          }
+        ]
+      },
+      "Effects": {
+        "accomplishment": 1
+      }
+    },
+    {
+      "Name": "go_for_walk",
       "MinTime": 30,
       "Hidden": false,
       "Requirements": {
         "Location Requirements": [
           {
-            "HasAllOf": [],
-            "HasOneOrMoreOf": [ "Park", "Forest" ],
+            "HasAllOf": [
+              "outdoor"
+            ],
+            "HasOneOrMoreOf": [],
             "HasNoneOf": []
           }
         ]
@@ -223,34 +170,14 @@
       }
     },
     {
-      "Name": "Hike",
-      "MinTime": 60,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "Forest"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ]
-      },
-      "Effects": {
-        "emotional": 2,
-        "physical": 2
-      }
-    },
-    {
-      "Name": "Sleep",
+      "Name": "play_game_alone",
       "MinTime": 120,
       "Hidden": false,
       "Requirements": {
         "Location Requirements": [
           {
             "HasAllOf": [
-              "has:Bed"
+              "dorm"
             ],
             "HasOneOrMoreOf": [],
             "HasNoneOf": []
@@ -258,68 +185,37 @@
         ]
       },
       "Effects": {
-        "physical": 1,
-        "emotional": 1,
-        "social": -1
+        "emotional": 2
       }
     },
     {
-      "Name": "Community service",
-      "MinTime": 60,
+      "Name": "play_game_with_friend",
+      "MinTime": 120,
       "Hidden": false,
       "Requirements": {
         "Location Requirements": [
           {
             "HasAllOf": [
-              "Road"
+              "dorm"
             ],
             "HasOneOrMoreOf": [],
             "HasNoneOf": []
           }
-        ]
-      },
-      "Effects": {
-        "physical": -1,
-        "accomplishment": 1
-      }
-    },
-    {
-      "Name": "Community service",
-      "MinTime": 60,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
+        ],
+        "People Requirements": [
           {
-            "HasAllOf": [
-              "Road"
+            "RelationshipsPresent": [
+              "friend"
             ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
+            "MinNumPeople": 2,
+            "MaxNumPeople": 4,
+            "SpecificPeoplePresent": [],
+            "SpecificPeopleAbsent": [],
+            "RelationshipsAbsent": []
           }
         ]
       },
       "Effects": {
-        "physical": -1,
-        "accomplishment": 1
-      }
-    },
-    {
-      "Name": "Shop",
-      "MinTime": 30,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "Store"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ]
-      },
-      "Effects": {
-        "financial": -1,
         "emotional": 2,
         "social": 1
       }
