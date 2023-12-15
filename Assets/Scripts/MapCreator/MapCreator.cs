@@ -5,41 +5,83 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Networking;
 
+/// <summary>
+/// MapCreator class responsible for managing functionality of 
+/// map creator tool.
+/// </summary>
 public class MapCreator : MonoBehaviour
 {
     [Header("GRID SETTINGS")]
-    [SerializeField] private Grid _worldGrid;
-    [SerializeField] private int _defaultGridWidth;
-    [SerializeField] private int _defaultGridHeight;
-    [SerializeField] private SpriteRenderer _backgroundSprite;
-    [SerializeField] private TMP_InputField _gridWidthField;
-    [SerializeField] private TMP_InputField _gridHeightField;
+    [SerializeField] [Tooltip("Reference to grid containing distribution info")] 
+    private Grid _worldGrid;
+    [SerializeField] [Tooltip("Starting width of grid")] 
+    private int _defaultGridWidth;
+    [SerializeField] [Tooltip("Starting height of grid")] 
+    private int _defaultGridHeight;
+    [SerializeField] [Tooltip("Reference to background sprite renderer")] 
+    private SpriteRenderer _backgroundSprite;
+    [SerializeField] [Tooltip("Text field for setting grid width")] 
+    private TMP_InputField _gridWidthField;
+    [SerializeField] [Tooltip("Text fieeld for settging grid height")] 
+    private TMP_InputField _gridHeightField;
 
     [Header("AGENT PRESETS")]
-    [SerializeField] private GameObject _agentIconPrefab;
-    [SerializeField] private Transform _agentIconViewport;
-    [SerializeField] private TMP_InputField _agentNameField;
-    [SerializeField] private Transform _motivationListViewport;
-    [SerializeField] private GameObject _motivationFieldPrefab;
+    [SerializeField] [Tooltip("Prefab for agent icon to use in list of agent presets")] 
+    private GameObject _agentIconPrefab;
+    [SerializeField] [Tooltip("Reference to transform containing list of agent presets")] 
+    private Transform _agentIconViewport;
+    [SerializeField] [Tooltip("Text field for setting agent preset name")] 
+    private TMP_InputField _agentNameField;
+    [SerializeField] [Tooltip("Reference to transform containing list of the agent preset's motivation values")] 
+    private Transform _motivationListViewport;
+    [SerializeField] [Tooltip("Prefab for motivation values")] 
+    private GameObject _motivationFieldPrefab;
 
     [Header("DISTRIBUTIONS")]
-    [SerializeField] private GameObject _distIconPrefab;
-    [SerializeField] private Transform _distIconViewport;
-    [SerializeField] private TMP_InputField _distNameField;
-    [SerializeField] private Transform _densityListViewport;
-    [SerializeField] private GameObject _densityPrefab;
-    [SerializeField] private ColorPicker _colorPicker;
+    [SerializeField] [Tooltip("Prefab for distribution icon to use in distribution list")] 
+    private GameObject _distIconPrefab;
+    [SerializeField] [Tooltip("Reference to transform containing list of distributions")] 
+    private Transform _distIconViewport;
+    [SerializeField] [Tooltip("Text field for setting distribution name")] 
+    private TMP_InputField _distNameField;
+    [SerializeField] [Tooltip("Transform containing list of agent densities in distribution")] 
+    private Transform _densityListViewport;
+    [SerializeField] [Tooltip("Prefab that displays density of an agent preset within a distrubution")] 
+    private GameObject _densityPrefab;
+    [SerializeField] [Tooltip("Reference to color picker for setting distrubution color")] 
+    private ColorPicker _colorPicker;
 
-    [Header("GENERATION")]
-    [SerializeField] private GameObject _generateInfoPrefab;
-
+    /// <summary>
+    /// Current width of grid
+    /// </summary>
     private int _gridWidth;
+    /// <summary>
+    /// Current height of grid
+    /// </summary>
     private int _gridHeight;
+    /// <summary>
+    /// Currently selected agent preset icon
+    /// </summary>
     private AgentPresetButton _selectedAgentIcon;
+    /// <summary>
+    /// List of all agent preset icons
+    /// </summary>
     private List<AgentPresetButton> _agentIcons = new List<AgentPresetButton>();
+    /// <summary>
+    /// All motivation fields indexed by name
+    /// </summary>
     private Dictionary<string,MotivationField> _motivationFields = new Dictionary<string,MotivationField>();
+    /// <summary>
+    /// Currently selected agent distribution icon
+    /// </summary>
     private DistributionButton _selectedDistIcon;
+    /// <summary>
+    /// All distribution icons
+    /// </summary>
     private List<DistributionButton> _distIcons = new List<DistributionButton>();
+    /// <summary>
+    /// All density fields indexed by the corresponding agent presets's button
+    /// </summary>
     private Dictionary<AgentPresetButton,AgentDensityField> _densityFields = new Dictionary<AgentPresetButton,AgentDensityField>();
 
     private void Awake()
@@ -53,6 +95,9 @@ public class MapCreator : MonoBehaviour
         CreateAgent();
     }
 
+    /// <summary>
+    /// Creates an agent preset with default values
+    /// </summary>
     public void CreateAgent()
     {
         GameObject agentIcon = Instantiate(_agentIconPrefab, _agentIconViewport);
@@ -70,6 +115,9 @@ public class MapCreator : MonoBehaviour
         SelectAgent(iconScript);
     }
 
+    /// <summary>
+    /// Deletes the currently selected agent preset
+    /// </summary>
     public void DeleteAgent()
     {
         if (_agentIcons.Count <= 1)
@@ -87,6 +135,10 @@ public class MapCreator : MonoBehaviour
         SelectAgent(_agentIcons[0]);
     }
 
+    /// <summary>
+    /// Select an agent preset and displays its info
+    /// </summary>
+    /// <param name="button">Agent preset button to select</param>
     public void SelectAgent(AgentPresetButton button)
     {
         _agentNameField.text = button.Name;
@@ -108,6 +160,10 @@ public class MapCreator : MonoBehaviour
         _agentNameField.Select();
     }
 
+    /// <summary>
+    /// Renames the currently selected agent preset
+    /// </summary>
+    /// <param name="name">New name of agent preset</param>
     public void RenameAgent(string name)
     {
         _selectedAgentIcon.Name = name;
@@ -120,11 +176,19 @@ public class MapCreator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets a motivation value for the currently selected agent preset
+    /// </summary>
+    /// <param name="name">Name of motivation</param>
+    /// <param name="value">New value of motivation</param>
     public void SetMotivationValue(string name, float value)
     {
         _selectedAgentIcon.Preset.Motivations[name] = value;
     }
 
+    /// <summary>
+    /// Adds the currently selected agent to the selected distribution
+    /// </summary>
     public void AddAgentToDist()
     {
         if (_selectedDistIcon.Distribution.AgentWeights.ContainsKey(_selectedAgentIcon))
@@ -141,6 +205,9 @@ public class MapCreator : MonoBehaviour
         _densityFields.Add(_selectedAgentIcon, densityField);
     }
 
+    /// <summary>
+    /// Removes the currently selected agent from the selected distribution
+    /// </summary>
     public void RemoveAgentFromDist()
     {
         if (!_selectedDistIcon.Distribution.AgentWeights.ContainsKey(_selectedAgentIcon))
@@ -158,6 +225,9 @@ public class MapCreator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Creates an empty distribution
+    /// </summary>
     public void CreateDist()
     {
         GameObject distIcon = Instantiate(_distIconPrefab, _distIconViewport);
@@ -171,6 +241,9 @@ public class MapCreator : MonoBehaviour
         SelectDist(iconScript);
     }
 
+    /// <summary>
+    /// Deletes the currently selected distribution
+    /// </summary>
     public void DeleteDist()
     {
         if (_distIcons.Count <= 1)
@@ -180,6 +253,10 @@ public class MapCreator : MonoBehaviour
         SelectDist(_distIcons[0]);
     }
 
+    /// <summary>
+    /// Selects a distribution and displays its info
+    /// </summary>
+    /// <param name="button">Distribution button to select</param>
     public void SelectDist(DistributionButton button)
     {
         _distNameField.text = button.Name;
@@ -201,11 +278,20 @@ public class MapCreator : MonoBehaviour
         _distNameField.Select();
     }
 
+    /// <summary>
+    /// Renames the currently selected distribution
+    /// </summary>
+    /// <param name="name">New name of distribution</param>
     public void RenameDist(string name)
     {
         _selectedDistIcon.Name = name;
     }
 
+    /// <summary>
+    /// Sets the density value of an agent in the currently selected distribution
+    /// </summary>
+    /// <param name="presetButton">Corresponding agent preset button</param>
+    /// <param name="value">New density value</param>
     public void SetDensityValue(AgentPresetButton presetButton, float value)
     {
         _selectedDistIcon.Distribution.AgentWeights[presetButton] = value;
@@ -216,11 +302,19 @@ public class MapCreator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the color of the selected distribution
+    /// </summary>
+    /// <param name="color">New color of distribution</param>
     public void SetDistColor(Color32 color)
     {
         _selectedDistIcon.PaintColor = color;
     }
 
+    /// <summary>
+    /// Sets the width of the grid
+    /// </summary>
+    /// <param name="input">New width of grid as string</param>
     public void SetGridWidth(string input)
     {
         int width;
@@ -233,6 +327,10 @@ public class MapCreator : MonoBehaviour
         ResetGrid();
     }
 
+    /// <summary>
+    /// Sets the height of the grid
+    /// </summary>
+    /// <param name="input">New height of grid as string</param>
     public void SetGridHeight(string input)
     {
         int height;
@@ -245,6 +343,9 @@ public class MapCreator : MonoBehaviour
         ResetGrid();
     }
 
+    /// <summary>
+    /// Resets the grid width and height
+    /// </summary>
     private void ResetGrid()
     {
         _worldGrid.SetGridSize(_gridWidth, _gridHeight);
@@ -253,32 +354,56 @@ public class MapCreator : MonoBehaviour
         // _backgroundSprite.transform.localPosition = new Vector3(-0.5f * _gridSprite.size.x, -0.5f * _gridSprite.size.y, _backgroundSprite.transform.localPosition.z);
     }
 
+    /// <summary>
+    /// Paints a tile with the currently selected distribution
+    /// </summary>
+    /// <param name="tile">Tile to paint</param>
     public void PaintTile(GridTile tile)
     {
         tile.SetDist(_selectedDistIcon);
     }
 
+    /// <summary>
+    /// Erases any distribution from a tile
+    /// </summary>
+    /// <param name="tile">Tile to erase from</param>
     public void EraseTile(GridTile tile)
     {
         tile.SetDist(null);
     }
 
+    /// <summary>
+    /// Moves the background sprite using translation vector
+    /// </summary>
+    /// <param name="translation">Vector to move background</param>
     public void MoveBackground(Vector2 translation)
     {
         _backgroundSprite.transform.position += (Vector3)translation;
     }
 
+    /// <summary>
+    /// Resizes the background by the given scale
+    /// </summary>
+    /// <param name="resizeValue">Value to resize by</param>
     public void ResizeBackground(float resizeValue)
     {
         _backgroundSprite.transform.localScale += _backgroundSprite.transform.localScale * resizeValue;
     }
 
+    /// <summary>
+    /// Loads an image from URL in the clipboard
+    /// </summary>
     public void LoadImage()
     {
         // StartCoroutine(GetImage(_imagePathField.text));
         StartCoroutine(GetImage(GUIUtility.systemCopyBuffer));
     }
 
+    /// <summary>
+    /// Sets the background to image at the URL
+    /// </summary>
+    /// <param name="url">URL of image</param>
+    /// <returns></returns>
     private IEnumerator GetImage(string url)
     {
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
@@ -294,8 +419,11 @@ public class MapCreator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// (NOT IMPLEMENTED) Finishes and generates the JSON file with distribution info from grid
+    /// </summary>
     public void FinishGenerate()
     {
-        GenerateInfo info = Instantiate(_generateInfoPrefab).GetComponent<GenerateInfo>();
+        // Generate a JSON file from the grid information
     }
 }

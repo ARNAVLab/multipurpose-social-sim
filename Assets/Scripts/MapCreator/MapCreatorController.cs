@@ -5,43 +5,107 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// MapCreatorController serves as interface between player input
+/// and MapCreator script
+/// </summary>
 public class MapCreatorController : MonoBehaviour
 {
+    /// <summary>
+    /// MapCreatorController static instance
+    /// </summary>
     private static MapCreatorController _instance;
 
-    [SerializeField] private float _cameraMoveSpeed = 2.0f;
-    [SerializeField] private float _cameraDragMoveSpeed = 0.2f;
-    [SerializeField] private float _cameraZoomSpeed = 0.5f;
-    [SerializeField] private float _cameraScrollZoomSpeed = 0.1f;
-    [SerializeField] private float _cameraZoomMin = 1.0f;
-    [SerializeField] private float _cameraZoomMax = 100.0f;
-    
-    [SerializeField] private float trackingRate = 10f;
-    private static Transform trackedObject;
-    private static bool doTracking = false;
+    [SerializeField] [Tooltip("Camera movement speed")] 
+    private float _cameraMoveSpeed = 2.0f;
+    [SerializeField] [Tooltip("Camera drag movement speed")] 
+    private float _cameraDragMoveSpeed = 0.2f;
+    [SerializeField] [Tooltip("Camera scroll wheel zoom speed")]
+    private float _cameraZoomSpeed = 0.5f;
+    [SerializeField] [Tooltip("Camera scroll zoom speed")] 
+    private float _cameraScrollZoomSpeed = 0.1f;
+    [SerializeField] [Tooltip("Camera zoom minimum")]
+    private float _cameraZoomMin = 1.0f;
+    [SerializeField] [Tooltip("Camera zoom maximum")]
+    private float _cameraZoomMax = 100.0f;
 
+    /// <summary>
+    /// Controls instance
+    /// </summary>
     private Controls _controls;
+    /// <summary>
+    /// Reference to map creator scene camera
+    /// </summary>
     private Camera _camera;
+    /// <summary>
+    /// Is left mouse pressed
+    /// </summary>
     private bool _clickLeft = false;
+    /// <summary>
+    /// Is left mouse dragged
+    /// </summary>
     private bool _dragLeft = false;
+    /// <summary>
+    /// Is right mouse pressed
+    /// </summary>
     private bool _clickRight = false;
+    /// <summary>
+    /// Is middle mouse pressed
+    /// </summary>
     private bool _clickMiddle = false;
-    private bool _controlHold = false;
+    /// <summary>
+    /// Is shift held down
+    /// </summary>
     private bool _shiftHold = false;
+    /// <summary>
+    /// Current mouse world position
+    /// </summary>
     private Vector2 _mousePosition;
+    /// <summary>
+    /// Origin of left click
+    /// </summary>
     private Vector2 _clickLeftOrigin;
+    /// <summary>
+    /// Origin of right click
+    /// </summary>
     private Vector2 _clickRightOrigin;
+    /// <summary>
+    /// Origin of middle click
+    /// </summary>
     private Vector2 _clickMiddleOrigin;
+    /// <summary>
+    /// Camera movement this frame
+    /// </summary>
     private Vector2 _cameraMovement;
+    /// <summary>
+    /// Camera zoom change this frame
+    /// </summary>
     private float _cameraZoom;
+    /// <summary>
+    /// Mouse position delta this frame
+    /// </summary>
     private Vector2 _mouseDelta;
+    /// <summary>
+    /// Scroll wheel delta this frame
+    /// </summary>
     private float _scrollDelta;
-
+    /// <summary>
+    /// Reference to MapCreator
+    /// </summary>
     private MapCreator _mapCreator;
+    /// <summary>
+    /// Reference to currently hovered tile in grid
+    /// </summary>
     private GridTile _hoveredTile;
+    /// <summary>
+    /// Reference to on select event
+    /// </summary>
+    public static UnityEvent _onSelectEvent = new();
 
-    public static UnityEvent _onSelectEvent = new UnityEvent();
-
+    /// <summary>
+    /// Gets the MapCreatorController static instance
+    /// </summary>
+    /// <returns>The MapCreatorController</returns>
     public static MapCreatorController GetInstance()
     {
         return _instance;
@@ -123,21 +187,10 @@ public class MapCreatorController : MonoBehaviour
         _scrollDelta = 0;
     }
 
-    private void LateUpdate()
-    {
-        if (doTracking)
-        {
-            Vector3 targetPos = trackedObject.position;
-            targetPos.z = transform.position.z;
-
-            Vector3 smoothedPos = Vector3.Lerp(transform.position, targetPos, trackingRate * Time.deltaTime);
-            transform.position = smoothedPos;
-        }
-    }
-
-    /**
-     * Returns true if the cursor is currently hovering over a UI element.
-     */
+    /// <summary>
+    /// Checks if the cursor is currently hovering over a UI element
+    /// </summary>
+    /// <returns>True if the cursor is currently hovering over a UI element</returns>
     private bool IsCursorOverUIElement()
     {
         int UILayer = LayerMask.NameToLayer("UI");
@@ -155,6 +208,11 @@ public class MapCreatorController : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Sets the currently hovered tile, and checks if
+    /// if should be painted or erased with distribution
+    /// </summary>
+    /// <param name="tile">Grid tile to check</param>
     public void HoverTile(GridTile tile)
     {
         _hoveredTile = tile;
@@ -264,21 +322,6 @@ public class MapCreatorController : MonoBehaviour
     }
 
     /**
-     * Triggers when ctrl key is initially pressed.
-     */
-    private void CtrlDown(InputAction.CallbackContext context)
-    {
-        _controlHold = true;
-    }
-    /**
-     * Triggers when ctrl key is released.
-     */
-    private void CtrlUp(InputAction.CallbackContext context)
-    {
-        _controlHold = false;
-    }
-
-    /**
      * Triggers when shift key is initially pressed.
      */
     private void ShiftDown(InputAction.CallbackContext context)
@@ -302,8 +345,6 @@ public class MapCreatorController : MonoBehaviour
         _controls.player.rightMouse.canceled += MouseRightUp;
         _controls.player.middleMouse.started += MouseMiddleDown;
         _controls.player.middleMouse.canceled += MouseMiddleUp;
-        _controls.player.control.started += CtrlDown;
-        _controls.player.control.canceled += CtrlUp;
         _controls.player.shift.started += ShiftDown;
         _controls.player.shift.canceled += ShiftUp;
     }
@@ -316,8 +357,6 @@ public class MapCreatorController : MonoBehaviour
         _controls.player.rightMouse.canceled -= MouseRightUp;
         _controls.player.middleMouse.started -= MouseMiddleDown;
         _controls.player.middleMouse.canceled -= MouseMiddleUp;
-        _controls.player.control.started -= CtrlDown;
-        _controls.player.control.canceled -= CtrlUp;
         _controls.player.shift.started -= ShiftDown;
         _controls.player.shift.canceled -= ShiftUp;
     }

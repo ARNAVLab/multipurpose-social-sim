@@ -2,19 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Grid that manages distribution tiles in map creator
+/// </summary>
 public class Grid : MonoBehaviour
 {
-    [SerializeField] private GameObject _tilePrefab;
-    [SerializeField] private float _tilePadding;
-    private Dictionary<Vector2Int, GridTile> _tiles = new Dictionary<Vector2Int, GridTile>();
+    [SerializeField] [Tooltip("Grid tile prefab")]
+    private GameObject _tilePrefab;
+    [SerializeField] [Tooltip("Space between tiles in grid")]
+    private float _tilePadding;
+    /// <summary>
+    /// All grid tiles indexed by position
+    /// </summary>
+    private Dictionary<Vector2Int, GridTile> _tiles = new();
+    /// <summary>
+    /// Width and height of grid
+    /// </summary>
     private int _width = 0, _height = 0;
 
+    /// <summary>
+    /// Sets the tile width and height of the grid
+    /// </summary>
+    /// <param name="width">width to set</param>
+    /// <param name="height">height to set</param>
     public void SetGridSize(int width, int height)
     {
         SetGridWidth(width);
         SetGridHeight(height);
     }
 
+    /// <summary>
+    /// Sets the width of the grid and adds/removes tiles accordingly
+    /// </summary>
+    /// <param name="width">width to set</param>
     public void SetGridWidth(int width)
     {
         if (width == _width || width < 0)
@@ -42,6 +62,10 @@ public class Grid : MonoBehaviour
         }
         _width = width;
     }
+    /// <summary>
+    /// Sets the height of the grid and adds/removes tiles accordingly
+    /// </summary>
+    /// <param name="height">height to set</param>
     public void SetGridHeight(int height)
     {
         if (height == _height || height < 0)
@@ -70,6 +94,11 @@ public class Grid : MonoBehaviour
         _height = height;
     }
 
+    /// <summary>
+    /// Creates a tile at the given index
+    /// </summary>
+    /// <param name="x">X-value of tile</param>
+    /// <param name="y">Y-value of tile</param>
     private void CreateTile(int x, int y)
     {
         GameObject tileObject = Instantiate(_tilePrefab, this.transform);
