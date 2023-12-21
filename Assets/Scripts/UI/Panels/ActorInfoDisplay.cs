@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Anthology.SimulationManager;
-using System;
 
 public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 {
@@ -60,12 +58,7 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
         bool travelling = displayedNPC.Destination.Length != 0;
 
         locationPrefix.text = travelling ? TO_LOCATION : AT_LOCATION;
-
-        string currentLocationName = "ERR: Coord Mismatch";
-        Location currentLocation;
-        if (SimManager.Locations.TryGetValue(new Location.Coords((int)displayedNPC.Coordinates.X, (int)displayedNPC.Coordinates.Y), out currentLocation))
-            currentLocationName = currentLocation.Name;
-        locationPlace.text = travelling ? displayedNPC.Destination : currentLocationName;
+        locationPlace.text = travelling ? displayedNPC.Destination : displayedNPC.Location;
 
         actorName.text = displayedNPC.Name;
         currentAction.text = displayedNPC.CurrentAction.Name;

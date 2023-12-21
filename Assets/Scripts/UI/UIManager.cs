@@ -210,9 +210,9 @@ public class UIManager : MonoBehaviour
         placeModeBtn.image.sprite = selectMode == SelectType.PLACES ? placeModeOn : placeModeOff;
 
         if (selectMode == SelectType.ACTORS) 
-            actorInfo.GetComponent<RectTransform>().anchoredPosition = placeInfo.GetComponent<RectTransform>().anchoredPosition;
+            actorInfo.GetComponent<RectTransform>().anchoredPosition = new Vector3(135, -85, 0);
         else
-            placeInfo.GetComponent<RectTransform>().anchoredPosition = actorInfo.GetComponent<RectTransform>().anchoredPosition;
+            placeInfo.GetComponent<RectTransform>().anchoredPosition = new Vector3(135, -85, 0);
 
         SelectionController.GetInstance().SetSelectBoxLayer(selectMode == SelectType.ACTORS ? "Agent" : "Location");
     }

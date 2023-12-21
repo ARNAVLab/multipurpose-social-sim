@@ -1,3 +1,4 @@
+using Anthology.SimulationManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,15 +35,23 @@ public class ActorPathfind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        target = new Vector3(actor.Info.currentLocation.xPos, actor.Info.currentLocation.yPos, 0.0f);
-        if(timeManager.isPaused) {
+        if (!actor.Info.destination.Equals(""))
+            CalcPathFind();
+    }
+
+    private void CalcPathFind()
+    {
+        Location dest = SimManager.Locations[actor.Info.destination];
+        target = new Vector3(dest.Coordinates.X, dest.Coordinates.Y, 0.0f);
+        if (timeManager.isPaused)
+        {
             agentBody.position = target;
-        } else {
+        }
+        else
+        {
             timeSpeed = (float)(1.0 / timeManager.GetTickRate());
             agentMesh.speed = timeSpeed;
             agentMesh.SetDestination(target);
         }
-        
-        
     }
 }
