@@ -74,6 +74,8 @@ public class SelectionController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (IsCursorOverUIElement()) return;
+        
         Vector3 cameraPositionDifference = (Vector3)(Time.deltaTime * _cameraMoveSpeed * _camera.orthographicSize * _cameraMovement);
 
         this.transform.position = this.transform.position + cameraPositionDifference;
@@ -95,8 +97,6 @@ public class SelectionController : MonoBehaviour
             Vector2 cameraPosition = Vector2.LerpUnclamped(_camera.transform.position, _mousePosition, -orthographicDifference);
             _camera.transform.position = new Vector3(cameraPosition.x, cameraPosition.y, _camera.transform.position.z);
         }
-
-
 
         if (!_dragLeft && _clickLeft && _clickLeftOrigin != _mousePosition)
             _dragLeft = true;
