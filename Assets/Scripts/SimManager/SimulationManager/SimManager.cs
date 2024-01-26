@@ -92,7 +92,6 @@ namespace Anthology.SimulationManager
                 if (History == null)
                     throw new NullReferenceException("Could not create history logger");
                 History.ClearLog(LOG_PATH);
-                //History.ExportCollection();
             }
             else 
                 throw new InvalidCastException("Failed to recognize history logger");
@@ -168,6 +167,15 @@ namespace Anthology.SimulationManager
                     Reality?.PushUpdatedNpc(newNPC);
                 }
             }
+        }
+
+        /// <summary>
+        /// Exports History Logs WIP
+        /// that state.
+        /// </summary>
+        public static void ExportLogs()
+        {
+            History.ExportCollection();
         }
     }
 }

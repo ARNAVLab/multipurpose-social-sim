@@ -156,30 +156,21 @@ namespace Anthology.SimulationManager.HistoryManager
         /// <param name="collectionName">Name of collection to export</param>
         public override void ExportCollection()
         {
-            var collection = Database.GetCollection<BsonDocument>("NPC History");
-            var documents = collection.AsQueryable<BsonDocument>();
-            var json = documents.ToJson();
+            IMongoCollection<EventLog> collection = Database.GetCollection<EventLog>("NPC History");
+            var filter = Builders<EventLog>.Filter.Empty;
+
+            var docsList = collection.Find(filter).ToList();
+
+     
+
+            var json = docsList.ToJson();
+
+            //var collectionJson = collection.ToJson();
 
             File.WriteAllText(@"C:\Users\aguia\Desktop\export.json", json);
+            File.WriteAllText("export.json", json);
+            //File.WriteAllText(@"C:\Users\aguia\Desktop\count.txt", docsList.Count().ToString());
 
-            //Console.WriteLine(json.ToString());
-
-
-            //var collection = Database.GetCollection<BsonDocument>("NPC History");
-            //var documents = collection.AsQueryable();
-
-
-
-            //File.WriteAllText(@"C:\Users\aguia\Desktop\export.json", text);
-
-            //foreach(BsonDocument doc in documents)
-            //{
-            //var jsonWriter = new JsonWriterSettings { OutputMode = JsonOutputMode.CanonicalExtendedJson };
-            //JObject json = JObject.Parse(doc.ToJson<MongoDB.Bson.BsonDocument>(jsonWriter));
-            //Console.WriteLine(json.ToString());
-            //}
-
-            //var collAsDotNetObj = BsonTypeMapper.MapToDotNetValue(collection);
         }
 
         /// <summary>
