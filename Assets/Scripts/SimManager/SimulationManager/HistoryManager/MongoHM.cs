@@ -1,7 +1,15 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.IO;
+using MongoDB.Bson.IO;
+using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using MongoDB.Bson.Serialization;
+using System.Collections.ObjectModel;
 
 namespace Anthology.SimulationManager.HistoryManager
 {
@@ -140,6 +148,38 @@ namespace Anthology.SimulationManager.HistoryManager
         public override void ClearLog(string log)
         {
             Database.GetCollection<EventLog>(log).DeleteMany(Builders<EventLog>.Filter.Empty);
+        }
+
+        ///<summary>
+        /// Exports logs to a .json file
+        ///</summary>
+        /// <param name="collectionName">Name of collection to export</param>
+        public override void ExportCollection()
+        {
+            var collection = Database.GetCollection<BsonDocument>("NPC History");
+            var documents = collection.AsQueryable<BsonDocument>();
+            var json = documents.ToJson();
+
+            File.WriteAllText(@"C:\Users\aguia\Desktop\export.json", json);
+
+            //Console.WriteLine(json.ToString());
+
+
+            //var collection = Database.GetCollection<BsonDocument>("NPC History");
+            //var documents = collection.AsQueryable();
+
+
+
+            //File.WriteAllText(@"C:\Users\aguia\Desktop\export.json", text);
+
+            //foreach(BsonDocument doc in documents)
+            //{
+            //var jsonWriter = new JsonWriterSettings { OutputMode = JsonOutputMode.CanonicalExtendedJson };
+            //JObject json = JObject.Parse(doc.ToJson<MongoDB.Bson.BsonDocument>(jsonWriter));
+            //Console.WriteLine(json.ToString());
+            //}
+
+            //var collAsDotNetObj = BsonTypeMapper.MapToDotNetValue(collection);
         }
 
         /// <summary>

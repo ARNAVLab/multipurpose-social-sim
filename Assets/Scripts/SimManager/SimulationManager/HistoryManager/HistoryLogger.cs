@@ -56,6 +56,11 @@ namespace Anthology.SimulationManager.HistoryManager
         /// </summary>
         /// <param name="log">Name of log to clear.</param>
         public abstract void ClearLog(string log);
+
+        ///<summary>
+        ///Exports history log to a .json file
+        ///</summary>
+        public abstract void ExportCollection();
     }
 
     /// <summary>

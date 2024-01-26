@@ -64,6 +64,7 @@ namespace Anthology.SimulationManager
         /// <param name="history">The history manager type to use.</param>
         public static void Init(string JSONfile, Type reality, Type knowledge, Type history)
         {
+            
             if (reality.IsSubclassOf(typeof(RealitySim)))
             {
                 Reality = Activator.CreateInstance(reality) as RealitySim;
@@ -91,6 +92,7 @@ namespace Anthology.SimulationManager
                 if (History == null)
                     throw new NullReferenceException("Could not create history logger");
                 History.ClearLog(LOG_PATH);
+                //History.ExportCollection();
             }
             else 
                 throw new InvalidCastException("Failed to recognize history logger");
