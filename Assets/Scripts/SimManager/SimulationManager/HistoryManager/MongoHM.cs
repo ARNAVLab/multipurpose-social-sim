@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 using System.Text.Json;
 using MongoDB.Bson.Serialization;
 using System.Collections.ObjectModel;
+using System.Xml;
 
 namespace Anthology.SimulationManager.HistoryManager
 {
@@ -153,23 +154,24 @@ namespace Anthology.SimulationManager.HistoryManager
         ///<summary>
         /// Exports logs to a .json file
         ///</summary>
-        /// <param name="collectionName">Name of collection to export</param>
         public override void ExportCollection()
         {
             IMongoCollection<EventLog> collection = Database.GetCollection<EventLog>("NPC History");
             var filter = Builders<EventLog>.Filter.Empty;
-
             var docsList = collection.Find(filter).ToList();
-
-     
 
             var json = docsList.ToJson();
 
-            //var collectionJson = collection.ToJson();
+            //Json Serialization Options to help with formatting history logs
+            var options = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
 
-            File.WriteAllText(@"C:\Users\aguia\Desktop\export.json", json);
-            File.WriteAllText("export.json", json);
-            //File.WriteAllText(@"C:\Users\aguia\Desktop\count.txt", docsList.Count().ToString());
+            var deserializedJson = JsonSerializer.Deserialize<JsonElement>(json);
+            var prettyJson =  JsonSerializer.Serialize(deserializedJson, options);
+
+            File.WriteAllText(@"Logs\HistoryLogs\log.json", prettyJson);
 
         }
 
