@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace Anthology.Models
 {
@@ -91,6 +92,7 @@ namespace Anthology.Models
             LocationNode currentLoc = LocationManager.LocationsByName[CurrentLocation];
             OccupiedCounter = (int)Math.Ceiling(LocationManager.DistanceMatrix[currentLoc.ID * LocationManager.LocationCount + destination.ID]);
             Console.WriteLine("time: " + time.ToString() + " | " + Name + ": Started " + CurrentAction.First().Name + "; Destination: " + destination.Name);
+            MoveCloserToDestination();
         }
 
         /// <summary>
@@ -101,14 +103,44 @@ namespace Anthology.Models
         {
             if (Destination == "") return;
 
-            LocationManager.LocationsByName[CurrentLocation].AgentsPresent.Remove(Name);
-
             if (OccupiedCounter == 0)
             {
+                LocationManager.LocationsByName[CurrentLocation].AgentsPresent.Remove(Name);
                 CurrentLocation = Destination;
                 Destination = string.Empty;
                 LocationManager.LocationsByName[CurrentLocation].AgentsPresent.AddLast(Name);
+                return;
             }
+
+            LocationNode currentLoc = LocationManager.LocationsByName[CurrentLocation];
+            LocationNode destination = LocationManager.LocationsByName[Destination];
+
+            //LocationManager.LocationsByName[CurrentLocation].AgentsPresent.Remove(Name);
+
+            //create a location node representing our new location, set to our current location's coordinates
+            LocationNode newLoc = new();
+            newLoc.X = currentLoc.X;
+            newLoc.Y = currentLoc.Y;
+            
+            //calculate the coordinates of the new location using manhattan distance
+            if (currentLoc.X != destination.X)
+            {
+                //XLocation += XLocation > XDestination ? -1 : 1;
+                newLoc.X += currentLoc.X > destination.X ? -1 : 1;
+            }
+            else if (currentLoc.Y != destination.Y)
+            {
+                //YLocation += YLocation > YDestination ? -1 : 1;
+                newLoc.Y += currentLoc.Y > destination.Y ? -1 : 1;
+            }
+
+            //get this new location's name based on the calculated position
+            newLoc.Name = LocationManager.LocationsByPosition[new Vector2(newLoc.X, newLoc.Y)].Name;
+
+            //then remove agent from old location,set current location to this new location and add agent to new location 
+            LocationManager.LocationsByName[CurrentLocation].AgentsPresent.Remove(Name);
+            CurrentLocation = newLoc.Name; //This line is responsible for the viewable movement of the Actor
+            LocationManager.LocationsByName[CurrentLocation].AgentsPresent.AddLast(Name);
         }
 
         /// <summary>

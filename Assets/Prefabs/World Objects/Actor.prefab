@@ -307,11 +307,11 @@ MonoBehaviour:
   colorHover: {r: 1, g: 1, b: 1, a: 0.5019608}
   colorSelect: {r: 1, g: 1, b: 1, a: 1}
   colorFocus: {r: 0, g: 1, b: 1, a: 1}
+  mainSprite: {fileID: 5158159140309255688}
+  interiorOutline: {fileID: 5878896858875335685}
   colorHigh: {r: 0.040236473, g: 1, b: 0, a: 1}
   colorMid: {r: 1, g: 0.4854527, b: 0, a: 1}
   colorLow: {r: 1, g: 0, b: 0, a: 1}
-  mainSprite: {fileID: 5158159140309255688}
-  interiorOutline: {fileID: 5878896858875335685}
   Info:
     name: 
     motive:
@@ -320,14 +320,10 @@ MonoBehaviour:
       physical: 0
       emotional: 0
       financial: 0
-    currentLocation:
-      xPos: 0
-      yPos: 0
+    currentLocation: 
+    destination: 
     occupiedCounter: 0
     currentAction: 
-    destination:
-      xPos: 0
-      yPos: 0
     relationships: []
   displayColor: {r: 1, g: 0, b: 1, a: 1}
   currentMotiveDisplay: 0
