@@ -72,3 +72,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 .vscode/settings.json
 Assets/Scripts/LLM/wizardLM-7B.ggmlv3.q4_0.bin
+
+.fake

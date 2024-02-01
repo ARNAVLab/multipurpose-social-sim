@@ -85,11 +85,11 @@
     "Motives": {
       "accomplishment": 3,
       "emotional": 1,
-      "financial": 1,
+      "financial": 5,
       "social": 3,
       "physical": 1
     },
-    "CurrentLocation": "G19",
+    "CurrentLocation": "A2",
     "OccupiedCounter": 0,
     "CurrentAction": "wait_action",
     "Destination": "",
@@ -142,6 +142,33 @@
       {
         "Type": "friend",
         "With": "Quentin",
+        "Valence": 2
+      },
+      {
+        "Type": "Employee",
+        "With": "Abnorma",
+        "Valence": 1
+      }
+    ]
+  },
+  {
+    "Name": "Mike",
+    "Motives": {
+      "accomplishment": 2,
+      "emotional": 1,
+      "financial": 4,
+      "social": 3,
+      "physical": 5
+    },
+    "CurrentLocation": "B5",
+    "OccupiedCounter": 0,
+    "CurrentAction": "wait_action",
+    "Destination": "",
+    "CurrentTargets": [],
+    "Relationships": [
+      {
+        "Type": "friend",
+        "With": "Adam",
         "Valence": 2
       },
       {
