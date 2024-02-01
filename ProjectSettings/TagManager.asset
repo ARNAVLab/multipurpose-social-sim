@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cursor
+  - Agent
+  - Location
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - UI
   - Cursor
   - Agent
-  - 
+  - Location
   - 
   - 
   - 
@@ -42,6 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Agents
+  - name: Background
+    uniqueID: 2474763841
+    locked: 0
+  - name: Actors
     uniqueID: 1668427431
+    locked: 0
+  - name: Foreground
+    uniqueID: 3688510689
+    locked: 0
+  - name: UI
+    uniqueID: 354145899
     locked: 0
