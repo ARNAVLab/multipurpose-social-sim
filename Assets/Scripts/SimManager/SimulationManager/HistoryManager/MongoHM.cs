@@ -151,6 +151,12 @@ namespace Anthology.SimulationManager.HistoryManager
             Database.GetCollection<EventLog>(log).DeleteMany(Builders<EventLog>.Filter.Empty);
         }
 
+        public static void JsonToNPCLog(JsonDocument json)
+        {
+            //for each item in json, convert to real word sentence
+            //return plain text
+        }
+
         ///<summary>
         /// Exports logs to a .json file
         ///</summary>
@@ -161,6 +167,8 @@ namespace Anthology.SimulationManager.HistoryManager
             var docsList = collection.Find(filter).ToList();
 
             var json = docsList.ToJson();
+
+            //Write plain text to history log instead of json
 
             //Json Serialization Options to help with formatting history logs
             var options = new JsonSerializerOptions()
