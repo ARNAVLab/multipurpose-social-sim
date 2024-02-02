@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Nodes;
 
 namespace Anthology.SimulationManager.HistoryManager
 {
@@ -61,6 +62,8 @@ namespace Anthology.SimulationManager.HistoryManager
         ///Exports history log to a .json file
         ///</summary>
         public abstract void ExportCollection();
+
+        public abstract string GetActorJson(string actorName);
     }
 
     /// <summary>

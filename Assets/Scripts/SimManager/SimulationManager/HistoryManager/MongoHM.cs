@@ -11,6 +11,7 @@ using System.Text.Json;
 using MongoDB.Bson.Serialization;
 using System.Collections.ObjectModel;
 using System.Xml;
+using System.Text.Json.Nodes;
 
 namespace Anthology.SimulationManager.HistoryManager
 {
@@ -151,10 +152,25 @@ namespace Anthology.SimulationManager.HistoryManager
             Database.GetCollection<EventLog>(log).DeleteMany(Builders<EventLog>.Filter.Empty);
         }
 
-        public static void JsonToNPCLog(JsonDocument json)
+        //Converts a json log into plain text
+        //To be used for Actor journals
+        public static void JsonToNPCLog(JsonObject json)
         {
             //for each item in json, convert to real word sentence
             //return plain text
+        }
+
+        //Given an Actor's name as a string, query the database for that Actor's logs
+        //Return actor logs as a json string
+        public override string GetActorJson(string actorName)
+        {
+            IMongoCollection<EventLog> NPCHistoryCollection = Database.GetCollection<EventLog>("NPC History");
+            var filter = Builders<EventLog>.Filter.Empty; //this will later filter for the given actorName
+            var actorLogs = NPCHistoryCollection.Find(filter).ToList();
+
+            var actorLogsAsJson = actorLogs.ToJson();
+            
+            return actorLogsAsJson; 
         }
 
         ///<summary>
