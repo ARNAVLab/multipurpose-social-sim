@@ -177,5 +177,12 @@ namespace Anthology.SimulationManager
         {
             History.ExportCollection();
         }
+
+        public static string GetLog(string actorName)
+        {
+            //var npcLogJson = History.GetActorJson(actorName);
+
+            return History.GetActorJson(actorName);
+        }
     }
 }

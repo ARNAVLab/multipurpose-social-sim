@@ -1,6 +1,8 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 
 namespace Anthology.SimulationManager.HistoryManager
@@ -64,6 +66,8 @@ namespace Anthology.SimulationManager.HistoryManager
         public abstract void ExportCollection();
 
         public abstract string GetActorJson(string actorName);
+
+        public abstract string JsonToNPCLog(JObject jsonString);
     }
 
     /// <summary>

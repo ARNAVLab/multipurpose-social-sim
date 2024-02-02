@@ -12,6 +12,9 @@ using MongoDB.Bson.Serialization;
 using System.Collections.ObjectModel;
 using System.Xml;
 using System.Text.Json.Nodes;
+using Unity.VisualScripting;
+using System.Collections.Generic;
+using Amazon.Runtime.Documents;
 
 namespace Anthology.SimulationManager.HistoryManager
 {
@@ -154,10 +157,18 @@ namespace Anthology.SimulationManager.HistoryManager
 
         //Converts a json log into plain text
         //To be used for Actor journals
-        public static void JsonToNPCLog(JsonObject json)
+        public override string JsonToNPCLog(JObject jsonLog)
         {
+            string plainText = "";
+
+            foreach (var logItem in jsonLog)
+            {
+                plainText += logItem.ToString();
+                plainText += "\n";
+            }
+
             //for each item in json, convert to real word sentence
-            //return plain text
+            return plainText;
         }
 
         //Given an Actor's name as a string, query the database for that Actor's logs
@@ -165,12 +176,27 @@ namespace Anthology.SimulationManager.HistoryManager
         public override string GetActorJson(string actorName)
         {
             IMongoCollection<EventLog> NPCHistoryCollection = Database.GetCollection<EventLog>("NPC History");
-            var filter = Builders<EventLog>.Filter.Empty; //this will later filter for the given actorName
-            var actorLogs = NPCHistoryCollection.Find(filter).ToList();
+            var fBuilder = Builders<EventLog>.Filter; //filters for given actor name
+            var pBuilder = Builders<EventLog>.Projection; //include only necessary fields
 
-            var actorLogsAsJson = actorLogs.ToJson();
+            var filter = fBuilder.Eq("NpcChanges." + actorName + ".Name", actorName);
+            var project = pBuilder.Include("NpcChanges." + actorName + ".Name").Include("NpcChanges." + actorName + ".CurrentAction.Name");
+
+            //This is all probably going to be moved to the method above, this is just for testing
+
+            string plainText = "";
+
+            using (var actorLogs = NPCHistoryCollection.Find(filter).Project(project).ToCursor())
+            {
+                foreach (var r in actorLogs.ToEnumerable())
+                {
+                    var exists = r.GetElement("NpcChanges");
+                    plainText += exists.ToString();
+                }
+            }
             
-            return actorLogsAsJson; 
+
+            return plainText;
         }
 
         ///<summary>
