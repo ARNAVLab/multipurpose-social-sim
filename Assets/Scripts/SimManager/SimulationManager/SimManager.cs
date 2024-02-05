@@ -180,9 +180,9 @@ namespace Anthology.SimulationManager
 
         public static string GetLog(string actorName)
         {
-            //var npcLogJson = History.GetActorJson(actorName);
+            var npcLogCursor = History.GetActorJson(actorName);
 
-            return History.GetActorJson(actorName);
+            return History.JsonToNPCLog(npcLogCursor, actorName);
         }
     }
 }
