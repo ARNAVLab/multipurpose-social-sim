@@ -277,7 +277,6 @@ public class WorldManager : MonoBehaviour
         SimManager.ExportLogs();
 
         var log = SimManager.GetLog("Abnorma");
-
         Debug.Log(log);
     }
 

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Anthology.SimulationManager;
+using UnityEditor.Search;
 
 public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 {
@@ -28,6 +29,8 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 
     [Tooltip("The panel which displays Actor relationships.")]
     [SerializeField] RelationshipDisplay relationsDisp;
+    [Tooltip("The planel which displays the Actor journal.")]
+    [SerializeField] JournalDisplay journalDisp;
 
     private const string AT_LOCATION = "Currently at";
     private const string TO_LOCATION = "Traveling to";
@@ -80,6 +83,10 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
         }
 
         relationsDisp.DisplayActorRelations(displayedNPC);
+
+        var journalText = SimManager.GetLog(displayedNPC.Name);
+
+        journalDisp.DisplayActorJournal(journalText);
     }
 
     public void OverwriteMotiveValue(string motiveName, float newValue)
