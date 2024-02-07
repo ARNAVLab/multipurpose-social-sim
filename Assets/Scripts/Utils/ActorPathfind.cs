@@ -1,3 +1,4 @@
+using Anthology.Models;
 using Anthology.SimulationManager;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ public class ActorPathfind : MonoBehaviour
     Transform agentBody;
     [SerializeField] float timeSpeed;
 
-    TimeManager timeManager; 
+    TimeManager timeManager;
 
     // Start is called before the first frame update
     void Start()
@@ -45,12 +46,11 @@ public class ActorPathfind : MonoBehaviour
 
         Location currentLoc = SimManager.Locations[actor.Info.currentLocation];
 
+        List<LocationNode> travelPath = new(); //Insert method for getting path here
+
         Vector3 Vec3Loc = new Vector3(currentLoc.Coordinates.X, currentLoc.Coordinates.Y, 0.0f);
 
         agentBody.position = Vec3Loc;
-
-        //Process LocationNode List from LocationManager Here
-        //Pop off LocationNode from List, move agent, and continue
 
         //target = new Vector3(dest.Coordinates.X, dest.Coordinates.Y, 0.0f);
         //if (timeManager.isPaused)

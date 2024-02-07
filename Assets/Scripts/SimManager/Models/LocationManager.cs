@@ -236,11 +236,20 @@ namespace Anthology.Models
             return nearest;
         }
 
-        public static void GetPathFromTo(LocationNode From, LocationNode To)
+        public static List<LocationNode> GetPathFromTo(LocationNode From, LocationNode To)
         {
-            
-            return; //Return List of LocationNodes
-            //Create random output
+            List<LocationNode> locList = new List<LocationNode>();
+
+            //Create random list
+            for (var i = 0; i > 5; i++)
+            {
+                Random rand = new Random();
+                var randomLoc = LocationsByName.ElementAt(rand.Next(0, LocationsByName.Count)).Value;
+                locList.Add(randomLoc);
+
+            }
+
+            return locList; //Return List of LocationNodes
         }
     }
 }

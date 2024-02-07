@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jint.Parser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -81,6 +82,8 @@ namespace Anthology.Models
         /// </summary>
         public System.Collections.Generic.List<Agent> CurrentTargets { get; set; } = new();
 
+        public List<LocationNode> TravelPath { get; set; } = new();
+
         /// <summary>
         /// Starts travel to the agent's destination.
         /// </summary>
@@ -88,9 +91,18 @@ namespace Anthology.Models
         /// <param name="time">The time in which the agent started traveling.</param>
         public void StartTravelToLocation(LocationNode destination, float time)
         {
+
             Destination = destination.Name;
             LocationNode currentLoc = LocationManager.LocationsByName[CurrentLocation];
-            OccupiedCounter = (int)Math.Ceiling(LocationManager.DistanceMatrix[currentLoc.ID * LocationManager.LocationCount + destination.ID]);
+
+            //Get travel path from Sasha's graph traversal
+            List<LocationNode> travelPath = LocationManager.GetPathFromTo(currentLoc, destination);
+            //OccupiedCounter = travelPath.Count; //Occupied counter will now just be the length of the calculated path
+
+            TravelPath = travelPath; //set agent's travel path to the found travel path
+            
+            //OccupiedCounter = (int)Math.Ceiling(LocationManager.DistanceMatrix[currentLoc.ID * LocationManager.LocationCount + destination.ID]);
+
             Console.WriteLine("time: " + time.ToString() + " | " + Name + ": Started " + CurrentAction.First().Name + "; Destination: " + destination.Name);
             MoveCloserToDestination();
         }
@@ -98,6 +110,8 @@ namespace Anthology.Models
         /// <summary>
         /// Moves closer to the agent's destination.
         /// Uses the manhattan distance to move the agent, so either moves along the x or y axis during any tick.
+        /// 2-7 change: iterates along a given list of locations nodes (from graph method that Sasha will make)
+        /// moves agent to the next given node on the list
         /// </summary>
         public void MoveCloserToDestination()
         {
@@ -115,24 +129,26 @@ namespace Anthology.Models
             LocationNode currentLoc = LocationManager.LocationsByName[CurrentLocation];
             LocationNode destination = LocationManager.LocationsByName[Destination];
 
+            LocationNode newLoc = TravelPath.Pop<LocationNode>();
+
             //LocationManager.LocationsByName[CurrentLocation].AgentsPresent.Remove(Name);
 
             //create a location node representing our new location, set to our current location's coordinates
-            LocationNode newLoc = new();
-            newLoc.X = currentLoc.X;
-            newLoc.Y = currentLoc.Y;
+            //LocationNode newLoc = new();
+            //newLoc.X = currentLoc.X;
+            //newLoc.Y = currentLoc.Y;
             
             //calculate the coordinates of the new location using manhattan distance
-            if (currentLoc.X != destination.X)
-            {
+            //if (currentLoc.X != destination.X)
+            //{
                 //XLocation += XLocation > XDestination ? -1 : 1;
-                newLoc.X += currentLoc.X > destination.X ? -1 : 1;
-            }
-            else if (currentLoc.Y != destination.Y)
-            {
+                //newLoc.X += currentLoc.X > destination.X ? -1 : 1;
+            //}
+            //else if (currentLoc.Y != destination.Y)
+            //{
                 //YLocation += YLocation > YDestination ? -1 : 1;
-                newLoc.Y += currentLoc.Y > destination.Y ? -1 : 1;
-            }
+                //newLoc.Y += currentLoc.Y > destination.Y ? -1 : 1;
+            //}
 
             //get this new location's name based on the calculated position
             newLoc.Name = LocationManager.LocationsByPosition[new Vector2(newLoc.X, newLoc.Y)].Name;
