@@ -168,7 +168,7 @@ namespace Anthology.SimulationManager.HistoryManager
                 var jsonData = JObject.Parse(jsonDoc);
                 var time = jsonData["_id"].ToString();
                 var currentAction = jsonData["NpcChanges"][actorName]["CurrentAction"]["Name"].ToString();
-                plainText += "At time " + time + " " + actorName + " started: " + currentAction + ".";
+                plainText += "Time: " + time + " " + actorName + " started: " + currentAction + ".";
                 plainText += "\n";
                 plainText += "\n";
 
