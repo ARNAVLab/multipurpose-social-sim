@@ -49,6 +49,9 @@ public class ActorPathfind : MonoBehaviour
 
         agentBody.position = Vec3Loc;
 
+        //Process LocationNode List from LocationManager Here
+        //Pop off LocationNode from List, move agent, and continue
+
         //target = new Vector3(dest.Coordinates.X, dest.Coordinates.Y, 0.0f);
         //if (timeManager.isPaused)
         //{

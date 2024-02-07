@@ -235,5 +235,12 @@ namespace Anthology.Models
 
             return nearest;
         }
+
+        public static void GetPathFromTo(LocationNode From, LocationNode To)
+        {
+            
+            return; //Return List of LocationNodes
+            //Create random output
+        }
     }
 }
