@@ -97,7 +97,7 @@ namespace Anthology.Models
 
             //Get travel path from Sasha's graph traversal
             List<LocationNode> travelPath = LocationManager.GetPathFromTo(currentLoc, destination);
-            //OccupiedCounter = travelPath.Count; //Occupied counter will now just be the length of the calculated path
+            OccupiedCounter = travelPath.Count; //Occupied counter will now just be the length of the calculated path
 
             TravelPath = travelPath; //set agent's travel path to the found travel path
             

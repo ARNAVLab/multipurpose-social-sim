@@ -241,7 +241,7 @@ namespace Anthology.Models
             List<LocationNode> locList = new List<LocationNode>();
 
             //Create random list
-            for (var i = 0; i > 5; i++)
+            for (var i = 0; i < 5; i++)
             {
                 Random rand = new Random();
                 var randomLoc = LocationsByName.ElementAt(rand.Next(0, LocationsByName.Count)).Value;
