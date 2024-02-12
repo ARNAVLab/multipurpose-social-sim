@@ -168,9 +168,19 @@ namespace Anthology.SimulationManager.HistoryManager
                 var jsonData = JObject.Parse(jsonDoc);
                 var time = jsonData["_id"].ToString();
                 var currentAction = jsonData["NpcChanges"][actorName]["CurrentAction"]["Name"].ToString();
-                plainText += "Time: " + time + " " + actorName + " started: " + currentAction + ".";
-                plainText += "\n";
-                plainText += "\n";
+                if (currentAction == "travel_action")
+                {
+                    var dest = jsonData["NpcChanges"][actorName]["Destination"].ToString();
+                    plainText += "Time: " + time + " " + actorName + " started: " + currentAction + " to " + dest + ".";
+                    plainText += "\n";
+                    plainText += "\n";
+                }
+                else
+                {
+                    plainText += "Time: " + time + " " + actorName + " started: " + currentAction + ".";
+                    plainText += "\n";
+                    plainText += "\n";
+                }
 
             }
 
@@ -186,7 +196,8 @@ namespace Anthology.SimulationManager.HistoryManager
             var pBuilder = Builders<EventLog>.Projection; //include only necessary fields
 
             var filter = fBuilder.Eq("NpcChanges." + actorName + ".Name", actorName);
-            var project = pBuilder.Include("NpcChanges." + actorName + ".Name").Include("NpcChanges." + actorName + ".CurrentAction.Name");
+            var project = pBuilder.Include("NpcChanges." + actorName + ".Name").Include("NpcChanges." + actorName + ".CurrentAction")
+                .Include("NpcChanges."+ actorName + ".Destination");
 
             var actorLogs = NPCHistoryCollection.Find(filter).Project(project).ToList();
 
