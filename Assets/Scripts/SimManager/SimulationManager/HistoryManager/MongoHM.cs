@@ -1,7 +1,17 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using System.IO;
+using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using MongoDB.Bson.Serialization;
+using System.Collections.ObjectModel;
+using Unity.VisualScripting;
+using System.Collections.Generic;
+using Amazon.Runtime.Documents;
 
 namespace Anthology.SimulationManager.HistoryManager
 {
@@ -140,6 +150,81 @@ namespace Anthology.SimulationManager.HistoryManager
         public override void ClearLog(string log)
         {
             Database.GetCollection<EventLog>(log).DeleteMany(Builders<EventLog>.Filter.Empty);
+        }
+
+        //Converts a json log into plain text
+        //To be used for Actor journals
+        public override string JsonToNPCLog(List<BsonDocument> list, string actorName)
+        {
+            string plainText = "";
+
+            //for each doc from the database
+            foreach (BsonDocument doc in list)
+            {
+                var jsonDoc = doc.ToJson();
+                var jsonData = JObject.Parse(jsonDoc);
+                var time = jsonData["_id"].ToString();
+                var currentAction = jsonData["NpcChanges"][actorName]["CurrentAction"]["Name"].ToString();
+                if (currentAction == "travel_action")
+                {
+                    var dest = jsonData["NpcChanges"][actorName]["Destination"].ToString();
+                    plainText += "Time: " + time + " " + actorName + " started: " + currentAction + " to " + dest + ".";
+                    plainText += "\n";
+                    plainText += "\n";
+                }
+                else
+                {
+                    plainText += "Time: " + time + " " + actorName + " started: " + currentAction + ".";
+                    plainText += "\n";
+                    plainText += "\n";
+                }
+
+            }
+
+            return plainText;
+        }
+
+        //Given an Actor's name as a string, query the database for that Actor's logs
+        //Return actor logs as a json string
+        public override List<BsonDocument> GetActorJson(string actorName)
+        {
+            IMongoCollection<EventLog> NPCHistoryCollection = Database.GetCollection<EventLog>("NPC History");
+            var fBuilder = Builders<EventLog>.Filter; //filters for given actor name
+            var pBuilder = Builders<EventLog>.Projection; //include only necessary fields
+
+            var filter = fBuilder.Eq("NpcChanges." + actorName + ".Name", actorName);
+            var project = pBuilder.Include("NpcChanges." + actorName + ".Name").Include("NpcChanges." + actorName + ".CurrentAction")
+                .Include("NpcChanges."+ actorName + ".Destination");
+
+            var actorLogs = NPCHistoryCollection.Find(filter).Project(project).ToList();
+
+            return actorLogs;
+        }
+
+        ///<summary>
+        /// Exports logs to a .json file
+        ///</summary>
+        public override void ExportCollection()
+        {
+            IMongoCollection<EventLog> collection = Database.GetCollection<EventLog>("NPC History");
+            var filter = Builders<EventLog>.Filter.Empty;
+            var docsList = collection.Find(filter).ToList();
+
+            var json = docsList.ToJson();
+
+            //Write plain text to history log instead of json
+
+            //Json Serialization Options to help with formatting history logs
+            var options = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+
+            var deserializedJson = JsonSerializer.Deserialize<JsonElement>(json);
+            var prettyJson =  JsonSerializer.Serialize(deserializedJson, options);
+
+            File.WriteAllText(@"Logs\HistoryLogs\log.json", prettyJson);
+
         }
 
         /// <summary>

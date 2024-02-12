@@ -1,6 +1,10 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace Anthology.SimulationManager.HistoryManager
 {
@@ -25,7 +29,7 @@ namespace Anthology.SimulationManager.HistoryManager
         /// Push NPC state to the log given destination.
         /// </summary>
         /// <param name="destination">Where to store npc state data.</param>
-        public abstract void LogNpcStates(string? destination);
+        public abstract void LogNpcStates(string destination);
 
         /// <summary>
         /// Save the current simulation state with given name.
@@ -56,6 +60,15 @@ namespace Anthology.SimulationManager.HistoryManager
         /// </summary>
         /// <param name="log">Name of log to clear.</param>
         public abstract void ClearLog(string log);
+
+        ///<summary>
+        ///Exports history log to a .json file
+        ///</summary>
+        public abstract void ExportCollection();
+
+        public abstract List<BsonDocument> GetActorJson(string actorName);
+
+        public abstract string JsonToNPCLog(List<BsonDocument> list, string actorName);
     }
 
     /// <summary>

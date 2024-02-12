@@ -2,6 +2,8 @@ using Anthology.SimulationManager;
 using Anthology.SimulationManager.HistoryManager;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -268,5 +270,13 @@ public class WorldManager : MonoBehaviour
         }
     }
 
-    
+    void OnApplicationQuit()
+    {
+        Debug.Log("Application ending after " + Time.time + " seconds");
+        SimManager.ExportLogs();
+
+        var log = SimManager.GetLog("Abnorma");
+        Debug.Log(log);
+    }
+
 }
