@@ -64,6 +64,7 @@ namespace Anthology.SimulationManager
         /// <param name="history">The history manager type to use.</param>
         public static void Init(string JSONfile, Type reality, Type knowledge, Type history)
         {
+            
             if (reality.IsSubclassOf(typeof(RealitySim)))
             {
                 Reality = Activator.CreateInstance(reality) as RealitySim;
@@ -166,6 +167,21 @@ namespace Anthology.SimulationManager
                     Reality?.PushUpdatedNpc(newNPC);
                 }
             }
+        }
+
+        /// <summary>
+        /// Exports History Logs WIP
+        /// that state.
+        /// </summary>
+        public static void ExportLogs()
+        {
+            History.ExportCollection();
+        }
+
+        public static string GetLog(string actorName)
+        {
+            var npcLogCursor = History.GetActorJson(actorName);
+            return History.JsonToNPCLog(npcLogCursor, actorName);
         }
     }
 }
