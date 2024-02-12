@@ -1,7 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
@@ -30,7 +29,7 @@ namespace Anthology.SimulationManager.HistoryManager
         /// Push NPC state to the log given destination.
         /// </summary>
         /// <param name="destination">Where to store npc state data.</param>
-        public abstract void LogNpcStates(string? destination);
+        public abstract void LogNpcStates(string destination);
 
         /// <summary>
         /// Save the current simulation state with given name.

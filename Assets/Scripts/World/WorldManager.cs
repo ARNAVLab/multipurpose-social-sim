@@ -1,6 +1,5 @@
 using Anthology.SimulationManager;
 using Anthology.SimulationManager.HistoryManager;
-using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.Json;
