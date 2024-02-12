@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 
-namespace Anthology.SimulationManager
+namespace SimManager.SimulationManager
 {
     /// <summary>
     /// The SimManager (or simulation manager) is used to coordinate the activities and data of two 

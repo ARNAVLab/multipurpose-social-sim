@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Anthology.SimulationManager.HistoryManager
+namespace SimManager.HistoryManager
 {
     /// <summary>
     /// Concrete implementation of HistoryLogger using local instance of MongoDB.

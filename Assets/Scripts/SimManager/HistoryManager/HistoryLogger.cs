@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Anthology.SimulationManager.HistoryManager
+namespace SimManager.HistoryManager
 {
     /// <summary>
     /// Logs history of simulation. Manages a log of events that occurred in

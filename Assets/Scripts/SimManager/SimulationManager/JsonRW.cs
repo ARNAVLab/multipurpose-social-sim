@@ -1,4 +1,4 @@
-namespace Anthology.Models 
+namespace SimManager.Models 
 {
     /// <summary>
     /// Abstracts away JSON reading for compatibility with legacy JSON readers.

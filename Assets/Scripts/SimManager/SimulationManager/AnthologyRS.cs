@@ -1,8 +1,9 @@
 ﻿using Anthology.Models;
+using SimManager.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Anthology.SimulationManager
+namespace SimManager.SimulationManager
 {
     /// <summary>
     /// Concrete implementation of the reality sim using Anthology.

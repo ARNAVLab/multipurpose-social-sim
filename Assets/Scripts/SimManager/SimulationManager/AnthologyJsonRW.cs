@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
-namespace Anthology.Models
+namespace SimManager.Models
 {
     /// <summary>
     /// JSON serialization and deserialization manager for .NET framework to use.

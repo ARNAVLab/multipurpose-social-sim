@@ -2,7 +2,7 @@
 using System.Numerics;
 using System.Text;
 
-namespace Anthology.SimulationManager
+namespace SimManager.SimulationManager
 {
     /// <summary>
     /// An Agent/Actor/Individual/Unit/NPC to be maintained by the simulation manager.
