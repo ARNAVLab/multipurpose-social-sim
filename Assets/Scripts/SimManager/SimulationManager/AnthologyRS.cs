@@ -1,5 +1,4 @@
 ﻿using Anthology.Models;
-using SimManager.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -28,7 +27,7 @@ namespace SimManager.SimulationManager
             List<Agent> agents = AgentManager.Agents;
             foreach (Agent a in agents)
             {
-                if (!npcs.TryGetValue(a.Name, out NPC? npc))
+                if (!npcs.TryGetValue(a.Name, out NPC npc))
                     npc = new NPC();
                 npc.Name = a.Name;
                 npc.Location = a.CurrentLocation;
