@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &225466047616046384
 RectTransform:
   m_ObjectHideFlags: 0
@@ -79,7 +79,6 @@ MonoBehaviour:
   content: {fileID: 3254797166665825902}
   minSize: {x: 50, y: 50}
   isShown: 0
-  isExpanded: 1
 --- !u!114 &2377996906365306212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +108,8 @@ MonoBehaviour:
   - {fileID: 744354143515914035}
   - {fileID: 2558109930326704045}
   - {fileID: 2993099715587771551}
+  relationsDisp: {fileID: 0}
+  journalDisp: {fileID: 0}
 --- !u!1 &461505273857643087
 GameObject:
   m_ObjectHideFlags: 0

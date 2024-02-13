@@ -1107,6 +1107,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: -8.295773
       objectReference: {fileID: 0}
+    - target: {fileID: 5347219673970371886, guid: 2da8c6baece9b5147a250be3a6383908, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Hide
+      objectReference: {fileID: 0}
     - target: {fileID: 6389828781301716456, guid: 2da8c6baece9b5147a250be3a6383908, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6193,9 +6197,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1279577833}
         m_TargetAssemblyTypeName: Panel, Assembly-CSharp
-        m_MethodName: ToggleMinimized
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15448,7 +15452,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7867896627269782051}
         m_TargetAssemblyTypeName: Panel, Assembly-CSharp
-        m_MethodName: ToggleMinimized
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18255,7 +18259,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5263750854348886464}
         m_TargetAssemblyTypeName: Panel, Assembly-CSharp
-        m_MethodName: ToggleMinimized
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
