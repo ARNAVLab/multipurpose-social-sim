@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using SimManager.SimulationManager;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -69,7 +70,7 @@ namespace SimManager.HistoryManager
         /// Push NPC state to the log given destination.
         /// </summary>
         /// <param name="destination">Where to store npc state data.</param>
-        public override void LogNpcStates(string? destination)
+        public override void LogNpcStates(string destination)
         {
             IMongoCollection<EventLog> logCollection;
             if (destination != null)

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Anthology.SimulationManager;
+using SimManager.SimulationManager;
 
 public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 {
@@ -50,7 +50,7 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
         }
 
         Actor selectedActor = (Actor) selected;
-        SimManager.NPCs.TryGetValue(selectedActor.name, out displayedNPC);
+        SimEngine.NPCs.TryGetValue(selectedActor.name, out displayedNPC);
 
         if (displayedNPC == null)
             return;

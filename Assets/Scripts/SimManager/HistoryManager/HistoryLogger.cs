@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
+using SimManager.SimulationManager;
 
 namespace SimManager.HistoryManager
 {
@@ -25,7 +26,7 @@ namespace SimManager.HistoryManager
         /// Push NPC state to the log given destination.
         /// </summary>
         /// <param name="destination">Where to store npc state data.</param>
-        public abstract void LogNpcStates(string? destination);
+        public abstract void LogNpcStates(string destination);
 
         /// <summary>
         /// Save the current simulation state with given name.
@@ -67,7 +68,7 @@ namespace SimManager.HistoryManager
         /// Delta steps to advance simulation.
         /// </summary>
         [BsonId]
-        public uint TimeStep { get; set; } = SimManager.NumIterations;
+        public uint TimeStep { get; set; } = SimEngine.NumIterations;
 
         /// <summary>
         /// Dictionary that keeps track of NPC state changes.
@@ -107,9 +108,9 @@ namespace SimManager.HistoryManager
         {
             SimName = name == "" ? "Sim " + DateTime.Now : name;
             NPCs = new();
-            NPCs.UnionWith(SimManager.NPCs.Values);
+            NPCs.UnionWith(SimEngine.NPCs.Values);
             Locations = new();
-            Locations.UnionWith(SimManager.Locations.Values);
+            Locations.UnionWith(SimEngine.Locations.Values);
         }
     }
 }

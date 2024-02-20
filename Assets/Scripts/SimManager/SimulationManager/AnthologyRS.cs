@@ -129,7 +129,7 @@ namespace SimManager.SimulationManager
             npc.ActionCounter = agent.OccupiedCounter;
             if (shouldLog)
             {
-                SimManager.History?.AddNpcToLog(npc);
+                SimEngine.History?.AddNpcToLog(npc);
             }
         }
 
