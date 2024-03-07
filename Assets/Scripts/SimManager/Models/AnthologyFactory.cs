@@ -78,15 +78,16 @@ namespace Anthology.Models
                         "t_" + (i % 3),
                         "t_" + ((i % 7) + 3)
                     },
-                    Connections =
-                    {
-                        { "l_" + c[0], r.Next(100) },
-                        { "l_" + c[1], r.Next(100) },
-                        { "l_" + c[2], r.Next(100) }
-                    }
+                    Connections = {}
+                    // {
+                    //     { "l_" + c[0], r.Next(100) },
+                    //     { "l_" + c[1], r.Next(100) },
+                    //     { "l_" + c[2], r.Next(100) }
+                    // }
                 };
                 LocationManager.AddLocation(node);
             }
+			
             LocationManager.UpdateDistanceMatrix();
         }
 

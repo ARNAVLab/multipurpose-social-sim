@@ -36,9 +36,9 @@ namespace Anthology.SimulationManager
                     npc.CurrentAction.Name = a.CurrentAction.First().Name;
                 }
                 npc.ActionCounter = a.OccupiedCounter;
-                if (a.Destination != string.Empty)
+                if (a.Destination.Count > 0)
                 {
-                    npc.Destination = a.Destination;
+                    npc.Destination = a.Destination[0].Name;
                 }
                 Dictionary<string, float> motives = a.Motives;
                 foreach (string mote in motives.Keys)
@@ -69,9 +69,9 @@ namespace Anthology.SimulationManager
                     Coordinates = new(locNode.X, locNode.Y),
                 };
                 loc.Tags.UnionWith(locNode.Tags);
-                foreach(KeyValuePair<string, float> con in locNode.Connections)
+                foreach(KeyValuePair<LocationNode, float> con in locNode.Connections)
                 {
-                    loc.Connections.Add(con.Key, con.Value);
+                    loc.Connections.Add(con.Key.Name, con.Value);
                 }
                 locations.Add(loc.Name, loc);
             }
@@ -101,9 +101,9 @@ namespace Anthology.SimulationManager
             Agent agent = AgentManager.GetAgentByName(npc.Name);
             npc.Location = agent.CurrentLocation;
 
-            if (agent.Destination != string.Empty)
+            if (agent.Destination.Count > 0)
             {
-                npc.Destination = agent.Destination;
+                npc.Destination = agent.Destination[0].Name;
             }
             else
             {
