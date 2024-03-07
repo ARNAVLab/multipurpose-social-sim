@@ -1,5 +1,5 @@
 using Anthology.Models;
-using Anthology.SimulationManager;
+using SimManager.SimulationManager;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
