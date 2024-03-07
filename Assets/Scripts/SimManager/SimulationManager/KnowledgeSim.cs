@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Anthology.SimulationManager
+namespace SimManager.SimulationManager
 {
     /// <summary>
     /// This class should be inherited from and implemented to use as a wrapper

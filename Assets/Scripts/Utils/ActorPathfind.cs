@@ -1,4 +1,4 @@
-using Anthology.SimulationManager;
+using SimManager.SimulationManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,7 +41,7 @@ public class ActorPathfind : MonoBehaviour
 
     private void CalcPathFind()
     {
-        Location dest = SimManager.Locations[actor.Info.destination];
+        Location dest = SimEngine.Locations[actor.Info.destination];
         target = new Vector3(dest.Coordinates.X, dest.Coordinates.Y, 0.0f);
         if (timeManager.isPaused)
         {

@@ -1,0 +1,2636 @@
+[
+  {
+    "_id": 0,
+    "NpcChanges": {
+      "Norma": {
+        "Name": "Norma",
+        "Location": "A3",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Norma": "Remote Worker"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 1.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 2.0,
+          "social": 1.0,
+          "physical": 2.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 2.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 3.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 1.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 3.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 4.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 3.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 1,
+    "NpcChanges": {
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 4.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 3.0
+        },
+        "CurrentAction": {
+          "Name": "Eat fancy",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 40,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 2,
+    "NpcChanges": {
+      "Norma": {
+        "Name": "Norma",
+        "Location": "A3",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Norma": "Remote Worker"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 2.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 2.0,
+          "social": 1.0,
+          "physical": 3.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 2.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 2.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 22,
+    "NpcChanges": {
+      "Norma": {
+        "Name": "Norma",
+        "Location": "A3",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Norma": "Remote Worker"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 3.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 2.0,
+          "social": 1.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 2.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      },
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 3.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Workout",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 90,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 43,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 2.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 44,
+    "NpcChanges": {
+      "Norma": {
+        "Name": "Norma",
+        "Location": "A3",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Norma": "Remote Worker"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 2.0,
+          "social": 1.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      },
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 64,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 2.0,
+          "social": 1.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 65,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 4.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      },
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 75,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 4.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 76,
+    "NpcChanges": {
+      "Norma": {
+        "Name": "Norma",
+        "Location": "A3",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Norma": "Remote Worker"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Workout",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 90,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 85,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 1.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 86,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 96,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 97,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 4.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      },
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 107,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 4.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 108,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 4.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 117,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 3.0,
+          "financial": 1.0,
+          "social": 4.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 118,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 128,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 129,
+    "NpcChanges": {
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 4.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 134,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A2",
+        "Dirty": true
+      },
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 4.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 139,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Eat fancy",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 40,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 4.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 140,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 149,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Eat fancy",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 40,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 150,
+    "NpcChanges": {
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 4.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Workout",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 90,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 155,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 4.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 160,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 4.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 161,
+    "NpcChanges": {
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "wait_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 0,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 171,
+    "NpcChanges": {
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A3",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 173,
+    "NpcChanges": {
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Workout",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 90,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 174,
+    "NpcChanges": {
+      "Norma": {
+        "Name": "Norma",
+        "Location": "A3",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Norma": "Remote Worker"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 4.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 176,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A3",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 181,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 1.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Workout",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 90,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 182,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 191,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 192,
+    "NpcChanges": {
+      "Norma": {
+        "Name": "Norma",
+        "Location": "A3",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Norma": "Remote Worker"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 4.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Workout",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 90,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 197,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 0,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 213,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 214,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "wait_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 0,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 223,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 225,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Eat fancy",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 40,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 226,
+    "NpcChanges": {
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 246,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 0,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 256,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Eat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 40,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 259,
+    "NpcChanges": {
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 5.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 265,
+    "NpcChanges": {
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 5.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Eat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 40,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 266,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A2",
+        "Dirty": true
+      },
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 267,
+    "NpcChanges": {
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Eat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 40,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 1.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 268,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 273,
+    "NpcChanges": {
+      "Norma": {
+        "Name": "Norma",
+        "Location": "A3",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Norma": "Remote Worker"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 4.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 288,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Escape the heat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 20,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 294,
+    "NpcChanges": {
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 299,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A3",
+        "Dirty": true
+      },
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 300,
+    "NpcChanges": {
+      "Abnorma": {
+        "Name": "Abnorma",
+        "Location": "G5",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Workout",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 90,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 301,
+    "NpcChanges": {
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 5.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "wait_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 0,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 307,
+    "NpcChanges": {
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 5.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 308,
+    "NpcChanges": {
+      "Norma": {
+        "Name": "Norma",
+        "Location": "A3",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Norma": "Remote Worker"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      },
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A2",
+        "Dirty": true
+      },
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 5.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 309,
+    "NpcChanges": {
+      "Norma": {
+        "Name": "Norma",
+        "Location": "A3",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Norma": "Remote Worker"
+        },
+        "Motives": {
+          "accomplishment": 4.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 2.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      },
+      "Alex": {
+        "Name": "Alex",
+        "Location": "G19",
+        "Knowledge": {},
+        "Relationships": {
+          "Adam": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Eat",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 40,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 310,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "A3",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 315,
+    "NpcChanges": {
+      "Quentin": {
+        "Name": "Quentin",
+        "Location": "E5",
+        "Knowledge": {},
+        "Relationships": {
+          "Norma": "friend",
+          "Abnorma": "friend"
+        },
+        "Motives": {
+          "accomplishment": 2.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Workout",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 90,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 316,
+    "NpcChanges": {
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": -2147483648,
+        "Destination": "B2",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 331,
+    "NpcChanges": {
+      "Adam": {
+        "Name": "Adam",
+        "Location": "E19",
+        "Knowledge": {},
+        "Relationships": {
+          "Alex": "friend"
+        },
+        "Motives": {
+          "accomplishment": 3.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 3.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "Shop",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 30,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  },
+  {
+    "_id": 332,
+    "NpcChanges": {
+      "Johnny": {
+        "Name": "Johnny",
+        "Location": "B4",
+        "Knowledge": {},
+        "Relationships": {
+          "Quentin": "friend",
+          "Abnorma": "Employee"
+        },
+        "Motives": {
+          "accomplishment": 5.0,
+          "emotional": 5.0,
+          "financial": 1.0,
+          "social": 5.0,
+          "physical": 5.0
+        },
+        "CurrentAction": {
+          "Name": "travel_action",
+          "Coactors": null,
+          "Requirements": null,
+          "Tags": null
+        },
+        "ActionCounter": 0,
+        "Destination": "",
+        "Dirty": true
+      }
+    }
+  }
+]

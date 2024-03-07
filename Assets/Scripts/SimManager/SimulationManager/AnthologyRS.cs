@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Anthology.SimulationManager
+namespace SimManager.SimulationManager
 {
     /// <summary>
     /// Concrete implementation of the reality sim using Anthology.
@@ -27,7 +27,7 @@ namespace Anthology.SimulationManager
             List<Agent> agents = AgentManager.Agents;
             foreach (Agent a in agents)
             {
-                if (!npcs.TryGetValue(a.Name, out NPC? npc))
+                if (!npcs.TryGetValue(a.Name, out NPC npc))
                     npc = new NPC();
                 npc.Name = a.Name;
                 npc.Location = a.CurrentLocation;
@@ -129,7 +129,7 @@ namespace Anthology.SimulationManager
             npc.ActionCounter = agent.OccupiedCounter;
             if (shouldLog)
             {
-                SimManager.History?.AddNpcToLog(npc);
+                SimEngine.History?.AddNpcToLog(npc);
             }
         }
 

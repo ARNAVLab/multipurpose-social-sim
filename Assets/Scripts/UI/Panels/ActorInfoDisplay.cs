@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Anthology.SimulationManager;
-using UnityEditor.Search;
+using SimManager.SimulationManager;
 
 public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 {
@@ -53,7 +52,7 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
         }
 
         Actor selectedActor = (Actor) selected;
-        SimManager.NPCs.TryGetValue(selectedActor.name, out displayedNPC);
+        SimEngine.NPCs.TryGetValue(selectedActor.name, out displayedNPC);
 
         if (displayedNPC == null)
             return;
@@ -84,7 +83,7 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 
         relationsDisp.DisplayActorRelations(displayedNPC);
 
-        var journalText = SimManager.GetLog(displayedNPC.Name);
+        var journalText = SimManager.SimulationManager.SimEngine.GetLog(displayedNPC.Name);
 
         journalDisp.DisplayActorJournal(journalText);
     }
