@@ -42,16 +42,21 @@ public class ActorPathfind : MonoBehaviour
     private void CalcPathFind()
     {
         Location dest = SimEngine.Locations[actor.Info.destination];
-        target = new Vector3(dest.Coordinates.X, dest.Coordinates.Y, 0.0f);
-        if (timeManager.isPaused)
-        {
-            agentBody.position = target;
-        }
-        else
-        {
-            timeSpeed = (float)(1.0 / timeManager.GetTickRate());
-            agentMesh.speed = timeSpeed;
-            agentMesh.SetDestination(target);
-        }
+        Location currentLoc = SimEngine.Locations[actor.Info.currentLocation];
+
+        Vector3 Vec3Loc = new Vector3(currentLoc.Coordinates.X, currentLoc.Coordinates.Y, 0.0f);
+        agentBody.position = Vec3Loc;
+
+        //target = new Vector3(dest.Coordinates.X, dest.Coordinates.Y, 0.0f);
+        //if (timeManager.isPaused)
+        //{
+            //agentBody.position = target;
+        //}
+        //else
+        //{
+            //timeSpeed = (float)(1.0 / timeManager.GetTickRate());
+            //agentMesh.speed = timeSpeed;
+            //agentMesh.SetDestination(target);
+        //}
     }
 }
