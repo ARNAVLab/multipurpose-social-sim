@@ -35,13 +35,12 @@ public class ActorPathfind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!actor.Info.destination.Equals(""))
+        if (actor.Info.currentAction.Equals("travel_action"))
             CalcPathFind();
     }
 
     private void CalcPathFind()
     {
-        Location dest = SimEngine.Locations[actor.Info.destination];
         Location currentLoc = SimEngine.Locations[actor.Info.currentLocation];
 
         Vector3 Vec3Loc = new Vector3(currentLoc.Coordinates.X, currentLoc.Coordinates.Y, 0.0f);
