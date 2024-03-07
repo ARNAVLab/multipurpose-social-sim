@@ -80,11 +80,7 @@
     },
     "com.unity.ide.rider": {
       "version": "3.0.27",
-<<<<<<< HEAD
-      "depth": 1,
-=======
       "depth": 0,
->>>>>>> feature/separateModules
       "source": "registry",
       "dependencies": {
         "com.unity.ext.nunit": "1.0.6"
@@ -93,11 +89,7 @@
     },
     "com.unity.ide.visualstudio": {
       "version": "2.0.22",
-<<<<<<< HEAD
-      "depth": 1,
-=======
       "depth": 0,
->>>>>>> feature/separateModules
       "source": "registry",
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
@@ -120,16 +112,6 @@
       },
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-    "com.unity.nuget.newtonsoft-json": {
-      "version": "3.2.1",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-=======
->>>>>>> feature/separateModules
     "com.unity.performance.profile-analyzer": {
       "version": "1.2.2",
       "depth": 1,
@@ -137,20 +119,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-<<<<<<< HEAD
-    "com.unity.services.core": {
-      "version": "1.12.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.unitywebrequest": "1.0.0",
-        "com.unity.nuget.newtonsoft-json": "3.2.1",
-        "com.unity.modules.androidjni": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-=======
->>>>>>> feature/separateModules
     "com.unity.settings-manager": {
       "version": "2.0.1",
       "depth": 2,

@@ -3,12 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-<<<<<<< HEAD:Assets/Scripts/SimManager/SimulationManager/HistoryManager/HistoryLogger.cs
-using System.Text.Json;
-using System.Text.Json.Nodes;
-=======
 using SimManager.SimulationManager;
->>>>>>> feature/separateModules:Assets/Scripts/SimManager/HistoryManager/HistoryLogger.cs
 
 namespace SimManager.HistoryManager
 {

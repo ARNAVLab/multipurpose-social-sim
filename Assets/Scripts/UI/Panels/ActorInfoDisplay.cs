@@ -1,12 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-<<<<<<< HEAD
-using Anthology.SimulationManager;
-using UnityEditor.Search;
-=======
 using SimManager.SimulationManager;
->>>>>>> feature/separateModules
 
 public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 {
@@ -88,7 +83,7 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 
         relationsDisp.DisplayActorRelations(displayedNPC);
 
-        var journalText = SimManager.GetLog(displayedNPC.Name);
+        var journalText = SimManager.SimulationManager.SimEngine.GetLog(displayedNPC.Name);
 
         journalDisp.DisplayActorJournal(journalText);
     }

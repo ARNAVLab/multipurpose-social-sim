@@ -273,9 +273,9 @@ public class WorldManager : MonoBehaviour
     void OnApplicationQuit()
     {
         Debug.Log("Application ending after " + Time.time + " seconds");
-        SimManager.ExportLogs();
+        SimEngine.ExportLogs();
 
-        var log = SimManager.GetLog("Abnorma");
+        var log = SimEngine.GetLog("Abnorma");
         Debug.Log(log);
     }
 

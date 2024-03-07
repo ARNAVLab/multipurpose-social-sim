@@ -1,10 +1,5 @@
-<<<<<<< HEAD:Assets/Scripts/SimManager/SimulationManager/HistoryManager/MongoHM.cs
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-=======
-﻿using MongoDB.Driver;
+﻿﻿using MongoDB.Driver;
 using SimManager.SimulationManager;
->>>>>>> feature/separateModules:Assets/Scripts/SimManager/HistoryManager/MongoHM.cs
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -17,6 +12,7 @@ using System.Collections.ObjectModel;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 using Amazon.Runtime.Documents;
+using MongoDB.Bson;
 
 namespace SimManager.HistoryManager
 {
