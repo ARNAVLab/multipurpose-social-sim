@@ -138,7 +138,7 @@ public class UIManager : MonoBehaviour
         }
         selected.Clear();
         focusedIdx = -1;
-        Debug.Log("cleared");
+        // Debug.Log("cleared");
     }
 
     /**
