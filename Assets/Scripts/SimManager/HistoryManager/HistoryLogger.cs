@@ -3,10 +3,14 @@ using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+<<<<<<< HEAD:Assets/Scripts/SimManager/SimulationManager/HistoryManager/HistoryLogger.cs
 using System.Text.Json;
 using System.Text.Json.Nodes;
+=======
+using SimManager.SimulationManager;
+>>>>>>> feature/separateModules:Assets/Scripts/SimManager/HistoryManager/HistoryLogger.cs
 
-namespace Anthology.SimulationManager.HistoryManager
+namespace SimManager.HistoryManager
 {
     /// <summary>
     /// Logs history of simulation. Manages a log of events that occurred in
@@ -80,7 +84,7 @@ namespace Anthology.SimulationManager.HistoryManager
         /// Delta steps to advance simulation.
         /// </summary>
         [BsonId]
-        public uint TimeStep { get; set; } = SimManager.NumIterations;
+        public uint TimeStep { get; set; } = SimEngine.NumIterations;
 
         /// <summary>
         /// Dictionary that keeps track of NPC state changes.
@@ -120,9 +124,9 @@ namespace Anthology.SimulationManager.HistoryManager
         {
             SimName = name == "" ? "Sim " + DateTime.Now : name;
             NPCs = new();
-            NPCs.UnionWith(SimManager.NPCs.Values);
+            NPCs.UnionWith(SimEngine.NPCs.Values);
             Locations = new();
-            Locations.UnionWith(SimManager.Locations.Values);
+            Locations.UnionWith(SimEngine.Locations.Values);
         }
     }
 }

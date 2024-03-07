@@ -1,6 +1,7 @@
 ﻿using System;
+using Anthology.Models;
 
-namespace Anthology.Models
+namespace SimManager.Factory
 {
     /// <summary>
     /// Factory class that generates agents, locations, and actions.

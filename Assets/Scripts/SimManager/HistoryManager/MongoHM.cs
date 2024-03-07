@@ -1,5 +1,10 @@
+<<<<<<< HEAD:Assets/Scripts/SimManager/SimulationManager/HistoryManager/MongoHM.cs
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+=======
+﻿using MongoDB.Driver;
+using SimManager.SimulationManager;
+>>>>>>> feature/separateModules:Assets/Scripts/SimManager/HistoryManager/MongoHM.cs
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -13,7 +18,7 @@ using Unity.VisualScripting;
 using System.Collections.Generic;
 using Amazon.Runtime.Documents;
 
-namespace Anthology.SimulationManager.HistoryManager
+namespace SimManager.HistoryManager
 {
     /// <summary>
     /// Concrete implementation of HistoryLogger using local instance of MongoDB.
@@ -79,7 +84,7 @@ namespace Anthology.SimulationManager.HistoryManager
         /// Push NPC state to the log given destination.
         /// </summary>
         /// <param name="destination">Where to store npc state data.</param>
-        public override void LogNpcStates(string? destination)
+        public override void LogNpcStates(string destination)
         {
             IMongoCollection<EventLog> logCollection;
             if (destination != null)

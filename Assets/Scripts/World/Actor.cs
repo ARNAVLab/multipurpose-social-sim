@@ -1,4 +1,4 @@
-using Anthology.SimulationManager;
+using SimManager.SimulationManager;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Linq;
@@ -47,7 +47,7 @@ public class Actor : Selectable
     public void ReceiveAgentUpdates()
     {
         NPC npcData;
-        SimManager.NPCs.TryGetValue(Info.name, out npcData);
+        SimEngine.NPCs.TryGetValue(Info.name, out npcData);
 
         if (npcData == null)
         {

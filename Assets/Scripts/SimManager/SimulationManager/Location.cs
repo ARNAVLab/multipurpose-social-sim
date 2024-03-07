@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 
-namespace Anthology.SimulationManager
+namespace SimManager.SimulationManager
 {
     /// <summary>
     /// Locations as they exist between the frontend and backend simulations.
