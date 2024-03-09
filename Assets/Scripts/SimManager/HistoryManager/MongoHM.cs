@@ -224,7 +224,7 @@ namespace SimManager.HistoryManager
             var deserializedJson = JsonSerializer.Deserialize<JsonElement>(json);
             var prettyJson =  JsonSerializer.Serialize(deserializedJson, options);
 
-            File.WriteAllText(@"Logs\HistoryLogs\log.json", prettyJson);
+            //File.WriteAllText(@"Logs\HistoryLogs\log.json", prettyJson);
 
         }
 
