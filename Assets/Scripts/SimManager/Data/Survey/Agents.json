@@ -8,10 +8,8 @@
       "social": 2,
       "physical": 1
     },
-    "CurrentLocation": "A3",
+    "AtLocation": "A3",
     "OccupiedCounter": 0,
-    "CurrentAction": "wait_action",
-    "Destination": "",
     "CurrentTargets": [],
     "Relationships": [
       {
@@ -35,10 +33,8 @@
       "social": 1,
       "physical": 2
     },
-    "CurrentLocation": "G5",
+    "AtLocation": "G5",
     "OccupiedCounter": 0,
-    "CurrentAction": "wait_action",
-    "Destination": "",
     "CurrentTargets": [],
     "Relationships": [
       {
@@ -62,10 +58,8 @@
       "social": 2,
       "physical": 3
     },
-    "CurrentLocation": "E5",
+    "AtLocation": "E5",
     "OccupiedCounter": 0,
-    "CurrentAction": "wait_action",
-    "Destination": "",
     "CurrentTargets": [],
     "Relationships": [
       {
@@ -89,10 +83,8 @@
       "social": 3,
       "physical": 1
     },
-    "CurrentLocation": "G19",
+    "AtLocation": "G19",
     "OccupiedCounter": 0,
-    "CurrentAction": "wait_action",
-    "Destination": "",
     "CurrentTargets": [],
     "Relationships": [
       {
@@ -111,10 +103,8 @@
       "social": 1,
       "physical": 3
     },
-    "CurrentLocation": "E19",
+    "AtLocation": "E19",
     "OccupiedCounter": 0,
-    "CurrentAction": "wait_action",
-    "Destination": "",
     "CurrentTargets": [],
     "Relationships": [
       {
@@ -133,10 +123,8 @@
       "social": 1,
       "physical": 3
     },
-    "CurrentLocation": "B4",
+    "AtLocation": "B4",
     "OccupiedCounter": 0,
-    "CurrentAction": "wait_action",
-    "Destination": "",
     "CurrentTargets": [],
     "Relationships": [
       {
