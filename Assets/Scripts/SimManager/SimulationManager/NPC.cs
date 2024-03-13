@@ -25,11 +25,11 @@ namespace SimManager.SimulationManager
             set { Dirty = true; name = value; }
         }
 
-        private string location = string.Empty;
+        private Location location = new();
         /// <summary>
         /// The name of the current location of the NPC
         /// </summary>
-        public string Location
+        public Location Location
         {
             get { return location; }
             set { Dirty = true; location = value; }

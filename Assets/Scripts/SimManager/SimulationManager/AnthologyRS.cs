@@ -30,7 +30,7 @@ namespace SimManager.SimulationManager
                 if (!npcs.TryGetValue(a.Name, out NPC npc))
                     npc = new NPC();
                 npc.Name = a.Name;
-                npc.Location = a.CurrentLocation.Name;
+                npc.Location = SimEngine.Locations[a.CurrentLocation.Name];
                 if (a.CurrentAction != null && a.CurrentAction.Count > 0)
                 {
                     npc.CurrentAction.Name = a.CurrentAction.First().Name;
@@ -99,7 +99,9 @@ namespace SimManager.SimulationManager
         {
             bool shouldLog = false;
             Agent agent = AgentManager.GetAgentByName(npc.Name);
-            npc.Location = agent.CurrentLocation.Name;
+            npc.Location.AgentsPresent.Remove(npc.Name);
+            npc.Location = SimEngine.Locations[agent.CurrentLocation.Name];
+            npc.Location.AgentsPresent.Add(npc.Name);
 
             if (agent.Destination.Count > 0)
             {
@@ -140,7 +142,7 @@ namespace SimManager.SimulationManager
         public override void PushUpdatedNpc(NPC npc)
         {
             Agent agent = AgentManager.GetAgentByName(npc.Name);
-            agent.CurrentLocation = LocationManager.LocationsByName[npc.Location];
+            agent.CurrentLocation = LocationManager.LocationsByName[npc.Location.Name];
             Dictionary<string, float> motives = npc.Motives;
             foreach (string mote in motives.Keys)
             {

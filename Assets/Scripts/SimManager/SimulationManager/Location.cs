@@ -59,5 +59,10 @@ namespace SimManager.SimulationManager
         /// Effectively out-edges in graph theory
         /// </summary>
         public Dictionary<string, float> Connections { get; set; } = new();
+
+        /// <summary>
+        /// The agents located at this location.
+        /// </summary>
+        public HashSet<string> AgentsPresent { get; set; } = new();
     }
 }

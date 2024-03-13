@@ -63,7 +63,7 @@ public class WorldManager : MonoBehaviour
                 Debug.LogError("Uh oh! Actor prefab doesn't have attached Actor component!");
                 break;
             }
-            Location.Coords loc = SimEngine.Locations[npc.Location].Coordinates;
+            Location.Coords loc = npc.Location.Coordinates;
             spawnedActor.transform.position = new Vector3(loc.X, loc.Y, 0);
             spawnedActor.Init(npc.Name);
         }

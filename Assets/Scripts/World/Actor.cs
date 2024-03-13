@@ -57,7 +57,7 @@ public class Actor : Selectable
 
         // Update internal state to reflect npc data
         Info.name = npcData.Name;
-        Info.currentLocation = npcData.Location;
+        Info.currentLocation = npcData.Location.Name;
         Info.destination = npcData.Destination;
         // TODO: Relationships, also need Destination and occupiedCounter from frontend
         npcData.Motives.TryGetValue("physical", out Info.motive.physical);

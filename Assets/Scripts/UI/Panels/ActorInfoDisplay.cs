@@ -60,7 +60,7 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
         bool travelling = displayedNPC.Destination.Length != 0;
 
         locationPrefix.text = travelling ? TO_LOCATION : AT_LOCATION;
-        locationPlace.text = travelling ? displayedNPC.Destination : displayedNPC.Location;
+        locationPlace.text = travelling ? displayedNPC.Destination : displayedNPC.Location.Name;
 
         actorName.text = displayedNPC.Name;
         currentAction.text = displayedNPC.CurrentAction.Name;
