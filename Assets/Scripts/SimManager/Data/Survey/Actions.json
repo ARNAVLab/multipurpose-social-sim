@@ -1,6 +1,4 @@
-{
-  "ScheduleActions": [],
-  "PrimaryActions": [
+[
     {
       "Name": "wait_action",
       "MinTime": 0,
@@ -38,8 +36,13 @@
 		]
       },
       "Effects": {
-        "Physical": 1
-      }
+		"Motives": [
+			{
+				"EffectType": "Physical",
+				"Delta": 1
+			}
+		]
+	}
     },
     {
       "Name": "Eat",
@@ -57,9 +60,16 @@
         ]
       },
       "Effects": {
-        "Physical": 3,
-		"Financial": -1
-      }
+		"Motives": [
+			{
+				"EffectType": "Physical",
+				"Delta": 3
+			},
+			{
+				"EffectType": "Financial",
+				"Delta": -1
+			}
+		]}
     },
 	{
 		"Name": "Eat fancy",
@@ -77,9 +87,20 @@
 		  ]
 		},
 		"Effects": {
-		  "Physical": 3,
-		  "Financial": -2,
-		  "Emotional": 2
+			"Motive": [
+				{
+					"EffectType": "Physical",
+					"Delta": 3
+				},
+				{
+					"EffectType": "Financial",
+					"Delta": -2
+				},
+				{
+					"EffectType": "Emotional",
+					"Delta": 1
+				}
+			]
 		}
 	},
     {
@@ -110,10 +131,20 @@
         ]
       },
       "Effects": {
-        "Physical": 2,
-        "Social": 2,
-		"Financial": -1
-      }
+		"Motives": [
+			{
+				"EffectType": "Physical",
+				"Delta": 2
+			},
+			{
+				"EffectType": "Social",
+				"Delta": 2
+			},
+			{
+				"EffectType": "Financial",
+				"Delta": -1
+			}
+		]}
     },
     {
       "Name": "Work remote",
@@ -143,10 +174,20 @@
         ]
       },
       "Effects": {
-        "Accomplishment": 2,
-        "Financial": 1,
-		"Emotional": -1
-      }
+		"Motives": [
+			{
+				"EffectType": "Accomplishment",
+				"Delta": 2
+			},
+			{
+				"EffectType": "Emotional",
+				"Delta": -1
+			},
+			{
+				"EffectType": "Financial",
+				"Delta": 1
+			}
+		]}	
     },
     {
       "Name": "Work in person",
@@ -176,11 +217,24 @@
         ]
       },
       "Effects": {
-        "Accomplishment": 2,
-        "Financial": 2,
-        "Physical": -1,
-		"Emotional": -1
-      }
+		"Motives": [
+			{
+				"EffectType": "Physical",
+				"Delta": -1
+			},
+			{
+				"EffectType": "Financial",
+				"Delta": 2
+			},
+			{
+				"EffectType": "Emotional",
+				"Delta": -1
+			},
+			{
+				"EffectType": "Accomplishment",
+				"Delta": 2
+			}
+		]}
     },
     {
       "Name": "Workout",
@@ -198,10 +252,20 @@
         ]
       },
       "Effects": {
-        "Accomplishment": 1,
-        "Physical": -1,
-        "Emotional": 1
-      }
+		"Motives": [
+			{
+				"EffectType": "Physical",
+				"Delta": -1
+			},
+			{
+				"EffectType": "Emotional",
+				"Delta": 1
+			},
+			{
+				"EffectType": "Accomplishment",
+				"Delta": 1
+			}
+		]}
     },
     {
       "Name": "Walk",
@@ -217,9 +281,16 @@
         ]
       },
       "Effects": {
-        "Physical": -1,
-        "Emotional": 1
-      }
+		"Motives": [
+			{
+				"EffectType": "Physical",
+				"Delta": -1
+			},
+			{
+				"EffectType": "Emotional",
+				"Delta": 1
+			}
+		]}
     },
     {
       "Name": "Hike",
@@ -237,9 +308,16 @@
         ]
       },
       "Effects": {
-        "Emotional": 2,
-        "Physical": -2
-      }
+		"Motives": [
+			{
+				"EffectType": "Physical",
+				"Delta": -2
+			},
+			{
+				"EffectType": "Emotional",
+				"Delta": 2
+			}
+		]}
     },
     {
       "Name": "Sleep",
@@ -257,10 +335,20 @@
         ]
       },
       "Effects": {
-        "Physical": 2,
-        "Emotional": 1,
-        "Social": -1
-      }
+		"Motives": [
+			{
+				"EffectType": "Physical",
+				"Delta": 2
+			},
+			{
+				"EffectType": "Emotional",
+				"Delta": 1
+			},
+			{
+				"EffectType": "Social",
+				"Delta": -1
+			}
+		]}
     },
     {
       "Name": "Shop",
@@ -278,10 +366,19 @@
         ]
       },
       "Effects": {
-        "Financial": -2,
-        "Emotional": 2,
-        "Social": 1
-      }
+		"Motives": [
+			{
+				"EffectType": "Financial",
+				"Delta": -2
+			},
+			{
+				"EffectType": "Emotional",
+				"Delta": 2
+			},
+			{
+				"EffectType": "Social",
+				"Delta": 1
+			}
+		]}
     }
-  ]
-}
+]
