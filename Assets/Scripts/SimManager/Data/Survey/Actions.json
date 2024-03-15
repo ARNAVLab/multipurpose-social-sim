@@ -36,9 +36,9 @@
 		]
       },
       "Effects": {
-		"Motives": [
+		"MotiveEffects": [
 			{
-				"EffectType": "Physical",
+				"MotiveType": "Physical",
 				"Delta": 1
 			}
 		]
@@ -60,13 +60,13 @@
         ]
       },
       "Effects": {
-		"Motives": [
+		"MotiveEffects": [
 			{
-				"EffectType": "Physical",
+				"MotiveType": "Physical",
 				"Delta": 3
 			},
 			{
-				"EffectType": "Financial",
+				"MotiveType": "Financial",
 				"Delta": -1
 			}
 		]}
@@ -89,15 +89,15 @@
 		"Effects": {
 			"Motive": [
 				{
-					"EffectType": "Physical",
+					"MotiveType": "Physical",
 					"Delta": 3
 				},
 				{
-					"EffectType": "Financial",
+					"MotiveType": "Financial",
 					"Delta": -2
 				},
 				{
-					"EffectType": "Emotional",
+					"MotiveType": "Emotional",
 					"Delta": 1
 				}
 			]
@@ -131,17 +131,17 @@
         ]
       },
       "Effects": {
-		"Motives": [
+		"MotiveEffects": [
 			{
-				"EffectType": "Physical",
+				"MotiveType": "Physical",
 				"Delta": 2
 			},
 			{
-				"EffectType": "Social",
+				"MotiveType": "Social",
 				"Delta": 2
 			},
 			{
-				"EffectType": "Financial",
+				"MotiveType": "Financial",
 				"Delta": -1
 			}
 		]}
@@ -174,17 +174,17 @@
         ]
       },
       "Effects": {
-		"Motives": [
+		"MotiveEffects": [
 			{
-				"EffectType": "Accomplishment",
+				"MotiveType": "Accomplishment",
 				"Delta": 2
 			},
 			{
-				"EffectType": "Emotional",
+				"MotiveType": "Emotional",
 				"Delta": -1
 			},
 			{
-				"EffectType": "Financial",
+				"MotiveType": "Financial",
 				"Delta": 1
 			}
 		]}	
@@ -217,21 +217,21 @@
         ]
       },
       "Effects": {
-		"Motives": [
+		"MotiveEffects": [
 			{
-				"EffectType": "Physical",
+				"MotiveType": "Physical",
 				"Delta": -1
 			},
 			{
-				"EffectType": "Financial",
+				"MotiveType": "Financial",
 				"Delta": 2
 			},
 			{
-				"EffectType": "Emotional",
+				"MotiveType": "Emotional",
 				"Delta": -1
 			},
 			{
-				"EffectType": "Accomplishment",
+				"MotiveType": "Accomplishment",
 				"Delta": 2
 			}
 		]}
@@ -252,17 +252,17 @@
         ]
       },
       "Effects": {
-		"Motives": [
+		"MotiveEffects": [
 			{
-				"EffectType": "Physical",
+				"MotiveType": "Physical",
 				"Delta": -1
 			},
 			{
-				"EffectType": "Emotional",
+				"MotiveType": "Emotional",
 				"Delta": 1
 			},
 			{
-				"EffectType": "Accomplishment",
+				"MotiveType": "Accomplishment",
 				"Delta": 1
 			}
 		]}
@@ -281,13 +281,13 @@
         ]
       },
       "Effects": {
-		"Motives": [
+		"MotiveEffects": [
 			{
-				"EffectType": "Physical",
+				"MotiveType": "Physical",
 				"Delta": -1
 			},
 			{
-				"EffectType": "Emotional",
+				"MotiveType": "Emotional",
 				"Delta": 1
 			}
 		]}
@@ -308,13 +308,13 @@
         ]
       },
       "Effects": {
-		"Motives": [
+		"MotiveEffects": [
 			{
-				"EffectType": "Physical",
+				"MotiveType": "Physical",
 				"Delta": -2
 			},
 			{
-				"EffectType": "Emotional",
+				"MotiveType": "Emotional",
 				"Delta": 2
 			}
 		]}
@@ -335,17 +335,17 @@
         ]
       },
       "Effects": {
-		"Motives": [
+		"MotiveEffects": [
 			{
-				"EffectType": "Physical",
+				"MotiveType": "Physical",
 				"Delta": 2
 			},
 			{
-				"EffectType": "Emotional",
+				"MotiveType": "Emotional",
 				"Delta": 1
 			},
 			{
-				"EffectType": "Social",
+				"MotiveType": "Social",
 				"Delta": -1
 			}
 		]}
@@ -366,17 +366,17 @@
         ]
       },
       "Effects": {
-		"Motives": [
+		"MotiveEffects": [
 			{
-				"EffectType": "Financial",
+				"MotiveType": "Financial",
 				"Delta": -2
 			},
 			{
-				"EffectType": "Emotional",
+				"MotiveType": "Emotional",
 				"Delta": 2
 			},
 			{
-				"EffectType": "Social",
+				"MotiveType": "Social",
 				"Delta": 1
 			}
 		]}
