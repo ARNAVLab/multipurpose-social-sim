@@ -31,7 +31,7 @@
 			{
 				"MotiveType": "Physical",
 				"Operation": "<",
-				"Threshhold": 3
+				"Threshhold": 2
 			}
 		]
       },
@@ -131,6 +131,12 @@
         ]
       },
       "Effects": {
+		"RelationshipEffects": [
+			{
+				"RelationshipType" : "Friend",
+				"Delta": 2
+			}
+		],
 		"MotiveEffects": [
 			{
 				"MotiveType": "Physical",
@@ -176,16 +182,12 @@
       "Effects": {
 		"MotiveEffects": [
 			{
-				"MotiveType": "Accomplishment",
-				"Delta": 2
-			},
-			{
 				"MotiveType": "Emotional",
 				"Delta": -1
 			},
 			{
 				"MotiveType": "Financial",
-				"Delta": 1
+				"Delta": 2
 			}
 		]}	
     },
@@ -219,20 +221,12 @@
       "Effects": {
 		"MotiveEffects": [
 			{
-				"MotiveType": "Physical",
-				"Delta": -1
-			},
-			{
 				"MotiveType": "Financial",
-				"Delta": 2
+				"Delta": 3
 			},
 			{
 				"MotiveType": "Emotional",
 				"Delta": -1
-			},
-			{
-				"MotiveType": "Accomplishment",
-				"Delta": 2
 			}
 		]}
     },
@@ -255,7 +249,7 @@
 		"MotiveEffects": [
 			{
 				"MotiveType": "Physical",
-				"Delta": -1
+				"Delta": 3
 			},
 			{
 				"MotiveType": "Emotional",
@@ -343,10 +337,6 @@
 			{
 				"MotiveType": "Emotional",
 				"Delta": 1
-			},
-			{
-				"MotiveType": "Social",
-				"Delta": -1
 			}
 		]}
     },
@@ -373,10 +363,6 @@
 			},
 			{
 				"MotiveType": "Emotional",
-				"Delta": 2
-			},
-			{
-				"MotiveType": "Social",
 				"Delta": 1
 			}
 		]}

@@ -9,8 +9,6 @@
       "physical": 1
     },
     "AtLocation": "A3",
-    "OccupiedCounter": 0,
-    "CurrentTargets": [],
     "Relationships": [
       {
         "Type": "friend",
@@ -26,16 +24,6 @@
   },
   {
     "Name": "Abnorma",
-    "Motives": {
-      "accomplishment": 3,
-      "emotional": 1,
-      "financial": 2,
-      "social": 1,
-      "physical": 2
-    },
-    "AtLocation": "G5",
-    "OccupiedCounter": 0,
-    "CurrentTargets": [],
     "Relationships": [
       {
         "Type": "friend",
@@ -51,16 +39,6 @@
   },
   {
     "Name": "Quentin",
-    "Motives": {
-      "accomplishment": 1,
-      "emotional": 2,
-      "financial": 1,
-      "social": 2,
-      "physical": 3
-    },
-    "AtLocation": "E5",
-    "OccupiedCounter": 0,
-    "CurrentTargets": [],
     "Relationships": [
       {
         "Type": "friend",
@@ -76,16 +54,6 @@
   },
   {
     "Name": "Alex",
-    "Motives": {
-      "accomplishment": 3,
-      "emotional": 1,
-      "financial": 1,
-      "social": 3,
-      "physical": 1
-    },
-    "AtLocation": "G19",
-    "OccupiedCounter": 0,
-    "CurrentTargets": [],
     "Relationships": [
       {
         "Type": "friend",
@@ -96,16 +64,6 @@
   },
   {
     "Name": "Adam",
-    "Motives": {
-      "accomplishment": 1,
-      "emotional": 3,
-      "financial": 1,
-      "social": 1,
-      "physical": 3
-    },
-    "AtLocation": "E19",
-    "OccupiedCounter": 0,
-    "CurrentTargets": [],
     "Relationships": [
       {
         "Type": "friend",
@@ -116,16 +74,6 @@
   },
   {
     "Name": "Johnny",
-    "Motives": {
-      "accomplishment": 4,
-      "emotional": 4,
-      "financial": 1,
-      "social": 1,
-      "physical": 3
-    },
-    "AtLocation": "B4",
-    "OccupiedCounter": 0,
-    "CurrentTargets": [],
     "Relationships": [
       {
         "Type": "friend",
