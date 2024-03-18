@@ -40,7 +40,7 @@ namespace SimManager.SimulationManager
                 {
                     npc.Destination = a.Destination[0].Name;
                 }
-                Dictionary<string, float> motives = a.Motives;
+                Dictionary<string, float> motives = a.Motives.ToDictionary();
                 foreach (string mote in motives.Keys)
                 {
                     npc.Motives[mote] = motives[mote];
@@ -109,7 +109,7 @@ namespace SimManager.SimulationManager
             {
                 npc.Destination = string.Empty;
             }
-            Dictionary<string, float> motives = agent.Motives;
+            Dictionary<string, float> motives = agent.Motives.ToDictionary();
             foreach (string mote in motives.Keys)
             {
                 if (!npc.Motives.ContainsKey(mote))

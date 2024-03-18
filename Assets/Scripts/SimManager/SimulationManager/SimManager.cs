@@ -71,8 +71,8 @@ namespace SimManager.SimulationManager
                 if (Reality == null)
                     throw new NullReferenceException("Could not create reality sim");
                 Reality.Init(JSONfile);
+				Reality.LoadLocations(Locations);
                 Reality.LoadNpcs(NPCs);
-                Reality.LoadLocations(Locations);
             }
             else
                 throw new InvalidCastException("Failed to recognize reality sim type");

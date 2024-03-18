@@ -39,7 +39,9 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
         motiveDisplayLookup = new Dictionary<string, MotiveDisplay>();
         for (int i = 0; i < motiveKeys.Count; i++)
         {
-            motiveDisplayLookup.Add(motiveKeys[i], motiveValues[i]);
+			string mkey = motiveKeys[i];
+			mkey = mkey[0].ToString().ToUpper() + mkey.Substring(1);
+            motiveDisplayLookup.Add(mkey, motiveValues[i]);
         }
     }
 
