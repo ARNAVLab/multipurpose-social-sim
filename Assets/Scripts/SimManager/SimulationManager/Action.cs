@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Anthology.SimulationManager
+namespace SimManager.SimulationManager
 {
     /// <summary>
     /// Actions are performed by NPCs and are informative for the frontend only.
@@ -19,16 +19,16 @@ namespace Anthology.SimulationManager
         /// <summary>
         /// Any additional actors involved in this action with its owning NPC.
         /// </summary>
-        public string[]? Coactors { get; set; }
+        public string[] Coactors { get; set; }
 
         /// <summary>
         /// Any requirements associated with this action.
         /// </summary>
-        public string[]? Requirements { get; set; }
+        public string[] Requirements { get; set; }
 
         /// <summary>
         /// Any additional tags or information about this action.
         /// </summary>
-        public string[]? Tags { get; set; }
+        public string[] Tags { get; set; }
     }
 }

@@ -1,18 +1,18 @@
-﻿using Anthology.SimulationManager.HistoryManager;
+﻿using SimManager.HistoryManager;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 
-namespace Anthology.SimulationManager
+namespace SimManager.SimulationManager
 {
     /// <summary>
     /// The SimManager (or simulation manager) is used to coordinate the activities and data of two 
     /// different simulations in order to connect their functionality and offer support for 
     /// front-end applications.
     /// </summary>
-    public static class SimManager
+    public static class SimEngine
     {
         /// <summary>
         /// Name of log to store history
@@ -32,17 +32,17 @@ namespace Anthology.SimulationManager
         /// <summary>
         /// The simulation used for updating NPC actions, locations, and other physical traits.
         /// </summary>
-        public static RealitySim? Reality { get; set; }
+        public static RealitySim Reality { get; set; }
 
         /// <summary>
         /// The simulation used for updating NPC knowledge, opinions, and beliefs.
         /// </summary>
-        public static KnowledgeSim? Knowledge { get; set; }
+        public static KnowledgeSim Knowledge { get; set; }
 
         /// <summary>
         /// The logger used for keeping track of the simulation's history and saving and loading states.
         /// </summary>
-        public static HistoryLogger? History { get; set; }
+        public static HistoryLogger History { get; set; }
 
         /// <summary>
         /// The number of iterations run since the initializaztion of the simulation manager.
@@ -64,6 +64,7 @@ namespace Anthology.SimulationManager
         /// <param name="history">The history manager type to use.</param>
         public static void Init(string JSONfile, Type reality, Type knowledge, Type history)
         {
+            
             if (reality.IsSubclassOf(typeof(RealitySim)))
             {
                 Reality = Activator.CreateInstance(reality) as RealitySim;
@@ -148,8 +149,8 @@ namespace Anthology.SimulationManager
         /// <param name="stateName">Name of the state to load.</param>
         public static void LoadState(string stateName)
         {
-            SimState? state = History?.LoadState(stateName);
-            HashSet<Location>? locations = state?.Locations;
+            SimState state = History?.LoadState(stateName);
+            HashSet<Location> locations = state?.Locations;
             if (locations != null)
             {
                 foreach (Location newLoc in locations)
@@ -157,7 +158,8 @@ namespace Anthology.SimulationManager
                 Reality?.LoadLocations(Locations);
             }
             
-            HashSet<NPC>? npcs = state?.NPCs;
+            HashSet<NPC> npcs = state.NPCs;
+
             if (npcs != null)
             {
                 foreach (NPC newNPC in npcs)
@@ -166,6 +168,21 @@ namespace Anthology.SimulationManager
                     Reality?.PushUpdatedNpc(newNPC);
                 }
             }
+        }
+
+        /// <summary>
+        /// Exports History Logs WIP
+        /// that state.
+        /// </summary>
+        public static void ExportLogs()
+        {
+            History.ExportCollection();
+        }
+
+        public static string GetLog(string actorName)
+        {
+            var npcLogCursor = History.GetActorJson(actorName);
+            return History.JsonToNPCLog(npcLogCursor, actorName);
         }
     }
 }

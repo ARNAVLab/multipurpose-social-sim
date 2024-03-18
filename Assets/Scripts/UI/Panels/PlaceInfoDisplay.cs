@@ -1,4 +1,4 @@
-using Anthology.SimulationManager;
+using SimManager.SimulationManager;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,7 +18,7 @@ public class PlaceInfoDisplay : MonoBehaviour, IInfoDisplay
         Place selectedPlace = (Place) selected;
         string selectedName = selectedPlace.placeName;
         Location prospLoc;
-        if (!SimManager.Locations.TryGetValue(selectedName, out prospLoc))
+        if (!SimEngine.Locations.TryGetValue(selectedName, out prospLoc))
             return;
 
         locationName.text = prospLoc.Name.FirstCharacterToUpper();

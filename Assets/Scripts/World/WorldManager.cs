@@ -1,7 +1,9 @@
-using Anthology.SimulationManager;
-using Anthology.SimulationManager.HistoryManager;
+using SimManager.SimulationManager;
+using SimManager.HistoryManager;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -38,7 +40,7 @@ public class WorldManager : MonoBehaviour
             instance = this;
 
             // Jump-starts the Simulation Manager, allowing for communication between the User Interface, Knowledge, and Reality sims.
-            SimManager.Init(pathsPath, typeof(AnthologyRS), typeof(LyraKS), typeof(MongoHM));
+            SimEngine.Init(pathsPath, typeof(AnthologyRS), typeof(LyraKS), typeof(MongoHM));
             simUpdated = new UnityEvent();
         }
     }
@@ -53,7 +55,7 @@ public class WorldManager : MonoBehaviour
      */
     private void InitWorld()
     {
-        foreach (NPC npc in SimManager.NPCs.Values)
+        foreach (NPC npc in SimEngine.NPCs.Values)
         {
             Actor spawnedActor = Instantiate(actorPref).GetComponent<Actor>();
             if (spawnedActor == null)
@@ -61,12 +63,12 @@ public class WorldManager : MonoBehaviour
                 Debug.LogError("Uh oh! Actor prefab doesn't have attached Actor component!");
                 break;
             }
-            Location.Coords loc = SimManager.Locations[npc.Location].Coordinates;
+            Location.Coords loc = SimEngine.Locations[npc.Location].Coordinates;
             spawnedActor.transform.position = new Vector3(loc.X, loc.Y, 0);
             spawnedActor.Init(npc.Name);
         }
 
-        foreach (Location loc in SimManager.Locations.Values)
+        foreach (Location loc in SimEngine.Locations.Values)
         {
             GameObject spawnedLocation = Instantiate(locationPref);
             spawnedLocation.name = loc.Name;
@@ -268,5 +270,13 @@ public class WorldManager : MonoBehaviour
         }
     }
 
-    
+    void OnApplicationQuit()
+    {
+        Debug.Log("Application ending after " + Time.time + " seconds");
+        SimEngine.ExportLogs();
+
+        var log = SimEngine.GetLog("Abnorma");
+        Debug.Log(log);
+    }
+
 }

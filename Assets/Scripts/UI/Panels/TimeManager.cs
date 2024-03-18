@@ -1,4 +1,4 @@
-using Anthology.SimulationManager;
+using SimManager.SimulationManager;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -71,8 +71,8 @@ public class TimeManager : MonoBehaviour
 
     private void Tick(int tickNum)
     {
-        SimManager.GetIteration(tickNum);
-        tickCountDisplay.text = SimManager.NumIterations.ToString();
+        SimEngine.GetIteration(tickNum);
+        tickCountDisplay.text = SimEngine.NumIterations.ToString();
         WorldManager.simUpdated.Invoke();
     }
 

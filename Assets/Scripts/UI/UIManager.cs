@@ -78,8 +78,8 @@ public class UIManager : MonoBehaviour
 
     public void DisplayFocusedInfo()
     {
-        Debug.Log("Count is " + selected.Count);
-        Debug.Log("Focus is " + focusedIdx);
+        // Debug.Log("Count is " + selected.Count);
+        // Debug.Log("Focus is " + focusedIdx);
         if (selectMode == SelectType.ACTORS)
             actorInfo.DisplayInfo(selected[focusedIdx]);
         else
@@ -138,7 +138,7 @@ public class UIManager : MonoBehaviour
         }
         selected.Clear();
         focusedIdx = -1;
-        Debug.Log("cleared");
+        // Debug.Log("cleared");
     }
 
     /**

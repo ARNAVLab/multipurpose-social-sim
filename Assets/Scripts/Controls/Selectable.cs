@@ -124,7 +124,7 @@ public class Selectable : MonoBehaviour
     public virtual void Unfocus()
     {
         isFocused = false;
-        Debug.Log("I'm " + isSelected + " isSelected");
+        // Debug.Log("I'm " + isSelected + " isSelected");
         SetOutline(isSelected ? OutlinePreset.SELECT : OutlinePreset.NONE);
     }
 }
