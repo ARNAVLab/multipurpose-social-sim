@@ -1,0 +1,212 @@
+[
+	{
+	  "Name": "University Campus",
+	  "X": 5,
+	  "Y": 5,
+	  "Type": "University",
+	  "Tags": ["education", "research", "classes"]
+	},
+	{
+	  "Name": "Student Dormitory",
+	  "X": 3,
+	  "Y": 4,
+	  "Type": "Residence",
+	  "Tags": ["housing", "bedrooms", "community"]
+	},
+	{
+	  "Name": "Cafeteria",
+	  "X": 6,
+	  "Y": 3,
+	  "Type": "Business",
+	  "Tags": ["food", "drinks", "dining"]
+	},
+	{
+	  "Name": "Library",
+	  "X": 7,
+	  "Y": 6,
+	  "Type": "Business",
+	  "Tags": ["books", "study", "resources"]
+	},
+	{
+	  "Name": "Park",
+	  "X": 8,
+	  "Y": 4,
+	  "Type": "Park",
+	  "Tags": ["greenery", "recreation", "picnic"]
+	},
+	{
+	  "Name": "Bookstore",
+	  "X": 4,
+	  "Y": 7,
+	  "Type": "Business",
+	  "Tags": ["books", "school supplies", "merchandise"]
+	},
+	{
+	  "Name": "Coffee Shop",
+	  "X": 9,
+	  "Y": 5,
+	  "Type": "Business",
+	  "Tags": ["coffee", "snacks", "relaxation"]
+	},
+	{
+	  "Name": "Student Health Center",
+	  "X": 3,
+	  "Y": 7,
+	  "Type": "Business",
+	  "Tags": ["healthcare", "counseling", "wellness"]
+	},
+	{
+	  "Name": "Sports Field",
+	  "X": 7,
+	  "Y": 2,
+	  "Type": "Park",
+	  "Tags": ["sports", "exercise", "games"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 5,
+	  "Y": 5,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 5,
+	  "Y": 4,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 5,
+	  "Y": 6,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 6,
+	  "Y": 3,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 6,
+	  "Y": 4,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 6,
+	  "Y": 5,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 7,
+	  "Y": 5,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 7,
+	  "Y": 6,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 7,
+	  "Y": 7,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 8,
+	  "Y": 4,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 8,
+	  "Y": 5,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 9,
+	  "Y": 5,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 4,
+	  "Y": 7,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 4,
+	  "Y": 6,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 3,
+	  "Y": 7,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 3,
+	  "Y": 6,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 7,
+	  "Y": 2,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 6,
+	  "Y": 2,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 8,
+	  "Y": 2,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 7,
+	  "Y": 3,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	},
+	{
+	  "Name": "Road",
+	  "X": 8,
+	  "Y": 3,
+	  "Type": "Road",
+	  "Tags": ["Road"]
+	}
+]

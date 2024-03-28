@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.caseydecoder.doxygengenerator": {
+      "version": "https://github.com/CaseyHofland/DoxygenGenerator.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0bac2f62fcb0acd970bcfc04515fdc1519b6d54f"
+    },
     "com.github-glitchenzo.nugetforunity": {
       "version": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
       "depth": 0,

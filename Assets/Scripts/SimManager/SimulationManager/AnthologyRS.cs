@@ -47,7 +47,7 @@ namespace SimManager.SimulationManager
                 }
                 foreach (Relationship r in a.Relationships)
                 {
-                    npc.Relationships.Add(r.With, r.Type);
+                    npc.Relationships.Add((Relationship)r);
                 }
                 npcs[a.Name] = npc;
             }

@@ -1,370 +1,184 @@
 [
     {
-      "Name": "wait_action",
-      "MinTime": 0,
-      "Hidden": false,
-      "Requirements": {},
-      "Effects": {}
+        "Name": "wait_action",
+        "MinTime": 0,
+        "Hidden": false,
+        "Requirements": {},
+        "Effects": {}
     },
     {
-      "Name": "travel_action",
-      "MinTime": 0,
-      "Hidden": false,
-      "Requirements": {},
-      "Effects": {}
+        "Name": "travel_action",
+        "MinTime": 0,
+        "Hidden": false,
+        "Requirements": {},
+        "Effects": {}
     },
     {
-      "Name": "Escape the heat",
-      "MinTime": 20,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "Building"
+        "Name": "Escape the heat",
+        "MinTime": 20,
+        "Hidden": false,
+        "Requirements": {
+            "Location Requirements": [
+                {
+                    "HasAllOf": [
+                        "Building"
+                    ],
+                    "HasOneOrMoreOf": [],
+                    "HasNoneOf": []
+                }
             ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ],
-		"Motive Requirements": [
-			{
-				"MotiveType": "Physical",
-				"Operation": "<",
-				"Threshhold": 2
-			}
-		]
-      },
-      "Effects": {
-		"MotiveEffects": [
-			{
-				"MotiveType": "Physical",
-				"Delta": 1
-			}
-		]
-	}
-    },
-    {
-      "Name": "Eat",
-      "MinTime": 40,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "Restaurant"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ]
-      },
-      "Effects": {
-		"MotiveEffects": [
-			{
-				"MotiveType": "Physical",
-				"Delta": 3
-			},
-			{
-				"MotiveType": "Financial",
-				"Delta": -1
-			}
-		]}
+            "Motive Requirements": [
+                {
+                    "MotiveType": "Physical",
+                    "Operation": "<",
+                    "Threshhold": 2
+                }
+            ]
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Physical",
+                    "Delta": 1
+                }
+            ]
+        }
     },
 	{
-		"Name": "Eat fancy",
-		"MinTime": 40,
-		"Hidden": false,
-		"Requirements": {
-		  "Location Requirements": [
-			{
-			  "HasAllOf": [
-				"Restaurant"
-			  ],
-			  "HasOneOrMoreOf": [],
-			  "HasNoneOf": []
-			}
-		  ]
-		},
+		"Name": "Watch a movie",
+        "MinTime": 45,
+        "Hidden": false,
+        "Requirements": {
+            "Location Requirements": [
+                {
+                    "HasAllOf": [
+                        "Building"
+                    ],
+                    "HasOneOrMoreOf": [],
+                    "HasNoneOf": ["Theater"]
+                }
+            ],
+            "Motive Requirements": [
+                {
+                    "MotiveType": "Emotional",
+                    "Operation": "<",
+                    "Threshhold": 2
+                }
+            ]
+        },
 		"Effects": {
-			"Motive": [
-				{
-					"MotiveType": "Physical",
-					"Delta": 3
-				},
-				{
-					"MotiveType": "Financial",
-					"Delta": -2
-				},
-				{
-					"MotiveType": "Emotional",
-					"Delta": 1
-				}
-			]
-		}
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Emotional",
+                    "Delta": 3
+                }
+            ]
+        }
 	},
     {
-      "Name": "Eat with friend",
-      "MinTime": 60,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "Restaurant"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ],
-        "People Requirements": [
-          {
-            "RelationshipsPresent": [
-              "Friend"
-            ],
-            "MinNumPeople": 2,
-            "MaxNumPeople": 60,
-            "SpecificPeoplePresent": [],
-            "SpecificPeopleAbsent": [],
-            "RelationshipsAbsent": []
-          }
-        ]
-      },
-      "Effects": {
-		"RelationshipEffects": [
-			{
-				"RelationshipType" : "Friend",
-				"Delta": 2
-			}
-		],
-		"MotiveEffects": [
-			{
-				"MotiveType": "Physical",
-				"Delta": 2
-			},
-			{
-				"MotiveType": "Social",
-				"Delta": 2
-			},
-			{
-				"MotiveType": "Financial",
-				"Delta": -1
-			}
-		]}
+        "Name": "WatchMovie",
+        "MinTime": 70,
+        "Hidden": false,
+        "Requirements": {
+            "Location Requirements": [
+                {
+                    "HasAllOf": [
+                        "Theater"
+                    ],
+                    "HasOneOrMoreOf": [],
+                    "HasNoneOf": []
+                }
+            ]
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Emotional",
+                    "Delta": 3
+                },
+                {
+                    "MotiveType": "Social",
+                    "Delta": -1
+                }
+            ]
+        }
     },
     {
-      "Name": "Work remote",
-      "MinTime": 60,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "has:Computer"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ],
-        "People Requirements": [
-          {
-            "RelationshipsPresent": [
-              "Remote Worker"
-            ],
-            "MinNumPeople": 1,
-            "MaxNumPeople": 1,
-            "SpecificPeoplePresent": [],
-            "SpecificPeopleAbsent": [],
-            "RelationshipsAbsent": []
-          }
-        ]
-      },
-      "Effects": {
-		"MotiveEffects": [
-			{
-				"MotiveType": "Emotional",
-				"Delta": -1
-			},
-			{
-				"MotiveType": "Financial",
-				"Delta": 2
-			}
-		]}	
+        "Name": "Eat",
+        "MinTime": 40,
+        "Hidden": false,
+        "Requirements": {
+            "Location Requirements": [
+                {
+                    "HasAllOf": [
+                        "Restaurant"
+                    ],
+                    "HasOneOrMoreOf": [],
+                    "HasNoneOf": []
+                }
+            ]
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Physical",
+                    "Delta": 3
+                },
+                {
+                    "MotiveType": "Financial",
+                    "Delta": -1
+                }
+            ]
+        }
     },
     {
-      "Name": "Work in person",
-      "MinTime": 120,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "has:Employees"
+        "Name": "Eat with friend",
+        "MinTime": 60,
+        "Hidden": false,
+        "Requirements": {
+            "Location Requirements": [
+                {
+                    "HasAllOf": [
+                        "Restaurant"
+                    ],
+                    "HasOneOrMoreOf": [],
+                    "HasNoneOf": []
+                }
             ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ],
-        "People Requirements": [
-          {
-            "RelationshipsPresent": [
-              "Employee"
+            "People Requirements": [
+                {
+                    "RelationshipsPresent": [
+                        "Friend"
+                    ],
+                    "MinNumPeople": 2,
+                    "MaxNumPeople": 60,
+                    "SpecificPeoplePresent": [],
+                    "SpecificPeopleAbsent": [],
+                    "RelationshipsAbsent": []
+                }
+            ]
+        },
+        "Effects": {
+            "RelationshipEffects": [
+                {
+                    "RelationshipType": "Friend",
+                    "Delta": 2
+                }
             ],
-            "MinNumPeople": 1,
-            "MaxNumPeople": 60,
-            "SpecificPeoplePresent": [],
-            "SpecificPeopleAbsent": [],
-            "RelationshipsAbsent": []
-          }
-        ]
-      },
-      "Effects": {
-		"MotiveEffects": [
-			{
-				"MotiveType": "Financial",
-				"Delta": 3
-			},
-			{
-				"MotiveType": "Emotional",
-				"Delta": -1
-			}
-		]}
-    },
-    {
-      "Name": "Workout",
-      "MinTime": 90,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "Gym"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ]
-      },
-      "Effects": {
-		"MotiveEffects": [
-			{
-				"MotiveType": "Physical",
-				"Delta": 3
-			},
-			{
-				"MotiveType": "Emotional",
-				"Delta": 1
-			},
-			{
-				"MotiveType": "Accomplishment",
-				"Delta": 1
-			}
-		]}
-    },
-    {
-      "Name": "Walk",
-      "MinTime": 30,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [],
-            "HasOneOrMoreOf": [ "Park", "Forest" ],
-            "HasNoneOf": []
-          }
-        ]
-      },
-      "Effects": {
-		"MotiveEffects": [
-			{
-				"MotiveType": "Physical",
-				"Delta": -1
-			},
-			{
-				"MotiveType": "Emotional",
-				"Delta": 1
-			}
-		]}
-    },
-    {
-      "Name": "Hike",
-      "MinTime": 60,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "Forest"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ]
-      },
-      "Effects": {
-		"MotiveEffects": [
-			{
-				"MotiveType": "Physical",
-				"Delta": -2
-			},
-			{
-				"MotiveType": "Emotional",
-				"Delta": 2
-			}
-		]}
-    },
-    {
-      "Name": "Sleep",
-      "MinTime": 120,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "has:Bed"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ]
-      },
-      "Effects": {
-		"MotiveEffects": [
-			{
-				"MotiveType": "Physical",
-				"Delta": 2
-			},
-			{
-				"MotiveType": "Emotional",
-				"Delta": 1
-			}
-		]}
-    },
-    {
-      "Name": "Shop",
-      "MinTime": 30,
-      "Hidden": false,
-      "Requirements": {
-        "Location Requirements": [
-          {
-            "HasAllOf": [
-              "Store"
-            ],
-            "HasOneOrMoreOf": [],
-            "HasNoneOf": []
-          }
-        ]
-      },
-      "Effects": {
-		"MotiveEffects": [
-			{
-				"MotiveType": "Financial",
-				"Delta": -2
-			},
-			{
-				"MotiveType": "Emotional",
-				"Delta": 1
-			}
-		]}
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Physical",
+                    "Delta": 2
+                },
+                {
+                    "MotiveType": "Social",
+                    "Delta": 2
+                },
+                {
+                    "MotiveType": "Financial",
+                    "Delta": -2
+                }
+            ]
+        }
     }
 ]

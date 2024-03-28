@@ -49,8 +49,10 @@ namespace SimManager.SimulationManager
             set { Dirty = true; knowledge = value; }
         }
 
-        private Dictionary<string, string> relationships = new();
-        public Dictionary<string, string> Relationships
+        // private Dictionary<string, string> relationships = new();
+
+		private List<Relationship> relationships = new();
+        public List<Relationship> Relationships
         {
             get { return relationships; }
             set { Dirty = true; relationships = value; }

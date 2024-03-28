@@ -1,90 +1,71 @@
 [
-  {
-    "Name": "Norma",
-    "Motives": {
-      "accomplishment": 2,
-      "emotional": 3,
-      "financial": 1,
-      "social": 2,
-      "physical": 1
+    {
+        "Name": "Eleanor",
+        "Motives": {
+            "accomplishment": 2,
+            "emotional": 3,
+            "financial": 1,
+            "social": 2,
+            "physical": 1
+        },
+        "Relationships": [
+            {
+                "Type": "friend",
+                "With": "Thomas",
+                "Valence": 2
+            },
+            {
+                "Type": "colleague",
+                "With": "Oliver",
+                "Valence": 1
+            }
+        ]
     },
-    "AtLocation": "A3",
-    "Relationships": [
-      {
-        "Type": "friend",
-        "With": "Quentin",
-        "Valence": 2
-      },
-      {
-        "Type": "Remote Worker",
-        "With": "Norma",
-        "Valence": 1
-      }
-    ]
-  },
-  {
-    "Name": "Abnorma",
-    "Relationships": [
-      {
-        "Type": "friend",
-        "With": "Quentin",
-        "Valence": 2
-      },
-      {
-        "Type": "Employee",
-        "With": "Abnorma",
-        "Valence": 1
-      }
-    ]
-  },
-  {
-    "Name": "Quentin",
-    "Relationships": [
-      {
-        "Type": "friend",
-        "With": "Norma",
-        "Valence": 1
-      },
-      {
-        "Type": "friend",
-        "With": "Abnorma",
-        "Valence": 1
-      }
-    ]
-  },
-  {
-    "Name": "Alex",
-    "Relationships": [
-      {
-        "Type": "friend",
-        "With": "Adam",
-        "Valence": 1
-      }
-    ]
-  },
-  {
-    "Name": "Adam",
-    "Relationships": [
-      {
-        "Type": "friend",
-        "With": "Alex",
-        "Valence": 1
-      }
-    ]
-  },
-  {
-    "Name": "Johnny",
-    "Relationships": [
-      {
-        "Type": "friend",
-        "With": "Quentin",
-        "Valence": 2
-      },
-      {
-        "Type": "Employee",
-        "With": "Abnorma",
-        "Valence": 1
-      }
-    ]
-  }
+    {
+        "Name": "Thomas",
+        "Motives": {
+            "accomplishment": 3,
+            "emotional": 1,
+            "financial": 2,
+            "social": 2,
+            "physical": 1
+        },
+        "Relationships": [
+            {
+                "Type": "friend",
+                "With": "Eleanor",
+                "Valence": 2
+            },
+            {
+                "Type": "rival",
+                "With": "Oliver",
+                "Valence": -1
+            }
+        ]
+    },
+    {
+        "Name": "Oliver",
+        "Relationships": [
+            {
+                "Type": "friend",
+                "With": "Eleanor",
+                "Valence": 2
+            },
+            {
+                "Type": "romantic-interest",
+                "With": "Thomas",
+                "Valence": 1
+            }
+        ]
+    },
+	{
+		"Name": "Alice",
+		"Relationships": [
+			{
+                "Type": "secret-crush",
+                "With": "Thomas",
+                "Valence": 5
+            }
+		]
+	}
 ]

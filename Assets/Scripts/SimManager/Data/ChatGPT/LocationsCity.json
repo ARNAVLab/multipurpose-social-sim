@@ -1,0 +1,93 @@
+[
+	{
+	  "Name": "Fine Dining Restaurant",
+	  "X": 5,
+	  "Y": 5,
+	  "Type": "Business",
+	  "Tags": ["Fine Dining", "Restaurant"]
+	},
+	{
+	  "Name": "Art Gallery",
+	  "X": 2,
+	  "Y": 8,
+	  "Type": "Business",
+	  "Tags": ["Art Gallery"]
+	},
+	{
+	  "Name": "Concert Hall",
+	  "X": 8,
+	  "Y": 10,
+	  "Type": "Business",
+	  "Tags": ["Concert Hall"]
+	},
+	{
+	  "Name": "Mall",
+	  "X": 15,
+	  "Y": 5,
+	  "Type": "Business",
+	  "Tags": ["Mall", "Shopping"]
+	},
+	{
+	  "Name": "Tourist Attractions",
+	  "X": 12,
+	  "Y": 12,
+	  "Type": "Business",
+	  "Tags": ["Tourist Attractions", "Sightseeing"]
+	},
+	{
+	  "Name": "Gym",
+	  "X": 4,
+	  "Y": 15,
+	  "Type": "Business",
+	  "Tags": ["Gym", "Fitness"]
+	},
+	{
+	  "Name": "Theater",
+	  "X": 8,
+	  "Y": 3,
+	  "Type": "Business",
+	  "Tags": ["Theater", "Entertainment"]
+	},
+	{
+	  "Name": "Food Court",
+	  "X": 18,
+	  "Y": 8,
+	  "Type": "Business",
+	  "Tags": ["Food Court", "Dining"]
+	},
+	{
+	  "Name": "Business Center",
+	  "X": 13,
+	  "Y": 18,
+	  "Type": "Business",
+	  "Tags": ["Business Center", "Networking"]
+	},
+	{
+	  "Name": "Bookstore",
+	  "X": 6,
+	  "Y": 18,
+	  "Type": "Business",
+	  "Tags": ["Bookstore", "Reading"]
+	},
+	{
+	  "Name": "Central Park",
+	  "X": 10,
+	  "Y": 10,
+	  "Type": "Park",
+	  "Tags": ["Park", "Trails"]
+	},
+	{
+	  "Name": "Residential Area 1",
+	  "X": 2,
+	  "Y": 2,
+	  "Type": "Residence",
+	  "Tags": ["Residential"]
+	},
+	{
+	  "Name": "Residential Area 2",
+	  "X": 15,
+	  "Y": 15,
+	  "Type": "Residence",
+	  "Tags": ["Residential"]
+	}
+]

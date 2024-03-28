@@ -1,0 +1,727 @@
+[
+    {
+        "Name": "Shop",
+        "MinTime": 45,
+        "Requirements": {
+            "LocationRequirements": [
+                {
+                    "HasAllOf": [
+                        "Market"
+                    ],
+                    "HasOneOrMoreOf": [],
+                    "HasNoneOf": []
+                }
+            ],
+            "PeopleRequirements": {}
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Financial",
+                    "Delta": -2
+                },
+                {
+                    "MotiveType": "Accomplishment",
+                    "Delta": 1
+                }
+            ],
+            "RelationshipEffects": []
+        }
+    },
+    {
+        "Name": "Exercise",
+        "MinTime": 60,
+        "Requirements": {
+            "LocationRequirements": [
+                {
+                    "HasAllOf": [
+                        "Gym"
+                    ],
+                    "HasOneOrMoreOf": [],
+                    "HasNoneOf": []
+                }
+            ],
+            "PeopleRequirements": {}
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Physical",
+                    "Delta": 4
+                },
+                {
+                    "MotiveType": "Emotional",
+                    "Delta": 2
+                }
+            ],
+            "RelationshipEffects": []
+        }
+    },
+    {
+        "Name": "Read",
+        "MinTime": 60,
+        "Requirements": {
+            "LocationRequirements": [],
+            "PeopleRequirements": {}
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Accomplishment",
+                    "Delta": 2
+                },
+                {
+                    "MotiveType": "Emotional",
+                    "Delta": 3
+                }
+            ],
+            "RelationshipEffects": []
+        }
+    },
+    {
+        "Name": "Socialize",
+        "MinTime": 30,
+        "Requirements": {
+            "LocationRequirements": [],
+            "PeopleRequirements": {
+                "MinNumPeople": 2
+            }
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Social",
+                    "Delta": 3
+                },
+                {
+                    "MotiveType": "Emotional",
+                    "Delta": 2
+                }
+            ],
+            "RelationshipEffects": []
+        }
+    },
+    {
+        "Name": "Work",
+        "MinTime": 240,
+        "Requirements": {
+            "LocationRequirements": [
+                {
+                    "HasAllOf": [
+                        "Office"
+                    ],
+                    "HasOneOrMoreOf": [],
+                    "HasNoneOf": []
+                }
+            ],
+            "PeopleRequirements": {}
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Accomplishment",
+                    "Delta": 5
+                },
+                {
+                    "MotiveType": "Financial",
+                    "Delta": 4
+                }
+            ],
+            "RelationshipEffects": []
+        }
+    },
+    {
+        "Name": "Watch Movie",
+        "MinTime": 120,
+        "Requirements": {
+            "LocationRequirements": [
+                {
+                    "HasAllOf": [
+                        "Cinema"
+                    ],
+                    "HasOneOrMoreOf": [],
+                    "HasNoneOf": []
+                }
+            ],
+            "PeopleRequirements": {}
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Emotional",
+                    "Delta": 4
+                }
+            ],
+            "RelationshipEffects": []
+        }
+    },
+    {
+        "Name": "Volunteer",
+        "MinTime": 90,
+        "Requirements": {
+            "LocationRequirements": [
+                {
+                    "HasAllOf": [
+                        "Community Center"
+                    ],
+                    "HasOneOrMoreOf": [],
+                    "HasNoneOf": []
+                }
+            ],
+            "PeopleRequirements": {}
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Accomplishment",
+                    "Delta": 3
+                },
+                {
+                    "MotiveType": "Social",
+                    "Delta": 2
+                }
+            ],
+            "RelationshipEffects": []
+        }
+    },
+    {
+        "Name": "Take a Walk",
+        "MinTime": 45,
+        "Requirements": {
+            "LocationRequirements": [],
+            "PeopleRequirements": {}
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Physical",
+                    "Delta": 2
+                },
+                {
+                    "MotiveType": "Emotional",
+                    "Delta": 2
+                }
+            ],
+            "RelationshipEffects": []
+        }
+    },
+    {
+        "Name": "Attend Event",
+        "MinTime": 120,
+        "Requirements": {
+            "LocationRequirements": [],
+            "PeopleRequirements": {
+                "SpecificPeoplePresent": [
+                    "Fiona",
+                    "Gabriel"
+                ]
+            }
+        },
+        "Effects": {
+            "MotiveEffects": [
+                {
+                    "MotiveType": "Social",
+                    "Delta": 4
+                },
+                {
+                    "MotiveType": "Emotional",
+                    "Delta": 3
+                }
+            ],
+            "RelationshipEffects": []
+        }
+    },
+	{
+      "Name": "Eat",
+      "MinTime": 40,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "Restaurant"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ]
+      },
+      "Effects": {
+		"MotiveEffects": [
+			{
+				"MotiveType": "Physical",
+				"Delta": 3
+			},
+			{
+				"MotiveType": "Financial",
+				"Delta": -1
+			}
+		]}
+    },
+   {
+      "Name": "Eat with friend",
+      "MinTime": 60,
+      "Hidden": false,
+      "Requirements": {
+        "Location Requirements": [
+          {
+            "HasAllOf": [
+              "Restaurant"
+            ],
+            "HasOneOrMoreOf": [],
+            "HasNoneOf": []
+          }
+        ],
+        "People Requirements": [
+          {
+            "RelationshipsPresent": [
+              "Friend"
+            ],
+            "MinNumPeople": 2,
+            "MaxNumPeople": 60,
+            "SpecificPeoplePresent": [],
+            "SpecificPeopleAbsent": [],
+            "RelationshipsAbsent": []
+          }
+        ]
+      },
+      "Effects": {
+		"RelationshipEffects": [
+			{
+				"RelationshipType" : "Friend",
+				"Delta": 2
+			}
+		],
+		"MotiveEffects": [
+			{
+				"MotiveType": "Physical",
+				"Delta": 2
+			},
+			{
+				"MotiveType": "Social",
+				"Delta": 2
+			},
+			{
+				"MotiveType": "Financial",
+				"Delta": -1
+			}
+		]}
+    },
+	{
+		"Name": "Fight",
+		"MinTime": 30,
+		"Requirements": {
+		"LocationRequirements": [],
+		"PeopleRequirements": {
+			"MinNumPeople": 2
+		}
+		},
+		"Effects": {
+		"MotiveEffects": [
+			{
+          "MotiveType": "Physical",
+          "Delta": -4
+        },
+        {
+          "MotiveType": "Emotional",
+          "Delta": -3
+        },
+        {
+          "MotiveType": "Social",
+          "Delta": -2
+        },
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": -2
+        }
+      ],
+      "RelationshipEffects": [
+        {
+          "RelationshipType": "Friend",
+          "Delta": -3
+        }
+      ]
+    }
+  },
+  {
+    "Name": "Attend Concert",
+    "MinTime": 120,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": [
+            "Concert Hall"
+          ],
+          "HasOneOrMoreOf": [],
+          "HasNoneOf": []
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Social",
+          "Delta": 3
+        },
+        {
+          "MotiveType": "Emotional",
+          "Delta": 4
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Read in Park",
+    "MinTime": 60,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": [
+            "Park"
+          ],
+          "HasOneOrMoreOf": [],
+          "HasNoneOf": []
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": 2
+        },
+        {
+          "MotiveType": "Emotional",
+          "Delta": 3
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Attend Community Meeting",
+    "MinTime": 90,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": [
+            "Community Center"
+          ],
+          "HasOneOrMoreOf": [],
+          "HasNoneOf": []
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Social",
+          "Delta": 3
+        },
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": 2
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Visit Museum",
+    "MinTime": 90,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": [
+            "Museum"
+          ],
+          "HasOneOrMoreOf": [],
+          "HasNoneOf": []
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": 3
+        },
+        {
+          "MotiveType": "Emotional",
+          "Delta": 3
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Dine at Fine Restaurant",
+    "MinTime": 60,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": ["Fine Dining", "Restaurant"]
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Physical",
+          "Delta": 3
+        },
+        {
+          "MotiveType": "Social",
+          "Delta": 2
+        },
+        {
+          "MotiveType": "Financial",
+          "Delta": -3
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Visit Art Gallery",
+    "MinTime": 90,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": ["Art Gallery"]
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Emotional",
+          "Delta": 4
+        },
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": 3
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Attend Concert",
+    "MinTime": 120,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": ["Concert Hall"]
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Emotional",
+          "Delta": 5
+        },
+        {
+          "MotiveType": "Social",
+          "Delta": 4
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Shop at Mall",
+    "MinTime": 120,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": ["Mall"]
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Financial",
+          "Delta": -4
+        },
+        {
+          "MotiveType": "Physical",
+          "Delta": 2
+        },
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": 2
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Take a Sightseeing Tour",
+    "MinTime": 180,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": ["Tourist Attractions"]
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Emotional",
+          "Delta": 3
+        },
+        {
+          "MotiveType": "Social",
+          "Delta": 3
+        },
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": 4
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Workout at Gym",
+    "MinTime": 60,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": ["Gym"]
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Physical",
+          "Delta": 4
+        },
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": 2
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Visit Theater",
+    "MinTime": 150,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": ["Theater"]
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Emotional",
+          "Delta": 4
+        },
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": 3
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Dine at Food Court",
+    "MinTime": 45,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": ["Food Court"]
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Physical",
+          "Delta": 2
+        },
+        {
+          "MotiveType": "Social",
+          "Delta": 2
+        },
+        {
+          "MotiveType": "Financial",
+          "Delta": -2
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Attend Business Networking Event",
+    "MinTime": 120,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": ["Business Center"]
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Social",
+          "Delta": 4
+        },
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": 3
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  },
+  {
+    "Name": "Visit Bookstore",
+    "MinTime": 60,
+    "Requirements": {
+      "LocationRequirements": [
+        {
+          "HasAllOf": ["Bookstore"]
+        }
+      ],
+      "PeopleRequirements": {}
+    },
+    "Effects": {
+      "MotiveEffects": [
+        {
+          "MotiveType": "Accomplishment",
+          "Delta": 2
+        },
+        {
+          "MotiveType": "Emotional",
+          "Delta": 3
+        }
+      ],
+      "RelationshipEffects": []
+    }
+  }
+]

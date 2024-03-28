@@ -1,0 +1,208 @@
+[
+	{
+	  "Name": "Eleanor",
+	  "Motives": {
+		"accomplishment": 2,
+		"emotional": 3,
+		"financial": 1,
+		"social": 2,
+		"physical": 1
+	  },
+	  "Relationships": [
+		{
+		  "Type": "friend",
+		  "With": "Thomas",
+		  "Valence": 2
+		},
+		{
+		  "Type": "colleague",
+		  "With": "Oliver",
+		  "Valence": 1
+		}
+	  ]
+	},
+	{
+	  "Name": "Thomas",
+	  "Motives": {
+		"accomplishment": 3,
+		"emotional": 1,
+		"financial": 2,
+		"social": 2,
+		"physical": 1
+	  },
+	  "Relationships": [
+		{
+		  "Type": "friend",
+		  "With": "Eleanor",
+		  "Valence": 2
+		},
+		{
+		  "Type": "rival",
+		  "With": "Oliver",
+		  "Valence": -1
+		}
+	  ]
+	},
+	{
+	  "Name": "Oliver",
+	  "Motives": {
+		"accomplishment": 2,
+		"emotional": 2,
+		"financial": 3,
+		"social": 1,
+		"physical": 1
+	  },
+	  "Relationships": [
+		{
+		  "Type": "colleague",
+		  "With": "Eleanor",
+		  "Valence": 1
+		},
+		{
+		  "Type": "rival",
+		  "With": "Thomas",
+		  "Valence": -1
+		}
+	  ]
+	},
+	{
+	  "Name": "Fiona",
+	  "Motives": {
+		"accomplishment": 1,
+		"emotional": 3,
+		"financial": 2,
+		"social": 2,
+		"physical": 1
+	  },
+	  "Relationships": [
+		{
+		  "Type": "romantic-interest",
+		  "With": "Gabriel",
+		  "Valence": 3
+		},
+		{
+		  "Type": "friend",
+		  "With": "Gabriel",
+		  "Valence": 2
+		}
+	  ]
+	},
+	{
+	  "Name": "Gabriel",
+	  "Motives": {
+		"accomplishment": 2,
+		"emotional": 2,
+		"financial": 1,
+		"social": 3,
+		"physical": 1
+	  },
+	  "Relationships": [
+		{
+		  "Type": "romantic-interest",
+		  "With": "Fiona",
+		  "Valence": 3
+		},
+		{
+		  "Type": "friend",
+		  "With": "Fiona",
+		  "Valence": 2
+		}
+	  ]
+	},
+	{
+	  "Name": "Nora",
+	  "Motives": {
+		"accomplishment": 2,
+		"emotional": 3,
+		"financial": 1,
+		"social": 2,
+		"physical": 1
+	  },
+	  "Relationships": [
+		{
+		  "Type": "friend",
+		  "With": "Liam",
+		  "Valence": 2
+		}
+	  ]
+	},
+	{
+	  "Name": "Liam",
+	  "Motives": {
+		"accomplishment": 3,
+		"emotional": 2,
+		"financial": 1,
+		"social": 1,
+		"physical": 2
+	  },
+	  "Relationships": [
+		{
+		  "Type": "friend",
+		  "With": "Nora",
+		  "Valence": 2
+		}
+	  ]
+	},
+	{
+	  "Name": "Hannah",
+	  "Motives": {
+		"accomplishment": 1,
+		"emotional": 2,
+		"financial": 3,
+		"social": 2,
+		"physical": 1
+	  },
+	  "Relationships": [
+		{
+		  "Type": "colleague",
+		  "With": "John",
+		  "Valence": 1
+		},
+		{
+		  "Type": "friend",
+		  "With": "John",
+		  "Valence": 2
+		}
+	  ]
+	},
+	{
+	  "Name": "John",
+	  "Motives": {
+		"accomplishment": 2,
+		"emotional": 3,
+		"financial": 2,
+		"social": 1,
+		"physical": 1
+	  },
+	  "Relationships": [
+		{
+		  "Type": "colleague",
+		  "With": "Hannah",
+		  "Valence": 1
+		},
+		{
+		  "Type": "friend",
+		  "With": "Hannah",
+		  "Valence": 2
+		}
+	  ]
+	},
+	{
+	  "Name": "Isaac",
+	  "Motives": {
+		"accomplishment": 3,
+		"emotional": 2,
+		"financial": 1,
+		"social": 1,
+		"physical": 2
+	  },
+	  "Relationships": [
+		{
+		  "Type": "sibling",
+		  "With": "Rachel",
+		  "Valence": 3
+		}
+	  ]
+	}
+  ]
+  
