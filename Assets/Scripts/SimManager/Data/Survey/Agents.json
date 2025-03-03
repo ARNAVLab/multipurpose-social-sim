@@ -23,7 +23,7 @@
     },
     {
         "Name": "Thomas",
-        "Relationships": [
+        "Relationships": [ 
             {
                 "Type": "Enemy",
                 "With": "Eleanor",
@@ -38,6 +38,22 @@
     },
     {
         "Name": "Oliver",
+        "Relationships": [
+            {
+                "Type": "Friend",
+                "With": "Eleanor",
+                "Valence": 2
+            },
+            {
+                "Type": "Romantic-Interest",
+                "With": "Thomas",
+                "Valence": 1
+            }
+        ]
+    },
+
+    {
+        "Name": "Jackson",
         "Relationships": [
             {
                 "Type": "Friend",
