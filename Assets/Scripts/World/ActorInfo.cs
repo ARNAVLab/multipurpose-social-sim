@@ -14,10 +14,10 @@ public class ActorInfo
     [Serializable]
     public struct Motive
     {
-        public float accomplishment;
-        public float social;
+        public float disabilityMedicalNeeds;
+        public float inaccessible;
         public float physical;
-        public float emotional;
+        public float senior;
         public float financial;
     }
 

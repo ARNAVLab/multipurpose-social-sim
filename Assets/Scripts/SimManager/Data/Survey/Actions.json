@@ -16,7 +16,7 @@
         "Effects": {
             "MotiveEffects": [
 				{
-                    "MotiveType": "Emotional",
+                    "MotiveType": "Senior",
                     "Delta": -2
                 },
                 {
@@ -43,7 +43,7 @@
         "Effects": {
             "MotiveEffects": [
 				{
-                    "MotiveType": "Emotional",
+                    "MotiveType": "Senior",
                     "Delta": -1
                 },
                 {
@@ -74,11 +74,11 @@
 			"ChainActions": ["Laugh Evilly"],
 			"MotiveEffects": [
 				{
-					"MotiveType": "Social",
+					"MotiveType": "Inaccessible",
 					"Delta": 5
 				},
 				{
-					"MotiveType": "Accomplishment",
+					"MotiveType": "DisabilityMedicalNeeds",
 					"Delta": 5
 				}
 			],
@@ -101,11 +101,11 @@
 		"Effects": {
 			"MotiveEffects": [
 				{
-					"MotiveType": "Social",
+					"MotiveType": "Inaccessible",
 					"Delta": -1
 				},
 				{
-					"MotiveType": "Emotional",
+					"MotiveType": "Senior",
 					"Delta": 1
 				}
 			]
@@ -117,7 +117,7 @@
 		"Requirements": {
 			"MotiveRequirements": [
 				{
-					"MotiveType": "Emotional",
+					"MotiveType": "Senior",
 					"Operation": "<",
 					"Threshold": 3
 				}
@@ -126,7 +126,7 @@
 		"Effects": {
 			"MotiveEffects": [
 				{
-					"MotiveType": "Emotional",
+					"MotiveType": "Senior",
 					"Delta": 1
 				}
 			]
@@ -140,11 +140,11 @@
 			"ChainActions": ["Sad At Home", "Be Gloomy"],
 			"MotiveEffects": [
 				{
-					"MotiveType": "Social",
+					"MotiveType": "Inaccessible",
 					"Delta": -3
 				},
 				{
-					"MotiveType": "Emotional",
+					"MotiveType": "Senior",
 					"Delta": -3
 				}
 			],
@@ -163,7 +163,7 @@
 		"Effects": {
 			"MotiveEffects": [
 				{
-					"MotiveType": "Emotional",
+					"MotiveType": "Senior",
 					"Delta": 2
 				}
 			]
@@ -228,7 +228,7 @@
 					"Delta": 2
 				},
 				{
-					"MotiveType": "Social",
+					"MotiveType": "Inaccessible",
 					"Delta": 2
 				},
 				{
@@ -260,11 +260,11 @@
 		"Effects": {
 			"MotiveEffects": [
 				{
-					"MotiveType": "Emotional",
+					"MotiveType": "Senior",
 					"Delta": 2
 				},
 				{
-					"MotiveType": "Accomplishment",
+					"MotiveType": "DisabilityMedicalNeeds",
 					"Delta": 1
 				}
 			]

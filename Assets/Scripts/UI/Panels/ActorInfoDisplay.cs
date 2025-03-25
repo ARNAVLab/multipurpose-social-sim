@@ -79,6 +79,8 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
             }
             else
             {
+                
+
                 Debug.LogError("Motive name mismatch!!");
             }
         }

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class ButtonManager : MonoBehaviour
 {
     [SerializeField] GameObject physical;
-    [SerializeField] GameObject emotional;
-    [SerializeField] GameObject social;
+    [SerializeField] GameObject senior;
+    [SerializeField] GameObject inaccessible;
     [SerializeField] GameObject financial;
-    [SerializeField] GameObject accomplishment;
+    [SerializeField] GameObject disabilityMedicalNeeds;
 
     [SerializeField] Sprite cancelSprite;
 
@@ -26,24 +26,24 @@ public class ButtonManager : MonoBehaviour
         physical.GetComponent<Image>().sprite = pinSprite;
     }
 
-    public void ToggleEmotionalOn()
+    public void ToggleSeniorOn()
     {
-        emotional.GetComponent<Image>().sprite = cancelSprite;
+        senior.GetComponent<Image>().sprite = cancelSprite;
     }
 
-    public void ToggleEmotionalOff()
+    public void ToggleSeniorOff()
     {
-        emotional.GetComponent<Image>().sprite = pinSprite;
+        senior.GetComponent<Image>().sprite = pinSprite;
     }
 
-    public void ToggleSocialOn()
+    public void ToggleInaccessibleOn()
     {
-        social.GetComponent<Image>().sprite = cancelSprite;
+        inaccessible.GetComponent<Image>().sprite = cancelSprite;
     }
 
-    public void ToggleSocialOff()
+    public void ToggleInaccessibleOff()
     {
-        social.GetComponent<Image>().sprite = pinSprite;
+        inaccessible.GetComponent<Image>().sprite = pinSprite;
     }
 
     public void ToggleFinancialOn()
@@ -56,14 +56,14 @@ public class ButtonManager : MonoBehaviour
         financial.GetComponent<Image>().sprite = pinSprite;
     }
 
-    public void ToggleAccomplishmentOn()
+    public void ToggleDisabilityMedicalNeedsOn()
     {
-        accomplishment.GetComponent<Image>().sprite = cancelSprite;
+        disabilityMedicalNeeds.GetComponent<Image>().sprite = cancelSprite;
     }
 
-    public void ToggleAccomplishmentOff()
+    public void ToggleDisabilityMedicalNeedsOff()
     {
-        accomplishment.GetComponent<Image>().sprite = pinSprite;
+        disabilityMedicalNeeds.GetComponent<Image>().sprite = pinSprite;
     }
 
     

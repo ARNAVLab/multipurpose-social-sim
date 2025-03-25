@@ -61,17 +61,17 @@ public class Actor : Selectable
         Info.destination = npcData.Destination;
         // TODO: Relationships, also need Destination and occupiedCounter from frontend
         npcData.Motives.TryGetValue("physical", out Info.motive.physical);
-        npcData.Motives.TryGetValue("emotional", out Info.motive.emotional);
-        npcData.Motives.TryGetValue("social", out Info.motive.social);
+        npcData.Motives.TryGetValue("senior", out Info.motive.senior);
+        npcData.Motives.TryGetValue("inaccessible", out Info.motive.inaccessible);
         npcData.Motives.TryGetValue("financial", out Info.motive.financial);
-        npcData.Motives.TryGetValue("accomplishment", out Info.motive.accomplishment);
+        npcData.Motives.TryGetValue("disabilityMedicalNeeds", out Info.motive.disabilityMedicalNeeds);
         Info.currentAction = npcData.CurrentAction.Name;
         SetMotiveColor(currentMotiveDisplay);
 
         // transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
     }
 
-    public enum MotivePreset { PHYSICAL, EMOTIONAL, SOCIAL, FINANCIAL, ACCOMPLISHMENT, NONE}
+    public enum MotivePreset { PHYSICAL, SENIOR, INACCESSIBLE, FINANCIAL, DISABILITYMEDICALNEEDS, NONE}
     public void SetMotiveColor(MotivePreset preset) 
     {
         switch (preset)
@@ -92,22 +92,22 @@ public class Actor : Selectable
                     }
                     break;
                 }
-            case MotivePreset.EMOTIONAL:
+            case MotivePreset.SENIOR:
                 {
-                    if(Info.motive.emotional <= 2.5) {
+                    if(Info.motive.senior <= 2.5) {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
-                    } else if(Info.motive.emotional >= 3.5) {
+                    } else if(Info.motive.senior >= 3.5) {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
                     } else {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
                     }
                     break;
                 }
-            case MotivePreset.SOCIAL:
+            case MotivePreset.INACCESSIBLE:
                 {
-                    if(Info.motive.social <= 2.5) {
+                    if(Info.motive.inaccessible <= 2.5) {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
-                    } else if(Info.motive.social >= 3.5) {
+                    } else if(Info.motive.inaccessible >= 3.5) {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
                     } else {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
@@ -125,11 +125,11 @@ public class Actor : Selectable
                     }
                     break;
                 }
-            case MotivePreset.ACCOMPLISHMENT:
+            case MotivePreset.DISABILITYMEDICALNEEDS:
                 {
-                    if(Info.motive.accomplishment <= 2.5) {
+                    if(Info.motive.disabilityMedicalNeeds <= 2.5) {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
-                    } else if(Info.motive.accomplishment >= 3.5) {
+                    } else if(Info.motive.disabilityMedicalNeeds >= 3.5) {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
                     } else {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
@@ -149,25 +149,25 @@ public class Actor : Selectable
         SetMotiveColor(MotivePreset.PHYSICAL);
         currentMotiveDisplay = MotivePreset.PHYSICAL;
     }
-    public void OnEmotional() 
+    public void OnSenior() 
     {
-        SetMotiveColor(MotivePreset.EMOTIONAL);
-        currentMotiveDisplay = MotivePreset.EMOTIONAL;
+        SetMotiveColor(MotivePreset.SENIOR);
+        currentMotiveDisplay = MotivePreset.SENIOR;
     }
-    public void OnSocial() 
+    public void OnInaccessible() 
     {
-        SetMotiveColor(MotivePreset.SOCIAL);
-        currentMotiveDisplay = MotivePreset.SOCIAL;
+        SetMotiveColor(MotivePreset.INACCESSIBLE);
+        currentMotiveDisplay = MotivePreset.INACCESSIBLE;
     }
     public void OnFinancial() 
     {
         SetMotiveColor(MotivePreset.FINANCIAL);
         currentMotiveDisplay = MotivePreset.FINANCIAL;
     }
-    public void OnAccomplishment() 
+    public void OnDisabilityMedicalNeeds() 
     {
-        SetMotiveColor(MotivePreset.ACCOMPLISHMENT);
-        currentMotiveDisplay = MotivePreset.ACCOMPLISHMENT;
+        SetMotiveColor(MotivePreset.DISABILITYMEDICALNEEDS);
+        currentMotiveDisplay = MotivePreset.DISABILITYMEDICALNEEDS;
     }
     
     public override void Focus()

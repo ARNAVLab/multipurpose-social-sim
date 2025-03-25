@@ -25,13 +25,13 @@ public class WorldManager : MonoBehaviour
 
     private bool physical;
 
-    private bool emotional;
+    private bool senior;
 
-    private bool social;
+    private bool inaccessible;
 
     private bool financial;
     
-    private bool accomplishment;
+    private bool disabilityMedicalNeeds;
 
     private void Awake()
     {
@@ -143,10 +143,10 @@ public class WorldManager : MonoBehaviour
     public void SetAgentMotiveNone()
     {
         buttonManager.TogglePhysicalOff();
-        buttonManager.ToggleEmotionalOff();
-        buttonManager.ToggleSocialOff();
+        buttonManager.ToggleSeniorOff();
+        buttonManager.ToggleInaccessibleOff();
         buttonManager.ToggleFinancialOff();
-        buttonManager.ToggleAccomplishmentOff();
+        buttonManager.ToggleDisabilityMedicalNeedsOff();
         foreach(KeyValuePair<int,Actor> a in actors) {
             Actor act = a.Value;
             act.OnNone();
@@ -160,15 +160,15 @@ public class WorldManager : MonoBehaviour
             physical = false;
         } else {
             buttonManager.TogglePhysicalOn();
-            buttonManager.ToggleEmotionalOff();
-            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleSeniorOff();
+            buttonManager.ToggleInaccessibleOff();
             buttonManager.ToggleFinancialOff();
-            buttonManager.ToggleAccomplishmentOff();
+            buttonManager.ToggleDisabilityMedicalNeedsOff();
             physical = true;
-            emotional = false;
-            social = false;
+            senior = false;
+            inaccessible = false;
             financial = false;
-            accomplishment = false;
+            disabilityMedicalNeeds = false;
             foreach(KeyValuePair<int,Actor> a in actors) {
                 Actor act = a.Value;
                 act.OnPhysical();
@@ -176,50 +176,51 @@ public class WorldManager : MonoBehaviour
         }
     }
 
-    public void SetAgentMotiveEmotional()
+    public void SetAgentMotiveSenior()
     {
-        if(emotional){
+        if(senior){
             SetAgentMotiveNone();
-            emotional = false;
+            senior = false;
             //Change button back to pin
         } else {
             buttonManager.TogglePhysicalOff();
-            buttonManager.ToggleEmotionalOn();
-            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleSeniorOn();
+            buttonManager.ToggleInaccessibleOff();
             buttonManager.ToggleFinancialOff();
-            buttonManager.ToggleAccomplishmentOff();
+            buttonManager.ToggleDisabilityMedicalNeedsOff();
             physical = false;
-            emotional = true;
-            social = false;
+            senior = true;
+            inaccessible = false;
             financial = false;
-            accomplishment = false;
+            disabilityMedicalNeeds = false;
             foreach(KeyValuePair<int,Actor> a in actors) {
                 Actor act = a.Value;
-                act.OnEmotional();
+                act.OnSenior();
             }
             //Find canvas button to change to cancel
         }
     }
 
-    public void SetAgentMotiveSocial()
+    public void SetAgentMotiveInaccessible()
     {
-        if(social){
+        if(inaccessible)
+        {
             SetAgentMotiveNone();
-            social = false;
+            inaccessible = false;
         } else {
             buttonManager.TogglePhysicalOff();
-            buttonManager.ToggleEmotionalOff();
-            buttonManager.ToggleSocialOn();
+            buttonManager.ToggleSeniorOff();
+            buttonManager.ToggleInaccessibleOn();
             buttonManager.ToggleFinancialOff();
-            buttonManager.ToggleAccomplishmentOff();
+            buttonManager.ToggleDisabilityMedicalNeedsOff();
             physical = false;
-            emotional = false;
-            social = true;
+            senior = false;
+            inaccessible = true;
             financial = false;
-            accomplishment = false;
+            disabilityMedicalNeeds = false;
             foreach(KeyValuePair<int,Actor> a in actors) {
                 Actor act = a.Value;
-                act.OnSocial();
+                act.OnInaccessible();
             }
         }
     }
@@ -231,15 +232,15 @@ public class WorldManager : MonoBehaviour
             financial = false;
         } else {
             buttonManager.TogglePhysicalOff();
-            buttonManager.ToggleEmotionalOff();
-            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleSeniorOff();
+            buttonManager.ToggleInaccessibleOff();
             buttonManager.ToggleFinancialOn();
-            buttonManager.ToggleAccomplishmentOff();
+            buttonManager.ToggleDisabilityMedicalNeedsOff();
             physical = false;
-            emotional = false;
-            social = false;
+            senior = false;
+            inaccessible = false;
             financial = true;
-            accomplishment = false;
+            disabilityMedicalNeeds = false;
             foreach(KeyValuePair<int,Actor> a in actors) {
                 Actor act = a.Value;
                 act.OnFinancial();
@@ -247,25 +248,26 @@ public class WorldManager : MonoBehaviour
         }
     }
 
-    public void SetAgentMotiveAccomplishment()
+    public void SetAgentMotiveDisabilityMedicalNeeds()
     {
-        if(accomplishment){
+        if(disabilityMedicalNeeds)
+        {
             SetAgentMotiveNone();
-            accomplishment = false;
+            disabilityMedicalNeeds = false;
         } else {
             buttonManager.TogglePhysicalOff();
-            buttonManager.ToggleEmotionalOff();
-            buttonManager.ToggleSocialOff();
+            buttonManager.ToggleSeniorOff();
+            buttonManager.ToggleInaccessibleOff();
             buttonManager.ToggleFinancialOff();
-            buttonManager.ToggleAccomplishmentOn();
+            buttonManager.ToggleDisabilityMedicalNeedsOn();
             physical = false;
-            emotional = false;
-            social = false;
+            senior = false;
+            inaccessible = false;
             financial = false;
-            accomplishment = true;
+            disabilityMedicalNeeds = true;
             foreach(KeyValuePair<int,Actor> a in actors) {
                 Actor act = a.Value;
-                act.OnAccomplishment();
+                act.OnDisabilityMedicalNeeds();
             }
         }
     }

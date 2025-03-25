@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9672,6 +9672,10 @@ PrefabInstance:
       propertyPath: accomplishment
       value: 
       objectReference: {fileID: 5510114235123870190}
+    - target: {fileID: 1932930098, guid: c7664885ef7d6b442897021585754f92, type: 3}
+      propertyPath: disabilityMedicalNeeds
+      value: 
+      objectReference: {fileID: 5510114235123870190}
     - target: {fileID: 4547189812204149362, guid: c7664885ef7d6b442897021585754f92, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -10964,7 +10968,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1591030143}
         m_TargetAssemblyTypeName: WorldManager, Assembly-CSharp
-        m_MethodName: SetAgentMotiveAccomplishment
+        m_MethodName: SetAgentMotiveDisabilityMedicalNeeds
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12264,7 +12268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Emotional.....
+  m_text: 65+
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e91c9daae3a6e34ea9e06d83ddb4863, type: 2}
   m_sharedMaterial: {fileID: 4526327603280876762, guid: 9e91c9daae3a6e34ea9e06d83ddb4863, type: 2}
@@ -12721,10 +12725,10 @@ MonoBehaviour:
   actionRemaining: {fileID: 5771696345509288129}
   motiveKeys:
   - physical
-  - emotional
-  - social
+  - senior
+  - inaccessible
   - financial
-  - accomplishment
+  - disabilityMedicalNeeds
   motiveValues:
   - {fileID: 7131927338565174013}
   - {fileID: 7487639755075731089}
@@ -13138,7 +13142,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1591030143}
         m_TargetAssemblyTypeName: WorldManager, Assembly-CSharp
-        m_MethodName: SetAgentMotiveSocial
+        m_MethodName: SetAgentMotiveInaccessible
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14453,7 +14457,7 @@ GameObject:
   - component: {fileID: 6072849185557900747}
   - component: {fileID: 7487639755075731089}
   m_Layer: 5
-  m_Name: Emotional Motive Display
+  m_Name: Senior Motive Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15086,7 +15090,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1591030143}
         m_TargetAssemblyTypeName: WorldManager, Assembly-CSharp
-        m_MethodName: SetAgentMotiveEmotional
+        m_MethodName: SetAgentMotiveSenior
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15822,7 +15826,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Social........
+  m_text: Inaccessible........
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e91c9daae3a6e34ea9e06d83ddb4863, type: 2}
   m_sharedMaterial: {fileID: 4526327603280876762, guid: 9e91c9daae3a6e34ea9e06d83ddb4863, type: 2}
@@ -16315,7 +16319,7 @@ GameObject:
   - component: {fileID: 4252092577242246915}
   - component: {fileID: 624908724591017049}
   m_Layer: 5
-  m_Name: Social Motive Display
+  m_Name: Inaccessible Motive Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18017,7 +18021,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Accomplishment
+  m_text: Disability & Medical Needs
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e91c9daae3a6e34ea9e06d83ddb4863, type: 2}
   m_sharedMaterial: {fileID: 4526327603280876762, guid: 9e91c9daae3a6e34ea9e06d83ddb4863, type: 2}
@@ -18512,7 +18516,7 @@ GameObject:
   - component: {fileID: 1792342323048008879}
   - component: {fileID: 3130500230127001589}
   m_Layer: 5
-  m_Name: Accomplishment Motive Display
+  m_Name: Disability and Medical Needs Motive Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
