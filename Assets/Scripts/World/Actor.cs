@@ -60,7 +60,7 @@ public class Actor : Selectable
         Info.currentLocation = npcData.Location.Name;
         Info.destination = npcData.Destination;
         // TODO: Relationships, also need Destination and occupiedCounter from frontend
-        npcData.Motives.TryGetValue("physical", out Info.motive.physical);
+        npcData.Motives.TryGetValue("nonNativeSpeaker", out Info.motive.nonNativeSpeaker);
         npcData.Motives.TryGetValue("senior", out Info.motive.senior);
         npcData.Motives.TryGetValue("inaccessible", out Info.motive.inaccessible);
         npcData.Motives.TryGetValue("financial", out Info.motive.financial);
@@ -71,7 +71,7 @@ public class Actor : Selectable
         // transform.position = new Vector3(Info.currentLocation.xPos + Random.Range(-0.2f, 0.2f), Info.currentLocation.yPos + Random.Range(-0.2f, 0.2f), 0);
     }
 
-    public enum MotivePreset { PHYSICAL, SENIOR, INACCESSIBLE, FINANCIAL, DISABILITYMEDICALNEEDS, NONE}
+    public enum MotivePreset { NONNATIVESPEAKER, SENIOR, INACCESSIBLE, FINANCIAL, DISABILITYMEDICALNEEDS, NONE}
     public void SetMotiveColor(MotivePreset preset) 
     {
         switch (preset)
@@ -81,11 +81,11 @@ public class Actor : Selectable
                     mainSprite.GetComponent<SpriteRenderer>().color = displayColor;
                     break;
                 }
-            case MotivePreset.PHYSICAL:
+            case MotivePreset.NONNATIVESPEAKER:
                 {
-                    if(Info.motive.physical <= 2.5) {
+                    if(Info.motive.nonNativeSpeaker <= 2.5) {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorLow;
-                    } else if(Info.motive.physical >= 3.5) {
+                    } else if(Info.motive.nonNativeSpeaker >= 3.5) {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorHigh;
                     } else {
                         mainSprite.GetComponent<SpriteRenderer>().color = colorMid;
@@ -144,10 +144,10 @@ public class Actor : Selectable
         SetMotiveColor(MotivePreset.NONE);
         currentMotiveDisplay = MotivePreset.NONE;
     }
-    public void OnPhysical() 
+    public void OnNonNativeSpeaker() 
     {
-        SetMotiveColor(MotivePreset.PHYSICAL);
-        currentMotiveDisplay = MotivePreset.PHYSICAL;
+        SetMotiveColor(MotivePreset.NONNATIVESPEAKER);
+        currentMotiveDisplay = MotivePreset.NONNATIVESPEAKER;
     }
     public void OnSenior() 
     {

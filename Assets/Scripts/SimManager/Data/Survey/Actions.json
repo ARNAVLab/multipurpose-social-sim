@@ -186,7 +186,7 @@
 		"Effects": {
 			"MotiveEffects": [
 				{
-					"MotiveType": "Physical",
+					"MotiveType": "NonNativeSpeaker",
 					"Delta": 2
 				},
 				{
@@ -224,7 +224,7 @@
 		"Effects": {
 			"MotiveEffects": [
 				{
-					"MotiveType": "Physical",
+					"MotiveType": "NonNativeSpeaker",
 					"Delta": 2
 				},
 				{

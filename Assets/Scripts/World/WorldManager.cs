@@ -23,7 +23,7 @@ public class WorldManager : MonoBehaviour
     //private string pathsPath = "Assets/Scripts/SimManager/Data/Paths.json";
     private string pathsPath = "Assets/Scripts/SimManager/Data/Paths.json";
 
-    private bool physical;
+    private bool nonNativeSpeaker;
 
     private bool senior;
 
@@ -142,7 +142,7 @@ public class WorldManager : MonoBehaviour
 
     public void SetAgentMotiveNone()
     {
-        buttonManager.TogglePhysicalOff();
+        buttonManager.ToggleNonNativeSpeakerOff();
         buttonManager.ToggleSeniorOff();
         buttonManager.ToggleInaccessibleOff();
         buttonManager.ToggleFinancialOff();
@@ -153,25 +153,26 @@ public class WorldManager : MonoBehaviour
         }
     }
 
-    public void SetAgentMotivePhysical()
+    public void SetAgentMotiveNonNativeSpeaker()
     {
-        if(physical){
+        if(nonNativeSpeaker)
+        {
             SetAgentMotiveNone();
-            physical = false;
+            nonNativeSpeaker = false;
         } else {
-            buttonManager.TogglePhysicalOn();
+            buttonManager.ToggleNonNativeSpeakerOn();
             buttonManager.ToggleSeniorOff();
             buttonManager.ToggleInaccessibleOff();
             buttonManager.ToggleFinancialOff();
             buttonManager.ToggleDisabilityMedicalNeedsOff();
-            physical = true;
+            nonNativeSpeaker = true;
             senior = false;
             inaccessible = false;
             financial = false;
             disabilityMedicalNeeds = false;
             foreach(KeyValuePair<int,Actor> a in actors) {
                 Actor act = a.Value;
-                act.OnPhysical();
+                act.OnNonNativeSpeaker();
             }
         }
     }
@@ -183,12 +184,12 @@ public class WorldManager : MonoBehaviour
             senior = false;
             //Change button back to pin
         } else {
-            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleNonNativeSpeakerOff();
             buttonManager.ToggleSeniorOn();
             buttonManager.ToggleInaccessibleOff();
             buttonManager.ToggleFinancialOff();
             buttonManager.ToggleDisabilityMedicalNeedsOff();
-            physical = false;
+            nonNativeSpeaker = false;
             senior = true;
             inaccessible = false;
             financial = false;
@@ -208,12 +209,12 @@ public class WorldManager : MonoBehaviour
             SetAgentMotiveNone();
             inaccessible = false;
         } else {
-            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleNonNativeSpeakerOff();
             buttonManager.ToggleSeniorOff();
             buttonManager.ToggleInaccessibleOn();
             buttonManager.ToggleFinancialOff();
             buttonManager.ToggleDisabilityMedicalNeedsOff();
-            physical = false;
+            nonNativeSpeaker = false;
             senior = false;
             inaccessible = true;
             financial = false;
@@ -231,12 +232,12 @@ public class WorldManager : MonoBehaviour
             SetAgentMotiveNone();
             financial = false;
         } else {
-            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleNonNativeSpeakerOff();
             buttonManager.ToggleSeniorOff();
             buttonManager.ToggleInaccessibleOff();
             buttonManager.ToggleFinancialOn();
             buttonManager.ToggleDisabilityMedicalNeedsOff();
-            physical = false;
+            nonNativeSpeaker = false;
             senior = false;
             inaccessible = false;
             financial = true;
@@ -255,12 +256,12 @@ public class WorldManager : MonoBehaviour
             SetAgentMotiveNone();
             disabilityMedicalNeeds = false;
         } else {
-            buttonManager.TogglePhysicalOff();
+            buttonManager.ToggleNonNativeSpeakerOff();
             buttonManager.ToggleSeniorOff();
             buttonManager.ToggleInaccessibleOff();
             buttonManager.ToggleFinancialOff();
             buttonManager.ToggleDisabilityMedicalNeedsOn();
-            physical = false;
+            nonNativeSpeaker = false;
             senior = false;
             inaccessible = false;
             financial = false;

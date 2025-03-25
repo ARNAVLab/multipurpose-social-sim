@@ -16,7 +16,7 @@ public class ActorInfo
     {
         public float disabilityMedicalNeeds;
         public float inaccessible;
-        public float physical;
+        public float nonNativeSpeaker;
         public float senior;
         public float financial;
     }

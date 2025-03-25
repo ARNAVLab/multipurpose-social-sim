@@ -6,7 +6,7 @@
             "senior": 3,
             "financial": 1,
             "inaccessible": 2,
-            "physical": 1
+            "nonNativeSpeaker": 1
         },
         "Relationships": [
             {
@@ -28,7 +28,7 @@
             "senior": 2,
             "financial": 3,
             "inaccessible": 1,
-            "physical": 2
+            "nonNativeSpeaker": 2
         },
         "Relationships": [
             {
@@ -50,7 +50,7 @@
             "senior": 1,
             "financial": 2,
             "inaccessible": 3,
-            "physical": 1
+            "nonNativeSpeaker": 1
         },
         "Relationships": [
             {
@@ -72,7 +72,7 @@
             "senior": 1,
             "financial": 1,
             "inaccessible": 2,
-            "physical": 3
+            "nonNativeSpeaker": 3
         },
         "Relationships": [
             {

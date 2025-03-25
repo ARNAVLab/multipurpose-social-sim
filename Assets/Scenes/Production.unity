@@ -9653,6 +9653,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1932930098, guid: c7664885ef7d6b442897021585754f92, type: 3}
+      propertyPath: senior
+      value: 
+      objectReference: {fileID: 67393757485435018}
+    - target: {fileID: 1932930098, guid: c7664885ef7d6b442897021585754f92, type: 3}
       propertyPath: social
       value: 
       objectReference: {fileID: 8046245612218485314}
@@ -9669,9 +9673,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5079568396153690844}
     - target: {fileID: 1932930098, guid: c7664885ef7d6b442897021585754f92, type: 3}
+      propertyPath: inaccessible
+      value: 
+      objectReference: {fileID: 8046245612218485314}
+    - target: {fileID: 1932930098, guid: c7664885ef7d6b442897021585754f92, type: 3}
       propertyPath: accomplishment
       value: 
       objectReference: {fileID: 5510114235123870190}
+    - target: {fileID: 1932930098, guid: c7664885ef7d6b442897021585754f92, type: 3}
+      propertyPath: nonNativeSpeaker
+      value: 
+      objectReference: {fileID: 432254084822414566}
     - target: {fileID: 1932930098, guid: c7664885ef7d6b442897021585754f92, type: 3}
       propertyPath: disabilityMedicalNeeds
       value: 
@@ -12724,7 +12736,7 @@ MonoBehaviour:
   currentAction: {fileID: 1825582453873624287}
   actionRemaining: {fileID: 5771696345509288129}
   motiveKeys:
-  - physical
+  - nonNativeSpeaker
   - senior
   - inaccessible
   - financial
@@ -12803,7 +12815,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Physical......
+  m_text: Non-Native Speaker
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e91c9daae3a6e34ea9e06d83ddb4863, type: 2}
   m_sharedMaterial: {fileID: 4526327603280876762, guid: 9e91c9daae3a6e34ea9e06d83ddb4863, type: 2}
@@ -14210,7 +14222,7 @@ GameObject:
   - component: {fileID: 5861393853185020327}
   - component: {fileID: 7131927338565174013}
   m_Layer: 5
-  m_Name: Physical Motive Display
+  m_Name: Non Native Speaker Motive Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14677,7 +14689,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1591030143}
         m_TargetAssemblyTypeName: WorldManager, Assembly-CSharp
-        m_MethodName: SetAgentMotivePhysical
+        m_MethodName: SetAgentMotiveNonNativeSpeaker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

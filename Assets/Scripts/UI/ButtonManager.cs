@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
-    [SerializeField] GameObject physical;
+    [SerializeField] GameObject nonNativeSpeaker;
     [SerializeField] GameObject senior;
     [SerializeField] GameObject inaccessible;
     [SerializeField] GameObject financial;
@@ -16,14 +16,14 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] Sprite pinSprite;
 
 
-    public void TogglePhysicalOn()
+    public void ToggleNonNativeSpeakerOn()
     {
-        physical.GetComponent<Image>().sprite = cancelSprite;
+        nonNativeSpeaker.GetComponent<Image>().sprite = cancelSprite;
     }
 
-    public void TogglePhysicalOff()
+    public void ToggleNonNativeSpeakerOff()
     {
-        physical.GetComponent<Image>().sprite = pinSprite;
+        nonNativeSpeaker.GetComponent<Image>().sprite = pinSprite;
     }
 
     public void ToggleSeniorOn()
