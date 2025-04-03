@@ -6,18 +6,18 @@ using UnityEngine;
 [Serializable]
 public class Turn
 {
-    public string speaker;  // Example: "Eleanor"
-    public string dialog;   // Example: "Hello, how are you?"
+    public string speaker;  // e.g., "Eleanor"
+    public string dialog;   // e.g., "Hello, how are you?"
 }
 
 [Serializable]
 public class Conversation
 {
-    public string type;       // Example: "communication"
-    public string withAgent;  // Example: "Thomas"
-    public string topic;      // Example: "Evacuation Plans"
+    public string type;       // e.g., "communication"
+    public string withAgent;  // e.g., "Thomas"
+    public string topic;      // e.g., "Evacuation Plans"
     public List<Turn> turns;
-    public string timestamp;  // Example: "2025-03-25 14:05:00"
+    public string timestamp;  // e.g., "2025-03-25 14:05:00"
 }
 
 [Serializable]
@@ -40,13 +40,23 @@ public class AgentJournalManager : MonoBehaviour
 
     private void Awake()
     {
-        // Use persistentDataPath so it works in builds (this works in Editor too)
-        journalFilePath = Path.Combine(Application.persistentDataPath, journalFileName);
+        // If you want to save in Assets/Scripts/SimManager/Data/Survey:
+        string directoryPath = Path.Combine(Application.dataPath, "Scripts", "SimManager", "Data", "Survey");
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+        journalFilePath = Path.Combine(directoryPath, journalFileName);
+        Debug.Log("Journal will be saved at: " + journalFilePath);
+        
+        // Alternatively, use persistentDataPath:
+        // journalFilePath = Path.Combine(Application.persistentDataPath, journalFileName);
+
         LoadJournal();
     }
 
     /// <summary>
-    /// Loads the journal from JSON if it exists; otherwise creates a new one.
+    /// Loads the journal from JSON if it exists; otherwise, creates a new journal.
     /// </summary>
     private void LoadJournal()
     {
@@ -94,11 +104,14 @@ public class AgentJournalManager : MonoBehaviour
         };
 
         agentJournal.conversations.Add(conversation);
+
+        Debug.Log($"Added conversation: {type} with {withAgent} about {topic} at {timeStamp}");
         SaveJournal();
     }
 
+
     /// <summary>
-    /// Debug utility: prints the journal to the Console.
+    /// Debug utility: prints the entire journal to the Console.
     /// </summary>
     public void PrintJournalToConsole()
     {
