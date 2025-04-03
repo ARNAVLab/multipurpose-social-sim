@@ -117,7 +117,8 @@ namespace SimManager.SimulationManager
                 {
                     npc.Motives[mote] = motives[mote];
                 }
-                else if (npc.Motives[mote] != motives[mote]) {
+                else if (npc.Motives[mote] != motives[mote])
+                {
                     shouldLog |= true;
                     npc.Motives[mote] = motives[mote];
                 }
@@ -158,12 +159,72 @@ namespace SimManager.SimulationManager
             ExecutionManager.RunSim(steps);
         }
 
-		public override void UpdateLocations()
-		{
-			foreach(string locName in LocationManager.dirtyLocations){
-				SimEngine.Locations[locName].Tags =  LocationManager.LocationsByName[locName].Tags;
-			}
-			LocationManager.dirtyLocations = new();
-		}
-	}
+        /// <summary>
+        /// Updates locations based on dirty locations.
+        /// </summary>
+        public override void UpdateLocations()
+        {
+            foreach (string locName in LocationManager.dirtyLocations)
+            {
+                SimEngine.Locations[locName].Tags = LocationManager.LocationsByName[locName].Tags;
+            }
+            LocationManager.dirtyLocations = new();
+        }
+
+        // --------------------------------------------------------
+        // ADDED: Method to start a communication action and log it
+        // --------------------------------------------------------
+        /// <summary>
+        /// Initiates a communication action between two agents and logs it to the journal JSON.
+        /// </summary>
+        /// <param name="initiatorName">Name of the agent initiating the communication.</param>
+        /// <param name="targetName">Name of the target agent.</param>
+        /// <param name="topic">Topic or reason for communicating.</param>
+        public void StartCommunicationBetweenAgents(string initiatorName, string targetName, string topic)
+        {
+            // 1) Get the agent
+            Agent initiator = AgentManager.GetAgentByName(initiatorName);
+            if (initiator == null)
+            {
+                UnityEngine.Debug.LogWarning($"Initiator agent '{initiatorName}' not found.");
+                return;
+            }
+
+            // 2) Retrieve the new "communicate_action"
+            // Explicitly use Anthology.Models.Action for clarity.
+            Anthology.Models.Action communicateAction;
+            try
+            {
+                communicateAction = ActionManager.GetActionByName("communicate_action");
+            }
+            catch
+            {
+                UnityEngine.Debug.LogWarning("communicate_action not found in ActionManager. Did you add it?");
+                return;
+            }
+
+            // 3) Clear any existing action and set the new one.
+            initiator.CurrentAction.Clear();
+            initiator.CurrentAction.AddFirst(communicateAction);
+
+            // 4) (Optional) Additional handling for target agent can go here.
+
+            // 5) Log the communication to the journal (if an AgentJournalManager exists in the scene)
+            AgentJournalManager journalManager = UnityEngine.Object.FindObjectOfType<AgentJournalManager>();
+            if (journalManager != null)
+            {
+                List<Turn> turns = new List<Turn>()
+                {
+                    new Turn { speaker = initiatorName, dialog = $"Hello {targetName}, let's talk about {topic}!" },
+                    new Turn { speaker = targetName, dialog = "Sure, I'm listening..." }
+                };
+
+                journalManager.AddConversation("communication", targetName, topic, turns, System.DateTime.Now);
+            }
+            else
+            {
+                UnityEngine.Debug.LogWarning("No AgentJournalManager found in the scene. Conversation not logged.");
+            }
+        }
+    }
 }
