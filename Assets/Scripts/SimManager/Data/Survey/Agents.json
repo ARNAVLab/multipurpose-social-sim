@@ -8,6 +8,11 @@
             "social": 2,
             "physical": 1
         },
+        "Traits": {
+            "senior": true,
+            "disabled": false,
+            "non-native speaker":  false
+        },
         "Relationships": [
             {
                 "Type": "Friend",
@@ -23,6 +28,11 @@
     },
     {
         "Name": "Thomas",
+        "Traits": {
+            "senior": false,
+            "disabled": true,
+            "non-native speaker": true
+        },
         "Relationships": [
             {
                 "Type": "Enemy",
@@ -38,6 +48,11 @@
     },
     {
         "Name": "Oliver",
+        "Traits": {
+            "senior": false,
+            "disabled": false,
+            "non-native speaker": false
+        },
         "Relationships": [
             {
                 "Type": "Friend",
