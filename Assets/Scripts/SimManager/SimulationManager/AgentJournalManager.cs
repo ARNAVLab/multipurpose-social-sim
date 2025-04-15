@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [Serializable]
 public class Turn
@@ -31,27 +34,26 @@ public class AgentJournal
 /// </summary>
 public class AgentJournalManager : MonoBehaviour
 {
-    // Name of the JSON file to store the journal
+    // Name of the main JSON file to store the global journal.
     private string journalFileName = "AgentJournal.json";
-    // Full path to the JSON file
+    // Full path to the global journal file.
     private string journalFilePath;
-    // In-memory copy of the journal
+    // In-memory copy of the global journal.
     private AgentJournal agentJournal;
 
     private void Awake()
     {
-        // If you want to save in Assets/Scripts/SimManager/Data/Survey:
+        // Save the global journal in the "Survey" folder.
         string directoryPath = Path.Combine(Application.dataPath, "Scripts", "SimManager", "Data", "Survey");
         if (!Directory.Exists(directoryPath))
         {
             Directory.CreateDirectory(directoryPath);
         }
         journalFilePath = Path.Combine(directoryPath, journalFileName);
-        Debug.Log("Journal will be saved at: " + journalFilePath);
+        Debug.Log("Global journal will be saved at: " + journalFilePath);
         
         // Alternatively, use persistentDataPath:
         // journalFilePath = Path.Combine(Application.persistentDataPath, journalFileName);
-
         LoadJournal();
     }
 
@@ -76,7 +78,7 @@ public class AgentJournalManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Saves the current journal to JSON.
+    /// Saves the current global journal to JSON.
     /// </summary>
     private void SaveJournal()
     {
@@ -85,13 +87,8 @@ public class AgentJournalManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds a conversation record to the journal and saves it.
+    /// Adds a conversation record to the global journal and saves it.
     /// </summary>
-    /// <param name="type">Type of conversation (e.g., communication).</param>
-    /// <param name="withAgent">The other agent's name.</param>
-    /// <param name="topic">Topic of the conversation.</param>
-    /// <param name="turns">List of dialog turns.</param>
-    /// <param name="timeStamp">Time of the conversation.</param>
     public void AddConversation(string type, string withAgent, string topic, List<Turn> turns, DateTime timeStamp)
     {
         Conversation conversation = new Conversation
@@ -109,9 +106,8 @@ public class AgentJournalManager : MonoBehaviour
         SaveJournal();
     }
 
-
     /// <summary>
-    /// Debug utility: prints the entire journal to the Console.
+    /// Debug utility: prints the entire global journal to the Console.
     /// </summary>
     public void PrintJournalToConsole()
     {
@@ -126,5 +122,42 @@ public class AgentJournalManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    // ============================================================
+    // NEW: Per-Agent Journal Saving Functionality
+    // ============================================================
+    public void SavePersonalJournalForAgent(string agentName, AgentJournal journal)
+    {
+        // Define the base folder for personal journals.
+        string baseFolder = Path.Combine(Application.dataPath, "Scripts", "SimManager", "Data", "Survey", "agentJournals");
+        if (!Directory.Exists(baseFolder))
+        {
+            Directory.CreateDirectory(baseFolder);
+        }
+
+        // Create a subfolder for the agent.
+        string agentFolder = Path.Combine(baseFolder, agentName);
+        if (!Directory.Exists(agentFolder))
+        {
+            Directory.CreateDirectory(agentFolder);
+        }
+
+        // Build the file path.
+        string filePath = Path.Combine(agentFolder, $"{agentName}_Journal.json");
+
+        try
+        {
+            string json = JsonUtility.ToJson(journal, true);
+            File.WriteAllText(filePath, json);
+            Debug.Log($"Journal for {agentName} saved at: {filePath}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to save journal for {agentName}: {e.Message}");
+        }
+#if UNITY_EDITOR
+        AssetDatabase.Refresh();
+#endif
     }
 }

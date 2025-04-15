@@ -60,7 +60,7 @@ namespace SimManager.SimulationManager
         {
             locations.Clear();
             IEnumerable<LocationNode> locNodes = LocationManager.LocationsByName.Values;
-            foreach(LocationNode locNode in locNodes)
+            foreach (LocationNode locNode in locNodes)
             {
                 Location loc = new()
                 {
@@ -68,7 +68,7 @@ namespace SimManager.SimulationManager
                     Coordinates = new(locNode.X, locNode.Y),
                 };
                 loc.Tags = locNode.Tags;
-                foreach(KeyValuePair<LocationNode, float> con in locNode.Connections)
+                foreach (KeyValuePair<LocationNode, float> con in locNode.Connections)
                 {
                     loc.Connections.Add(con.Key.Name, con.Value);
                 }
@@ -172,7 +172,7 @@ namespace SimManager.SimulationManager
         }
 
         // --------------------------------------------------------
-        // ADDED: Method to start a communication action and log it
+        // ADDED: Method to start a communication action and log it.
         // --------------------------------------------------------
         /// <summary>
         /// Initiates a communication action between two agents and logs it to the journal JSON.
@@ -182,7 +182,7 @@ namespace SimManager.SimulationManager
         /// <param name="topic">Topic or reason for communicating.</param>
         public void StartCommunicationBetweenAgents(string initiatorName, string targetName, string topic)
         {
-            // 1) Get the agent
+            // 1) Get the agent.
             Agent initiator = AgentManager.GetAgentByName(initiatorName);
             if (initiator == null)
             {
@@ -190,8 +190,7 @@ namespace SimManager.SimulationManager
                 return;
             }
 
-            // 2) Retrieve the new "communicate_action"
-            // Explicitly use Anthology.Models.Action for clarity.
+            // 2) Retrieve the new "communicate_action".
             Anthology.Models.Action communicateAction;
             try
             {
@@ -207,7 +206,9 @@ namespace SimManager.SimulationManager
             initiator.CurrentAction.Clear();
             initiator.CurrentAction.AddFirst(communicateAction);
 
-            // 4) Log the communication to the journal (if an AgentJournalManager exists in the scene)
+            // 4) (Optional) Additional handling for target agent can go here.
+
+            // 5) Log the communication to the global journal (for compatibility).
             AgentJournalManager journalManager = UnityEngine.Object.FindObjectOfType<AgentJournalManager>();
             if (journalManager != null)
             {
@@ -218,7 +219,6 @@ namespace SimManager.SimulationManager
                 };
 
                 journalManager.AddConversation("communication", targetName, topic, turns, System.DateTime.Now);
-                UnityEngine.Debug.Log($"Logged conversation between {initiatorName} and {targetName} about {topic}.");
             }
             else
             {
