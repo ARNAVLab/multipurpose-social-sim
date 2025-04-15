@@ -2,19 +2,99 @@
     "conversations": [
         {
             "type": "communication",
+            "withAgent": "Eleanor",
+            "topic": "Communication executed",
+            "turns": [
+                {
+                    "speaker": "Eleanor",
+                    "dialog": "Communication finished with Oliver at Tick 4061."
+                },
+                {
+                    "speaker": "Oliver",
+                    "dialog": "Communication finished with Eleanor at Tick 4061."
+                }
+            ],
+            "timestamp": "Tick 4061"
+        },
+        {
+            "type": "communication",
+            "withAgent": "Eleanor",
+            "topic": "Communication executed",
+            "turns": [
+                {
+                    "speaker": "Oliver",
+                    "dialog": "Communication finished with Eleanor at Tick 8321."
+                },
+                {
+                    "speaker": "Eleanor",
+                    "dialog": "Communication finished with Oliver at Tick 8321."
+                }
+            ],
+            "timestamp": "Tick 8321"
+        },
+        {
+            "type": "communication",
             "withAgent": "Thomas",
             "topic": "Communication executed",
             "turns": [
                 {
                     "speaker": "Thomas",
-                    "dialog": "Communication finished with Oliver at Tick 3906."
+                    "dialog": "Communication finished with Oliver at Tick 8566."
                 },
                 {
                     "speaker": "Oliver",
-                    "dialog": "Communication finished with Thomas at Tick 3906."
+                    "dialog": "Communication finished with Thomas at Tick 8566."
                 }
             ],
-            "timestamp": "Tick 3906"
+            "timestamp": "Tick 8566"
+        },
+        {
+            "type": "communication",
+            "withAgent": "Thomas",
+            "topic": "Communication executed",
+            "turns": [
+                {
+                    "speaker": "Oliver",
+                    "dialog": "Communication finished with Thomas at Tick 8614."
+                },
+                {
+                    "speaker": "Thomas",
+                    "dialog": "Communication finished with Oliver at Tick 8614."
+                }
+            ],
+            "timestamp": "Tick 8614"
+        },
+        {
+            "type": "communication",
+            "withAgent": "Eleanor",
+            "topic": "Communication executed",
+            "turns": [
+                {
+                    "speaker": "Eleanor",
+                    "dialog": "Communication finished with Oliver at Tick 11704."
+                },
+                {
+                    "speaker": "Oliver",
+                    "dialog": "Communication finished with Eleanor at Tick 11704."
+                }
+            ],
+            "timestamp": "Tick 11704"
+        },
+        {
+            "type": "communication",
+            "withAgent": "Eleanor",
+            "topic": "Communication executed",
+            "turns": [
+                {
+                    "speaker": "Oliver",
+                    "dialog": "Communication finished with Eleanor at Tick 11916."
+                },
+                {
+                    "speaker": "Eleanor",
+                    "dialog": "Communication finished with Oliver at Tick 11916."
+                }
+            ],
+            "timestamp": "Tick 11916"
         }
     ]
 }
