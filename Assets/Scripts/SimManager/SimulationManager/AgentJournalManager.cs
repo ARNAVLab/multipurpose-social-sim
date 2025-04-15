@@ -130,7 +130,7 @@ public class AgentJournalManager : MonoBehaviour
     public void SavePersonalJournalForAgent(string agentName, AgentJournal journal)
     {
         // Define the base folder for personal journals.
-        string baseFolder = Path.Combine(Application.dataPath, "Scripts", "SimManager", "Data", "Survey", "agentJournals");
+        string baseFolder = Path.Combine(Application.dataPath, "Scripts", "SimManager", "Data", "Survey", "personalJournals");
         if (!Directory.Exists(baseFolder))
         {
             Directory.CreateDirectory(baseFolder);
@@ -148,7 +148,14 @@ public class AgentJournalManager : MonoBehaviour
 
         try
         {
+            // Delete the file if it already exists.
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+            // Convert the journal to JSON.
             string json = JsonUtility.ToJson(journal, true);
+            // Write the new journal to file (this will create a new file).
             File.WriteAllText(filePath, json);
             Debug.Log($"Journal for {agentName} saved at: {filePath}");
         }
@@ -156,8 +163,9 @@ public class AgentJournalManager : MonoBehaviour
         {
             Debug.LogError($"Failed to save journal for {agentName}: {e.Message}");
         }
-#if UNITY_EDITOR
+    #if UNITY_EDITOR
         AssetDatabase.Refresh();
-#endif
+    #endif
     }
+
 }

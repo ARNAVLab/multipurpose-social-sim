@@ -1,0 +1,68 @@
+{
+    "conversations": [
+        {
+            "type": "communication",
+            "withAgent": "Eleanor",
+            "topic": "Communication executed",
+            "turns": [
+                {
+                    "speaker": "Thomas",
+                    "dialog": "Communication finished with Eleanor at Tick 1593."
+                },
+                {
+                    "speaker": "Eleanor",
+                    "dialog": "Communication finished with Thomas at Tick 1593."
+                }
+            ],
+            "timestamp": "Tick 1593"
+        },
+        {
+            "type": "communication",
+            "withAgent": "Eleanor",
+            "topic": "Communication executed",
+            "turns": [
+                {
+                    "speaker": "Thomas",
+                    "dialog": "Communication finished with Eleanor at Tick 3015."
+                },
+                {
+                    "speaker": "Eleanor",
+                    "dialog": "Communication finished with Thomas at Tick 3015."
+                }
+            ],
+            "timestamp": "Tick 3015"
+        },
+        {
+            "type": "communication",
+            "withAgent": "Oliver",
+            "topic": "Communication executed",
+            "turns": [
+                {
+                    "speaker": "Thomas",
+                    "dialog": "Communication finished with Oliver at Tick 4987."
+                },
+                {
+                    "speaker": "Oliver",
+                    "dialog": "Communication finished with Thomas at Tick 4987."
+                }
+            ],
+            "timestamp": "Tick 4987"
+        },
+        {
+            "type": "communication",
+            "withAgent": "Eleanor",
+            "topic": "Communication executed",
+            "turns": [
+                {
+                    "speaker": "Eleanor",
+                    "dialog": "Communication finished with Thomas at Tick 5051."
+                },
+                {
+                    "speaker": "Thomas",
+                    "dialog": "Communication finished with Eleanor at Tick 5051."
+                }
+            ],
+            "timestamp": "Tick 5051"
+        }
+    ]
+}
