@@ -7,14 +7,14 @@
             "turns": [
                 {
                     "speaker": "Thomas",
-                    "dialog": "Communication finished with Oliver at Tick 4987."
+                    "dialog": "Communication finished with Oliver at Tick 3906."
                 },
                 {
                     "speaker": "Oliver",
-                    "dialog": "Communication finished with Thomas at Tick 4987."
+                    "dialog": "Communication finished with Thomas at Tick 3906."
                 }
             ],
-            "timestamp": "Tick 4987"
+            "timestamp": "Tick 3906"
         }
     ]
 }
