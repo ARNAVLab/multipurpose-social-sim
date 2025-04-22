@@ -30,6 +30,9 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
     [SerializeField] RelationshipDisplay relationsDisp;
     [Tooltip("The planel which displays the Actor journal.")]
     [SerializeField] JournalDisplay journalDisp;
+    [Tooltip("The planel which displays the Actor traits.")]
+    [SerializeField] JournalDisplay traitDisp;
+
 
     private const string AT_LOCATION = "Currently at";
     private const string TO_LOCATION = "Traveling to";
@@ -89,6 +92,7 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 
         journalDisp.DisplayActorJournal(journalText);
     }
+
 
     public void OverwriteMotiveValue(string motiveName, float newValue)
     {
