@@ -1,6 +1,8 @@
 ﻿using Anthology.Models;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using UnityEngine;
 
 namespace SimManager.SimulationManager
 {
@@ -48,6 +50,7 @@ namespace SimManager.SimulationManager
                 {
                     npc.Relationships.Add((Relationship)r);
                 }
+                npc.traits = a.Traits;
                 npcs[a.Name] = npc;
             }
         }
@@ -122,6 +125,10 @@ namespace SimManager.SimulationManager
                     npc.Motives[mote] = motives[mote];
                 }
             }
+
+            npc.traits = agent.Traits;
+            
+
             if (agent.CurrentAction.Any() && npc.CurrentAction.Name != agent.CurrentAction.First().Name)
             {
                 shouldLog = true;
@@ -132,6 +139,9 @@ namespace SimManager.SimulationManager
             {
                 SimEngine.History?.AddNpcToLog(npc);
             }
+
+            
+
         }
 
         /// <summary>
@@ -147,6 +157,9 @@ namespace SimManager.SimulationManager
             {
                 agent.Motives[mote] = motives[mote];
             }
+
+            npc.traits = agent.Traits;
+
         }
 
         /// <summary>

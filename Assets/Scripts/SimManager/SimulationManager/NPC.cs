@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Anthology.Models;
+using System.Collections.Generic;
 using System.Numerics;
 using System.Text;
 
@@ -93,6 +94,8 @@ namespace SimManager.SimulationManager
             get { return motives; }
             set { Dirty = true; motives = value; }
         }
+
+        public Traits traits = new();
 
         /// <summary>
         /// Set the motivation to the given amount. 

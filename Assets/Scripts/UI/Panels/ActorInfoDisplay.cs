@@ -91,6 +91,10 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
         var journalText = SimManager.SimulationManager.SimEngine.GetLog(displayedNPC.Name);
 
         journalDisp.DisplayActorJournal(journalText);
+
+        var traitText = SimManager.SimulationManager.SimEngine.GetTraits(displayedNPC.Name);
+
+        traitDisp.DisplayActorJournal(traitText);
     }
 
 

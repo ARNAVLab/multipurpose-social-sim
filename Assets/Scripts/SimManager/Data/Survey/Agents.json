@@ -2,11 +2,15 @@
     {
         "Name": "Eleanor",
         "Motives": {
-            "accomplishment": 2,
-            "emotional": 3,
+            "accessibility": 2,
+            "family": 3,
             "financial": 1,
-            "social": 2,
-            "physical": 1
+            "security": 2,
+            "health": 1
+        },
+        "Traits": {
+            "senior": true,
+            "disabled": true
         },
         "Relationships": [
             {
@@ -23,6 +27,9 @@
     },
     {
         "Name": "Thomas",
+        "Traits": {
+            "senior": true
+        },
         "Relationships": [
             {
                 "Type": "Enemy",

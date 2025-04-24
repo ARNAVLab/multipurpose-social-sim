@@ -1,4 +1,5 @@
-﻿using SimManager.HistoryManager;
+﻿using Anthology.Models;
+using SimManager.HistoryManager;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -184,6 +185,23 @@ namespace SimManager.SimulationManager
         {
             var npcLogCursor = History.GetActorJson(actorName);
             return History.JsonToNPCLog(npcLogCursor, actorName);
+        }
+
+        public static string GetTraits(string actorName)
+        {
+            var npc = NPCs[actorName];
+
+            string traits = "";
+
+            foreach (var trait in npc.traits.trait)
+            {
+                if (trait.HasTrait == true)
+                {
+                    traits += trait.TraitName + "\n";
+                }
+            }
+
+            return traits;
         }
     }
 }
