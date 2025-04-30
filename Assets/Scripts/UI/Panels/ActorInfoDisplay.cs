@@ -31,7 +31,7 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
     [Tooltip("The planel which displays the Actor journal.")]
     [SerializeField] JournalDisplay journalDisp;
     [Tooltip("The planel which displays the Actor traits.")]
-    [SerializeField] JournalDisplay traitDisp;
+    [SerializeField] TraitDisplay traitDisp;
 
 
     private const string AT_LOCATION = "Currently at";
@@ -94,7 +94,7 @@ public class ActorInfoDisplay : MonoBehaviour, IInfoDisplay
 
         var traitText = SimManager.SimulationManager.SimEngine.GetTraits(displayedNPC.Name);
 
-        traitDisp.DisplayActorJournal(traitText);
+        traitDisp.DisplayTraits(displayedNPC);
     }
 
 

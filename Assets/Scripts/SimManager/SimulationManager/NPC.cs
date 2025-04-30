@@ -97,6 +97,12 @@ namespace SimManager.SimulationManager
 
         public Traits traits = new();
 
+        public void RemoveTrait(string name)
+        {
+            traits.trait.Find(traits => traits.TraitName == name).HasTrait = false;
+        }
+
+
         /// <summary>
         /// Set the motivation to the given amount. 
         /// </summary>

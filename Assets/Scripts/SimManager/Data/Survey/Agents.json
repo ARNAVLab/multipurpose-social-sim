@@ -28,7 +28,8 @@
     {
         "Name": "Thomas",
         "Traits": {
-            "senior": true
+            "senior": true,
+            "disabled": false
         },
         "Relationships": [
             {
